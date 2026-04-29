@@ -3,701 +3,754 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PropVault — Futures Prop Firm Comparison</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<title>PropVault — Futures Prop Firm Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ═══ TOKENS ═══ */
+/* ══════════════════════════════════════
+   DESIGN TOKENS — Reflect / Deep Space Purple
+══════════════════════════════════════ */
 :root {
-  --bg0: #03040a;
-  --bg1: #070a14;
-  --glass-light: rgba(255,255,255,0.04);
-  --glass-mid:   rgba(255,255,255,0.07);
-  --glass-heavy: rgba(255,255,255,0.11);
-  --border-dim:  rgba(255,255,255,0.06);
-  --border-glow: rgba(255,255,255,0.14);
-  --text:  #eef0f8;
-  --muted: #6b7280;
-  --sub:   #9ca3af;
-  --cyan:  #22d3ee;
-  --mint:  #34d399;
-  --violet:#a78bfa;
-  --rose:  #fb7185;
-  --amber: #fbbf24;
-  --blue:  #60a5fa;
-  --glow-cyan:   rgba(34,211,238,0.18);
-  --glow-mint:   rgba(52,211,153,0.16);
-  --glow-violet: rgba(167,139,250,0.16);
-  --glow-rose:   rgba(251,113,133,0.16);
+  --bg-deep:    #06030f;
+  --bg-base:    #0a0515;
+  --bg-panel:   rgba(14,8,28,0.75);
+  --bg-card:    rgba(18,10,36,0.6);
+  --bg-card2:   rgba(22,14,44,0.5);
+  --border-dim: rgba(120,80,200,0.12);
+  --border-mid: rgba(140,90,220,0.22);
+  --border-hi:  rgba(160,110,250,0.4);
+  --purple-core: #7c3aed;
+  --purple-mid:  #9d5cf6;
+  --purple-lite: #b87fff;
+  --violet:      #c084fc;
+  --lavender:    #ddb4fe;
+  --pink-glow:   #e879f9;
+  --white:  #ffffff;
+  --text:   #e8e0f5;
+  --muted:  #7a6fa0;
+  --sub:    #a899cc;
+  --green:  #4ade80;
+  --red:    #f87171;
+  --amber:  #fbbf24;
+  --glow-purple: rgba(124,58,237,0.35);
+  --glow-violet: rgba(192,132,252,0.2);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body {
-  background: var(--bg0);
+  background: var(--bg-deep);
   color: var(--text);
-  font-family: 'Outfit', sans-serif;
-  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* ═══ ANIMATED GRADIENT BACKGROUND ═══ */
-.bg-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
+/* ══════════════════════════════════════
+   DEEP SPACE BG  — layered radial clouds
+══════════════════════════════════════ */
+.space-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(80,20,160,0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(60,10,120,0.3)  0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 70%,  rgba(100,30,180,0.2) 0%, transparent 60%),
+    linear-gradient(180deg, #06030f 0%, #0d0520 40%, #06030f 100%);
 }
-.bg-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.35;
-  animation: float linear infinite;
-}
-.orb1 { width: 700px; height: 700px; background: radial-gradient(circle, #22d3ee33, transparent 70%); top: -200px; left: -150px; animation-duration: 22s; }
-.orb2 { width: 600px; height: 600px; background: radial-gradient(circle, #a78bfa33, transparent 70%); top: 40%; right: -200px; animation-duration: 28s; animation-direction: reverse; }
-.orb3 { width: 500px; height: 500px; background: radial-gradient(circle, #34d39922, transparent 70%); bottom: -100px; left: 30%; animation-duration: 18s; }
-.orb4 { width: 400px; height: 400px; background: radial-gradient(circle, #fb718522, transparent 70%); top: 60%; left: 10%; animation-duration: 32s; animation-direction: reverse; }
-@keyframes float {
-  0%   { transform: translate(0,0) scale(1); }
-  33%  { transform: translate(60px,-40px) scale(1.08); }
-  66%  { transform: translate(-40px,70px) scale(0.95); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-/* ═══ NOISE OVERLAY ═══ */
-.bg-canvas::after {
-  content:'';
-  position:absolute;
-  inset:0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity:0.4;
-  pointer-events:none;
-}
-
-/* Grid lines */
-.grid-lines {
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
+/* Star field */
+.stars {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 65%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 30%, rgba(180,140,255,0.8) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 75%, rgba(200,160,255,0.6) 0%, transparent 100%);
 }
 
-/* ═══ LAYOUT ═══ */
-.page { position: relative; z-index: 1; }
-.wrap { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
+/* ══════════════════════════════════════
+   WORMHOLE / PORTAL HERO ART (SVG + CSS)
+══════════════════════════════════════ */
+.vortex-container {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 420px;
+  top: 50px;
+  pointer-events: none; z-index: 1;
+}
+.vortex-glow-base {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 180px;
+  background: radial-gradient(ellipse 70% 100% at 50% 100%, rgba(120,50,255,0.7) 0%, rgba(80,20,200,0.4) 40%, transparent 70%);
+  filter: blur(30px);
+  animation: breathe 4s ease-in-out infinite;
+}
+.vortex-glow-mid {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  width: 300px; height: 120px;
+  background: radial-gradient(ellipse 60% 100% at 50% 100%, rgba(200,100,255,0.8) 0%, rgba(150,60,255,0.5) 50%, transparent 70%);
+  filter: blur(18px);
+  animation: breathe 4s ease-in-out infinite 0.5s;
+}
+.vortex-glow-core {
+  position: absolute; bottom: 55px; left: 50%; transform: translateX(-50%);
+  width: 140px; height: 80px;
+  background: radial-gradient(ellipse 50% 100% at 50% 100%, rgba(255,200,255,0.95) 0%, rgba(220,130,255,0.8) 40%, transparent 70%);
+  filter: blur(10px);
+  animation: breathe 3s ease-in-out infinite 1s;
+}
+@keyframes breathe {
+  0%,100%{opacity:0.85; transform:translateX(-50%) scaleX(1);}
+  50%{opacity:1; transform:translateX(-50%) scaleX(1.06);}
+}
+/* Arch rings */
+.vortex-arches {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 340px;
+}
+.arch {
+  position: absolute; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 0 0;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  animation: archPulse 3.5s ease-in-out infinite;
+}
+.arch-1 { width:560px; height:290px; border-color:rgba(140,60,255,0.35); animation-delay:0s; }
+.arch-2 { width:480px; height:250px; border-color:rgba(160,80,255,0.45); animation-delay:0.2s; }
+.arch-3 { width:400px; height:210px; border-color:rgba(180,100,255,0.55); animation-delay:0.4s; }
+.arch-4 { width:320px; height:170px; border-color:rgba(200,120,255,0.65); animation-delay:0.6s; }
+.arch-5 { width:240px; height:130px; border-color:rgba(220,140,255,0.75); animation-delay:0.8s; }
+.arch-6 { width:165px; height:92px;  border-color:rgba(240,160,255,0.85); animation-delay:1.0s; }
+.arch-7 { width:100px; height:58px;  border-color:rgba(255,180,255,0.9);  animation-delay:1.2s; }
+@keyframes archPulse {
+  0%,100%{opacity:0.7;}
+  50%{opacity:1; filter:drop-shadow(0 0 6px rgba(200,120,255,0.6));}
+}
+/* Horizontal ground glow line */
+.vortex-ground {
+  position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+  width: 620px; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(140,60,255,0.6) 20%, rgba(220,140,255,0.9) 50%, rgba(140,60,255,0.6) 80%, transparent 100%);
+  filter: blur(2px);
+}
+.vortex-ground-wide {
+  position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 8px;
+  background: linear-gradient(90deg, transparent 0%, rgba(120,40,220,0.3) 25%, rgba(180,100,255,0.5) 50%, rgba(120,40,220,0.3) 75%, transparent 100%);
+  filter: blur(8px);
+}
+/* Floating particles */
+.particle {
+  position: absolute; border-radius: 50%;
+  background: rgba(200,140,255,0.8);
+  animation: particleDrift linear infinite;
+}
+@keyframes particleDrift {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 0.6; }
+  100% { transform: translateY(-180px) translateX(var(--dx,20px)) scale(0.3); opacity: 0; }
+}
 
-/* ═══ NAV ═══ */
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+.page { position: relative; z-index: 1; }
 nav {
-  position: sticky; top: 0; z-index: 200;
-  padding: 0 2rem; height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(3,4,10,0.7);
-  backdrop-filter: blur(24px) saturate(180%);
+  position: sticky; top: 0; z-index: 200; height: 58px;
+  display: flex; align-items: center; padding: 0 2rem;
+  background: rgba(6,3,15,0.65);
+  backdrop-filter: blur(28px) saturate(160%);
   border-bottom: 1px solid var(--border-dim);
 }
+.nav-inner { max-width: 1300px; margin: 0 auto; width: 100%; display: flex; align-items: center; }
 .nav-logo {
-  font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px;
-  background: linear-gradient(135deg, var(--cyan), var(--violet));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 9px;
+  font-size: 15px; font-weight: 700; letter-spacing: -0.3px; color: var(--white);
+  text-decoration: none;
 }
-.nav-logo-icon {
-  width: 32px; height: 32px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--cyan), var(--violet));
+.nav-logo-mark {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--purple-core), var(--pink-glow));
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 900; color: #000;
+  font-size: 14px; font-weight: 900; color: #fff;
+  box-shadow: 0 0 14px rgba(124,58,237,0.6);
 }
-.nav-tabs { display: flex; gap: 4px; }
-.nav-tab {
-  position: relative;
-  background: none; border: none; color: var(--muted);
-  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500;
-  padding: 7px 16px; border-radius: 10px; cursor: pointer;
-  transition: all 0.25s; letter-spacing: 0.2px;
+.nav-center { display: flex; gap: 2px; margin-left: auto; margin-right: auto; }
+.nav-link {
+  background: none; border: none; color: var(--sub);
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+  padding: 6px 14px; border-radius: 8px; cursor: pointer;
+  transition: all 0.2s; letter-spacing: 0.1px;
 }
-.nav-tab:hover { color: var(--text); background: var(--glass-mid); }
-.nav-tab.active {
-  color: var(--cyan);
-  background: rgba(34,211,238,0.08);
-  box-shadow: 0 0 20px rgba(34,211,238,0.1), inset 0 0 20px rgba(34,211,238,0.04);
+.nav-link:hover { color: var(--white); background: rgba(140,80,220,0.1); }
+.nav-link.active {
+  color: var(--white);
+  background: rgba(124,58,237,0.18);
+  box-shadow: 0 0 0 1px rgba(140,80,220,0.25);
 }
 .nav-badge {
-  background: linear-gradient(135deg, var(--cyan), var(--mint));
-  color: #000; font-size: 10px; font-weight: 700;
-  padding: 1px 6px; border-radius: 20px; margin-left: 5px;
+  background: linear-gradient(135deg, var(--purple-core), var(--violet));
+  color: #fff; font-size: 10px; font-weight: 700;
+  padding: 1px 6px; border-radius: 10px; margin-left: 4px;
 }
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.btn-ghost {
+  background: none; border: 1px solid var(--border-mid);
+  color: var(--sub); font-family:'Inter',sans-serif; font-size:13px; font-weight:500;
+  padding: 6px 14px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
+}
+.btn-ghost:hover { color:var(--white); border-color: var(--border-hi); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--purple-core) 0%, var(--purple-mid) 100%);
+  border: none; color: #fff;
+  font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+  padding: 7px 16px; border-radius: 8px; cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 18px rgba(124,58,237,0.4);
+}
+.btn-primary:hover { box-shadow: 0 0 28px rgba(124,58,237,0.65); transform: translateY(-1px); }
 
-/* ═══ HERO ═══ */
+/* ══════════════════════════════════════
+   HERO SECTION
+══════════════════════════════════════ */
 .hero {
-  padding: 5rem 2rem 3rem;
-  max-width: 1320px; margin: 0 auto;
+  position: relative;
+  min-height: 520px;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 4rem 2rem 0;
   text-align: center;
+  overflow: hidden;
 }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--glass-light);
-  border: 1px solid var(--border-dim);
+.eyebrow-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(140,80,220,0.3);
+  padding: 5px 14px; border-radius: 40px;
+  font-size: 12px; font-weight: 500; color: var(--violet);
+  margin-bottom: 1.4rem; letter-spacing: 0.3px;
   backdrop-filter: blur(10px);
-  padding: 6px 16px; border-radius: 40px;
-  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--cyan);
-  margin-bottom: 1.5rem;
-  animation: fadeSlideDown 0.6s ease both;
+  animation: fadeDown 0.6s ease both;
 }
-.hero-eyebrow::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 8px var(--cyan), 0 0 16px var(--cyan);
-  animation: pulse 2s ease infinite;
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--purple-lite);
+  box-shadow: 0 0 8px var(--purple-lite);
+  animation: dotPulse 2s ease infinite;
 }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.6;transform:scale(1.4);} }
+@keyframes dotPulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(1.5);} }
 .hero h1 {
-  font-size: clamp(2.6rem, 6vw, 4.5rem);
-  font-weight: 900; line-height: 1.08; letter-spacing: -2px;
-  animation: fadeSlideDown 0.7s ease 0.1s both;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-weight: 900; line-height: 1.06; letter-spacing: -2.5px;
+  color: var(--white);
+  animation: fadeDown 0.65s ease 0.1s both;
 }
 .hero h1 .grad {
-  background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 50%, var(--mint) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: linear-gradient(135deg, var(--violet) 0%, var(--pink-glow) 50%, var(--lavender) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .hero-sub {
-  color: var(--sub); font-size: 1.05rem; font-weight: 400;
-  margin-top: 1rem; max-width: 520px; margin-left: auto; margin-right: auto;
-  animation: fadeSlideDown 0.7s ease 0.2s both;
+  color: var(--sub); font-size: 1rem; font-weight: 400;
+  margin-top: .9rem; max-width: 460px;
+  animation: fadeDown 0.65s ease 0.2s both;
 }
 .hero-stats {
-  display: flex; justify-content: center; gap: 2.5rem;
-  margin-top: 2.5rem;
-  animation: fadeSlideDown 0.7s ease 0.3s both;
+  display: flex; gap: 3rem; margin-top: 2.2rem;
+  animation: fadeDown 0.65s ease 0.3s both;
 }
-.hero-stat { text-align: center; }
-.hero-stat-num {
-  font-size: 1.8rem; font-weight: 800; letter-spacing: -1px;
-  background: linear-gradient(135deg, var(--cyan), var(--mint));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+.stat-num {
+  font-size: 1.9rem; font-weight: 800; letter-spacing: -1px;
+  background: linear-gradient(135deg, var(--violet), var(--lavender));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.hero-stat-label { font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 2px; letter-spacing: 0.5px; }
+.stat-label { font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 2px; letter-spacing: 0.3px; }
 
-/* ═══ FILTER BAR ═══ */
-.filter-bar {
-  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-  padding: 1rem 0 .5rem;
-  animation: fadeSlideDown 0.7s ease 0.35s both;
-}
+@keyframes fadeDown { from{opacity:0;transform:translateY(-10px);} to{opacity:1;transform:translateY(0);} }
+
+/* ══════════════════════════════════════
+   FILTER BAR
+══════════════════════════════════════ */
+.filter-section { max-width:1300px; margin:0 auto; padding:2rem 2rem 0.5rem; }
+.filter-bar { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
 .filter-btn {
-  background: var(--glass-light);
+  background: rgba(30,15,55,0.6);
   border: 1px solid var(--border-dim);
-  color: var(--sub); font-family: 'Outfit', sans-serif;
-  font-size: 12px; font-weight: 500;
-  padding: 6px 14px; border-radius: 40px;
-  cursor: pointer; transition: all 0.2s;
-  backdrop-filter: blur(10px);
+  color: var(--muted); font-family:'Inter',sans-serif; font-size:12px; font-weight:500;
+  padding: 6px 14px; border-radius: 40px; cursor:pointer; transition:all 0.2s;
+  backdrop-filter: blur(10px); letter-spacing:0.2px;
 }
-.filter-btn:hover { border-color: var(--border-glow); color: var(--text); }
+.filter-btn:hover { border-color:var(--border-mid); color:var(--text); }
 .filter-btn.active {
-  background: rgba(34,211,238,0.1);
-  border-color: rgba(34,211,238,0.4);
-  color: var(--cyan);
-  box-shadow: 0 0 16px rgba(34,211,238,0.12);
+  background: rgba(124,58,237,0.16);
+  border-color: rgba(140,80,220,0.5);
+  color: var(--violet);
+  box-shadow: 0 0 14px rgba(124,58,237,0.15);
 }
 .sort-select {
-  background: var(--glass-light); border: 1px solid var(--border-dim);
-  color: var(--sub); font-family: 'Outfit', sans-serif;
-  font-size: 12px; font-weight: 500;
-  padding: 6px 12px; border-radius: 40px; cursor: pointer;
-  backdrop-filter: blur(10px); margin-left: auto;
+  background: rgba(30,15,55,0.6); border: 1px solid var(--border-dim);
+  color: var(--sub); font-family:'Inter',sans-serif; font-size:12px; font-weight:500;
+  padding: 6px 30px 6px 12px; border-radius:40px; cursor:pointer;
+  margin-left:auto; backdrop-filter:blur(10px);
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%237a6fa0' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 10px center;
 }
-.sort-select:focus { outline: none; border-color: var(--cyan); }
+.sort-select:focus { outline:none; border-color:var(--border-hi); }
 
-/* ═══ GRID ═══ */
-.section { max-width: 1320px; margin: 0 auto; padding: 0 2rem 4rem; }
-.firms-section { display: block; } .firms-section.hidden { display: none; }
+/* ══════════════════════════════════════
+   GRID
+══════════════════════════════════════ */
+.section { max-width:1300px; margin:0 auto; padding:0 2rem 5rem; }
+.firms-section{display:block;} .firms-section.hidden{display:none;}
 .firms-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 18px; margin-top: 1rem;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:16px; margin-top:1rem;
 }
 
-/* ═══ GLASS CARD ═══ */
+/* ══════════════════════════════════════
+   GLASS CARD  — dark purple glass
+══════════════════════════════════════ */
 .firm-card {
-  position: relative;
-  background: var(--glass-light);
+  position:relative;
+  background: var(--bg-card);
   border: 1px solid var(--border-dim);
-  border-radius: 20px;
-  backdrop-filter: blur(24px) saturate(160%);
+  border-radius: 16px;
+  backdrop-filter: blur(30px) saturate(140%);
   overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.3s;
-  animation: cardIn 0.5s ease both;
+  transition: transform 0.3s cubic-bezier(0.34,1.4,0.64,1), border-color 0.3s, box-shadow 0.3s;
+  animation: cardIn 0.45s ease both;
 }
-@keyframes cardIn { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
 .firm-card::before {
-  content: '';
-  position: absolute; inset: 0; border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 60%);
-  pointer-events: none;
+  content:''; position:absolute; inset:0; border-radius:16px;
+  background: linear-gradient(135deg, rgba(180,120,255,0.04) 0%, transparent 55%);
+  pointer-events:none;
 }
 .firm-card:hover {
-  transform: translateY(-5px) scale(1.01);
-  border-color: var(--border-glow);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(140,80,220,0.35);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.6), 0 0 40px rgba(124,58,237,0.1), 0 0 0 1px rgba(140,80,220,0.12);
 }
 .firm-card.featured {
-  border-color: rgba(34,211,238,0.28);
-  box-shadow: 0 0 40px rgba(34,211,238,0.08), inset 0 0 40px rgba(34,211,238,0.02);
+  border-color: rgba(160,100,240,0.3);
+  box-shadow: 0 0 35px rgba(124,58,237,0.1), inset 0 0 35px rgba(100,40,200,0.03);
 }
-.firm-card:hover .card-glow { opacity: 1; }
-.card-glow {
-  position: absolute; inset: -1px; border-radius: 21px;
-  background: conic-gradient(from 0deg, transparent 0%, rgba(34,211,238,0.15) 25%, transparent 50%, rgba(167,139,250,0.1) 75%, transparent 100%);
-  animation: rotateBorder 4s linear infinite;
-  opacity: 0; transition: opacity 0.3s;
-  pointer-events: none; z-index: -1;
+/* Hover glow ring */
+.card-ring {
+  position:absolute; inset:-1px; border-radius:17px;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(160,100,255,0.2) 20%, transparent 40%, rgba(220,100,255,0.12) 60%, transparent 80%, rgba(160,100,255,0.15) 95%, transparent 100%);
+  animation: ringRotate 5s linear infinite;
+  opacity:0; transition:opacity 0.35s; pointer-events:none; z-index:-1;
 }
-@keyframes rotateBorder { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+.firm-card:hover .card-ring { opacity:1; }
+@keyframes ringRotate { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+@keyframes cardIn { from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
 
 .featured-badge {
-  position: absolute; top: 14px; right: 14px;
-  background: linear-gradient(135deg, var(--cyan), var(--mint));
-  color: #000; font-size: 9px; font-weight: 800;
-  padding: 3px 10px; border-radius: 40px; letter-spacing: 1px;
-  text-transform: uppercase; z-index: 5;
+  position:absolute; top:13px; right:13px;
+  background: linear-gradient(135deg, var(--purple-core), var(--pink-glow));
+  color:#fff; font-size:9px; font-weight:800;
+  padding:3px 9px; border-radius:40px; letter-spacing:1px; text-transform:uppercase;
+  box-shadow: 0 0 12px rgba(200,80,255,0.4);
 }
 
 /* Card Header */
 .card-header {
-  padding: 1.2rem 1.3rem 1rem;
-  border-bottom: 1px solid var(--border-dim);
-  display: flex; align-items: center; gap: 12px;
+  padding:1.1rem 1.25rem .9rem;
+  border-bottom:1px solid var(--border-dim);
+  display:flex; align-items:center; gap:11px;
 }
 .firm-logo {
-  width: 46px; height: 46px; border-radius: 13px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 14px;
-  flex-shrink: 0; position: relative; overflow: hidden;
+  width:44px; height:44px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Inter',sans-serif; font-weight:800; font-size:13px; flex-shrink:0;
+  position:relative; overflow:hidden;
 }
-.firm-logo::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-}
-.firm-name { font-weight: 700; font-size: 1rem; letter-spacing: -0.2px; }
-.firm-tagline { color: var(--muted); font-size: 11px; margin-top: 2px; line-height: 1.4; }
-.firm-rating { margin-left: auto; text-align: right; flex-shrink: 0; }
-.stars { font-size: 11px; }
-.rating-num { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.firm-logo::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,transparent 60%); }
+.firm-name { font-weight:700; font-size:.95rem; color:var(--white); letter-spacing:-0.2px; }
+.firm-tagline { color:var(--muted); font-size:11px; margin-top:2px; line-height:1.35; }
+.firm-rating { margin-left:auto; text-align:right; flex-shrink:0; }
+.stars { font-size:11px; color:#a78bfa; }
+.rating-num { font-size:11px; color:var(--muted); font-family:'JetBrains Mono',monospace; }
 
-/* Plan type tabs (Lucid) */
-.type-row { display: flex; gap: 4px; margin-bottom: 8px; }
+/* Lucid type tabs */
+.type-row { display:flex; gap:4px; margin-bottom:8px; }
 .type-btn {
-  background: var(--glass-light); border: 1px solid var(--border-dim);
-  color: var(--muted); font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600;
-  padding: 4px 11px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
-  letter-spacing: 0.3px;
+  background:rgba(40,20,70,0.6); border:1px solid var(--border-dim);
+  color:var(--muted); font-family:'Inter',sans-serif; font-size:11px; font-weight:600;
+  padding:4px 10px; border-radius:7px; cursor:pointer; transition:all 0.2s;
 }
-.type-btn:hover { color: var(--text); border-color: var(--border-glow); }
-.type-btn.active { background: rgba(167,139,250,0.12); border-color: rgba(167,139,250,0.4); color: var(--violet); }
+.type-btn:hover { color:var(--text); border-color:var(--border-mid); }
+.type-btn.active { background:rgba(124,58,237,0.18); border-color:rgba(160,100,255,0.45); color:var(--violet); }
 
-/* Card Plans */
-.card-plans { padding: .9rem 1.3rem .7rem; }
-.plans-label { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
-.plan-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+/* Plans */
+.card-plans { padding:.85rem 1.25rem .65rem; }
+.plans-label { font-size:10px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.plan-pills { display:flex; flex-wrap:wrap; gap:5px; }
 .plan-pill {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: var(--glass-light); border: 1px solid var(--border-dim);
-  border-radius: 8px; padding: 4px 10px;
-  font-size: 12px; font-weight: 500; cursor: pointer;
-  transition: all 0.2s; white-space: nowrap;
+  display:inline-flex; align-items:center; gap:5px;
+  background:rgba(40,20,70,0.5); border:1px solid var(--border-dim);
+  border-radius:7px; padding:4px 10px;
+  font-size:12px; font-weight:500; cursor:pointer; transition:all 0.2s; white-space:nowrap;
 }
-.plan-pill:hover { border-color: rgba(96,165,250,0.5); color: var(--blue); }
+.plan-pill:hover { border-color:rgba(140,80,220,0.45); color:var(--violet); }
 .plan-pill.active {
-  background: rgba(34,211,238,0.1);
-  border-color: rgba(34,211,238,0.45);
-  color: var(--cyan);
-  box-shadow: 0 0 12px rgba(34,211,238,0.15);
+  background:rgba(124,58,237,0.16); border-color:rgba(160,100,255,0.5);
+  color:var(--violet); box-shadow:0 0 10px rgba(124,58,237,0.18);
 }
-.plan-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 11px; opacity: 0.8; }
+.plan-price { font-family:'JetBrains Mono',monospace; font-size:11px; opacity:.75; font-weight:600; }
 
 /* Compare checkbox */
+.cmp-input { display:none; }
 .cmp-label {
-  display: flex; align-items: center; gap: 7px;
-  margin-top: 8px; cursor: pointer; font-size: 12px; color: var(--muted);
-  transition: color 0.2s;
+  display:flex; align-items:center; gap:7px;
+  margin-top:8px; cursor:pointer; font-size:12px; color:var(--muted);
+  transition:color 0.2s; user-select:none;
 }
-.cmp-label:hover { color: var(--text); }
+.cmp-label:hover { color:var(--text); }
 .cmp-box {
-  width: 15px; height: 15px; border-radius: 4px;
-  border: 1px solid var(--border-glow);
-  background: var(--glass-light);
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; flex-shrink: 0; font-size: 9px;
+  width:15px; height:15px; border-radius:4px;
+  border:1px solid var(--border-mid);
+  background:rgba(40,20,70,0.4);
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s; flex-shrink:0; font-size:9px; font-weight:800; color:transparent;
 }
-input[type=checkbox]:checked ~ .cmp-box,
-input.cmp-input:checked + .cmp-label .cmp-box { background: var(--cyan); border-color: var(--cyan); color: #000; }
-.cmp-input { display: none; }
-.cmp-input:checked + .cmp-label { color: var(--cyan); }
-.cmp-input:checked + .cmp-label .cmp-box { background: var(--cyan); border-color: var(--cyan); color: #000; }
-.cmp-input:checked + .cmp-label .cmp-box::after { content: '✓'; }
+.cmp-input:checked + .cmp-label { color:var(--violet); }
+.cmp-input:checked + .cmp-label .cmp-box {
+  background:var(--purple-core); border-color:var(--purple-mid); color:#fff;
+  box-shadow:0 0 8px rgba(124,58,237,0.5);
+}
+.cmp-input:checked + .cmp-label .cmp-box::after { content:'✓'; }
 
 /* Card Details */
-.card-details { padding: 0 1.3rem .9rem; }
-.metrics-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 6px; margin-top: 6px;
-}
+.card-details { padding:0 1.25rem .85rem; }
+.metrics-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:5px; }
 .metric-box {
-  background: var(--glass-light);
-  border: 1px solid var(--border-dim);
-  border-radius: 10px; padding: 8px 10px;
-  transition: border-color 0.2s;
+  background:rgba(40,20,70,0.4); border:1px solid var(--border-dim);
+  border-radius:9px; padding:7px 9px; transition:border-color 0.2s;
 }
-.metric-box:hover { border-color: var(--border-glow); }
-.metric-val { font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono', monospace; line-height: 1.2; }
-.metric-key { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 500; }
-.metric-val.good { color: var(--mint); }
-.metric-val.bad  { color: var(--rose); }
-.metric-val.neutral { color: var(--cyan); }
+.metric-box:hover { border-color:var(--border-mid); }
+.metric-val { font-size:12.5px; font-weight:700; font-family:'JetBrains Mono',monospace; line-height:1.2; }
+.metric-key { font-size:10px; color:var(--muted); margin-top:2px; font-weight:500; }
+.metric-val.good { color:var(--green); }
+.metric-val.bad  { color:var(--red); }
+.metric-val.neutral { color:var(--violet); }
 
 /* Rules */
-.detail-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 10px 0 5px; }
-.rule-row { display: flex; align-items: flex-start; gap: 8px; padding: 3px 0; font-size: 12.5px; line-height: 1.4; }
+.detail-label { font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin:9px 0 5px; }
+.rule-row { display:flex; align-items:flex-start; gap:7px; padding:2px 0; font-size:12px; line-height:1.4; color:var(--sub); }
 .rule-icon {
-  width: 16px; height: 16px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 8px; font-weight: 800; flex-shrink: 0; margin-top: 2px;
+  width:15px; height:15px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:8px; font-weight:800; flex-shrink:0; margin-top:2px;
 }
-.rule-icon.pass { background: rgba(52,211,153,0.15); color: var(--mint); box-shadow: 0 0 8px rgba(52,211,153,0.2); }
-.rule-icon.fail { background: rgba(251,113,133,0.15); color: var(--rose); box-shadow: 0 0 8px rgba(251,113,133,0.15); }
-.rule-icon.info { background: rgba(96,165,250,0.15); color: var(--blue); }
+.rule-icon.pass { background:rgba(74,222,128,0.12); color:var(--green); }
+.rule-icon.fail { background:rgba(248,113,113,0.12); color:var(--red); }
+.rule-icon.info { background:rgba(160,100,255,0.12); color:var(--violet); }
 
 /* Tags */
-.tag-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.tag-chips { display:flex; flex-wrap:wrap; gap:4px; margin-top:7px; }
 .tag-chip {
-  background: var(--glass-light); border: 1px solid var(--border-dim);
-  border-radius: 6px; padding: 2px 8px; font-size: 10px; font-weight: 500;
-  color: var(--muted); transition: all 0.2s;
+  background:rgba(40,20,70,0.4); border:1px solid var(--border-dim);
+  border-radius:5px; padding:2px 7px; font-size:10px; font-weight:500; color:var(--muted);
 }
-.tag-chip.ok { color: var(--mint); border-color: rgba(52,211,153,0.25); background: rgba(52,211,153,0.07); }
-.tag-chip.no { color: var(--rose); border-color: rgba(251,113,133,0.2); background: rgba(251,113,133,0.05); }
+.tag-chip.ok { color:var(--green); border-color:rgba(74,222,128,0.2); background:rgba(74,222,128,0.06); }
+.tag-chip.no { color:var(--red); border-color:rgba(248,113,113,0.18); background:rgba(248,113,113,0.05); }
 
 /* Info row */
-.info-row { margin-top: 8px; font-size: 11px; color: var(--muted); line-height: 1.6; }
-.info-row strong { color: var(--sub); font-weight: 600; }
+.info-row { margin-top:7px; font-size:11px; color:var(--muted); line-height:1.65; }
+.info-row strong { color:var(--sub); font-weight:600; }
 
 /* Card Footer */
 .card-footer {
-  padding: .8rem 1.3rem 1.2rem;
-  border-top: 1px solid var(--border-dim);
-  display: flex; gap: 8px; align-items: center;
+  padding:.7rem 1.25rem 1.1rem;
+  border-top:1px solid var(--border-dim);
+  display:flex; gap:7px; align-items:center;
 }
-.btn-main {
-  flex: 1; border: none; border-radius: 10px;
-  padding: 9px 14px; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
-  text-decoration: none; display: block; text-align: center;
-  background: linear-gradient(135deg, var(--cyan), var(--mint));
-  color: #000; letter-spacing: 0.2px;
-  transition: all 0.25s;
-  box-shadow: 0 4px 20px rgba(34,211,238,0.25);
-  position: relative; overflow: hidden;
+.btn-cta {
+  flex:1; border:none; border-radius:9px;
+  padding:9px; cursor:pointer;
+  font-family:'Inter',sans-serif; font-size:13px; font-weight:700;
+  text-decoration:none; display:block; text-align:center;
+  background: linear-gradient(135deg, var(--purple-core) 0%, var(--purple-mid) 100%);
+  color:#fff; letter-spacing:0.1px;
+  transition:all 0.25s;
+  box-shadow:0 4px 18px rgba(124,58,237,0.35);
+  position:relative; overflow:hidden;
 }
-.btn-main::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
-  opacity: 0; transition: opacity 0.2s;
-}
-.btn-main:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(34,211,238,0.35); }
-.btn-main:hover::after { opacity: 1; }
+.btn-cta::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,transparent 60%); opacity:0; transition:opacity 0.2s; }
+.btn-cta:hover { box-shadow:0 6px 26px rgba(124,58,237,0.55); transform:translateY(-1px); }
+.btn-cta:hover::after { opacity:1; }
 .promo-btn {
-  background: rgba(251,191,36,0.1);
-  border: 1px solid rgba(251,191,36,0.3);
-  color: var(--amber); border-radius: 10px;
-  padding: 9px 12px; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600;
-  display: flex; align-items: center; gap: 5px; white-space: nowrap;
-  transition: all 0.2s;
+  background:rgba(251,191,36,0.08);
+  border:1px solid rgba(251,191,36,0.25);
+  color:var(--amber); border-radius:9px;
+  padding:9px 11px; cursor:pointer;
+  font-family:'Inter',sans-serif; font-size:11px; font-weight:600;
+  display:flex; align-items:center; gap:4px; white-space:nowrap;
+  transition:all 0.2s;
 }
-.promo-btn:hover { background: rgba(251,191,36,0.18); box-shadow: 0 0 16px rgba(251,191,36,0.15); }
+.promo-btn:hover { background:rgba(251,191,36,0.14); box-shadow:0 0 14px rgba(251,191,36,0.14); }
 
-/* ═══ H2H SECTION ═══ */
-.h2h-section { display: none; } .h2h-section.active { display: block; }
-.section-title { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
-.section-sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
-.h2h-pickers {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-  margin: 1.5rem 0;
+/* ══════════════════════════════════════
+   H2H & COMPARE SECTIONS
+══════════════════════════════════════ */
+.h2h-section{display:none;} .h2h-section.active{display:block;}
+.compare-section{display:none;} .compare-section.active{display:block;}
+.section-hdr { margin-bottom:1.5rem; }
+.section-hdr h2 { font-size:1.4rem; font-weight:800; letter-spacing:-0.5px; color:var(--white); }
+.section-hdr p { color:var(--muted); font-size:13px; margin-top:4px; }
+
+/* H2H Pickers */
+.h2h-pickers { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:1.8rem; }
+.picker-card {
+  background:var(--bg-card); border:1px solid var(--border-dim);
+  border-radius:14px; padding:1.2rem;
+  backdrop-filter:blur(24px);
+  transition:border-color 0.2s;
 }
-.picker-glass {
-  background: var(--glass-light);
-  border: 1px solid var(--border-dim);
-  border-radius: 16px; padding: 1.3rem;
-  backdrop-filter: blur(20px);
-  transition: border-color 0.2s;
+.picker-card:hover { border-color:var(--border-mid); }
+.picker-card h3 { font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:9px; }
+.glass-sel {
+  width:100%; background:rgba(40,20,70,0.5);
+  border:1px solid var(--border-dim); color:var(--text);
+  font-family:'Inter',sans-serif; font-size:13px; font-weight:500;
+  padding:8px 30px 8px 11px; border-radius:9px; cursor:pointer; margin-bottom:7px;
+  transition:border-color 0.2s; appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%237a6fa0' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 10px center;
 }
-.picker-glass:hover { border-color: var(--border-glow); }
-.picker-glass h3 {
-  font-size: 11px; font-weight: 700; color: var(--muted);
-  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
-}
-.glass-select {
-  width: 100%; background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border-dim); color: var(--text);
-  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500;
-  padding: 9px 12px; border-radius: 10px; cursor: pointer;
-  margin-bottom: 8px; transition: border-color 0.2s;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7280' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 12px center;
-  padding-right: 32px;
-}
-.glass-select:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(34,211,238,0.1); }
-.picker-preview {
-  margin-top: 10px; padding: 10px 12px;
-  background: var(--glass-mid); border-radius: 10px;
-  display: none; animation: fadeIn 0.3s ease;
-}
-.picker-preview.show { display: block; }
+.glass-sel:focus { outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 2px rgba(124,58,237,0.12); }
+.picker-preview { margin-top:9px; padding:9px 11px; background:rgba(50,25,85,0.5); border-radius:9px; display:none; }
+.picker-preview.show { display:block; animation:fadeIn 0.25s ease; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:translateY(0);} }
-.preview-name { font-weight: 700; font-size: .95rem; }
-.preview-tag { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.preview-name { font-weight:700; font-size:.9rem; color:var(--white); }
+.preview-tag { font-size:11px; color:var(--muted); margin-top:2px; }
 
 /* H2H Table */
-.h2h-table-wrap { overflow-x: auto; border-radius: 16px; }
-.h2h-table { width: 100%; border-collapse: collapse; }
-.h2h-table th {
-  background: rgba(255,255,255,0.04);
-  padding: 14px 16px;
-  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
-  border-bottom: 1px solid var(--border-dim); text-align: center;
+.h2h-wrap { overflow-x:auto; border-radius:14px; border:1px solid var(--border-dim); }
+.h2h-tbl { width:100%; border-collapse:collapse; }
+.h2h-tbl th {
+  background:rgba(30,15,55,0.8); padding:13px 15px;
+  font-family:'Inter',sans-serif; font-size:12.5px; font-weight:700;
+  border-bottom:1px solid var(--border-dim); text-align:center; color:var(--white);
 }
-.h2h-table th:first-child { text-align: left; width: 210px; position: sticky; left: 0; z-index: 2; background: rgba(3,4,10,0.9); }
-.h2h-table td {
-  padding: 10px 16px; border-bottom: 1px solid var(--border-dim);
-  font-size: 12.5px; text-align: center; vertical-align: middle;
-  transition: background 0.15s;
+.h2h-tbl th:first-child { text-align:left; width:200px; position:sticky; left:0; z-index:2; background:rgba(10,5,21,0.95); }
+.h2h-tbl td {
+  padding:9px 15px; border-bottom:1px solid var(--border-dim);
+  font-size:12.5px; text-align:center; vertical-align:middle; transition:background 0.15s;
 }
-.h2h-table td:first-child {
-  text-align: left; position: sticky; left: 0;
-  background: rgba(3,4,10,0.85); font-size: 12px; color: var(--muted); z-index: 1;
-  backdrop-filter: blur(10px);
+.h2h-tbl td:first-child { text-align:left; position:sticky; left:0; background:rgba(8,4,18,0.9); font-size:12px; color:var(--muted); z-index:1; backdrop-filter:blur(12px); }
+.h2h-tbl tr:hover td { background:rgba(80,40,140,0.08); }
+.h2h-tbl tr:hover td:first-child { background:rgba(8,4,18,0.95); }
+.h2h-sec-row td {
+  background:rgba(124,58,237,0.06) !important;
+  font-weight:800; font-size:10.5px; color:var(--violet);
+  text-transform:uppercase; letter-spacing:1px; padding:7px 15px !important;
 }
-.h2h-table tr:hover td { background: rgba(255,255,255,0.03); }
-.h2h-table tr:hover td:first-child { background: rgba(3,4,10,0.9); }
-.h2h-section-row td {
-  background: rgba(34,211,238,0.04) !important;
-  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 10.5px;
-  color: var(--cyan); text-transform: uppercase; letter-spacing: 1px;
-  padding: 7px 16px !important;
-}
-.h2h-section-row td:first-child { background: rgba(34,211,238,0.04) !important; }
-.winner-cell {
-  background: rgba(52,211,153,0.05) !important;
-  border-left: 2px solid rgba(52,211,153,0.35);
-}
-.firm-col-header { display: flex; flex-direction: column; align-items: center; gap: 5px; }
-.firm-col-logo { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 12px; }
-
+.h2h-sec-row td:first-child { background:rgba(124,58,237,0.06) !important; }
+.winner-cell { background:rgba(74,222,128,0.05) !important; border-left:2px solid rgba(74,222,128,0.3); }
+.firm-col-hdr { display:flex; flex-direction:column; align-items:center; gap:4px; }
+.firm-col-mark { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-weight:800; font-size:12px; }
 .h2h-verdict {
-  margin-top: 1.5rem;
-  background: var(--glass-light);
-  border: 1px solid var(--border-dim);
-  border-radius: 16px; padding: 1.4rem 1.6rem;
-  backdrop-filter: blur(20px);
+  margin-top:1.4rem; background:var(--bg-card);
+  border:1px solid var(--border-dim); border-radius:14px;
+  padding:1.3rem 1.5rem; backdrop-filter:blur(20px);
 }
-.h2h-verdict h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
-.verdict-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-.verdict-box {
-  background: var(--glass-mid); border-radius: 12px; padding: .9rem 1rem;
-  border: 1px solid var(--border-dim);
-}
-.verdict-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; font-weight: 500; }
-.verdict-val { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.3px; }
+.h2h-verdict h3 { font-size:.95rem; font-weight:700; color:var(--white); margin-bottom:.9rem; }
+.verdict-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:9px; }
+.verdict-box { background:rgba(40,20,70,0.5); border-radius:10px; padding:.8rem 1rem; border:1px solid var(--border-dim); }
+.verdict-lbl { font-size:11px; color:var(--muted); margin-bottom:3px; }
+.verdict-val { font-size:1.05rem; font-weight:800; }
 
-.h2h-empty, .compare-empty {
-  text-align: center; padding: 4rem;
-  color: var(--muted);
-}
-.h2h-empty h3, .compare-empty h3 {
-  font-size: 1.1rem; font-weight: 700; margin-bottom: .4rem; color: var(--sub);
-}
+.h2h-empty, .compare-empty { text-align:center; padding:4rem; color:var(--muted); }
+.h2h-empty h3, .compare-empty h3 { font-size:1rem; font-weight:700; margin-bottom:.4rem; color:var(--sub); }
 
-/* ═══ COMPARE ALL ═══ */
-.compare-section { display: none; } .compare-section.active { display: block; }
-.compare-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.compare-info { color: var(--muted); font-size: 13px; }
-.compare-info strong { color: var(--cyan); }
+/* Compare All */
+.compare-top { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:1.4rem; }
+.compare-info { color:var(--muted); font-size:13px; }
+.compare-info strong { color:var(--violet); }
 .clear-btn {
-  background: none; border: 1px solid var(--border-dim); color: var(--muted);
-  border-radius: 8px; padding: 5px 14px;
-  font-family: 'Outfit', sans-serif; font-size: 12px; cursor: pointer;
-  transition: all 0.2s;
+  background:none; border:1px solid var(--border-dim); color:var(--muted);
+  border-radius:8px; padding:5px 13px;
+  font-family:'Inter',sans-serif; font-size:12px; cursor:pointer; transition:all 0.2s;
 }
-.clear-btn:hover { color: var(--text); border-color: var(--border-glow); }
+.clear-btn:hover { color:var(--text); border-color:var(--border-mid); }
+.cmp-tbl-wrap { overflow-x:auto; border-radius:14px; border:1px solid var(--border-dim); }
+.cmp-tbl { width:100%; border-collapse:collapse; min-width:600px; }
+.cmp-tbl th {
+  background:rgba(30,15,55,0.8); padding:11px 13px;
+  text-align:left; font-family:'Inter',sans-serif; font-size:12px; font-weight:700;
+  border-bottom:1px solid var(--border-dim); white-space:nowrap; color:var(--white);
+}
+.cmp-tbl th:first-child { position:sticky; left:0; background:rgba(10,5,21,0.97); width:170px; z-index:2; }
+.cmp-tbl td { padding:8px 13px; border-bottom:1px solid var(--border-dim); font-size:12.5px; vertical-align:middle; }
+.cmp-tbl td:first-child { position:sticky; left:0; background:rgba(8,4,18,0.93); font-size:11.5px; color:var(--muted); font-weight:500; z-index:1; white-space:nowrap; }
+.cmp-tbl tr:hover td { background:rgba(80,40,140,0.07); }
+.cmp-tbl tr:hover td:first-child { background:rgba(8,4,18,0.97); }
+.cmp-tbl .sec-hdr td { background:rgba(124,58,237,0.06) !important; font-weight:800; font-size:10.5px; color:var(--violet); text-transform:uppercase; letter-spacing:1px; }
+.good{color:var(--green);font-weight:600;} .bad{color:var(--red);} .neutral{color:var(--violet);}
 
-.compare-table-wrap { overflow-x: auto; border-radius: 16px; border: 1px solid var(--border-dim); }
-.compare-table { width: 100%; border-collapse: collapse; min-width: 600px; }
-.compare-table th {
-  background: rgba(255,255,255,0.04);
-  padding: 12px 14px; text-align: left;
-  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700;
-  border-bottom: 1px solid var(--border-dim); white-space: nowrap;
-  letter-spacing: 0.2px;
-}
-.compare-table th:first-child { position: sticky; left: 0; background: rgba(3,4,10,0.95); width: 180px; z-index: 2; }
-.compare-table td { padding: 9px 14px; border-bottom: 1px solid var(--border-dim); font-size: 12.5px; vertical-align: middle; }
-.compare-table td:first-child {
-  position: sticky; left: 0; background: rgba(3,4,10,0.9);
-  font-size: 11.5px; color: var(--muted); font-weight: 500; z-index: 1; white-space: nowrap;
-}
-.compare-table tr:hover td { background: rgba(255,255,255,0.025); }
-.compare-table tr:hover td:first-child { background: rgba(3,4,10,0.95); }
-.compare-table .section-header td {
-  background: rgba(34,211,238,0.04) !important;
-  font-family: 'Outfit', sans-serif; font-size: 10.5px; font-weight: 800;
-  color: var(--cyan); text-transform: uppercase; letter-spacing: 1px;
-}
-
-/* Shared table styles */
-.good { color: var(--mint); font-weight: 600; }
-.bad  { color: var(--rose); }
-.neutral { color: var(--cyan); }
-
-/* ═══ PROMO MODAL ═══ */
+/* ══════════════════════════════════════
+   PROMO MODAL
+══════════════════════════════════════ */
 .modal-bg {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.75); z-index: 999;
-  align-items: center; justify-content: center;
-  backdrop-filter: blur(6px);
+  display:none; position:fixed; inset:0;
+  background:rgba(3,1,10,0.8); z-index:999;
+  align-items:center; justify-content:center;
+  backdrop-filter:blur(8px);
 }
-.modal-bg.show { display: flex; animation: fadeIn 0.2s ease; }
+.modal-bg.show { display:flex; }
 .modal {
-  background: rgba(7,10,20,0.92);
-  border: 1px solid var(--border-glow);
-  border-radius: 20px; padding: 2rem;
-  max-width: 420px; width: 90%;
-  backdrop-filter: blur(30px);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 60px rgba(34,211,238,0.06);
-  animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  background:rgba(12,6,26,0.95);
+  border:1px solid rgba(140,80,220,0.3);
+  border-radius:18px; padding:2rem;
+  max-width:400px; width:90%;
+  backdrop-filter:blur(30px);
+  box-shadow:0 40px 80px rgba(0,0,0,0.8), 0 0 60px rgba(124,58,237,0.1);
+  animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
 }
-@keyframes modalIn { from{transform:scale(0.9) translateY(10px);opacity:0;} to{transform:scale(1) translateY(0);opacity:1;} }
-.modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
-.modal p { color: var(--muted); font-size: 13px; margin-bottom: 1rem; line-height: 1.5; }
+@keyframes modalIn { from{transform:scale(0.88) translateY(12px);opacity:0;} to{transform:scale(1) translateY(0);opacity:1;} }
+.modal h3 { font-size:1.05rem; font-weight:700; color:var(--white); margin-bottom:.5rem; }
+.modal p { color:var(--muted); font-size:13px; margin-bottom:.9rem; line-height:1.5; }
 .promo-code-box {
-  background: rgba(34,211,238,0.06);
-  border: 1px dashed rgba(34,211,238,0.4);
-  border-radius: 12px; padding: 1.1rem;
-  text-align: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.6rem; font-weight: 700; color: var(--cyan);
-  letter-spacing: 4px; margin-bottom: .8rem;
-  text-shadow: 0 0 20px rgba(34,211,238,0.4);
+  background:rgba(124,58,237,0.08);
+  border:1px dashed rgba(160,100,255,0.45);
+  border-radius:11px; padding:1rem;
+  text-align:center; font-family:'JetBrains Mono',monospace;
+  font-size:1.5rem; font-weight:700; color:var(--violet);
+  letter-spacing:4px; margin-bottom:.8rem;
+  text-shadow:0 0 20px rgba(160,100,255,0.5);
 }
-.promo-discount { font-size: 13px; color: var(--muted); margin-bottom: 1.3rem; }
-.modal-btns { display: flex; gap: 8px; }
+.promo-disc { font-size:12.5px; color:var(--muted); margin-bottom:1.2rem; }
+.modal-btns { display:flex; gap:8px; }
 .modal-copy {
-  flex: 1; background: linear-gradient(135deg, var(--cyan), var(--mint));
-  color: #000; border: none; border-radius: 10px;
-  padding: 10px; font-family: 'Outfit', sans-serif; font-weight: 700;
-  font-size: 13px; cursor: pointer; transition: all 0.2s;
+  flex:1; background:linear-gradient(135deg,var(--purple-core),var(--purple-mid));
+  color:#fff; border:none; border-radius:9px;
+  padding:10px; font-family:'Inter',sans-serif; font-weight:700;
+  font-size:13px; cursor:pointer; transition:all 0.2s;
+  box-shadow:0 4px 16px rgba(124,58,237,0.35);
 }
-.modal-copy:hover { box-shadow: 0 0 20px rgba(34,211,238,0.3); }
-.modal-close {
-  background: var(--glass-mid); border: 1px solid var(--border-glow);
-  color: var(--text); border-radius: 10px;
-  padding: 10px 14px; font-family: 'Outfit', sans-serif;
-  font-size: 13px; cursor: pointer; transition: all 0.2s;
+.modal-copy:hover { box-shadow:0 4px 24px rgba(124,58,237,0.55); }
+.modal-x {
+  background:rgba(40,20,70,0.5); border:1px solid var(--border-mid);
+  color:var(--text); border-radius:9px;
+  padding:10px 13px; font-family:'Inter',sans-serif; font-size:13px; cursor:pointer; transition:all 0.2s;
 }
-.modal-close:hover { border-color: var(--rose); color: var(--rose); }
+.modal-x:hover { border-color:rgba(248,113,113,0.4); color:var(--red); }
 
-/* ═══ TOAST ═══ */
+/* Toast */
 .toast {
-  position: fixed; bottom: 2rem; right: 2rem;
-  background: rgba(7,10,20,0.92);
-  border: 1px solid rgba(52,211,153,0.4);
-  color: var(--text); padding: 10px 18px;
-  border-radius: 12px; font-size: 13px; z-index: 9999;
-  transform: translateY(80px); opacity: 0;
-  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 20px rgba(52,211,153,0.1);
+  position:fixed; bottom:2rem; right:2rem;
+  background:rgba(12,6,26,0.95); border:1px solid rgba(140,80,220,0.35);
+  color:var(--text); padding:10px 17px; border-radius:11px;
+  font-size:13px; z-index:9999;
+  transform:translateY(80px); opacity:0;
+  transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  backdrop-filter:blur(20px);
+  box-shadow:0 8px 30px rgba(0,0,0,0.5), 0 0 20px rgba(124,58,237,0.12);
 }
-.toast.show { transform: translateY(0); opacity: 1; }
+.toast.show { transform:translateY(0); opacity:1; }
 
-/* ═══ DISCLAIMER ═══ */
-.disclaimer {
-  max-width: 1320px; margin: 0 auto;
-  padding: 1.5rem 2rem 3rem;
-  color: var(--muted); font-size: 11.5px;
-  border-top: 1px solid var(--border-dim); line-height: 1.6;
-}
+/* Disclaimer */
+.disclaimer { max-width:1300px; margin:0 auto; padding:1.5rem 2rem 3rem; color:var(--muted); font-size:11.5px; border-top:1px solid var(--border-dim); line-height:1.65; }
 
-/* ═══ FADE ANIMATIONS ═══ */
-@keyframes fadeSlideDown { from{opacity:0;transform:translateY(-12px);} to{opacity:1;transform:translateY(0);} }
-
-/* ═══ RESPONSIVE ═══ */
+/* Responsive */
 @media(max-width:700px){
-  .hero h1{font-size:2.2rem;}
+  .hero h1{font-size:2.4rem;}
   .firms-grid{grid-template-columns:1fr;}
   .h2h-pickers{grid-template-columns:1fr;}
   .verdict-grid{grid-template-columns:1fr;}
   nav{padding:0 1rem;}
-  .wrap,.section,.hero{padding-left:1rem;padding-right:1rem;}
+  .section,.filter-section,.hero{padding-left:1rem;padding-right:1rem;}
   .hero-stats{gap:1.5rem;}
-  .nav-logo span{display:none;}
-  .nav-tab{font-size:11px;padding:5px 8px;}
+  .vortex-container{width:100%;max-width:420px;}
 }
 </style>
 </head>
 <body>
 
-<!-- Background -->
-<div class="bg-canvas">
-  <div class="bg-orb orb1"></div>
-  <div class="bg-orb orb2"></div>
-  <div class="bg-orb orb3"></div>
-  <div class="bg-orb orb4"></div>
-</div>
-<div class="grid-lines"></div>
+<!-- Deep space background layers -->
+<div class="space-bg"></div>
+<div class="stars"></div>
 
 <div class="page">
+
+<!-- ─── NAV ─── -->
 <nav>
-  <div class="nav-logo">
-    <div class="nav-logo-icon">P</div>
-    <span>PropVault</span>
-  </div>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showTab('firms',this)">All Firms</button>
-    <button class="nav-tab" onclick="showTab('h2h',this)">Head‑to‑Head</button>
-    <button class="nav-tab" onclick="showTab('compare',this)">Compare All <span class="nav-badge" id="compare-count">0</span></button>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-mark">P</div>
+      PropVault
+    </a>
+    <div class="nav-center">
+      <button class="nav-link active"  onclick="showTab('firms',this)">All Firms</button>
+      <button class="nav-link"         onclick="showTab('h2h',this)">Head‑to‑Head</button>
+      <button class="nav-link"         onclick="showTab('compare',this)">Compare All <span class="nav-badge" id="compare-count">0</span></button>
+    </div>
+    <div class="nav-right">
+      <button class="btn-ghost">Docs</button>
+      <button class="btn-primary">Add Affiliate Link</button>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ─── HERO ─── -->
 <div class="hero">
-  <div class="hero-eyebrow">Verified April 2026</div>
-  <h1>The <span class="grad">Futures Prop</span><br>Intelligence Hub</h1>
-  <p class="hero-sub">Compare rules, costs & promo codes across every top prop firm. Make smarter decisions before you buy.</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num" id="stat-firms">9</div><div class="hero-stat-label">Firms Covered</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">30+</div><div class="hero-stat-label">Plans Tracked</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">25+</div><div class="hero-stat-label">Data Points</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">Apr '26</div><div class="hero-stat-label">Last Updated</div></div>
+  <!-- Vortex / Wormhole Art -->
+  <div class="vortex-container" aria-hidden="true">
+    <div class="vortex-arches">
+      <div class="arch arch-1"></div>
+      <div class="arch arch-2"></div>
+      <div class="arch arch-3"></div>
+      <div class="arch arch-4"></div>
+      <div class="arch arch-5"></div>
+      <div class="arch arch-6"></div>
+      <div class="arch arch-7"></div>
+    </div>
+    <div class="vortex-glow-base"></div>
+    <div class="vortex-glow-mid"></div>
+    <div class="vortex-glow-core"></div>
+    <div class="vortex-ground"></div>
+    <div class="vortex-ground-wide"></div>
+    <!-- Particles -->
+    <div class="particle" style="width:3px;height:3px;bottom:20px;left:47%;animation-duration:3.2s;animation-delay:0.2s;--dx:-15px;"></div>
+    <div class="particle" style="width:2px;height:2px;bottom:30px;left:52%;animation-duration:2.8s;animation-delay:1.1s;--dx:22px;"></div>
+    <div class="particle" style="width:3px;height:3px;bottom:10px;left:44%;animation-duration:3.6s;animation-delay:0.7s;--dx:-30px;"></div>
+    <div class="particle" style="width:2px;height:2px;bottom:25px;left:55%;animation-duration:4s;animation-delay:1.8s;--dx:18px;"></div>
+    <div class="particle" style="width:4px;height:4px;bottom:15px;left:50%;animation-duration:2.5s;animation-delay:0.4s;--dx:-8px;"></div>
+    <div class="particle" style="width:2px;height:2px;bottom:40px;left:48%;animation-duration:3.8s;animation-delay:2.2s;--dx:25px;"></div>
+  </div>
+
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;">
+    <div class="eyebrow-pill">
+      <span class="eyebrow-dot"></span>
+      ✦ Verified April 2026 — 9 Firms, 30+ Plans
+    </div>
+    <h1>Trade Smarter.<br>Choose <span class="grad">Better Firms.</span></h1>
+    <p class="hero-sub">Compare rules, drawdowns, promo codes and payout conditions across every top futures prop firm.</p>
+    <div class="hero-stats">
+      <div><div class="stat-num">9</div><div class="stat-label">Firms Tracked</div></div>
+      <div><div class="stat-num">30+</div><div class="stat-label">Plans Covered</div></div>
+      <div><div class="stat-num">25+</div><div class="stat-label">Data Points</div></div>
+      <div><div class="stat-num">Apr '26</div><div class="stat-label">Last Updated</div></div>
+    </div>
   </div>
 </div>
 
-<!-- ALL FIRMS -->
-<div class="section firms-section" id="firms-section">
+<!-- ─── ALL FIRMS ─── -->
+<div class="filter-section firms-section" id="firms-section-filters">
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterFirms('all',this)">All Firms</button>
-    <button class="filter-btn" onclick="filterFirms('instant-funding',this)">⚡ No Eval</button>
-    <button class="filter-btn" onclick="filterFirms('static-dd',this)">🛡 Static DD</button>
+    <button class="filter-btn" onclick="filterFirms('instant-funding',this)">⚡ No Eval / Instant</button>
+    <button class="filter-btn" onclick="filterFirms('static-dd',this)">🛡 Static Drawdown</button>
     <button class="filter-btn" onclick="filterFirms('no-consistency',this)">✦ No Consistency</button>
     <button class="filter-btn" onclick="filterFirms('no-dll',this)">∅ No Daily Limit</button>
     <select class="sort-select" onchange="sortFirms(this.value)">
@@ -708,40 +761,42 @@ input.cmp-input:checked + .cmp-label .cmp-box { background: var(--cyan); border-
       <option value="rating">Top Rated</option>
     </select>
   </div>
+</div>
+<div class="section firms-section" id="firms-section">
   <div class="firms-grid" id="firms-grid"></div>
 </div>
 
-<!-- HEAD TO HEAD -->
+<!-- ─── HEAD TO HEAD ─── -->
 <div class="section h2h-section" id="h2h-section">
-  <div style="margin-bottom:1.5rem;">
-    <div class="section-title">Head‑to‑Head Comparison</div>
-    <div class="section-sub">Select any two firms and plans — deep breakdown across every rule, cost and condition</div>
+  <div class="section-hdr">
+    <h2>Head‑to‑Head Comparison</h2>
+    <p>Deep breakdown across every rule, cost, buffer and payout condition</p>
   </div>
   <div class="h2h-pickers">
-    <div class="picker-glass">
+    <div class="picker-card">
       <h3>⬤ Firm A</h3>
-      <select class="glass-select" id="h2h-firm-a" onchange="h2hFirmChange('a')"><option value="">— Select firm —</option></select>
-      <select class="glass-select" id="h2h-plan-a" onchange="renderH2H()" style="display:none;"></select>
+      <select class="glass-sel" id="h2h-firm-a" onchange="h2hFirmChange('a')"><option value="">— Select a firm —</option></select>
+      <select class="glass-sel" id="h2h-plan-a" onchange="renderH2H()" style="display:none;"></select>
       <div class="picker-preview" id="h2h-preview-a"></div>
     </div>
-    <div class="picker-glass">
+    <div class="picker-card">
       <h3>⬤ Firm B</h3>
-      <select class="glass-select" id="h2h-firm-b" onchange="h2hFirmChange('b')"><option value="">— Select firm —</option></select>
-      <select class="glass-select" id="h2h-plan-b" onchange="renderH2H()" style="display:none;"></select>
+      <select class="glass-sel" id="h2h-firm-b" onchange="h2hFirmChange('b')"><option value="">— Select a firm —</option></select>
+      <select class="glass-sel" id="h2h-plan-b" onchange="renderH2H()" style="display:none;"></select>
       <div class="picker-preview" id="h2h-preview-b"></div>
     </div>
   </div>
-  <div id="h2h-content"><div class="h2h-empty"><h3>Select two firms above</h3><p>Choose a firm and plan in each slot to begin.</p></div></div>
+  <div id="h2h-content"><div class="h2h-empty"><h3>Select two firms above</h3><p>Choose a firm and plan for each slot.</p></div></div>
 </div>
 
-<!-- COMPARE ALL -->
+<!-- ─── COMPARE ALL ─── -->
 <div class="section compare-section" id="compare-section">
   <div class="compare-top">
-    <div class="compare-info">Comparing <strong id="compare-count-text">0</strong> firms (max 5) — use plan pills on each card to switch plans</div>
+    <div class="compare-info">Comparing <strong id="compare-count-text">0</strong> firms (max 5)</div>
     <button class="clear-btn" onclick="clearCompare()">Clear all</button>
   </div>
-  <div id="compare-empty-msg" class="compare-empty"><h3>No firms selected</h3><p>Go to All Firms and tick "Add to compare" on any card.</p></div>
-  <div class="compare-table-wrap" id="compare-table-wrap" style="display:none;"><table class="compare-table" id="compare-table"></table></div>
+  <div id="compare-empty-msg" class="compare-empty"><h3>No firms selected</h3><p>Tick "Add to compare" on any firm card.</p></div>
+  <div class="cmp-tbl-wrap" id="compare-table-wrap" style="display:none;"><table class="cmp-tbl" id="compare-table"></table></div>
 </div>
 
 </div><!-- /page -->
@@ -752,62 +807,53 @@ input.cmp-input:checked + .cmp-label .cmp-box { background: var(--cyan); border-
     <h3 id="modal-firm-name"></h3>
     <p id="modal-desc"></p>
     <div class="promo-code-box" id="modal-code"></div>
-    <p class="promo-discount" id="modal-discount"></p>
+    <p class="promo-disc" id="modal-discount"></p>
     <div class="modal-btns">
       <button class="modal-copy" onclick="copyPromo()">📋 Copy Code</button>
-      <button class="modal-close" onclick="document.getElementById('modal-bg').classList.remove('show')">Close</button>
+      <button class="modal-x" onclick="document.getElementById('modal-bg').classList.remove('show')">Dismiss</button>
     </div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
-
-<div class="disclaimer">
-  <strong>Disclaimer:</strong> Plan details, prices, and rules change frequently — always verify on the firm's official website before purchasing. This site may contain affiliate links. Futures trading involves significant risk of loss. For informational purposes only — not financial advice. Data verified April 2026.
-</div>
+<div class="disclaimer"><strong>Disclaimer:</strong> Plan details, prices and rules change frequently — always verify on the firm's official website before purchasing. This site may contain affiliate links. Futures trading involves significant risk of loss. For informational purposes only — not financial advice. Data verified April 2026.</div>
 
 <script>
-/* ════════════════════════════════════════
-   FIRM DATA  (verified April 2026)
-════════════════════════════════════════ */
-const FIRMS=[{id:'topstep',name:'Topstep',tagline:'Industry leader since 2012 — Express Funded',logo:'TS',logoColor:'#1a6fff',logoBg:'rgba(26,111,255,0.2)',rating:4.6,featured:true,tags:['evaluation'],affiliateUrl:'https://topstep.com/?aff=FUTURESHUB',promoCode:'FUTURESHUB20',promoDiscount:'20% off first evaluation',promoDesc:'Use code at checkout on Topstep.com for 20% off any Trading Combine plan.',platforms:['TopstepX (exclusive)'],paymentMethods:['ACH (Aeropay)','Wire','Wise'],lucidTypes:null,activePlanType:null,plans:[{label:'50K',price:49,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'Optional add-on',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'1–3 business days',minPayoutDays:5,minPayoutAmount:200,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% cap per day',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $500K',maxContracts:'5 MES / 1 ES',activationFee:'$149 (waivable)',resetFee:'$49/mo',coachingIncluded:false,rules:[{t:'pass',x:'90% profit split (100% first $10K for pre-Jan 2026 accounts)'},{t:'pass',x:'Payout in 1–3 business days via Aeropay/Wire/Wise'},{t:'fail',x:'40% daily consistency cap on payout cycle profits'},{t:'fail',x:'Trailing EOD drawdown — $2,000 below starting balance'},{t:'fail',x:'No overnight or weekend holds — flat by 3:10 PM CT'},{t:'fail',x:'Locked to TopstepX platform only since July 2025'},{t:'info',x:'Daily Loss Limit optional add-on at checkout (Apr 2026)'}]},{label:'100K',price:99,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'Optional add-on',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'1–3 business days',minPayoutDays:5,minPayoutAmount:200,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% cap per day',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $500K',maxContracts:'10 MES / 2 ES',activationFee:'$149 (waivable)',resetFee:'$99/mo',coachingIncluded:false,rules:[{t:'pass',x:'90% split, scale to $500K funded'},{t:'fail',x:'$4,500 trailing EOD drawdown'},{t:'fail',x:'40% daily consistency rule on payout cycle'},{t:'fail',x:'TopstepX platform lock-in — no NinjaTrader/Tradovate'}]},{label:'150K',price:149,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'Optional add-on',maxLoss:'$6,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'1–3 business days',minPayoutDays:5,minPayoutAmount:200,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% cap per day',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $500K',maxContracts:'15 MES / 3 ES',activationFee:'$149 (waivable)',resetFee:'$149/mo',coachingIncluded:false,rules:[{t:'pass',x:'Largest Topstep plan — $150K buying power'},{t:'fail',x:'$6,000 trailing EOD drawdown'},{t:'fail',x:'40% consistency rule, TopstepX only, no overnight'}]}]},{id:'apex',name:'Apex Trader Funding',tagline:'4.0: EOD DD, 100% split, 20 accounts',logo:'AP',logoColor:'#ff6b35',logoBg:'rgba(255,107,53,0.18)',rating:4.5,featured:false,tags:['evaluation','no-dll'],affiliateUrl:'https://apextraderfunding.com/?r=FUTURESHUB',promoCode:'APEX80',promoDiscount:'Up to 80% off during sales',promoDesc:'Apex runs frequent 80%+ off sales. Check their site banner or apply this code at checkout.',platforms:['NinjaTrader','Tradovate','Sierra Chart','Rithmic'],paymentMethods:['Deel (automated)'],lucidTypes:null,activePlanType:null,plans:[{label:'25K',price:47,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'None',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'100% 1st $25K / 90%',payoutFreq:'~5 business days (Deel)',minPayoutDays:7,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'Safety Net 30% of profits',scaling:'Up to 20 PA accounts',maxContracts:'2 ES / 10 MES',activationFee:'None',resetFee:'New eval purchase',coachingIncluded:false,rules:[{t:'pass',x:'100% of first $25K payout, 90% after'},{t:'pass',x:'No daily loss limit in evaluation'},{t:'pass',x:'Pass in 1 day — no minimum trading days (4.0)'},{t:'pass',x:'Run up to 20 funded Performance Accounts'},{t:'fail',x:'Trailing EOD drawdown — $1,500 from highest close'},{t:'fail',x:'30-day eval expiration — no extensions or free resets'},{t:'fail',x:'Safety Net buffer: retain 30% of profits before payout'},{t:'fail',x:'No overnight or weekend holds (flat by 4:59 PM ET)'}]},{label:'50K',price:67,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'100% 1st $25K / 90%',payoutFreq:'~5 business days (Deel)',minPayoutDays:7,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'Safety Net 30% of profits',scaling:'Up to 20 PA accounts',maxContracts:'4 ES / 20 MES',activationFee:'None',resetFee:'New eval purchase',coachingIncluded:false,rules:[{t:'pass',x:'100% first $25K per payout, 90% thereafter'},{t:'pass',x:'No daily loss limit, pass eval in 1 day'},{t:'fail',x:'EOD trailing drawdown $2,500'},{t:'fail',x:'30-day expiration, Safety Net 30% buffer'},{t:'fail',x:'No overnight or weekend holds'}]},{label:'100K',price:137,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'None',maxLoss:'$3,000',maxLossType:'Trailing EOD',profitSplit:'100% 1st $25K / 90%',payoutFreq:'~5 business days (Deel)',minPayoutDays:7,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'Safety Net 30% of profits',scaling:'Up to 20 PA accounts',maxContracts:'6 ES',activationFee:'None',resetFee:'New eval purchase',coachingIncluded:false,rules:[{t:'pass',x:'100% first $25K / 90% — cheapest $100K eval'},{t:'pass',x:'No DLL, no min trading days'},{t:'fail',x:'EOD trailing drawdown $3,000'},{t:'fail',x:'30% Safety Net buffer, 30-day expiration'}]},{label:'150K',price:187,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None',maxLoss:'$5,000',maxLossType:'Trailing EOD',profitSplit:'100% 1st $25K / 90%',payoutFreq:'~5 business days (Deel)',minPayoutDays:7,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'Safety Net 30% of profits',scaling:'Up to 20 PA accounts',maxContracts:'10 ES',activationFee:'None',resetFee:'New eval purchase',coachingIncluded:false,rules:[{t:'pass',x:'$150K buying power — 100% first $25K then 90%'},{t:'pass',x:'No DLL, pass eval in 1 day'},{t:'fail',x:'EOD trailing drawdown $5,000'},{t:'fail',x:'Safety Net 30% buffer before every payout'}]}]},{id:'lucid',name:'Lucid Trading',tagline:'Flex · Pro · Direct — one-time fee, 15-min payouts',logo:'LC',logoColor:'#06b6d4',logoBg:'rgba(6,182,212,0.17)',rating:4.6,featured:false,tags:['evaluation','instant-funding','no-consistency','static-dd','no-dll'],affiliateUrl:'https://lucidtrading.com/?ref=FUTURESHUB',promoCode:'LUCID15',promoDiscount:'15% off any plan',promoDesc:'Use code LUCID15 at checkout on lucidtrading.com for 15% off.',platforms:['NinjaTrader','Tradovate','TradeSea'],paymentMethods:['ACH (Plaid—same-day)','Wire','Crypto'],lucidTypes:['Flex','Pro','Direct'],activePlanType:'Flex',plans:[{label:'25K',planType:'Flex',price:99,accountSize:'$25,000',profitTarget:'$1,250',dailyLoss:'None (EOD only)',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Anytime (15-min)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accounts)',maxContracts:'2 ES / 20 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit in eval AND funded — rarest combo'},{t:'pass',x:'Zero consistency rule once funded'},{t:'pass',x:'15-min payout processing, one-time fee'},{t:'fail',x:'Trailing EOD drawdown $1,500 (checks at 4:45 PM EST)'},{t:'fail',x:'50% consistency rule during evaluation phase only'},{t:'info',x:'After 6 payouts — promoted to LucidLive (real capital)'}]},{label:'50K',planType:'Flex',price:175,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None (EOD only)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Anytime (15-min)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accounts)',maxContracts:'4 ES / 40 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'No DLL ever — eval or funded'},{t:'pass',x:'No funded consistency rule — home-run days allowed'},{t:'pass',x:'15-min payouts, one-time fee'},{t:'fail',x:'EOD trailing drawdown $2,000'},{t:'info',x:'Payout cap $2,000/cycle — stack accounts for scale'}]},{label:'100K',planType:'Flex',price:215,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'None (EOD only)',maxLoss:'$3,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Anytime (15-min)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accounts)',maxContracts:'8 ES / 80 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'No DLL — eval and funded'},{t:'pass',x:'No funded consistency — fully free once funded'},{t:'fail',x:'EOD trailing drawdown $3,000'}]},{label:'150K',planType:'Flex',price:259,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None (EOD only)',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Anytime (15-min)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accounts)',maxContracts:'10 ES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, no funded consistency — most freedom at $150K'},{t:'fail',x:'EOD trailing drawdown $4,500'}]},{label:'25K',planType:'Pro',price:94.50,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'Scales (60% of best day)',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:0,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% funded',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'MLL + $100 above starting balance',scaling:'Up to $750K (10 accounts)',maxContracts:'2 ES / 20 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'Payouts every 3 days — fastest cadence at Lucid'},{t:'pass',x:'No min trading days — pass eval in 1 day'},{t:'pass',x:'One-time fee, no subscription'},{t:'fail',x:'Daily loss limit (60% of your best profitable day)'},{t:'fail',x:'40% consistency rule in funded phase'},{t:'fail',x:'Buffer: MLL + $100 above starting balance'}]},{label:'50K',planType:'Pro',price:129.50,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'Scales (60% of best day)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:0,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% funded',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'MLL + $100 above starting balance',scaling:'Up to $750K (10 accounts)',maxContracts:'4 ES / 40 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'3-day payouts — fastest regular payout cycle'},{t:'pass',x:'Cheapest 50K eval at $129.50 one-time'},{t:'fail',x:'DLL: 60% of best day, 40% funded consistency'},{t:'fail',x:'Buffer: MLL + $100 required before each payout'}]},{label:'100K',planType:'Pro',price:199.50,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'Scales (60% of best day)',maxLoss:'$3,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:0,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% funded',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'MLL + $100 above starting balance',scaling:'Up to $750K (10 accounts)',maxContracts:'8 ES / 80 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'3-day payout cycle, one-time fee'},{t:'fail',x:'DLL, 40% funded consistency, buffer required'}]},{label:'150K',planType:'Pro',price:259,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'Scales (60% of best day)',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:0,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% funded',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'MLL + $100 above starting balance',scaling:'Up to $750K (10 accounts)',maxContracts:'10 ES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'3-day payouts at $150K level'},{t:'fail',x:'DLL, 40% consistency, buffer required'}]},{label:'25K',planType:'Direct',price:199,accountSize:'$25,000',profitTarget:'$1,500 (funded min)',dailyLoss:'$1,000',maxLoss:'$1,500',maxLossType:'Static EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:10,minPayoutAmount:500,evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',minTradingDays:10,news:true,trailing:false,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accounts)',maxContracts:'2 ES / 20 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'Skip evaluation — start trading immediately'},{t:'pass',x:'Static EOD drawdown — no trailing ever'},{t:'pass',x:'One-time fee, news trading allowed'},{t:'fail',x:'20% daily consistency rule — strictest in Lucid lineup'},{t:'fail',x:'Daily loss limit $1,000 per session'},{t:'info',x:'10 trading days required before first payout'}]},{label:'50K',planType:'Direct',price:549,accountSize:'$50,000',profitTarget:'$3,000 (funded min)',dailyLoss:'$1,200',maxLoss:'$2,000',maxLossType:'Static EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:10,minPayoutAmount:500,evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',minTradingDays:10,news:true,trailing:false,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accounts)',maxContracts:'4 ES / 40 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'Instant funded — no evaluation'},{t:'pass',x:'Static EOD drawdown $2,000 — set permanently'},{t:'fail',x:'20% consistency, DLL $1,200/day'},{t:'info',x:'10 trading days before first payout'}]},{label:'100K',planType:'Direct',price:799,accountSize:'$100,000',profitTarget:'$6,000 (funded min)',dailyLoss:'$2,400',maxLoss:'$4,000',maxLossType:'Static EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:10,minPayoutAmount:500,evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',minTradingDays:10,news:true,trailing:false,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accounts)',maxContracts:'8 ES / 80 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'$100K instant funded — added Feb 2026'},{t:'pass',x:'Static EOD drawdown, no trailing'},{t:'fail',x:'20% consistency, DLL $2,400'}]},{label:'150K',planType:'Direct',price:899,accountSize:'$150,000',profitTarget:'$9,000 (funded min)',dailyLoss:'$3,600',maxLoss:'$4,500',maxLossType:'Static EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:10,minPayoutAmount:500,evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',minTradingDays:10,news:true,trailing:false,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accounts)',maxContracts:'10 ES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'Largest instant-funded — skip eval at $150K'},{t:'pass',x:'Static EOD drawdown $4,500'},{t:'fail',x:'20% consistency, DLL $3,600'}]}]},{id:'tradeify',name:'Tradeify',tagline:'No DLL, 90% split, 24-hr Rise payouts',logo:'TF',logoColor:'#a78bfa',logoBg:'rgba(167,139,250,0.17)',rating:4.8,featured:false,tags:['evaluation','no-dll','no-consistency'],affiliateUrl:'https://tradeify.co/?ref=FUTURESHUB',promoCode:'TRADEIFY20',promoDiscount:'20% off all plans',promoDesc:'Apply code TRADEIFY20 at checkout on Tradeify.co.',platforms:['NinjaTrader','Tradovate','Rithmic','TradeSea'],paymentMethods:['ACH','Wire','Deel'],lucidTypes:null,activePlanType:null,plans:[{label:'50K',price:85,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24-hr Rise payout',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 3 accounts',maxContracts:'5 MES / 1 ES',activationFee:'None',resetFee:'$85',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit — evaluation or funded'},{t:'pass',x:'No consistency rule in funded phase'},{t:'pass',x:'24-hour Rise payouts on business days'},{t:'pass',x:'TradeSea platform supported'},{t:'fail',x:'Trailing EOD drawdown $2,500'},{t:'fail',x:'No overnight or weekend holds'},{t:'info',x:'8-day minimum before first payout'}]},{label:'100K',price:149,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'None',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24-hr Rise payout',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 3 accounts',maxContracts:'10 MES / 2 ES',activationFee:'None',resetFee:'$149',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, no funded consistency, 24-hr payouts'},{t:'fail',x:'EOD trailing drawdown $4,500'}]},{label:'150K',price:199,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None',maxLoss:'$6,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24-hr Rise payout',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 3 accounts',maxContracts:'15 MES / 3 ES',activationFee:'None',resetFee:'$199',coachingIncluded:false,rules:[{t:'pass',x:'Largest Tradeify — no DLL, no funded consistency'},{t:'fail',x:'EOD trailing drawdown $6,000'}]}]},{id:'tpt',name:'Take Profit Trader',tagline:'No DLL since Jan 2025, daily payouts',logo:'TP',logoColor:'#34d399',logoBg:'rgba(52,211,153,0.15)',rating:4.5,featured:false,tags:['evaluation','no-dll'],affiliateUrl:'https://takeprofittrader.com/?ref=FUTURESHUB',promoCode:'PROFIT20',promoDiscount:'20% off all plans',promoDesc:'Apply code PROFIT20 on takeprofittrader.com.',platforms:['NinjaTrader','Tradovate','Rithmic','Sierra Chart'],paymentMethods:['ACH','Wire','Crypto'],lucidTypes:null,activePlanType:null,plans:[{label:'50K',price:150,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'6 ES',activationFee:'None',resetFee:'$150/mo',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit since January 2025'},{t:'pass',x:'Daily payouts (Rise) — fastest window available'},{t:'pass',x:'No consistency rule in funded PRO phase'},{t:'fail',x:'EOD trailing drawdown $2,000'},{t:'fail',x:'No news trading — 1-2 min buffer required'},{t:'fail',x:'No overnight or weekend holds — flat by 5 PM ET'},{t:'info',x:'Monthly subscription model'}]},{label:'150K',price:330,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$5,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'15 ES',activationFee:'None',resetFee:'$330/mo',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, daily payouts, 90% split at $150K'},{t:'fail',x:'EOD trailing drawdown $5,000'},{t:'fail',x:'No news trading, no overnight, subscription model'}]}]},{id:'fundedseat',name:'Funded Seat',tagline:'No consistency rule, news & overnight OK',logo:'FS',logoColor:'#fbbf24',logoBg:'rgba(251,191,36,0.15)',rating:4.4,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://fundedseat.com/?ref=FUTURESHUB',promoCode:'SEAT20',promoDiscount:'20% off first evaluation',promoDesc:'Use code SEAT20 on FundedSeat.com.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Deel','PayPal'],lucidTypes:null,activePlanType:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule'},{t:'pass',x:'News trading and overnight holds allowed'},{t:'fail',x:'Trailing EOD drawdown $1,500'},{t:'fail',x:'80% profit split — lower than peers'}]},{label:'50K',price:80,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,000',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'4 MES / 1 ES',activationFee:'None',resetFee:'$80',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule, news and overnight OK'},{t:'fail',x:'Trailing drawdown $2,500, 80% split'}]},{label:'100K',price:140,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'$2,000',maxLoss:'$4,000',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'8 MES / 2 ES',activationFee:'None',resetFee:'$140',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule at $100K'},{t:'fail',x:'80% split, trailing drawdown $4,000'}]}]},{id:'fundednext',name:'Funded Next Futures',tagline:'Real live account after eval, static DD',logo:'FN',logoColor:'#22d3ee',logoBg:'rgba(34,211,238,0.15)',rating:4.5,featured:false,tags:['evaluation','static-dd','no-consistency'],affiliateUrl:'https://fundednext.com/?ref=FUTURESHUB',promoCode:'FNEXT15',promoDiscount:'15% off all plans',promoDesc:'Use code FNEXT15 at checkout on FundedNext.com.',platforms:['NinjaTrader','Tradovate','Rithmic','cTrader'],paymentMethods:['Wire','Crypto','PayPal','Skrill'],lucidTypes:null,activePlanType:null,plans:[{label:'10K',price:32,accountSize:'$10,000',profitTarget:'Ph1 $1,000 / Ph2 $500',dailyLoss:'$500',maxLoss:'$500',maxLossType:'Static',profitSplit:'90%',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:100,evalSteps:2,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'1 MNQ / 1 MES',activationFee:'None (refunded at payout)',resetFee:'$32',coachingIncluded:false,rules:[{t:'pass',x:'90% split on real live funded account'},{t:'pass',x:'Static drawdown — no trailing ever'},{t:'pass',x:'No consistency, news/overnight/weekend all OK'},{t:'pass',x:'Eval fee refunded after first payout'},{t:'info',x:'2-phase evaluation: Phase 1 then Phase 2'}]},{label:'50K',price:99,accountSize:'$50,000',profitTarget:'Ph1 $5,000 / Ph2 $2,500',dailyLoss:'$2,000',maxLoss:'$2,000',maxLossType:'Static',profitSplit:'90%',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:100,evalSteps:2,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'5 MES / 1 ES',activationFee:'None (refunded at payout)',resetFee:'$99',coachingIncluded:false,rules:[{t:'pass',x:'Static drawdown, no consistency, full holds'},{t:'pass',x:'Eval fee refunded after first withdrawal'},{t:'fail',x:'2-phase evaluation — longer path than 1-step firms'}]},{label:'100K',price:179,accountSize:'$100,000',profitTarget:'Ph1 $10,000 / Ph2 $5,000',dailyLoss:'$4,000',maxLoss:'$4,000',maxLossType:'Static',profitSplit:'90%',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:100,evalSteps:2,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'10 MES / 2 ES',activationFee:'None (refunded at payout)',resetFee:'$179',coachingIncluded:false,rules:[{t:'pass',x:'$100K on real live account — rare in industry'},{t:'pass',x:'90% split, static DD, no consistency'},{t:'fail',x:'2-phase eval required'}]}]},{id:'leeloo',name:'Leeloo Trading',tagline:'90% split, weekly payouts, EOD DD',logo:'LL',logoColor:'#ec4899',logoBg:'rgba(236,72,153,0.15)',rating:4.3,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://leelootrading.com/?ref=FUTURESHUB',promoCode:'LEELOO15',promoDiscount:'15% off any evaluation',promoDesc:'Apply code LEELOO15 on Leelootrading.com.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Wire','Deel'],lucidTypes:null,activePlanType:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 7 days',minPayoutDays:5,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $300K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'90% split — among highest available'},{t:'pass',x:'Weekly payouts, no consistency rule'},{t:'fail',x:'Trailing EOD drawdown $1,500'},{t:'fail',x:'$500 daily loss limit'}]},{label:'100K',price:155,accountSize:'$100,000',profitTarget:'$5,000',dailyLoss:'$2,000',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 7 days',minPayoutDays:5,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $300K',maxContracts:'8 MES / 2 ES',activationFee:'None',resetFee:'$155',coachingIncluded:false,rules:[{t:'pass',x:'90% split, weekly payouts, scale to $300K'},{t:'fail',x:'Trailing EOD drawdown $4,500, DLL $2,000'}]}]},{id:'tradeday',name:'TradeDay',tagline:'Coaching included, weekend holds allowed',logo:'TD',logoColor:'#10b981',logoBg:'rgba(16,185,129,0.15)',rating:4.3,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://tradeday.com/?ref=FUTURESHUB',promoCode:'DAY15',promoDiscount:'15% off all plans',promoDesc:'Use code DAY15 at checkout on TradeDay.',platforms:['NinjaTrader','Tradovate'],paymentMethods:['ACH','Wire'],lucidTypes:null,activePlanType:null,plans:[{label:'25K',price:69,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$1,000',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Monthly',minPayoutDays:30,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $100K',maxContracts:'2 MES',activationFee:'None',resetFee:'$69',coachingIncluded:true,rules:[{t:'pass',x:'Free 1-on-1 coaching session included'},{t:'pass',x:'Weekend holds permitted — rare in the industry'},{t:'fail',x:'Monthly payout only — slowest cadence available'},{t:'fail',x:'EOD trailing drawdown $1,500, 80% split'}]},{label:'50K',price:99,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,500',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Monthly',minPayoutDays:30,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $100K',maxContracts:'4 MES / 1 ES',activationFee:'None',resetFee:'$99',coachingIncluded:true,rules:[{t:'pass',x:'Coaching + Discord, weekend holds OK'},{t:'fail',x:'Monthly payouts, 80% split'}]}]}];
+/* ════════════════════════════════════
+   FIRMS DATA  (verified Apr 2026)
+════════════════════════════════════ */
+const FIRMS=[{id:'topstep',name:'Topstep',tagline:'Industry leader since 2012 — TopstepX platform',logo:'TS',logoColor:'#1a6fff',logoBg:'rgba(26,111,255,0.2)',rating:4.6,featured:true,tags:['evaluation'],affiliateUrl:'https://topstep.com/?aff=FUTURESHUB',promoCode:'FUTURESHUB20',promoDiscount:'20% off first evaluation',promoDesc:'Use code at checkout on Topstep.com for 20% off any Trading Combine plan.',platforms:['TopstepX (exclusive since Jul 2025)'],paymentMethods:['ACH (Aeropay)','Wire','Wise'],lucidTypes:null,plans:[{label:'50K',price:49,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'Optional add-on',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'1–3 business days',minPayoutDays:5,minPayoutAmount:200,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% cap per day',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $500K',maxContracts:'5 MES/1 ES',activationFee:'$149 (waivable)',resetFee:'$49/mo',coachingIncluded:false,rules:[{t:'pass',x:'90% profit split (100% 1st $10K pre-Jan 2026)'},{t:'pass',x:'Payout 1–3 business days via Aeropay/Wire/Wise'},{t:'fail',x:'40% daily consistency cap on payout cycle profits'},{t:'fail',x:'Trailing EOD drawdown — $2,000 from starting balance'},{t:'fail',x:'No overnight/weekend holds — flat by 3:10 PM CT'},{t:'fail',x:'TopstepX platform lock-in since July 2025'}]},{label:'100K',price:99,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'Optional add-on',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'1–3 business days',minPayoutDays:5,minPayoutAmount:200,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% cap per day',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $500K',maxContracts:'10 MES/2 ES',activationFee:'$149 (waivable)',resetFee:'$99/mo',coachingIncluded:false,rules:[{t:'pass',x:'90% split, scale to $500K funded'},{t:'fail',x:'$4,500 trailing EOD drawdown'},{t:'fail',x:'40% daily consistency rule on payout cycle'},{t:'fail',x:'TopstepX only — no NinjaTrader/Tradovate'}]},{label:'150K',price:149,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'Optional add-on',maxLoss:'$6,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'1–3 business days',minPayoutDays:5,minPayoutAmount:200,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% cap per day',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $500K',maxContracts:'15 MES/3 ES',activationFee:'$149 (waivable)',resetFee:'$149/mo',coachingIncluded:false,rules:[{t:'pass',x:'Largest Topstep plan — $150K buying power'},{t:'fail',x:'$6,000 trailing EOD drawdown'},{t:'fail',x:'40% consistency, TopstepX only, no overnight'}]}]},{id:'apex',name:'Apex Trader Funding',tagline:'4.0: No DLL, 100% split, 20 accounts',logo:'AP',logoColor:'#ff6b35',logoBg:'rgba(255,107,53,0.18)',rating:4.5,featured:false,tags:['evaluation','no-dll'],affiliateUrl:'https://apextraderfunding.com/?r=FUTURESHUB',promoCode:'APEX80',promoDiscount:'Up to 80% off during sales',promoDesc:'Apex runs frequent 80%+ off sales. Check their site or apply this code.',platforms:['NinjaTrader','Tradovate','Sierra Chart','Rithmic'],paymentMethods:['Deel (automated)'],lucidTypes:null,plans:[{label:'25K',price:47,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'None',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'100% 1st $25K / 90%',payoutFreq:'~5 business days',minPayoutDays:7,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'Safety Net — 30% profits retained',scaling:'Up to 20 PA accounts',maxContracts:'2 ES/10 MES',activationFee:'None',resetFee:'New eval purchase',coachingIncluded:false,rules:[{t:'pass',x:'100% of 1st $25K payout, 90% after'},{t:'pass',x:'No daily loss limit in evaluation'},{t:'pass',x:'Pass in 1 day — no min trading days (4.0)'},{t:'pass',x:'Run up to 20 funded Performance Accounts'},{t:'fail',x:'Trailing EOD drawdown $1,500 from highest close'},{t:'fail',x:'30-day expiry — no extensions or free resets'},{t:'fail',x:'Safety Net: retain 30% of profits before payout'},{t:'fail',x:'No overnight/weekend (flat by 4:59 PM ET)'}]},{label:'50K',price:67,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'100% 1st $25K / 90%',payoutFreq:'~5 business days',minPayoutDays:7,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'Safety Net — 30% profits retained',scaling:'Up to 20 PA accounts',maxContracts:'4 ES/20 MES',activationFee:'None',resetFee:'New eval purchase',coachingIncluded:false,rules:[{t:'pass',x:'100% 1st $25K per payout, 90% thereafter'},{t:'pass',x:'No DLL, pass eval in 1 day'},{t:'fail',x:'EOD trailing drawdown $2,500'},{t:'fail',x:'30-day expiry, Safety Net 30% buffer'}]},{label:'100K',price:137,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'None',maxLoss:'$3,000',maxLossType:'Trailing EOD',profitSplit:'100% 1st $25K / 90%',payoutFreq:'~5 business days',minPayoutDays:7,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'Safety Net — 30% profits retained',scaling:'Up to 20 PA accounts',maxContracts:'6 ES',activationFee:'None',resetFee:'New eval purchase',coachingIncluded:false,rules:[{t:'pass',x:'100% 1st $25K / 90% — cheapest $100K eval'},{t:'pass',x:'No DLL, no min trading days'},{t:'fail',x:'EOD trailing drawdown $3,000'},{t:'fail',x:'30% Safety Net buffer, 30-day expiry'}]},{label:'150K',price:187,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None',maxLoss:'$5,000',maxLossType:'Trailing EOD',profitSplit:'100% 1st $25K / 90%',payoutFreq:'~5 business days',minPayoutDays:7,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'Safety Net — 30% profits retained',scaling:'Up to 20 PA accounts',maxContracts:'10 ES',activationFee:'None',resetFee:'New eval purchase',coachingIncluded:false,rules:[{t:'pass',x:'$150K buying power — 100% 1st $25K then 90%'},{t:'pass',x:'No DLL, pass eval in 1 day'},{t:'fail',x:'EOD trailing drawdown $5,000'},{t:'fail',x:'Safety Net 30% buffer before every payout'}]}]},{id:'lucid',name:'Lucid Trading',tagline:'Flex · Pro · Direct — one-time fee, 15-min payouts',logo:'LC',logoColor:'#22d3ee',logoBg:'rgba(34,211,238,0.16)',rating:4.6,featured:false,tags:['evaluation','instant-funding','no-consistency','static-dd','no-dll'],affiliateUrl:'https://lucidtrading.com/?ref=FUTURESHUB',promoCode:'LUCID15',promoDiscount:'15% off any plan',promoDesc:'Use code LUCID15 at checkout on lucidtrading.com for 15% off.',platforms:['NinjaTrader','Tradovate','TradeSea'],paymentMethods:['ACH (Plaid—same-day)','Wire','Crypto'],lucidTypes:['Flex','Pro','Direct'],plans:[{label:'25K',planType:'Flex',price:99,accountSize:'$25,000',profitTarget:'$1,250',dailyLoss:'None (EOD only)',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Anytime (15-min)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accts)',maxContracts:'2 ES/20 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'No DLL in eval AND funded — rarest combo in industry'},{t:'pass',x:'Zero consistency rule once funded'},{t:'pass',x:'15-min payout processing, one-time fee'},{t:'fail',x:'Trailing EOD drawdown $1,500 (checks 4:45 PM EST)'},{t:'fail',x:'50% consistency during evaluation phase only'},{t:'info',x:'After 6 payouts → LucidLive (real capital)'}]},{label:'50K',planType:'Flex',price:175,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None (EOD only)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Anytime (15-min)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accts)',maxContracts:'4 ES/40 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'No DLL ever — eval or funded'},{t:'pass',x:'No funded consistency — home-run days allowed'},{t:'fail',x:'EOD trailing drawdown $2,000'}]},{label:'100K',planType:'Flex',price:215,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'None (EOD only)',maxLoss:'$3,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Anytime (15-min)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accts)',maxContracts:'8 ES/80 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'No DLL eval and funded'},{t:'pass',x:'No funded consistency'},{t:'fail',x:'EOD trailing drawdown $3,000'}]},{label:'150K',planType:'Flex',price:259,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None (EOD only)',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Anytime (15-min)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accts)',maxContracts:'10 ES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, no funded consistency'},{t:'fail',x:'EOD trailing drawdown $4,500'}]},{label:'25K',planType:'Pro',price:94.50,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'Scales (60% of best day)',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:0,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% funded',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'MLL + $100 above starting',scaling:'Up to $750K (10 accts)',maxContracts:'2 ES/20 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'Payouts every 3 days — fastest cadence at Lucid'},{t:'pass',x:'No min trading days — pass eval in 1 day'},{t:'fail',x:'DLL: 60% of best profitable day'},{t:'fail',x:'40% consistency in funded phase'},{t:'fail',x:'Buffer: MLL + $100 above starting'}]},{label:'50K',planType:'Pro',price:129.50,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'Scales (60% of best day)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:0,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% funded',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'MLL + $100 above starting',scaling:'Up to $750K (10 accts)',maxContracts:'4 ES/40 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'3-day payouts — fastest regular cycle'},{t:'fail',x:'DLL 60% of best day, 40% funded consistency'},{t:'fail',x:'Buffer: MLL + $100 required before payout'}]},{label:'100K',planType:'Pro',price:199.50,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'Scales (60% of best day)',maxLoss:'$3,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:0,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% funded',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'MLL + $100 above starting',scaling:'Up to $750K (10 accts)',maxContracts:'8 ES/80 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'3-day payout cycle, one-time fee'},{t:'fail',x:'DLL, 40% consistency, buffer required'}]},{label:'150K',planType:'Pro',price:259,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'Scales (60% of best day)',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:0,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% funded',minTradingDays:0,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'MLL + $100 above starting',scaling:'Up to $750K (10 accts)',maxContracts:'10 ES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'3-day payouts at $150K level'},{t:'fail',x:'DLL, 40% consistency, buffer required'}]},{label:'25K',planType:'Direct',price:199,accountSize:'$25,000',profitTarget:'$1,500 (funded min)',dailyLoss:'$1,000',maxLoss:'$1,500',maxLossType:'Static EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:10,minPayoutAmount:500,evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',minTradingDays:10,news:true,trailing:false,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accts)',maxContracts:'2 ES/20 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'Skip evaluation — start trading immediately'},{t:'pass',x:'Static EOD drawdown — no trailing ever'},{t:'fail',x:'20% daily consistency rule — strictest in Lucid lineup'},{t:'fail',x:'DLL $1,000 hard limit per session'},{t:'info',x:'10 trading days required before first payout'}]},{label:'50K',planType:'Direct',price:549,accountSize:'$50,000',profitTarget:'$3,000 (funded min)',dailyLoss:'$1,200',maxLoss:'$2,000',maxLossType:'Static EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:10,minPayoutAmount:500,evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',minTradingDays:10,news:true,trailing:false,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accts)',maxContracts:'4 ES/40 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'Instant funded — no evaluation at all'},{t:'pass',x:'Static EOD drawdown $2,000 — set permanently'},{t:'fail',x:'20% consistency, DLL $1,200/day'}]},{label:'100K',planType:'Direct',price:799,accountSize:'$100,000',profitTarget:'$6,000 (funded min)',dailyLoss:'$2,400',maxLoss:'$4,000',maxLossType:'Static EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:10,minPayoutAmount:500,evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',minTradingDays:10,news:true,trailing:false,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accts)',maxContracts:'8 ES/80 MES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'$100K instant funded — added Feb 2026'},{t:'pass',x:'Static EOD drawdown, no trailing'},{t:'fail',x:'20% consistency, DLL $2,400'}]},{label:'150K',planType:'Direct',price:899,accountSize:'$150,000',profitTarget:'$9,000 (funded min)',dailyLoss:'$3,600',maxLoss:'$4,500',maxLossType:'Static EOD',profitSplit:'90%',payoutFreq:'Every 3 days',minPayoutDays:10,minPayoutAmount:500,evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',minTradingDays:10,news:true,trailing:false,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $750K (10 accts)',maxContracts:'10 ES',activationFee:'None',resetFee:'One-time repurchase',coachingIncluded:false,rules:[{t:'pass',x:'Largest instant-funded — skip eval at $150K'},{t:'pass',x:'Static EOD drawdown $4,500'},{t:'fail',x:'20% consistency, DLL $3,600'}]}]},{id:'tradeify',name:'Tradeify',tagline:'No DLL, 90% split, 24-hr Rise payouts',logo:'TF',logoColor:'#a78bfa',logoBg:'rgba(167,139,250,0.18)',rating:4.8,featured:false,tags:['evaluation','no-dll','no-consistency'],affiliateUrl:'https://tradeify.co/?ref=FUTURESHUB',promoCode:'TRADEIFY20',promoDiscount:'20% off all plans',promoDesc:'Apply code TRADEIFY20 at checkout on Tradeify.co.',platforms:['NinjaTrader','Tradovate','Rithmic','TradeSea'],paymentMethods:['ACH','Wire','Deel'],lucidTypes:null,plans:[{label:'50K',price:85,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24-hr Rise payout',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 3 accounts',maxContracts:'5 MES/1 ES',activationFee:'None',resetFee:'$85',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit — evaluation or funded'},{t:'pass',x:'No consistency rule in funded phase'},{t:'pass',x:'24-hour Rise payouts on business days'},{t:'pass',x:'TradeSea platform supported'},{t:'fail',x:'Trailing EOD drawdown $2,500'},{t:'fail',x:'No overnight or weekend holds'},{t:'info',x:'8-day minimum before first payout'}]},{label:'100K',price:149,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'None',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24-hr Rise payout',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 3 accounts',maxContracts:'10 MES/2 ES',activationFee:'None',resetFee:'$149',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, no funded consistency, 24-hr payouts'},{t:'fail',x:'EOD trailing drawdown $4,500'}]},{label:'150K',price:199,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None',maxLoss:'$6,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24-hr Rise payout',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 3 accounts',maxContracts:'15 MES/3 ES',activationFee:'None',resetFee:'$199',coachingIncluded:false,rules:[{t:'pass',x:'Largest Tradeify — no DLL, no funded consistency'},{t:'fail',x:'EOD trailing drawdown $6,000'}]}]},{id:'tpt',name:'Take Profit Trader',tagline:'No DLL since Jan 2025, daily payouts',logo:'TP',logoColor:'#34d399',logoBg:'rgba(52,211,153,0.16)',rating:4.5,featured:false,tags:['evaluation','no-dll'],affiliateUrl:'https://takeprofittrader.com/?ref=FUTURESHUB',promoCode:'PROFIT20',promoDiscount:'20% off all plans',promoDesc:'Apply code PROFIT20 on takeprofittrader.com.',platforms:['NinjaTrader','Tradovate','Rithmic','Sierra Chart'],paymentMethods:['ACH','Wire','Crypto'],lucidTypes:null,plans:[{label:'50K',price:150,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'6 ES',activationFee:'None',resetFee:'$150/mo',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit since January 2025'},{t:'pass',x:'Daily payouts (Rise) — fastest window available'},{t:'pass',x:'No consistency rule in funded PRO phase'},{t:'fail',x:'EOD trailing drawdown $2,000'},{t:'fail',x:'No news trading — 1-2 min buffer required'},{t:'fail',x:'No overnight/weekend — flat by 5 PM ET'},{t:'info',x:'Monthly subscription model'}]},{label:'150K',price:330,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$5,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'15 ES',activationFee:'None',resetFee:'$330/mo',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, daily payouts, 90% split at $150K'},{t:'fail',x:'EOD trailing drawdown $5,000'},{t:'fail',x:'No news, no overnight, subscription model'}]}]},{id:'fundedseat',name:'Funded Seat',tagline:'No consistency rule, news & overnight OK',logo:'FS',logoColor:'#fbbf24',logoBg:'rgba(251,191,36,0.15)',rating:4.4,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://fundedseat.com/?ref=FUTURESHUB',promoCode:'SEAT20',promoDiscount:'20% off first evaluation',promoDesc:'Use code SEAT20 on FundedSeat.com.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Deel','PayPal'],lucidTypes:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule'},{t:'pass',x:'News trading and overnight holds allowed'},{t:'fail',x:'Trailing EOD drawdown $1,500'},{t:'fail',x:'80% profit split — lower than peers'}]},{label:'50K',price:80,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,000',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'4 MES/1 ES',activationFee:'None',resetFee:'$80',coachingIncluded:false,rules:[{t:'pass',x:'No consistency, news and overnight OK'},{t:'fail',x:'Trailing DD $2,500, 80% split'}]},{label:'100K',price:140,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'$2,000',maxLoss:'$4,000',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'8 MES/2 ES',activationFee:'None',resetFee:'$140',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule at $100K'},{t:'fail',x:'80% split, trailing drawdown $4,000'}]}]},{id:'fundednext',name:'Funded Next Futures',tagline:'Real live account, static DD, eval fee refunded',logo:'FN',logoColor:'#60a5fa',logoBg:'rgba(96,165,250,0.16)',rating:4.5,featured:false,tags:['evaluation','static-dd','no-consistency'],affiliateUrl:'https://fundednext.com/?ref=FUTURESHUB',promoCode:'FNEXT15',promoDiscount:'15% off all plans',promoDesc:'Use code FNEXT15 at checkout on FundedNext.com.',platforms:['NinjaTrader','Tradovate','Rithmic','cTrader'],paymentMethods:['Wire','Crypto','PayPal','Skrill'],lucidTypes:null,plans:[{label:'10K',price:32,accountSize:'$10,000',profitTarget:'Ph1 $1,000 / Ph2 $500',dailyLoss:'$500',maxLoss:'$500',maxLossType:'Static',profitSplit:'90%',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:100,evalSteps:2,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'1 MNQ/1 MES',activationFee:'None (refunded at payout)',resetFee:'$32',coachingIncluded:false,rules:[{t:'pass',x:'90% split on real live funded account'},{t:'pass',x:'Static drawdown — no trailing ever'},{t:'pass',x:'No consistency, news/overnight/weekend all OK'},{t:'pass',x:'Eval fee refunded after first payout'},{t:'info',x:'2-phase evaluation: Phase 1 then Phase 2'}]},{label:'50K',price:99,accountSize:'$50,000',profitTarget:'Ph1 $5,000 / Ph2 $2,500',dailyLoss:'$2,000',maxLoss:'$2,000',maxLossType:'Static',profitSplit:'90%',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:100,evalSteps:2,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'5 MES/1 ES',activationFee:'None (refunded at payout)',resetFee:'$99',coachingIncluded:false,rules:[{t:'pass',x:'Static DD, no consistency, full holds allowed'},{t:'pass',x:'Eval fee refunded after first withdrawal'},{t:'fail',x:'2-phase evaluation — longer path'}]},{label:'100K',price:179,accountSize:'$100,000',profitTarget:'Ph1 $10,000 / Ph2 $5,000',dailyLoss:'$4,000',maxLoss:'$4,000',maxLossType:'Static',profitSplit:'90%',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:100,evalSteps:2,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'10 MES/2 ES',activationFee:'None (refunded at payout)',resetFee:'$179',coachingIncluded:false,rules:[{t:'pass',x:'$100K on real live account — rare in industry'},{t:'pass',x:'90% split, static DD, no consistency'},{t:'fail',x:'2-phase eval required'}]}]},{id:'leeloo',name:'Leeloo Trading',tagline:'90% split, weekly payouts, no consistency rule',logo:'LL',logoColor:'#e879f9',logoBg:'rgba(232,121,249,0.15)',rating:4.3,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://leelootrading.com/?ref=FUTURESHUB',promoCode:'LEELOO15',promoDiscount:'15% off any evaluation',promoDesc:'Apply code LEELOO15 on Leelootrading.com.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Wire','Deel'],lucidTypes:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 7 days',minPayoutDays:5,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $300K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'90% split — among highest available'},{t:'pass',x:'Weekly payouts, no consistency rule'},{t:'fail',x:'Trailing EOD drawdown $1,500'},{t:'fail',x:'$500 daily loss limit'}]},{label:'100K',price:155,accountSize:'$100,000',profitTarget:'$5,000',dailyLoss:'$2,000',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 7 days',minPayoutDays:5,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $300K',maxContracts:'8 MES/2 ES',activationFee:'None',resetFee:'$155',coachingIncluded:false,rules:[{t:'pass',x:'90% split, weekly payouts, scale to $300K'},{t:'fail',x:'Trailing EOD drawdown $4,500, DLL $2,000'}]}]},{id:'tradeday',name:'TradeDay',tagline:'Coaching included, weekend holds allowed',logo:'TD',logoColor:'#4ade80',logoBg:'rgba(74,222,128,0.14)',rating:4.3,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://tradeday.com/?ref=FUTURESHUB',promoCode:'DAY15',promoDiscount:'15% off all plans',promoDesc:'Use code DAY15 at checkout on TradeDay.',platforms:['NinjaTrader','Tradovate'],paymentMethods:['ACH','Wire'],lucidTypes:null,plans:[{label:'25K',price:69,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$1,000',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Monthly',minPayoutDays:30,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $100K',maxContracts:'2 MES',activationFee:'None',resetFee:'$69',coachingIncluded:true,rules:[{t:'pass',x:'Free 1-on-1 coaching session included'},{t:'pass',x:'Weekend holds — rare in the industry'},{t:'fail',x:'Monthly payout only — slowest cadence'},{t:'fail',x:'EOD trailing drawdown $1,500, 80% split'}]},{label:'50K',price:99,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,500',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Monthly',minPayoutDays:30,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $100K',maxContracts:'4 MES/1 ES',activationFee:'None',resetFee:'$99',coachingIncluded:true,rules:[{t:'pass',x:'Coaching + Discord, weekend holds OK'},{t:'fail',x:'Monthly payouts, 80% split'}]}]}];
 
-/* ════════════════════════════════════════
-   STATE & HELPERS
-════════════════════════════════════════ */
-let compareSet=new Set(), activePlanIdx={}, lucidActiveType={}, currentFilter='all', currentSort='default', activePromo=null;
-function initState(){ FIRMS.forEach(f=>{ activePlanIdx[f.id]=0; if(f.lucidTypes) lucidActiveType[f.id]='Flex'; }); }
-function visiblePlans(f){ if(!f.lucidTypes)return f.plans; const t=lucidActiveType[f.id]||'Flex'; return f.plans.filter(p=>p.planType===t); }
-function activePlan(f){ const vp=visiblePlans(f); return vp[Math.min(activePlanIdx[f.id]||0,vp.length-1)]; }
+/* ════════════ STATE ════════════ */
+let compareSet=new Set(),activePlanIdx={},lucidActiveType={},currentFilter='all',currentSort='default',activePromo=null;
+function initState(){FIRMS.forEach(f=>{activePlanIdx[f.id]=0;if(f.lucidTypes)lucidActiveType[f.id]='Flex';});}
+function visiblePlans(f){if(!f.lucidTypes)return f.plans;const t=lucidActiveType[f.id]||'Flex';return f.plans.filter(p=>p.planType===t);}
+function activePlan(f){const vp=visiblePlans(f);return vp[Math.min(activePlanIdx[f.id]||0,vp.length-1)];}
 
-/* ════════════════════════════════════════
-   RENDER CARDS
-════════════════════════════════════════ */
+/* ════════════ RENDER CARDS ════════════ */
 function renderFirms(){
   let list=[...FIRMS];
-  if(currentFilter==='instant-funding') list=list.filter(f=>f.tags.includes('instant-funding'));
-  if(currentFilter==='static-dd') list=list.filter(f=>activePlan(f).maxLossType.includes('Static'));
-  if(currentFilter==='no-consistency') list=list.filter(f=>f.tags.includes('no-consistency'));
-  if(currentFilter==='no-dll') list=list.filter(f=>f.tags.includes('no-dll')||activePlan(f).dailyLoss==='None'||activePlan(f).dailyLoss.includes('None'));
-  if(currentSort==='price-low') list.sort((a,b)=>activePlan(a).price-activePlan(b).price);
-  if(currentSort==='price-high') list.sort((a,b)=>activePlan(b).price-activePlan(a).price);
-  if(currentSort==='payout') list.sort((a,b)=>parseInt(b.plans[0].profitSplit)-parseInt(a.plans[0].profitSplit));
-  if(currentSort==='rating') list.sort((a,b)=>b.rating-a.rating);
-  const grid=document.getElementById('firms-grid');
-  grid.innerHTML=list.map((f,i)=>renderCard(f,i)).join('');
+  if(currentFilter==='instant-funding')list=list.filter(f=>f.tags.includes('instant-funding'));
+  if(currentFilter==='static-dd')list=list.filter(f=>activePlan(f).maxLossType.includes('Static'));
+  if(currentFilter==='no-consistency')list=list.filter(f=>f.tags.includes('no-consistency'));
+  if(currentFilter==='no-dll')list=list.filter(f=>f.tags.includes('no-dll')||activePlan(f).dailyLoss==='None'||activePlan(f).dailyLoss.includes('None'));
+  if(currentSort==='price-low')list.sort((a,b)=>activePlan(a).price-activePlan(b).price);
+  if(currentSort==='price-high')list.sort((a,b)=>activePlan(b).price-activePlan(a).price);
+  if(currentSort==='payout')list.sort((a,b)=>parseInt(b.plans[0].profitSplit)-parseInt(a.plans[0].profitSplit));
+  if(currentSort==='rating')list.sort((a,b)=>b.rating-a.rating);
+  document.getElementById('firms-grid').innerHTML=list.map((f,i)=>renderCard(f,i)).join('');
 }
-
-function renderCard(f,cardIdx){
-  const vp=visiblePlans(f), idx=Math.min(activePlanIdx[f.id]||0,vp.length-1), p=vp[idx], inC=compareSet.has(f.id);
-  const delay=`animation-delay:${cardIdx*0.06}s`;
+function renderCard(f,ci){
+  const vp=visiblePlans(f),idx=Math.min(activePlanIdx[f.id]||0,vp.length-1),p=vp[idx],inC=compareSet.has(f.id);
+  const delay=`animation-delay:${ci*0.055}s`;
   const typeButtons=f.lucidTypes?`<div class="type-row">${f.lucidTypes.map(t=>`<button class="type-btn ${lucidActiveType[f.id]===t?'active':''}" onclick="setLucidType('${f.id}','${t}')">${t}</button>`).join('')}</div>`:'';
   const pills=vp.map((pl,j)=>`<div class="plan-pill ${j===idx?'active':''}" onclick="selectPlan('${f.id}',${j})"><span>${pl.label}</span><span class="plan-price">$${Number(pl.price).toLocaleString()}</span></div>`).join('');
   const rules=p.rules.map(r=>`<div class="rule-row"><div class="rule-icon ${r.t}">${r.t==='pass'?'✓':r.t==='fail'?'✗':'i'}</div><span>${r.x}</span></div>`).join('');
   const ddOk=p.maxLossType.includes('Static');
   const noDll=p.dailyLoss==='None'||p.dailyLoss.includes('None');
   const noCons=p.consistency==='None'||p.consistency.includes('None funded');
-  const starsHtml='★'.repeat(Math.floor(f.rating))+(f.rating%1>=0.5?'✦':'');
+  const stars='★'.repeat(Math.floor(f.rating))+(f.rating%1>=0.5?'✦':'');
   return `<div class="firm-card ${f.featured?'featured':''}" id="card-${f.id}" style="${delay}">
-    <div class="card-glow"></div>
+    <div class="card-ring"></div>
     ${f.featured?'<div class="featured-badge">★ EDITOR PICK</div>':''}
     <div class="card-header">
       <div class="firm-logo" style="background:${f.logoBg};color:${f.logoColor}">${f.logo}</div>
@@ -816,7 +862,7 @@ function renderCard(f,cardIdx){
         <div class="firm-tagline">${f.tagline}</div>
       </div>
       <div class="firm-rating">
-        <div class="stars" style="color:#fbbf24">${starsHtml}</div>
+        <div class="stars">${stars}</div>
         <div class="rating-num">${f.rating}/5</div>
       </div>
     </div>
@@ -833,54 +879,52 @@ function renderCard(f,cardIdx){
         <div class="metric-box"><div class="metric-val good">${p.profitSplit}</div><div class="metric-key">Profit Split</div></div>
         <div class="metric-box"><div class="metric-val ${noDll?'good':'bad'}">${noDll?'None ✓':p.dailyLoss}</div><div class="metric-key">Daily Loss Limit</div></div>
         <div class="metric-box"><div class="metric-val bad">${p.maxLoss}</div><div class="metric-key">Max Drawdown</div></div>
-        <div class="metric-box"><div class="metric-val neutral">${(typeof p.profitTarget==='string'&&p.profitTarget.length>18?p.profitTarget.split('/')[0].replace('Ph1 ','').trim():p.profitTarget)}</div><div class="metric-key">Profit Target</div></div>
-        <div class="metric-box"><div class="metric-val good" style="font-size:11px">${p.payoutFreq}</div><div class="metric-key">Payout Freq</div></div>
+        <div class="metric-box"><div class="metric-val neutral" style="font-size:11px">${(p.profitTarget.length>18?p.profitTarget.split('/')[0].replace('Ph1 ','').trim():p.profitTarget)}</div><div class="metric-key">Profit Target</div></div>
+        <div class="metric-box"><div class="metric-val good" style="font-size:10.5px">${p.payoutFreq}</div><div class="metric-key">Payout Freq</div></div>
       </div>
       <div class="detail-label">Key Rules</div>
       ${rules}
       <div class="tag-chips">
         <span class="tag-chip ${ddOk?'ok':'no'}">${ddOk?'✓ Static DD':'⚠ Trailing DD'}</span>
-        <span class="tag-chip ${noDll?'ok':'no'}">${noDll?'✓ No DLL':'⚠ Has DLL'}</span>
-        <span class="tag-chip ${p.news?'ok':'no'}">${p.news?'✓ News':'✗ No News'}</span>
-        <span class="tag-chip ${p.overnight?'ok':'no'}">${p.overnight?'✓ Overnight':'✗ No O/N'}</span>
-        <span class="tag-chip ${p.weekend?'ok':'no'}">${p.weekend?'✓ Weekend':'✗ No W/E'}</span>
+        <span class="tag-chip ${noDll?'ok':'no'}">${noDll?'✓ No DLL':'⚠ DLL'}</span>
+        <span class="tag-chip ${p.news?'ok':'no'}">${p.news?'✓ News':'✗ News'}</span>
+        <span class="tag-chip ${p.overnight?'ok':'no'}">${p.overnight?'✓ O/N':'✗ O/N'}</span>
+        <span class="tag-chip ${p.weekend?'ok':'no'}">${p.weekend?'✓ W/E':'✗ W/E'}</span>
         <span class="tag-chip ${noCons?'ok':'no'}">${noCons?'✓ No Consistency':'⚠ Consistency'}</span>
         <span class="tag-chip">${p.evalSteps===0?'⚡ Instant':p.evalSteps+'-Step Eval'}</span>
       </div>
       <div class="info-row">
         <strong>Platforms:</strong> ${f.platforms.join(' · ')}<br>
-        <strong>Min payout:</strong> $${p.minPayoutAmount} · ${p.minPayoutDays}d wait · <strong>Buffer:</strong> ${p.bufferReq?p.bufferAmt:'None'}<br>
+        <strong>Min payout:</strong> $${p.minPayoutAmount} · ${p.minPayoutDays}d wait ·
+        <strong>Buffer:</strong> ${p.bufferReq?p.bufferAmt:'None'} ·
         <strong>Scaling:</strong> ${p.scaling}
       </div>
     </div>
     <div class="card-footer">
-      <a class="btn-main" href="${f.affiliateUrl}" target="_blank" rel="noopener">Get Started →</a>
+      <a class="btn-cta" href="${f.affiliateUrl}" target="_blank" rel="noopener">Get Started →</a>
       <button class="promo-btn" onclick="showPromo('${f.id}')">🏷 ${f.promoCode}</button>
     </div>
   </div>`;
 }
+function setLucidType(id,type){lucidActiveType[id]=type;activePlanIdx[id]=0;renderFirms();}
+function selectPlan(id,i){activePlanIdx[id]=i;renderFirms();}
+function filterFirms(t,b){currentFilter=t;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderFirms();}
+function sortFirms(v){currentSort=v;renderFirms();}
 
-function setLucidType(id,type){ lucidActiveType[id]=type; activePlanIdx[id]=0; renderFirms(); }
-function selectPlan(id,i){ activePlanIdx[id]=i; renderFirms(); }
-function filterFirms(t,b){ currentFilter=t; document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active')); b.classList.add('active'); renderFirms(); }
-function sortFirms(v){ currentSort=v; renderFirms(); }
-
-/* ════════════════════════════════════════
-   COMPARE ALL
-════════════════════════════════════════ */
+/* ════════════ COMPARE ALL ════════════ */
 function toggleCompare(id,checked){
-  if(checked){ if(compareSet.size>=5){ showToast('Max 5 firms for comparison'); setTimeout(renderFirms,50); return; } compareSet.add(id); }
-  else { compareSet.delete(id); }
+  if(checked){if(compareSet.size>=5){showToast('Max 5 firms for comparison');setTimeout(renderFirms,50);return;}compareSet.add(id);}
+  else{compareSet.delete(id);}
   ['compare-count','compare-count-text'].forEach(x=>document.getElementById(x).textContent=compareSet.size);
   renderFirms();
-  if(document.getElementById('compare-section').classList.contains('active')) renderCompareAll();
+  if(document.getElementById('compare-section').classList.contains('active'))renderCompareAll();
 }
-function clearCompare(){ compareSet.clear(); ['compare-count','compare-count-text'].forEach(x=>document.getElementById(x).textContent=0); renderFirms(); renderCompareAll(); }
+function clearCompare(){compareSet.clear();['compare-count','compare-count-text'].forEach(x=>document.getElementById(x).textContent=0);renderFirms();renderCompareAll();}
 function renderCompareAll(){
   const firms=FIRMS.filter(f=>compareSet.has(f.id));
-  const em=document.getElementById('compare-empty-msg'), tw=document.getElementById('compare-table-wrap');
-  if(!firms.length){ em.style.display='block'; tw.style.display='none'; return; }
-  em.style.display='none'; tw.style.display='block';
+  const em=document.getElementById('compare-empty-msg'),tw=document.getElementById('compare-table-wrap');
+  if(!firms.length){em.style.display='block';tw.style.display='none';return;}
+  em.style.display='none';tw.style.display='block';
   const p=f=>activePlan(f);
   const rows=[
     {s:'Plan & Cost'},
@@ -901,58 +945,54 @@ function renderCompareAll(){
     ['News trading',f=>p(f).news?'<span class="good">Allowed ✓</span>':'<span class="bad">Not allowed ✗</span>'],
     ['Overnight holds',f=>p(f).overnight?'<span class="good">Yes ✓</span>':'<span class="bad">No ✗</span>'],
     ['Weekend holds',f=>p(f).weekend?'<span class="good">Yes ✓</span>':'<span class="bad">No ✗</span>'],
-    ['Max contracts',f=>p(f).maxContracts],
-    ['Scaling path',f=>p(f).scaling],
+    ['Max contracts',f=>p(f).maxContracts],['Scaling',f=>p(f).scaling],
     {s:'Payouts'},
     ['Profit split',f=>`<span class="good">${p(f).profitSplit}</span>`],
     ['Payout frequency',f=>p(f).payoutFreq],
-    ['Min days',f=>`${p(f).minPayoutDays}d`],
-    ['Min amount',f=>`$${p(f).minPayoutAmount}`],
+    ['Min days',f=>`${p(f).minPayoutDays}d`],['Min amount',f=>`$${p(f).minPayoutAmount}`],
     ['Payment methods',f=>f.paymentMethods.join(', ')],
     {s:'Platform & Support'},
     ['Platforms',f=>f.platforms.join(', ')],
     ['Coaching',f=>p(f).coachingIncluded?'<span class="good">Included ✓</span>':'No'],
     ['Rating',f=>`${f.rating}/5`],
     ['Promo',f=>`<span onclick="showPromo('${f.id}')" style="cursor:pointer;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600;">${f.promoCode}</span>`],
-    ['Sign up',f=>`<a class="btn-main" style="padding:5px 10px;font-size:11px;display:inline-block;" href="${f.affiliateUrl}" target="_blank">Get →</a>`],
+    ['Sign up',f=>`<a class="btn-cta" style="padding:5px 10px;font-size:11px;display:inline-block;" href="${f.affiliateUrl}" target="_blank">Get →</a>`],
   ];
-  const th=`<thead><tr><th>Attribute</th>${firms.map(f=>`<th>${f.name}${f.lucidTypes?`<br><small style="color:#a78bfa;font-size:10px;">${lucidActiveType[f.id]}</small>`:''}</th>`).join('')}</tr></thead>`;
-  const tb=`<tbody>${rows.map(r=>{ if(r.s)return `<tr class="section-header"><td colspan="${firms.length+1}">${r.s}</td></tr>`; return `<tr><td>${r[0]}</td>${firms.map(f=>`<td>${r[1](f)}</td>`).join('')}</tr>`; }).join('')}</tbody>`;
+  const th=`<thead><tr><th>Attribute</th>${firms.map(f=>`<th>${f.name}${f.lucidTypes?`<br><small style="color:#c084fc;font-size:10px;">${lucidActiveType[f.id]}</small>`:''}</th>`).join('')}</tr></thead>`;
+  const tb=`<tbody>${rows.map(r=>{if(r.s)return`<tr class="sec-hdr"><td colspan="${firms.length+1}">${r.s}</td></tr>`;return`<tr><td>${r[0]}</td>${firms.map(f=>`<td>${r[1](f)}</td>`).join('')}</tr>`;}).join('')}</tbody>`;
   document.getElementById('compare-table').innerHTML=th+tb;
 }
 
-/* ════════════════════════════════════════
-   HEAD TO HEAD
-════════════════════════════════════════ */
-function populateH2H(){ ['a','b'].forEach(slot=>{ const sel=document.getElementById(`h2h-firm-${slot}`); FIRMS.forEach(f=>{ const o=document.createElement('option'); o.value=f.id; o.textContent=f.name; sel.appendChild(o); }); }); }
+/* ════════════ HEAD TO HEAD ════════════ */
+function populateH2H(){['a','b'].forEach(slot=>{const sel=document.getElementById(`h2h-firm-${slot}`);FIRMS.forEach(f=>{const o=document.createElement('option');o.value=f.id;o.textContent=f.name;sel.appendChild(o);});});}
 function h2hFirmChange(slot){
   const id=document.getElementById(`h2h-firm-${slot}`).value;
-  const planSel=document.getElementById(`h2h-plan-${slot}`), prev=document.getElementById(`h2h-preview-${slot}`);
-  planSel.innerHTML=''; planSel.style.display='none'; prev.innerHTML=''; prev.classList.remove('show');
+  const ps=document.getElementById(`h2h-plan-${slot}`),pv=document.getElementById(`h2h-preview-${slot}`);
+  ps.innerHTML='';ps.style.display='none';pv.innerHTML='';pv.classList.remove('show');
   if(!id)return;
   const f=FIRMS.find(x=>x.id===id);
-  f.plans.forEach((p,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=`${f.lucidTypes?p.planType+' ':''} ${p.label} — $${Number(p.price).toLocaleString()}`; planSel.appendChild(o); });
-  planSel.style.display='block';
-  prev.innerHTML=`<div class="preview-name" style="color:${f.logoColor}">${f.logo}  ${f.name}</div><div class="preview-tag">${f.tagline}</div>`;
-  prev.classList.add('show'); renderH2H();
+  f.plans.forEach((p,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${f.lucidTypes?p.planType+' ':''} ${p.label} — $${Number(p.price).toLocaleString()}`;ps.appendChild(o);});
+  ps.style.display='block';
+  pv.innerHTML=`<div class="preview-name" style="color:${f.logoColor}">${f.logo} ${f.name}</div><div class="preview-tag">${f.tagline}</div>`;
+  pv.classList.add('show');renderH2H();
 }
 function renderH2H(){
-  const idA=document.getElementById('h2h-firm-a').value, idB=document.getElementById('h2h-firm-b').value, cont=document.getElementById('h2h-content');
-  if(!idA||!idB){ cont.innerHTML='<div class="h2h-empty"><h3>Select two firms above</h3><p>Choose a firm and plan for each slot.</p></div>'; return; }
-  if(idA===idB){ cont.innerHTML='<div class="h2h-empty"><h3>Pick two different firms</h3></div>'; return; }
-  const fA=FIRMS.find(x=>x.id===idA), fB=FIRMS.find(x=>x.id===idB);
-  const piA=parseInt(document.getElementById('h2h-plan-a').value||0), piB=parseInt(document.getElementById('h2h-plan-b').value||0);
-  const pA=fA.plans[piA], pB=fB.plans[piB];
+  const idA=document.getElementById('h2h-firm-a').value,idB=document.getElementById('h2h-firm-b').value,cont=document.getElementById('h2h-content');
+  if(!idA||!idB){cont.innerHTML='<div class="h2h-empty"><h3>Select two firms above</h3><p>Choose a firm and plan for each slot.</p></div>';return;}
+  if(idA===idB){cont.innerHTML='<div class="h2h-empty"><h3>Pick two different firms</h3></div>';return;}
+  const fA=FIRMS.find(x=>x.id===idA),fB=FIRMS.find(x=>x.id===idB);
+  const piA=parseInt(document.getElementById('h2h-plan-a').value||0),piB=parseInt(document.getElementById('h2h-plan-b').value||0);
+  const pA=fA.plans[piA],pB=fB.plans[piB];
   const cL=(a,b)=>a<b?'A':a>b?'B':'tie';
-  const fB2=v=>v?'<span class="good">Yes ✓</span>':'<span class="bad">No ✗</span>';
+  const fBool=v=>v?'<span class="good">Yes ✓</span>':'<span class="bad">No ✗</span>';
   const rows=[
     {s:'💰 Plan & Cost'},
     {l:'Price',vA:`$${Number(pA.price).toLocaleString()}`,vB:`$${Number(pB.price).toLocaleString()}`,w:cL(pA.price,pB.price),fmtW:true},
-    {l:'Billing model',vA:pA.resetFee.includes('/mo')?'Monthly':'One-time',vB:pB.resetFee.includes('/mo')?'Monthly':'One-time'},
+    {l:'Billing',vA:pA.resetFee.includes('/mo')?'Monthly':'One-time',vB:pB.resetFee.includes('/mo')?'Monthly':'One-time'},
     {l:'Account size',vA:pA.accountSize,vB:pB.accountSize},
     {l:'Eval steps',vA:pA.evalSteps===0?'None':pA.evalSteps+'-step',vB:pB.evalSteps===0?'None':pB.evalSteps+'-step',w:cL(pA.evalSteps,pB.evalSteps)},
     {l:'Activation fee',vA:pA.activationFee,vB:pB.activationFee},
-    {l:'Reset / rebuy fee',vA:pA.resetFee,vB:pB.resetFee},
+    {l:'Reset/rebuy fee',vA:pA.resetFee,vB:pB.resetFee},
     {s:'📏 Drawdown & Loss'},
     {l:'Profit target',vA:pA.profitTarget,vB:pB.profitTarget},
     {l:'Max drawdown',vA:pA.maxLoss,vB:pB.maxLoss},
@@ -962,8 +1002,8 @@ function renderH2H(){
     {s:'📋 Trading Conditions'},
     {l:'Consistency rule',vA:pA.consistency,vB:pB.consistency,w:(pA.consistency==='None'||pA.consistency.includes('None funded'))&&!(pB.consistency==='None'||pB.consistency.includes('None funded'))?'A':!(pA.consistency==='None'||pA.consistency.includes('None funded'))&&(pB.consistency==='None'||pB.consistency.includes('None funded'))?'B':'tie',fmt:v=>v==='None'||v.includes('None funded')?'<span class="good">None ✓</span>':`<span class="bad">${v}</span>`},
     {l:'News trading',vA:pA.news?'Allowed':'Not allowed',vB:pB.news?'Allowed':'Not allowed',w:pA.news&&!pB.news?'A':!pA.news&&pB.news?'B':'tie',fmt:v=>v==='Allowed'?'<span class="good">Allowed ✓</span>':'<span class="bad">Not allowed ✗</span>'},
-    {l:'Overnight holds',vA:pA.overnight,vB:pB.overnight,w:pA.overnight&&!pB.overnight?'A':!pA.overnight&&pB.overnight?'B':'tie',fmt:v=>fB2(v)},
-    {l:'Weekend holds',vA:pA.weekend,vB:pB.weekend,w:pA.weekend&&!pB.weekend?'A':!pA.weekend&&pB.weekend?'B':'tie',fmt:v=>fB2(v)},
+    {l:'Overnight holds',vA:pA.overnight,vB:pB.overnight,w:pA.overnight&&!pB.overnight?'A':!pA.overnight&&pB.overnight?'B':'tie',fmt:v=>fBool(v)},
+    {l:'Weekend holds',vA:pA.weekend,vB:pB.weekend,w:pA.weekend&&!pB.weekend?'A':!pA.weekend&&pB.weekend?'B':'tie',fmt:v=>fBool(v)},
     {l:'Max contracts',vA:pA.maxContracts,vB:pB.maxContracts},
     {l:'Scaling path',vA:pA.scaling,vB:pB.scaling},
     {s:'💸 Payouts'},
@@ -974,50 +1014,54 @@ function renderH2H(){
     {l:'Payment methods',vA:fA.paymentMethods.join(', '),vB:fB.paymentMethods.join(', ')},
     {s:'🖥 Platform & Support'},
     {l:'Platforms',vA:fA.platforms.join(', '),vB:fB.platforms.join(', ')},
-    {l:'Coaching',vA:pA.coachingIncluded,vB:pB.coachingIncluded,fmt:v=>fB2(v)},
+    {l:'Coaching',vA:pA.coachingIncluded,vB:pB.coachingIncluded,fmt:v=>fBool(v)},
     {s:'⭐ Overall'},
     {l:'Rating',vA:`${fA.rating}/5`,vB:`${fB.rating}/5`,w:fA.rating>fB.rating?'A':fA.rating<fB.rating?'B':'tie'},
-    {l:'Promo',vA:`<span onclick="showPromo('${fA.id}')" style="cursor:pointer;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;">${fA.promoCode}</span>`,vB:`<span onclick="showPromo('${fB.id}')" style="cursor:pointer;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;">${fB.promoCode}</span>`},
-    {l:'Sign up',vA:`<a class="btn-main" style="display:inline-block;padding:7px 14px;font-size:12px;" href="${fA.affiliateUrl}" target="_blank">Get ${fA.name} →</a>`,vB:`<a class="btn-main" style="display:inline-block;padding:7px 14px;font-size:12px;" href="${fB.affiliateUrl}" target="_blank">Get ${fB.name} →</a>`},
+    {l:'Promo code',vA:`<span onclick="showPromo('${fA.id}')" style="cursor:pointer;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;">${fA.promoCode}</span>`,vB:`<span onclick="showPromo('${fB.id}')" style="cursor:pointer;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;">${fB.promoCode}</span>`},
+    {l:'Sign up',vA:`<a class="btn-cta" style="display:inline-block;padding:7px 14px;font-size:12px;" href="${fA.affiliateUrl}" target="_blank">Get ${fA.name} →</a>`,vB:`<a class="btn-cta" style="display:inline-block;padding:7px 14px;font-size:12px;" href="${fB.affiliateUrl}" target="_blank">Get ${fB.name} →</a>`},
   ];
-  let wA=0,wB=0; rows.forEach(r=>{ if(!r.s&&r.w){ if(r.w==='A')wA++; else if(r.w==='B')wB++; } });
-  const planLA=`${fA.lucidTypes?pA.planType+' ':''}${pA.label}`, planLB=`${fB.lucidTypes?pB.planType+' ':''}${pB.label}`;
-  const thA=`<div class="firm-col-header"><div class="firm-col-logo" style="background:${fA.logoBg};color:${fA.logoColor}">${fA.logo}</div><strong>${fA.name}</strong><div style="font-size:11px;color:var(--muted);">${planLA} · $${Number(pA.price).toLocaleString()}</div></div>`;
-  const thB=`<div class="firm-col-header"><div class="firm-col-logo" style="background:${fB.logoBg};color:${fB.logoColor}">${fB.logo}</div><strong>${fB.name}</strong><div style="font-size:11px;color:var(--muted);">${planLB} · $${Number(pB.price).toLocaleString()}</div></div>`;
-  const tBody=rows.map(r=>{ if(r.s)return `<tr class="h2h-section-row"><td colspan="3">${r.s}</td></tr>`; const rawA=r.fmt?r.fmt(r.vA):r.vA, rawB=r.fmt?r.fmt(r.vB):r.vB; const cA=(!r.fmt&&r.w==='A')?`<span class="good">${r.vA}</span>`:rawA, cB=(!r.fmt&&r.w==='B')?`<span class="good">${r.vB}</span>`:rawB; return `<tr><td>${r.l}</td><td class="${r.w==='A'?'winner-cell':''}">${typeof cA==='boolean'?(cA?'✓':'✗'):cA}</td><td class="${r.w==='B'?'winner-cell':''}">${typeof cB==='boolean'?(cB?'✓':'✗'):cB}</td></tr>`; }).join('');
-  const winnerName=wA>wB?fA.name:wB>wA?fB.name:'Tied';
-  const verdict=`<div class="h2h-verdict"><h3>📊 Verdict</h3><div class="verdict-grid"><div class="verdict-box"><div class="verdict-label">${fA.name} wins on</div><div class="verdict-val" style="color:${fA.logoColor}">${wA} categories</div></div><div class="verdict-box"><div class="verdict-label">${fB.name} wins on</div><div class="verdict-val" style="color:${fB.logoColor}">${wB} categories</div></div><div class="verdict-box"><div class="verdict-label">Overall edge</div><div class="verdict-val" style="color:var(--cyan)">${winnerName} ${wA===wB?'— tied':'leads'}</div></div></div></div>`;
-  cont.innerHTML=`<div class="h2h-table-wrap"><table class="h2h-table"><thead><tr><th>Category</th><th>${thA}</th><th>${thB}</th></tr></thead><tbody>${tBody}</tbody></table></div>${verdict}`;
+  let wA=0,wB=0;rows.forEach(r=>{if(!r.s&&r.w){if(r.w==='A')wA++;else if(r.w==='B')wB++;}});
+  const plA=`${fA.lucidTypes?pA.planType+' ':''}${pA.label}`,plB=`${fB.lucidTypes?pB.planType+' ':''}${pB.label}`;
+  const thA=`<div class="firm-col-hdr"><div class="firm-col-mark" style="background:${fA.logoBg};color:${fA.logoColor}">${fA.logo}</div><strong>${fA.name}</strong><div style="font-size:11px;color:var(--muted)">${plA} · $${Number(pA.price).toLocaleString()}</div></div>`;
+  const thB=`<div class="firm-col-hdr"><div class="firm-col-mark" style="background:${fB.logoBg};color:${fB.logoColor}">${fB.logo}</div><strong>${fB.name}</strong><div style="font-size:11px;color:var(--muted)">${plB} · $${Number(pB.price).toLocaleString()}</div></div>`;
+  const tBody=rows.map(r=>{
+    if(r.s)return`<tr class="h2h-sec-row"><td colspan="3">${r.s}</td></tr>`;
+    const rawA=r.fmt?r.fmt(r.vA):r.vA,rawB=r.fmt?r.fmt(r.vB):r.vB;
+    const cA=(!r.fmt&&r.w==='A')?`<span class="good">${r.vA}</span>`:rawA;
+    const cB=(!r.fmt&&r.w==='B')?`<span class="good">${r.vB}</span>`:rawB;
+    return`<tr><td>${r.l}</td><td class="${r.w==='A'?'winner-cell':''}">${typeof cA==='boolean'?(cA?'✓':'✗'):cA}</td><td class="${r.w==='B'?'winner-cell':''}">${typeof cB==='boolean'?(cB?'✓':'✗'):cB}</td></tr>`;
+  }).join('');
+  const wName=wA>wB?fA.name:wB>wA?fB.name:'Tied';
+  const verdict=`<div class="h2h-verdict"><h3>📊 Verdict</h3><div class="verdict-grid">
+    <div class="verdict-box"><div class="verdict-lbl">${fA.name} wins on</div><div class="verdict-val" style="color:${fA.logoColor}">${wA} categories</div></div>
+    <div class="verdict-box"><div class="verdict-lbl">${fB.name} wins on</div><div class="verdict-val" style="color:${fB.logoColor}">${wB} categories</div></div>
+    <div class="verdict-box"><div class="verdict-lbl">Overall edge</div><div class="verdict-val" style="color:#c084fc">${wName} ${wA===wB?'— tied':'leads'}</div></div>
+  </div></div>`;
+  cont.innerHTML=`<div class="h2h-wrap"><table class="h2h-tbl"><thead><tr><th>Category</th><th>${thA}</th><th>${thB}</th></tr></thead><tbody>${tBody}</tbody></table></div>${verdict}`;
 }
 
-/* ════════════════════════════════════════
-   TABS / PROMO / UTILS
-════════════════════════════════════════ */
+/* ════════════ TABS / PROMO / UTILS ════════════ */
 function showTab(tab,btn){
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); if(btn)btn.classList.add('active');
-  document.getElementById('firms-section').classList.add('hidden');
+  document.querySelectorAll('.nav-link').forEach(t=>t.classList.remove('active'));if(btn)btn.classList.add('active');
+  document.querySelectorAll('.firms-section').forEach(el=>el.classList.add('hidden'));
   document.getElementById('h2h-section').classList.remove('active');
   document.getElementById('compare-section').classList.remove('active');
-  if(tab==='firms') document.getElementById('firms-section').classList.remove('hidden');
-  else if(tab==='h2h') document.getElementById('h2h-section').classList.add('active');
-  else if(tab==='compare'){ document.getElementById('compare-section').classList.add('active'); renderCompareAll(); }
+  if(tab==='firms'){document.querySelectorAll('.firms-section').forEach(el=>el.classList.remove('hidden'));}
+  else if(tab==='h2h'){document.getElementById('h2h-section').classList.add('active');}
+  else if(tab==='compare'){document.getElementById('compare-section').classList.add('active');renderCompareAll();}
 }
-function showPromo(id){ const f=FIRMS.find(x=>x.id===id); activePromo=f.promoCode; document.getElementById('modal-firm-name').textContent=f.name+' — Promo Code'; document.getElementById('modal-desc').textContent=f.promoDesc; document.getElementById('modal-code').textContent=f.promoCode; document.getElementById('modal-discount').textContent='🎁 '+f.promoDiscount; document.getElementById('modal-bg').classList.add('show'); }
-function copyPromo(){ if(activePromo){ navigator.clipboard.writeText(activePromo).catch(()=>{}); showToast('✓ Code copied: '+activePromo); document.getElementById('modal-bg').classList.remove('show'); } }
-function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3200); }
+function showPromo(id){const f=FIRMS.find(x=>x.id===id);activePromo=f.promoCode;document.getElementById('modal-firm-name').textContent=f.name+' — Promo Code';document.getElementById('modal-desc').textContent=f.promoDesc;document.getElementById('modal-code').textContent=f.promoCode;document.getElementById('modal-discount').textContent='🎁 '+f.promoDiscount;document.getElementById('modal-bg').classList.add('show');}
+function copyPromo(){if(activePromo){navigator.clipboard.writeText(activePromo).catch(()=>{});showToast('✓ Copied: '+activePromo);document.getElementById('modal-bg').classList.remove('show');}}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
-/* ════════════════════════════════════════
-   MOUSE PARALLAX ON ORBS
-════════════════════════════════════════ */
+/* Mouse parallax on space bg clouds */
 document.addEventListener('mousemove',e=>{
-  const mx=(e.clientX/window.innerWidth-0.5)*30, my=(e.clientY/window.innerHeight-0.5)*20;
-  document.querySelectorAll('.bg-orb').forEach((o,i)=>{
-    const f=(i+1)*0.35;
-    o.style.transform=`translate(${mx*f}px,${my*f}px)`;
-  });
+  const mx=(e.clientX/window.innerWidth-.5)*18,my=(e.clientY/window.innerHeight-.5)*12;
+  document.querySelector('.space-bg').style.transform=`translate(${mx*.3}px,${my*.3}px)`;
+  document.querySelector('.stars').style.transform=`translate(${mx*.15}px,${my*.15}px)`;
 });
 
-initState(); renderFirms(); populateH2H();
+initState();renderFirms();populateH2H();
 </script>
 </body>
 </html>
