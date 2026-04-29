@@ -319,69 +319,38 @@ nav {
    GLASS CARD  — dark purple glass
 ══════════════════════════════════════ */
 .firm-card {
-  position: relative;
+  position:relative;
   background: var(--bg-card);
   border: 1px solid var(--border-dim);
   border-radius: 16px;
   backdrop-filter: blur(30px) saturate(140%);
-  overflow: visible;
+  overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.34,1.4,0.64,1), border-color 0.3s, box-shadow 0.3s;
   animation: cardIn 0.45s ease both;
 }
-
-/* SVG glow tracer — sits outside the card, invisible by default */
-.glow-border {
-  position: absolute;
-  inset: -2px;
-  pointer-events: none;
-  z-index: 10;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  overflow: visible;
+.firm-card::before {
+  content:''; position:absolute; inset:0; border-radius:16px;
+  background: linear-gradient(135deg, rgba(180,120,255,0.04) 0%, transparent 55%);
+  pointer-events:none;
 }
-
-.firm-card:hover .glow-border {
-  opacity: 1;
-}
-
-/* The animated stroke path — JS sets dasharray and duration */
-.glow-path {
-  fill: none;
-  stroke: rgba(232,121,249,1);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  filter: url(#gf1);
-  animation: traceEdge 2.6s linear infinite;
-}
-
-.glow-path-soft {
-  fill: none;
-  stroke: rgba(192,132,252,0.55);
-  stroke-width: 6;
-  stroke-linecap: round;
-  animation: traceEdge 2.6s linear infinite;
-  opacity: 0.55;
-}
-
-@keyframes traceEdge {
-  from { stroke-dashoffset: 0; }
-  to   { stroke-dashoffset: -1400; }
-}
-
 .firm-card:hover {
   transform: translateY(-4px) scale(1.01);
-  border-color: rgba(167,139,250,0.15);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  border-color: rgba(140,80,220,0.35);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.6), 0 0 40px rgba(124,58,237,0.1), 0 0 0 1px rgba(140,80,220,0.12);
 }
-
 .firm-card.featured {
-  border-color: rgba(160,100,240,0.2);
-  box-shadow: 0 0 35px rgba(124,58,237,0.07);
+  border-color: rgba(160,100,240,0.3);
+  box-shadow: 0 0 35px rgba(124,58,237,0.1), inset 0 0 35px rgba(100,40,200,0.03);
 }
-
-/* corner-glow and card-ring no longer used */
-.corner-glow, .card-ring { display: none; }
-
+/* Hover glow ring */
+.card-ring {
+  position:absolute; inset:-1px; border-radius:17px;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(160,100,255,0.2) 20%, transparent 40%, rgba(220,100,255,0.12) 60%, transparent 80%, rgba(160,100,255,0.15) 95%, transparent 100%);
+  animation: ringRotate 5s linear infinite;
+  opacity:0; transition:opacity 0.35s; pointer-events:none; z-index:-1;
+}
+.firm-card:hover .card-ring { opacity:1; }
+@keyframes ringRotate { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
 @keyframes cardIn { from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
 
 .featured-badge {
@@ -717,7 +686,7 @@ nav {
 <!-- ─── NAV ─── -->
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" href="#" onclick="showTab('firms', document.querySelector('.nav-link'))">
+    <a class="nav-logo" href="#">
       <div class="nav-logo-mark">P</div>
       PropVault
     </a>
@@ -726,7 +695,10 @@ nav {
       <button class="nav-link"         onclick="showTab('h2h',this)">Head‑to‑Head</button>
       <button class="nav-link"         onclick="showTab('compare',this)">Compare All <span class="nav-badge" id="compare-count">0</span></button>
     </div>
-    <div class="nav-right"></div>
+    <div class="nav-right">
+      <button class="btn-ghost">Docs</button>
+      <button class="btn-primary">Add Affiliate Link</button>
+    </div>
   </div>
 </nav>
 
@@ -880,24 +852,8 @@ function renderCard(f,ci){
   const noDll=p.dailyLoss==='None'||p.dailyLoss.includes('None');
   const noCons=p.consistency==='None'||p.consistency.includes('None funded');
   const stars='★'.repeat(Math.floor(f.rating))+(f.rating%1>=0.5?'✦':'');
-  const cardId = `gc-${f.id}`;
   return `<div class="firm-card ${f.featured?'featured':''}" id="card-${f.id}" style="${delay}">
-    <svg class="glow-border" id="svg-${cardId}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <filter id="gf1-${cardId}" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b1"/>
-          <feGaussianBlur in="SourceGraphic" stdDeviation="5"   result="b2"/>
-          <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="gf2-${cardId}" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="7"/>
-        </filter>
-      </defs>
-      <rect class="glow-path-soft" id="rs-${cardId}" x="2" y="2" rx="15" ry="15"
-        stroke="rgba(192,132,252,0.55)" filter="url(#gf2-${cardId})"/>
-      <rect class="glow-path"      id="rp-${cardId}" x="2" y="2" rx="15" ry="15"
-        stroke="rgba(232,121,249,1)"   filter="url(#gf1-${cardId})"/>
-    </svg>
+    <div class="card-ring"></div>
     ${f.featured?'<div class="featured-badge">★ EDITOR PICK</div>':''}
     <div class="card-header">
       <div class="firm-logo" style="background:${f.logoBg};color:${f.logoColor}">${f.logo}</div>
@@ -1086,15 +1042,11 @@ function renderH2H(){
 
 /* ════════════ TABS / PROMO / UTILS ════════════ */
 function showTab(tab,btn){
-  document.querySelectorAll('.nav-link').forEach(t=>t.classList.remove('active'));
-  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(t=>t.classList.remove('active'));if(btn)btn.classList.add('active');
   document.querySelectorAll('.firms-section').forEach(el=>el.classList.add('hidden'));
   document.getElementById('h2h-section').classList.remove('active');
   document.getElementById('compare-section').classList.remove('active');
-  if(tab==='firms'){
-    document.querySelectorAll('.firms-section').forEach(el=>el.classList.remove('hidden'));
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
+  if(tab==='firms'){document.querySelectorAll('.firms-section').forEach(el=>el.classList.remove('hidden'));}
   else if(tab==='h2h'){document.getElementById('h2h-section').classList.add('active');}
   else if(tab==='compare'){document.getElementById('compare-section').classList.add('active');renderCompareAll();}
 }
@@ -1109,48 +1061,6 @@ document.addEventListener('mousemove',e=>{
   document.querySelector('.stars').style.transform=`translate(${mx*.15}px,${my*.15}px)`;
 });
 
-/* ════════════ SVG GLOW SIZING ════════════ */
-function sizeGlowSVGs(){
-  document.querySelectorAll('.firm-card').forEach(card=>{
-    const svg = card.querySelector('.glow-border');
-    if(!svg) return;
-    const w = card.offsetWidth + 4;
-    const h = card.offsetHeight + 4;
-    svg.setAttribute('width', w);
-    svg.setAttribute('height', h);
-    // perimeter of rounded rect approx: 2*(w-2*r + h-2*r) + 2*pi*r  (r=15+2=17)
-    const r = 17, rw = w-4, rh = h-4;
-    const perim = Math.round(2*(rw - 2*r + rh - 2*r) + 2*Math.PI*r);
-    [svg.querySelector('rect.glow-path'), svg.querySelector('rect.glow-path-soft')].forEach(rect=>{
-      if(!rect) return;
-      rect.setAttribute('width',  rw);
-      rect.setAttribute('height', rh);
-    });
-    // set custom property so CSS animation knows total length
-    svg.querySelectorAll('rect').forEach(r2=>{
-      r2.style.setProperty('--perim', perim);
-    });
-    // directly animate via JS for precision
-    svg.querySelectorAll('rect.glow-path').forEach(rect=>{
-      rect.setAttribute('stroke-dasharray', `120 ${perim}`);
-    });
-    svg.querySelectorAll('rect.glow-path-soft').forEach(rect=>{
-      rect.setAttribute('stroke-dasharray', `80 ${perim}`);
-      rect.setAttribute('stroke-dashoffset', '30');
-    });
-    // update animation keyframe total distance
-    svg.querySelectorAll('rect').forEach(rect=>{
-      rect.style.animationDuration = `${(perim/400).toFixed(2)}s`;
-    });
-  });
-}
-
-/* Run after each render and on resize */
-const _origRenderFirms = renderFirms;
-function renderFirms(){
-  _origRenderFirms();
-  requestAnimationFrame(sizeGlowSVGs);
-}
 initState();renderFirms();populateH2H();
 </script>
 </body>
