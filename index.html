@@ -316,129 +316,119 @@ nav {
 }
 
 /* ══════════════════════════════════════
-   SPOTLIGHT CARD  — mouse-tracked glow
+   FIRM CARD  — clean glass + hover glow
 ══════════════════════════════════════ */
 .firm-card {
   position: relative;
   background: var(--bg-card);
+  border: 1px solid rgba(120,80,200,0.13);
   border-radius: 16px;
-  backdrop-filter: blur(30px) saturate(140%);
   overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.3s;
+  transition:
+    transform    0.3s cubic-bezier(0.34,1.4,0.64,1),
+    border-color 0.4s ease,
+    box-shadow   0.4s ease;
   animation: cardIn 0.45s ease both;
-
-  /* CSS custom props updated by JS on mousemove */
-  --x: 50%;
-  --y: 50%;
-  --xp: 0.5;
-  --hue: 280;
-  --spread: 300;
-  --base: 280;
-  --border: 1.5;
-  --radius: 16;
-  --spotlight-size: 300px;
-  --bg-spot-opacity: 0;
-  --border-spot-opacity: 0;
-  --border-light-opacity: 0;
-
-  /* Static border underneath — shows always */
-  border: calc(var(--border) * 1px) solid rgba(120,80,200,0.12);
-
-  /* Background spotlight that follows mouse */
-  background-image: radial-gradient(
-    var(--spotlight-size) var(--spotlight-size)
-    at var(--x) var(--y),
-    hsl(var(--hue) 90% 70% / var(--bg-spot-opacity)),
-    transparent 70%
-  );
-  background-color: var(--bg-card);
+  will-change: transform;
+  isolation: isolate;
+  backdrop-filter: blur(20px) saturate(130%);
 }
 
-/* ::before — glowing border spot that follows mouse */
+/* Hover state — outer glow + lifted border + pulsing aura */
+.firm-card:hover {
+  transform: translateY(-5px) scale(1.012);
+  border-color: rgba(192,132,252,0.55);
+  box-shadow:
+    0 0 0 1px rgba(192,132,252,0.18),
+    0 0 18px 2px rgba(192,132,252,0.25),
+    0 0 45px 8px rgba(124,58,237,0.18),
+    0 0 80px 16px rgba(124,58,237,0.08),
+    0 24px 60px rgba(0,0,0,0.65);
+  animation: cardIn 0.45s ease both, glowPulse 2s ease-in-out infinite;
+}
+
+/* Inner top-edge shimmer that appears on hover */
 .firm-card::before {
   content: '';
-  pointer-events: none;
   position: absolute;
-  inset: calc(var(--border) * -1px);
-  border: calc(var(--border) * 1px) solid transparent;
-  border-radius: calc(var(--radius) * 1px);
-  background-attachment: fixed;
-  background-size:
-    calc(100% + calc(var(--border) * 2px))
-    calc(100% + calc(var(--border) * 2px));
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-image: radial-gradient(
-    calc(var(--spotlight-size) * 0.8) calc(var(--spotlight-size) * 0.8)
-    at var(--x) var(--y),
-    hsl(var(--hue) 90% 65% / var(--border-spot-opacity)),
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(220,150,255,0.8) 40%,
+    rgba(255,200,255,1)   50%,
+    rgba(220,150,255,0.8) 60%,
     transparent 100%
   );
-  -webkit-mask:
-    linear-gradient(transparent, transparent),
-    linear-gradient(white, white);
-  mask:
-    linear-gradient(transparent, transparent),
-    linear-gradient(white, white);
-  -webkit-mask-clip: padding-box, border-box;
-  mask-clip: padding-box, border-box;
-  -webkit-mask-composite: destination-in;
-  mask-composite: intersect;
-  filter: brightness(2);
-  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 4;
+  pointer-events: none;
+  filter: blur(0.5px);
 }
+.firm-card:hover::before { opacity: 1; }
 
-/* ::after — white light shimmer on border */
+/* Bottom edge subtle glow */
 .firm-card::after {
   content: '';
-  pointer-events: none;
   position: absolute;
-  inset: calc(var(--border) * -1px);
-  border: calc(var(--border) * 1px) solid transparent;
-  border-radius: calc(var(--radius) * 1px);
-  background-attachment: fixed;
-  background-size:
-    calc(100% + calc(var(--border) * 2px))
-    calc(100% + calc(var(--border) * 2px));
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-image: radial-gradient(
-    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5)
-    at var(--x) var(--y),
-    hsl(0 100% 100% / var(--border-light-opacity)),
+  bottom: 0; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(167,139,250,0.5) 50%,
     transparent 100%
   );
-  -webkit-mask:
-    linear-gradient(transparent, transparent),
-    linear-gradient(white, white);
-  mask:
-    linear-gradient(transparent, transparent),
-    linear-gradient(white, white);
-  -webkit-mask-clip: padding-box, border-box;
-  mask-clip: padding-box, border-box;
-  -webkit-mask-composite: destination-in;
-  mask-composite: intersect;
-  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 4;
+  pointer-events: none;
+}
+.firm-card:hover::after { opacity: 1; }
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(192,132,252,0.18),
+      0 0 18px 2px rgba(192,132,252,0.25),
+      0 0 45px 8px rgba(124,58,237,0.18),
+      0 0 80px 16px rgba(124,58,237,0.08),
+      0 24px 60px rgba(0,0,0,0.65);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(220,160,255,0.28),
+      0 0 22px 4px rgba(220,140,255,0.38),
+      0 0 55px 12px rgba(150,60,237,0.26),
+      0 0 100px 20px rgba(120,40,220,0.12),
+      0 24px 60px rgba(0,0,0,0.65);
+  }
 }
 
-/* Hover — lift + activate spotlight */
-.firm-card:hover {
-  transform: translateY(-5px) scale(1.01);
-  box-shadow:
-    0 20px 60px rgba(0,0,0,0.65),
-    0 0 0 1px rgba(160,100,255,0.15);
-}
+/* All card content above glass */
+.card-header,
+.card-plans,
+.card-details,
+.card-footer,
+.featured-badge { position: relative; z-index: 3; }
+
+/* Unused old elements */
+.card-spotlight,
+.card-border-canvas,
+.glow-border, .glow-path, .glow-path-soft,
+.corner-glow, .card-ring { display: none; }
 
 .firm-card.featured {
   border-color: rgba(160,100,240,0.22);
   box-shadow: 0 0 30px rgba(124,58,237,0.07);
 }
 
-/* old SVG border — hidden */
-.glow-border, .glow-path, .glow-path-soft,
-.corner-glow, .card-ring { display: none; }
-
-@keyframes cardIn { from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
 
 .featured-badge {
   position:absolute; top:13px; right:13px;
@@ -1174,52 +1164,24 @@ function showPromo(id){const f=FIRMS.find(x=>x.id===id);activePromo=f.promoCode;
 function copyPromo(){if(activePromo){navigator.clipboard.writeText(activePromo).catch(()=>{});showToast('✓ Copied: '+activePromo);document.getElementById('modal-bg').classList.remove('show');}}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
-/* Mouse parallax on space bg clouds */
-document.addEventListener('mousemove',e=>{
-  const mx=(e.clientX/window.innerWidth-.5)*18,my=(e.clientY/window.innerHeight-.5)*12;
-  document.querySelector('.space-bg').style.transform=`translate(${mx*.3}px,${my*.3}px)`;
-  document.querySelector('.stars').style.transform=`translate(${mx*.15}px,${my*.15}px)`;
-});
-
-/* ════════════ SVG GLOW SIZING ════════════ */
-function sizeGlowSVGs(){
-  document.querySelectorAll('.firm-card').forEach(card=>{
-    const svg = card.querySelector('.glow-border');
-    if(!svg) return;
-    const w = card.offsetWidth + 4;
-    const h = card.offsetHeight + 4;
-    svg.setAttribute('width', w);
-    svg.setAttribute('height', h);
-    // perimeter of rounded rect approx: 2*(w-2*r + h-2*r) + 2*pi*r  (r=15+2=17)
-    const r = 17, rw = w-4, rh = h-4;
-    const perim = Math.round(2*(rw - 2*r + rh - 2*r) + 2*Math.PI*r);
-    [svg.querySelector('rect.glow-path'), svg.querySelector('rect.glow-path-soft')].forEach(rect=>{
-      if(!rect) return;
-      rect.setAttribute('width',  rw);
-      rect.setAttribute('height', rh);
-    });
-    // set custom property so CSS animation knows total length
-    svg.querySelectorAll('rect').forEach(r2=>{
-      r2.style.setProperty('--perim', perim);
-    });
-    // directly animate via JS for precision
-    svg.querySelectorAll('rect.glow-path').forEach(rect=>{
-      rect.setAttribute('stroke-dasharray', `120 ${perim}`);
-    });
-    svg.querySelectorAll('rect.glow-path-soft').forEach(rect=>{
-      rect.setAttribute('stroke-dasharray', `80 ${perim}`);
-      rect.setAttribute('stroke-dashoffset', '30');
-    });
-    // update animation keyframe total distance
-    svg.querySelectorAll('rect').forEach(rect=>{
-      rect.style.animationDuration = `${(perim/400).toFixed(2)}s`;
-    });
+/* ════════════ BACKGROUND PARALLAX — RAF throttled ════════════ */
+let bgRaf = null;
+document.addEventListener('pointermove', e => {
+  if (bgRaf) return;
+  bgRaf = requestAnimationFrame(() => {
+    bgRaf = null;
+    const mx = (e.clientX / window.innerWidth  - 0.5) * 16;
+    const my = (e.clientY / window.innerHeight - 0.5) * 10;
+    const bg    = document.querySelector('.space-bg');
+    const stars = document.querySelector('.stars');
+    if (bg)    bg.style.transform    = `translate(${mx * 0.25}px,${my * 0.25}px)`;
+    if (stars) stars.style.transform = `translate(${mx * 0.12}px,${my * 0.12}px)`;
   });
-}
+}, { passive: true });
 
-window.addEventListener('resize', sizeGlowSVGs);
+function sizeGlowSVGs() {}   /* no-op — kept so renderFirms() call doesn't error */
 
-initState();renderFirms();populateH2H();
+initState(); renderFirms(); populateH2H();
 </script>
 </body>
 </html>
