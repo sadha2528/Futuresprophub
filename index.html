@@ -1016,8 +1016,8 @@ nav {
     <h1>Trade Smarter.<br>Choose <span class="grad">Better Firms.</span></h1>
     <p class="hero-sub">Compare rules, drawdowns, promo codes and payout conditions across every top futures prop firm.</p>
     <div class="hero-stats">
-      <div><div class="stat-num">9</div><div class="stat-label">Firms Tracked</div></div>
-      <div><div class="stat-num">30+</div><div class="stat-label">Plans Covered</div></div>
+      <div><div class="stat-num">11</div><div class="stat-label">Firms Tracked</div></div>
+      <div><div class="stat-num">76</div><div class="stat-label">Plans Covered</div></div>
       <div><div class="stat-num">25+</div><div class="stat-label">Data Points</div></div>
       <div><div class="stat-num">Apr '26</div><div class="stat-label">Last Updated</div></div>
     </div>
@@ -1554,15 +1554,622 @@ const FIRMS=[{id:'topstep',name:'Topstep',tagline:'Industry leader — Express F
           {t:'fail',x:'20% consistency, LucidScale 60% peak EOD above trail'},
         ]},
     ]},
-  {id:'tradeify',name:'Tradeify',tagline:'Select (eval) · Lightning (instant) — 100% first $15K, 90% after',logo:'TF',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tradeify.co&size=128',logoColor:'#a78bfa',logoBg:'rgba(167,139,250,0.18)',rating:4.8,featured:false,tags:['evaluation','instant-funding','no-dll','no-consistency'],affiliateUrl:'https://tradeify.co/?ref=FUTURESHUB',promoCode:'TRADEIFY20',promoDiscount:'20% off all plans',promoDesc:'Apply code TRADEIFY20 at checkout on Tradeify.co.',platforms:['NinjaTrader','Tradovate','Rithmic','TradeSea'],paymentMethods:['ACH','Wire','Deel'],lucidTypes:['Select','Lightning'],plans:[
-{label:'50K',planType:'Select',price:165,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None during eval (DLL on funded path)',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24–48 hr Rise',minPayoutDays:7,minPayoutAmount:1000,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts / $750K',maxContracts:'4 mini / 40 micro',activationFee:'None',resetFee:'$85',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit — evaluation or funded'},{t:'pass',x:'No consistency rule in funded phase'},{t:'pass',x:'24-hour Rise payouts on business days'},{t:'pass',x:'TradeSea platform supported'},{t:'fail',x:'Trailing EOD drawdown $2,500 (locks at $50,100 once funded)'},{t:'fail',x:'No overnight or weekend holds'},{t:'info',x:'Min 3 trading days to pass — 40% consistency eval only'}]},
-{label:'100K',planType:'Select',price:265,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'None during eval (DLL on funded path)',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24–48 hr Rise',minPayoutDays:7,minPayoutAmount:1000,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts / $750K',maxContracts:'4 mini / 40 micro',activationFee:'None',resetFee:'$149',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, no funded consistency, 24-hr payouts'},{t:'fail',x:'EOD trailing drawdown $4,500'}]},
-{label:'150K',planType:'Select',price:369,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None during eval (DLL on funded path)',maxLoss:'$5,250',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'24–48 hr Rise',minPayoutDays:7,minPayoutAmount:1000,evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts / $750K',maxContracts:'4 mini / 40 micro',activationFee:'None',resetFee:'$199',coachingIncluded:false,rules:[{t:'pass',x:'Largest Tradeify Select — no DLL, no funded consistency'},{t:'fail',x:'EOD trailing drawdown $6,000'}]},
-{label:'25K',planType:'Lightning',price:149,accountSize:'$25,000',profitTarget:'Earn $1,000+ per payout cycle',dailyLoss:'None (25K Lightning has no DLL)',maxLoss:'$1,500',maxLossType:'Trailing EOD (locks at start+$100)',profitSplit:'100% first $15K then 90%',payoutFreq:'Instant (dashboard)',minPayoutDays:7,minPayoutAmount:1000,evalSteps:0,noEval:true,instantFunding:true,consistency:'20% 1st payout / 25% 2nd / 30%+ after',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'$100 above TMD floor',scaling:'Up to 5 accounts / $750K',maxContracts:'4 mini / 40 micro',activationFee:'None',resetFee:'$349 (one-time)',coachingIncluded:false,rules:[{t:'pass',x:'Skip evaluation — start trading funded immediately'},{t:'pass',x:'Instant payout requests from dashboard'},{t:'pass',x:'No profit target — just hit payout profit goal'},{t:'pass',x:'One-time fee, no subscription'},{t:'fail',x:'20% progressive consistency rule (increases each payout)'},{t:'fail',x:'Trailing EOD drawdown $1,500 — becomes static at floor'},{t:'fail',x:'$100 buffer above trailing floor required before payout'},{t:'info',x:'Must trade 7 days before first payout request'}]},
-{label:'50K',planType:'Lightning',price:239,accountSize:'$50,000',profitTarget:'Earn $1,500+ per payout cycle',dailyLoss:'$1,250 (soft breach)',maxLoss:'$2,500',maxLossType:'Trailing EOD (locks at start+$100)',profitSplit:'100% first $15K then 90%',payoutFreq:'Instant (dashboard)',minPayoutDays:7,minPayoutAmount:1000,evalSteps:0,noEval:true,instantFunding:true,consistency:'20% 1st payout / 25% 2nd / 30%+ after',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'$100 above TMD floor',scaling:'Up to 5 accounts / $750K',maxContracts:'4 mini / 40 micro',activationFee:'None',resetFee:'$499 (one-time)',coachingIncluded:false,rules:[{t:'pass',x:'No evaluation — funded from day one'},{t:'pass',x:'Instant payouts, no profit target, one-time fee'},{t:'fail',x:'Progressive consistency rule: 20% → 25% → 30%'},{t:'fail',x:'EOD trailing drawdown $2,500'},{t:'fail',x:'$100 buffer above TMD floor required at payout'}]},
-{label:'100K',planType:'Lightning',price:399,accountSize:'$100,000',profitTarget:'Earn $2,500+ per payout cycle',dailyLoss:'$2,500 (soft breach)',maxLoss:'$4,500',maxLossType:'Trailing EOD (locks at start+$100)',profitSplit:'100% first $15K then 90%',payoutFreq:'Instant (dashboard)',minPayoutDays:7,minPayoutAmount:1000,evalSteps:0,noEval:true,instantFunding:true,consistency:'20% 1st payout / 25% 2nd / 30%+ after',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'$100 above TMD floor',scaling:'Up to 5 accounts / $750K',maxContracts:'4 mini / 40 micro',activationFee:'None',resetFee:'$629 (one-time)',coachingIncluded:false,rules:[{t:'pass',x:'$100K instant funded — no evaluation required'},{t:'pass',x:'Instant dashboard payouts, one-time purchase'},{t:'fail',x:'Progressive consistency, trailing EOD DD $4,500'},{t:'fail',x:'$100 buffer above TMD floor at each payout'}]},
-{label:'150K',planType:'Lightning',price:549,accountSize:'$150,000',profitTarget:'None (earn profit goal per payout)',dailyLoss:'$3,000',maxLoss:'$5,250',maxLossType:'Trailing EOD (static once floor reached)',profitSplit:'90%',payoutFreq:'Instant (dashboard)',minPayoutDays:7,minPayoutAmount:1000,evalSteps:0,noEval:true,instantFunding:true,consistency:'20% 1st payout / 25% 2nd / 30%+ after',minTradingDays:7,news:true,trailing:true,overnight:false,weekend:false,bufferReq:true,bufferAmt:'$100 above TMD floor',scaling:'Up to 5 accounts / $750K',maxContracts:'4 mini / 40 micro',activationFee:'None',resetFee:'$729 (one-time)',coachingIncluded:false,rules:[{t:'pass',x:'$150K instant funded — largest Lightning account'},{t:'pass',x:'Instant payouts from dashboard, one-time fee'},{t:'fail',x:'Progressive consistency, trailing EOD DD $5,250'},{t:'info',x:'DLL reduced from $3,750 to $3,000 for accounts after Mar 31 2026'}]}
-]},{id:'tpt',name:'Take Profit Trader',tagline:'No DLL since Jan 2025, daily payouts',logo:'TP',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://takeprofittrader.com&size=128',logoColor:'#34d399',logoBg:'rgba(52,211,153,0.16)',rating:4.5,featured:false,tags:['evaluation','no-dll'],affiliateUrl:'https://takeprofittrader.com/?ref=FUTURESHUB',promoCode:'PROFIT20',promoDiscount:'20% off all plans',promoDesc:'Apply code PROFIT20 on takeprofittrader.com.',platforms:['NinjaTrader','Tradovate','Rithmic','Sierra Chart'],paymentMethods:['ACH','Wire','Crypto'],lucidTypes:null,plans:[{label:'50K',price:150,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'6 ES',activationFee:'None',resetFee:'$150/mo',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit since January 2025'},{t:'pass',x:'Daily payouts (Rise) — fastest window available'},{t:'pass',x:'No consistency rule in funded PRO phase'},{t:'fail',x:'EOD trailing drawdown $2,000'},{t:'fail',x:'No news trading — 1-2 min buffer required'},{t:'fail',x:'No overnight/weekend — flat by 5 PM ET'},{t:'info',x:'Monthly subscription model'}]},{label:'150K',price:330,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$5,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'15 ES',activationFee:'None',resetFee:'$330/mo',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, daily payouts, 90% split at $150K'},{t:'fail',x:'EOD trailing drawdown $5,000'},{t:'fail',x:'No news, no overnight, subscription model'}]}]},{id:'fundedseat',name:'Funded Seat',tagline:'No consistency rule, news & overnight OK',logo:'FS',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://fundedseat.com&size=128',logoColor:'#fbbf24',logoBg:'rgba(251,191,36,0.15)',rating:4.4,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://fundedseat.com/?ref=FUTURESHUB',promoCode:'SEAT20',promoDiscount:'20% off first evaluation',promoDesc:'Use code SEAT20 on FundedSeat.com.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Deel','PayPal'],lucidTypes:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule'},{t:'pass',x:'News trading and overnight holds allowed'},{t:'fail',x:'Trailing EOD drawdown $1,500'},{t:'fail',x:'80% profit split — lower than peers'}]},{label:'50K',price:80,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,000',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'4 MES/1 ES',activationFee:'None',resetFee:'$80',coachingIncluded:false,rules:[{t:'pass',x:'No consistency, news and overnight OK'},{t:'fail',x:'Trailing DD $2,500, 80% split'}]},{label:'100K',price:140,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'$2,000',maxLoss:'$4,000',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'8 MES/2 ES',activationFee:'None',resetFee:'$140',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule at $100K'},{t:'fail',x:'80% split, trailing drawdown $4,000'}]}]},{id:'fundednext',name:'Funded Next Futures',tagline:'Real live account, static DD, eval fee refunded',logo:'FN',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://fundednext.com&size=128',logoColor:'#60a5fa',logoBg:'rgba(96,165,250,0.16)',rating:4.5,featured:false,tags:['evaluation','static-dd','no-consistency'],affiliateUrl:'https://fundednext.com/?ref=FUTURESHUB',promoCode:'FNEXT15',promoDiscount:'15% off all plans',promoDesc:'Use code FNEXT15 at checkout on FundedNext.com.',platforms:['NinjaTrader','Tradovate','Rithmic','cTrader'],paymentMethods:['Wire','Crypto','PayPal','Skrill'],lucidTypes:null,plans:[{label:'50K',price:99,accountSize:'$50,000',profitTarget:'Ph1 $5,000 / Ph2 $2,500',dailyLoss:'$2,000',maxLoss:'$2,000',maxLossType:'Static',profitSplit:'90%',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:100,evalSteps:2,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'5 MES/1 ES',activationFee:'None (refunded at payout)',resetFee:'$99',coachingIncluded:false,rules:[{t:'pass',x:'Static DD, no consistency, full holds allowed'},{t:'pass',x:'Eval fee refunded after first withdrawal'},{t:'fail',x:'2-phase evaluation — longer path'}]},{label:'100K',price:179,accountSize:'$100,000',profitTarget:'Ph1 $10,000 / Ph2 $5,000',dailyLoss:'$4,000',maxLoss:'$4,000',maxLossType:'Static',profitSplit:'90%',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:100,evalSteps:2,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'10 MES/2 ES',activationFee:'None (refunded at payout)',resetFee:'$179',coachingIncluded:false,rules:[{t:'pass',x:'$100K on real live account — rare in industry'},{t:'pass',x:'90% split, static DD, no consistency'},{t:'fail',x:'2-phase eval required'}]}]},{id:'leeloo',name:'Leeloo Trading',tagline:'90% split, weekly payouts, no consistency rule',logo:'LL',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://leelootrading.com&size=128',logoColor:'#e879f9',logoBg:'rgba(232,121,249,0.15)',rating:4.3,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://leelootrading.com/?ref=FUTURESHUB',promoCode:'LEELOO15',promoDiscount:'15% off any evaluation',promoDesc:'Apply code LEELOO15 on Leelootrading.com.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Wire','Deel'],lucidTypes:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 7 days',minPayoutDays:5,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $300K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'90% split — among highest available'},{t:'pass',x:'Weekly payouts, no consistency rule'},{t:'fail',x:'Trailing EOD drawdown $1,500'},{t:'fail',x:'$500 daily loss limit'}]},{label:'100K',price:155,accountSize:'$100,000',profitTarget:'$5,000',dailyLoss:'$2,000',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 7 days',minPayoutDays:5,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $300K',maxContracts:'8 MES/2 ES',activationFee:'None',resetFee:'$155',coachingIncluded:false,rules:[{t:'pass',x:'90% split, weekly payouts, scale to $300K'},{t:'fail',x:'Trailing EOD drawdown $4,500, DLL $2,000'}]}]},{id:'tradeday',name:'TradeDay',tagline:'Coaching included, weekend holds allowed',logo:'TD',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tradeday.com&size=128',logoColor:'#4ade80',logoBg:'rgba(74,222,128,0.14)',rating:4.3,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://tradeday.com/?ref=FUTURESHUB',promoCode:'DAY15',promoDiscount:'15% off all plans',promoDesc:'Use code DAY15 at checkout on TradeDay.',platforms:['NinjaTrader','Tradovate'],paymentMethods:['ACH','Wire'],lucidTypes:null,plans:[{label:'25K',price:69,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$1,000',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Monthly',minPayoutDays:30,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $100K',maxContracts:'2 MES',activationFee:'None',resetFee:'$69',coachingIncluded:true,rules:[{t:'pass',x:'Free 1-on-1 coaching session included'},{t:'pass',x:'Weekend holds — rare in the industry'},{t:'fail',x:'Monthly payout only — slowest cadence'},{t:'fail',x:'EOD trailing drawdown $1,500, 80% split'}]},{label:'50K',price:99,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,500',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Monthly',minPayoutDays:30,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $100K',maxContracts:'4 MES/1 ES',activationFee:'None',resetFee:'$99',coachingIncluded:true,rules:[{t:'pass',x:'Coaching + Discord, weekend holds OK'},{t:'fail',x:'Monthly payouts, 80% split'}]}]}];
+  {id:'tradeify',name:'Tradeify',tagline:'Growth · Select · Lightning — 100% first $15K then 90%',
+    logo:'TF',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tradeify.co&size=128',
+    logoColor:'#a78bfa',logoBg:'rgba(167,139,250,0.18)',rating:4.8,featured:false,
+    tags:['evaluation','instant-funding','no-dll','no-consistency'],
+    affiliateUrl:'https://tradeify.co/?ref=FUTURESHUB',
+    promoCode:'TRADEIFY20',promoDiscount:'20% off all plans',
+    promoDesc:'Apply code TRADEIFY20 at checkout on Tradeify.co.',
+    platforms:['NinjaTrader','Tradovate','Rithmic','TradeSea'],
+    paymentMethods:['ACH','Wire','Deel'],
+    lucidTypes:['Growth','Select','Lightning'],
+    plans:[
+      /* ── GROWTH ── */
+      {label:'25K',planType:'Growth',price:59,accountSize:'$25,000',profitTarget:'$1,500',
+        dailyLoss:'$600',maxLoss:'$1,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'5 days',
+        minPayoutDays:5,minPayoutAmount:500,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None eval / 35% funded',
+        minTradingDays:1,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'1 mini / 10 micro',
+        activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'100% of first $15K per payout then 90%'},
+          {t:'pass',x:'No consistency rule during evaluation'},
+          {t:'pass',x:'Pass in as little as 1 day'},
+          {t:'fail',x:'35% consistency rule in funded phase'},
+          {t:'fail',x:'$600 daily loss limit'},
+          {t:'fail',x:'Trailing EOD drawdown $1,000'},
+          {t:'fail',x:'No overnight or weekend holds'},
+        ]},
+      {label:'50K',planType:'Growth',price:87,accountSize:'$50,000',profitTarget:'$3,000',
+        dailyLoss:'$1,250',maxLoss:'$2,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'5 days',
+        minPayoutDays:5,minPayoutAmount:500,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None eval / 35% funded',
+        minTradingDays:1,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'4 mini / 40 micro',
+        activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'100% first $15K / 90%, pass in 1 day'},
+          {t:'fail',x:'35% funded consistency, $1,250 DLL'},
+          {t:'fail',x:'Trailing EOD drawdown $2,000'},
+        ]},
+      {label:'100K',planType:'Growth',price:153,accountSize:'$100,000',profitTarget:'$6,000',
+        dailyLoss:'$2,500',maxLoss:'$3,500',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'5 days',
+        minPayoutDays:5,minPayoutAmount:500,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None eval / 35% funded',
+        minTradingDays:1,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'8 mini / 80 micro',
+        activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'100% first $15K / 90%, pass in 1 day'},
+          {t:'fail',x:'35% funded consistency, $2,500 DLL'},
+          {t:'fail',x:'Trailing EOD drawdown $3,500'},
+        ]},
+      {label:'150K',planType:'Growth',price:221,accountSize:'$150,000',profitTarget:'$9,000',
+        dailyLoss:'$3,750',maxLoss:'$5,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'5 days',
+        minPayoutDays:5,minPayoutAmount:500,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None eval / 35% funded',
+        minTradingDays:1,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'12 mini / 120 micro',
+        activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'100% first $15K / 90%, pass in 1 day'},
+          {t:'fail',x:'35% funded consistency, $3,750 DLL'},
+          {t:'fail',x:'Trailing EOD drawdown $5,000'},
+        ]},
+      /* ── SELECT (min 3 days to pass, two funded paths) ── */
+      {label:'25K',planType:'Select',price:109,accountSize:'$25,000',profitTarget:'$1,500',
+        dailyLoss:'None (Flex path) / $500 (Daily path)',maxLoss:'$1,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'Daily OR 5-day (your choice)',
+        minPayoutDays:3,minPayoutAmount:500,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded (both paths)',
+        minTradingDays:3,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'1 mini / 10 micro',
+        activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'No consistency rule in funded phase on either path'},
+          {t:'pass',x:'Choose Daily path (daily payouts, DLL) or Flex path (5-day, no DLL)'},
+          {t:'pass',x:'Flex path: max payout $1,250, no DLL, EOD DD $1,000'},
+          {t:'info',x:'Daily path: max payout $600/day, $500 DLL, EOD DD $1,000'},
+          {t:'fail',x:'Min 3 trading days to pass evaluation'},
+          {t:'fail',x:'Trailing EOD drawdown $1,000'},
+        ]},
+      {label:'50K',planType:'Select',price:165,accountSize:'$50,000',profitTarget:'$3,000',
+        dailyLoss:'None (Flex path) / $1,000 (Daily path)',maxLoss:'$2,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'Daily OR 5-day (your choice)',
+        minPayoutDays:3,minPayoutAmount:1000,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded (both paths)',
+        minTradingDays:3,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'4 mini / 40 micro',
+        activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'No funded consistency on either path'},
+          {t:'pass',x:'Flex: max payout $3,000, no DLL, DD $2,000'},
+          {t:'info',x:'Daily: max payout $1,000/day, $1,000 DLL, DD $2,000'},
+          {t:'fail',x:'Min 3 days to pass, trailing EOD DD $2,000'},
+        ]},
+      {label:'100K',planType:'Select',price:265,accountSize:'$100,000',profitTarget:'$6,000',
+        dailyLoss:'None (Flex path) / $1,250 (Daily path)',maxLoss:'$3,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'Daily OR 5-day (your choice)',
+        minPayoutDays:3,minPayoutAmount:1000,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded (both paths)',
+        minTradingDays:3,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'8 mini / 80 micro',
+        activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'No funded consistency, choose Daily or Flex path'},
+          {t:'pass',x:'Flex: max payout $4,000, no DLL, DD $3,000'},
+          {t:'info',x:'Daily: max payout $1,500/day, $1,250 DLL, DD $2,500'},
+          {t:'fail',x:'Min 3 days to pass'},
+        ]},
+      {label:'150K',planType:'Select',price:369,accountSize:'$150,000',profitTarget:'$9,000',
+        dailyLoss:'None (Flex path) / $1,750 (Daily path)',maxLoss:'$4,500',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'Daily OR 5-day (your choice)',
+        minPayoutDays:3,minPayoutAmount:1000,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None funded (both paths)',
+        minTradingDays:3,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'12 mini / 120 micro',
+        activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'No funded consistency, Daily or Flex payout path'},
+          {t:'pass',x:'Flex: max payout $5,000, no DLL, DD $4,500'},
+          {t:'info',x:'Daily: max payout $2,500/day, $1,750 DLL, DD $3,500'},
+          {t:'fail',x:'Min 3 days to pass, trailing EOD DD $4,500'},
+        ]},
+      /* ── LIGHTNING (instant funded) ── */
+      {label:'25K',planType:'Lightning',price:207,accountSize:'$25,000',profitTarget:'No profit target',
+        dailyLoss:'None',maxLoss:'$1,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'Every 5 days',
+        minPayoutDays:5,minPayoutAmount:500,
+        evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',
+        minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'1 mini / 10 micro',
+        activationFee:'None',resetFee:'New purchase (one-time)',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'Skip evaluation — funded instantly from day 1'},
+          {t:'pass',x:'No profit target required before first payout'},
+          {t:'pass',x:'No daily loss limit on 25K Lightning'},
+          {t:'pass',x:'100% first $15K then 90%, one-time fee'},
+          {t:'fail',x:'20% consistency rule — no day > 20% of total balance at payout'},
+          {t:'fail',x:'Trailing EOD drawdown $1,000'},
+          {t:'fail',x:'No overnight or weekend holds'},
+        ]},
+      {label:'50K',planType:'Lightning',price:295,accountSize:'$50,000',profitTarget:'No profit target',
+        dailyLoss:'$1,250',maxLoss:'$2,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'Every 5 days',
+        minPayoutDays:5,minPayoutAmount:500,
+        evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',
+        minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'4 mini / 40 micro',
+        activationFee:'None',resetFee:'New purchase (one-time)',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'Instant funded, no evaluation required'},
+          {t:'pass',x:'100% first $15K / 90%, one-time fee'},
+          {t:'fail',x:'$1,250 daily loss limit'},
+          {t:'fail',x:'20% consistency rule'},
+          {t:'fail',x:'Trailing EOD drawdown $2,000'},
+        ]},
+      {label:'100K',planType:'Lightning',price:396,accountSize:'$100,000',profitTarget:'No profit target',
+        dailyLoss:'$2,500',maxLoss:'$4,000',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'Every 5 days',
+        minPayoutDays:5,minPayoutAmount:500,
+        evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',
+        minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'8 mini / 80 micro',
+        activationFee:'None',resetFee:'New purchase (one-time)',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'$100K instant funded, 100% first $15K then 90%'},
+          {t:'fail',x:'$2,500 DLL, trailing EOD drawdown $4,000'},
+          {t:'fail',x:'20% consistency rule'},
+        ]},
+      {label:'150K',planType:'Lightning',price:478,accountSize:'$150,000',profitTarget:'No profit target',
+        dailyLoss:'$3,000',maxLoss:'$5,250',maxLossType:'Trailing EOD',
+        profitSplit:'100% first $15K / 90%',payoutFreq:'Every 5 days',
+        minPayoutDays:5,minPayoutAmount:500,
+        evalSteps:0,noEval:true,instantFunding:true,consistency:'20%',
+        minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'12 mini / 120 micro',
+        activationFee:'None',resetFee:'New purchase (one-time)',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'$150K instant funded — largest Lightning account'},
+          {t:'fail',x:'$3,000 DLL, trailing EOD drawdown $5,250'},
+          {t:'fail',x:'20% consistency rule'},
+        ]},
+    ]},
+  {id:'tpt',name:'Take Profit Trader',tagline:'No DLL since Jan 2025, daily payouts',logo:'TP',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://takeprofittrader.com&size=128',logoColor:'#34d399',logoBg:'rgba(52,211,153,0.16)',rating:4.5,featured:false,tags:['evaluation','no-dll'],affiliateUrl:'https://takeprofittrader.com/?ref=FUTURESHUB',promoCode:'PROFIT20',promoDiscount:'20% off all plans',promoDesc:'Apply code PROFIT20 on takeprofittrader.com.',platforms:['NinjaTrader','Tradovate','Rithmic','Sierra Chart'],paymentMethods:['ACH','Wire','Crypto'],lucidTypes:null,plans:[{label:'50K',price:150,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'6 ES',activationFee:'None',resetFee:'$150/mo',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit since January 2025'},{t:'pass',x:'Daily payouts (Rise) — fastest window available'},{t:'pass',x:'No consistency rule in funded PRO phase'},{t:'fail',x:'EOD trailing drawdown $2,000'},{t:'fail',x:'No news trading — 1-2 min buffer required'},{t:'fail',x:'No overnight/weekend — flat by 5 PM ET'},{t:'info',x:'Monthly subscription model'}]},{label:'150K',price:330,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$5,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'15 ES',activationFee:'None',resetFee:'$330/mo',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, daily payouts, 90% split at $150K'},{t:'fail',x:'EOD trailing drawdown $5,000'},{t:'fail',x:'No news, no overnight, subscription model'}]}]},{id:'fundedseat',name:'Funded Seat',tagline:'No consistency rule, news & overnight OK',logo:'FS',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://fundedseat.com&size=128',logoColor:'#fbbf24',logoBg:'rgba(251,191,36,0.15)',rating:4.4,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://fundedseat.com/?ref=FUTURESHUB',promoCode:'SEAT20',promoDiscount:'20% off first evaluation',promoDesc:'Use code SEAT20 on FundedSeat.com.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Deel','PayPal'],lucidTypes:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule'},{t:'pass',x:'News trading and overnight holds allowed'},{t:'fail',x:'Trailing EOD drawdown $1,500'},{t:'fail',x:'80% profit split — lower than peers'}]},{label:'50K',price:80,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,000',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'4 MES/1 ES',activationFee:'None',resetFee:'$80',coachingIncluded:false,rules:[{t:'pass',x:'No consistency, news and overnight OK'},{t:'fail',x:'Trailing DD $2,500, 80% split'}]},{label:'100K',price:140,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'$2,000',maxLoss:'$4,000',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Every 8 days',minPayoutDays:8,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'8 MES/2 ES',activationFee:'None',resetFee:'$140',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule at $100K'},{t:'fail',x:'80% split, trailing drawdown $4,000'}]}]},{id:'fundednext',name:'Funded Next Futures',tagline:'Flex · Legacy · Rapid · Bolt — real live account, static EOD DD',
+    logo:'FN',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://fundednext.com&size=128',
+    logoColor:'#60a5fa',logoBg:'rgba(96,165,250,0.16)',rating:4.5,featured:false,
+    tags:['evaluation','static-dd','no-consistency'],
+    affiliateUrl:'https://fundednext.com/?ref=FUTURESHUB',
+    promoCode:'FNEXT15',promoDiscount:'15% off all plans',
+    promoDesc:'Use code FNEXT15 at checkout on FundedNext.com.',
+    platforms:['NinjaTrader','Tradovate','Rithmic','cTrader'],
+    paymentMethods:['Wire','Crypto','PayPal','Skrill'],
+    lucidTypes:['Flex','Legacy','Rapid','Bolt'],
+    plans:[
+      /* ── FLEX CHALLENGE ── */
+      {label:'50K',planType:'Flex',price:133.99,accountSize:'$50,000',profitTarget:'$2,500',
+        dailyLoss:'None',maxLoss:'$1,500',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:5,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',
+        minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'3 mini / 30 micro',
+        activationFee:'None (refunded at 1st payout)',resetFee:'$77.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'90% split on real live funded account'},
+          {t:'pass',x:'Static EOD drawdown — no trailing ever'},
+          {t:'pass',x:'No consistency rule once funded'},
+          {t:'pass',x:'Overnight and weekend holds allowed'},
+          {t:'pass',x:'Eval fee refunded after first payout'},
+          {t:'fail',x:'40% consistency rule during challenge only'},
+          {t:'info',x:'Optional 90% Performance Reward add-on at checkout'},
+        ]},
+      {label:'100K',planType:'Flex',price:249.99,accountSize:'$100,000',profitTarget:'$5,000',
+        dailyLoss:'None',maxLoss:'$2,500',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:5,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',
+        minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'5 mini / 50 micro',
+        activationFee:'None (refunded at 1st payout)',resetFee:'$144.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'Static EOD DD, no funded consistency, fee refunded'},
+          {t:'pass',x:'Overnight and weekend holds allowed'},
+          {t:'fail',x:'40% consistency during challenge phase only'},
+        ]},
+      {label:'150K',planType:'Flex',price:483.99,accountSize:'$150,000',profitTarget:'$8,000',
+        dailyLoss:'None',maxLoss:'$4,000',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:5,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',
+        minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'8 mini / 80 micro',
+        activationFee:'None (refunded at 1st payout)',resetFee:'$278.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'$150K static EOD DD, no funded consistency'},
+          {t:'fail',x:'40% challenge consistency, $8,000 profit target'},
+        ]},
+      /* ── LEGACY CHALLENGE (1-phase) ── */
+      {label:'25K',planType:'Legacy',price:79.99,accountSize:'$25,000',profitTarget:'$1,250',
+        dailyLoss:'None',maxLoss:'$1,000',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:5,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',
+        minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'2 mini / 20 micro (3/30 funded)',
+        activationFee:'None',resetFee:'$73.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'Static EOD drawdown, fee refunded after first payout'},
+          {t:'pass',x:'No consistency once funded, overnight + weekend OK'},
+          {t:'pass',x:'Contract size scales up when funded (2→3 mini)'},
+          {t:'fail',x:'40% consistency during challenge only'},
+          {t:'info',x:'Most Popular Legacy plan — single phase challenge'},
+        ]},
+      {label:'50K',planType:'Legacy',price:149.99,accountSize:'$50,000',profitTarget:'$3,000',
+        dailyLoss:'None',maxLoss:'$2,000',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:5,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',
+        minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'3 mini / 30 micro (5/50 funded)',
+        activationFee:'None',resetFee:'$137.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'Static EOD DD, no funded consistency, fee refunded'},
+          {t:'fail',x:'40% challenge consistency, $3,000 profit target'},
+        ]},
+      {label:'100K',planType:'Legacy',price:249.99,accountSize:'$100,000',profitTarget:'$6,000',
+        dailyLoss:'None',maxLoss:'$3,000',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:5,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',
+        minTradingDays:5,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'5 mini / 50 micro (7/70 funded)',
+        activationFee:'None',resetFee:'$229.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'$100K on real live account, static EOD DD'},
+          {t:'fail',x:'40% challenge consistency only'},
+        ]},
+      /* ── RAPID CHALLENGE ── */
+      {label:'25K',planType:'Rapid',price:99.99,accountSize:'$25,000',profitTarget:'$1,500',
+        dailyLoss:'None',maxLoss:'$1,000',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:0,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None eval / 40% funded',
+        minTradingDays:0,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'2 mini / 10 micro (3/15 funded)',
+        activationFee:'None',resetFee:'$91.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'No minimum trading days — pass as fast as possible'},
+          {t:'pass',x:'No consistency rule during evaluation'},
+          {t:'pass',x:'Static EOD drawdown, overnight + weekend OK'},
+          {t:'fail',x:'40% consistency rule in funded phase only'},
+          {t:'info',x:'Contract size scales up when funded (2→3 mini)'},
+          {t:'info',x:'Most Popular Rapid plan'},
+        ]},
+      {label:'50K',planType:'Rapid',price:199.99,accountSize:'$50,000',profitTarget:'$3,000',
+        dailyLoss:'None',maxLoss:'$2,000',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:0,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None eval / 40% funded',
+        minTradingDays:0,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'3 mini / 15 micro (5/25 funded)',
+        activationFee:'None',resetFee:'$183.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'No min days, no eval consistency, static EOD DD'},
+          {t:'fail',x:'40% consistency in funded phase'},
+        ]},
+      {label:'100K',planType:'Rapid',price:279.99,accountSize:'$100,000',profitTarget:'$5,000',
+        dailyLoss:'None',maxLoss:'$2,500',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Every 14 days',
+        minPayoutDays:0,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'None eval / 40% funded',
+        minTradingDays:0,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'5 mini / 25 micro (7/35 funded)',
+        activationFee:'None',resetFee:'$257.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'No min days, no eval consistency, static EOD DD'},
+          {t:'fail',x:'40% funded consistency, $5,000 target'},
+        ]},
+      /* ── BOLT CHALLENGE (50K only) ── */
+      {label:'50K',planType:'Bolt',price:99.99,accountSize:'$50,000',profitTarget:'$3,000',
+        dailyLoss:'$1,000',maxLoss:'$2,000',maxLossType:'Static EOD',
+        profitSplit:'90%',payoutFreq:'Daily (after passing)',
+        minPayoutDays:0,minPayoutAmount:100,
+        evalSteps:1,noEval:false,instantFunding:false,consistency:'40% eval only / None funded',
+        minTradingDays:0,news:true,trailing:false,overnight:true,weekend:true,
+        bufferReq:false,bufferAmt:'—',scaling:'Up to $200K',maxContracts:'3 mini / 9 micro',
+        activationFee:'None',resetFee:'$91.99',coachingIncluded:false,
+        rules:[
+          {t:'pass',x:'Daily payouts after passing — fastest FundedNext payout'},
+          {t:'pass',x:'No minimum trading days, one-time fee, no activation fee'},
+          {t:'pass',x:'Static EOD drawdown, no funded consistency rule'},
+          {t:'pass',x:'Overnight and weekend holds allowed'},
+          {t:'fail',x:'$1,000 daily loss limit (hard)'},
+          {t:'fail',x:'40% consistency during challenge phase only'},
+          {t:'info',x:'Only 50K available on Bolt plan'},
+        ]},
+    ]},
+  {id:'leeloo',name:'Leeloo Trading',tagline:'90% split, weekly payouts, no consistency rule',logo:'LL',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://leelootrading.com&size=128',logoColor:'#e879f9',logoBg:'rgba(232,121,249,0.15)',rating:4.3,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://leelootrading.com/?ref=FUTURESHUB',promoCode:'LEELOO15',promoDiscount:'15% off any evaluation',promoDesc:'Apply code LEELOO15 on Leelootrading.com.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Wire','Deel'],lucidTypes:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 7 days',minPayoutDays:5,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $300K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'90% split — among highest available'},{t:'pass',x:'Weekly payouts, no consistency rule'},{t:'fail',x:'Trailing EOD drawdown $1,500'},{t:'fail',x:'$500 daily loss limit'}]},{label:'100K',price:155,accountSize:'$100,000',profitTarget:'$5,000',dailyLoss:'$2,000',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Every 7 days',minPayoutDays:5,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $300K',maxContracts:'8 MES/2 ES',activationFee:'None',resetFee:'$155',coachingIncluded:false,rules:[{t:'pass',x:'90% split, weekly payouts, scale to $300K'},{t:'fail',x:'Trailing EOD drawdown $4,500, DLL $2,000'}]}]},{id:'tradeday',name:'TradeDay',tagline:'Coaching included, weekend holds allowed',logo:'TD',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tradeday.com&size=128',logoColor:'#4ade80',logoBg:'rgba(74,222,128,0.14)',rating:4.3,featured:false,tags:['evaluation','no-consistency'],affiliateUrl:'https://tradeday.com/?ref=FUTURESHUB',promoCode:'DAY15',promoDiscount:'15% off all plans',promoDesc:'Use code DAY15 at checkout on TradeDay.',platforms:['NinjaTrader','Tradovate'],paymentMethods:['ACH','Wire'],lucidTypes:null,plans:[{label:'25K',price:69,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$1,000',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Monthly',minPayoutDays:30,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $100K',maxContracts:'2 MES',activationFee:'None',resetFee:'$69',coachingIncluded:true,rules:[{t:'pass',x:'Free 1-on-1 coaching session included'},{t:'pass',x:'Weekend holds — rare in the industry'},{t:'fail',x:'Monthly payout only — slowest cadence'},{t:'fail',x:'EOD trailing drawdown $1,500, 80% split'}]},{label:'50K',price:99,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,500',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'80%',payoutFreq:'Monthly',minPayoutDays:30,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:true,bufferReq:false,bufferAmt:'—',scaling:'Up to $100K',maxContracts:'4 MES/1 ES',activationFee:'None',resetFee:'$99',coachingIncluded:true,rules:[{t:'pass',x:'Coaching + Discord, weekend holds OK'},{t:'fail',x:'Monthly payouts, 80% split'}]}]},
+
+/* ══════════ MY FUNDED FUTURES ══════════ */
+{id:'mffu',name:'My Funded Futures',tagline:'Rapid · Flex · Pro · Builder · Core — daily payouts, 90% split',
+  logo:'MF',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://myfundedfutures.com&size=128',
+  logoColor:'#38bdf8',logoBg:'rgba(56,189,248,0.16)',rating:4.7,featured:false,
+  tags:['evaluation','no-dll','no-consistency'],
+  affiliateUrl:'https://myfundedfutures.com/?ref=FUTURESHUB',
+  promoCode:'SAVE40',promoDiscount:'Up to 50% off (try SAVE40 or UNCAPPED)',
+  promoDesc:'Use code SAVE40 at checkout on myfundedfutures.com for up to 40% off. Try UNCAPPED for 50% off Pro plans.',
+  platforms:['NinjaTrader','Tradovate','Rithmic','Sierra Chart'],
+  paymentMethods:['Rise (ACH same-day)','Plaid ACH'],
+  lucidTypes:['Rapid','Flex','Pro','Builder','Core'],
+  plans:[
+    {label:'25K',planType:'Rapid',price:87,accountSize:'$25,000',profitTarget:'$1,500',
+      dailyLoss:'None',maxLoss:'$1,000',maxLossType:'Intraday Trailing',
+      profitSplit:'90%',payoutFreq:'Daily (after 5 winning days)',minPayoutDays:5,minPayoutAmount:500,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:true,bufferAmt:'$1,100 buffer above starting balance',
+      scaling:'Up to 5 accounts',maxContracts:'3 mini / 30 micro',
+      activationFee:'None',resetFee:'$97',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'90% profit split — updated Jan 2026 from 80%'},
+        {t:'pass',x:'Daily payouts after 5 qualifying winning days'},
+        {t:'pass',x:'No daily loss limit in eval or funded'},
+        {t:'pass',x:'No consistency rule in funded phase'},
+        {t:'fail',x:'Intraday trailing drawdown $1,000 in funded phase'},
+        {t:'fail',x:'$1,100 buffer required above starting balance before first payout'},
+        {t:'fail',x:'50% best-day consistency rule during evaluation only'},
+        {t:'info',x:'Min 2 trading days to pass, $500 min payout, $15 withdrawal fee'},
+      ]},
+    {label:'50K',planType:'Rapid',price:129,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'None',maxLoss:'$2,000',maxLossType:'Intraday Trailing',
+      profitSplit:'90%',payoutFreq:'Daily (after 5 winning days)',minPayoutDays:5,minPayoutAmount:500,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:true,bufferAmt:'$2,100 buffer above starting balance',
+      scaling:'Up to 5 accounts',maxContracts:'5 mini / 50 micro',
+      activationFee:'None',resetFee:'$157 one-time option',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'90% split, daily payouts, no DLL, no funded consistency'},
+        {t:'fail',x:'Intraday trailing drawdown $2,000 in funded phase'},
+        {t:'fail',x:'$2,100 buffer required, 50% eval consistency'},
+      ]},
+    {label:'100K',planType:'Rapid',price:219,accountSize:'$100,000',profitTarget:'$6,000',
+      dailyLoss:'None',maxLoss:'$3,000',maxLossType:'Intraday Trailing',
+      profitSplit:'90%',payoutFreq:'Daily (after 5 winning days)',minPayoutDays:5,minPayoutAmount:500,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:true,bufferAmt:'$3,100 buffer above starting balance',
+      scaling:'Up to 3 accounts',maxContracts:'10 mini / 100 micro',
+      activationFee:'None',resetFee:'$267 one-time option',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'90% split, daily payouts, no DLL'},
+        {t:'fail',x:'Intraday trailing drawdown $3,000'},
+        {t:'fail',x:'$3,100 buffer, max 3 accounts at $100K+'},
+      ]},
+    {label:'150K',planType:'Rapid',price:299,accountSize:'$150,000',profitTarget:'$9,000',
+      dailyLoss:'None',maxLoss:'$4,500',maxLossType:'Intraday Trailing',
+      profitSplit:'90%',payoutFreq:'Daily (after 5 winning days)',minPayoutDays:5,minPayoutAmount:500,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:true,bufferAmt:'$4,600 buffer above starting balance',
+      scaling:'Up to 3 accounts',maxContracts:'15 mini / 150 micro',
+      activationFee:'None',resetFee:'$347 one-time option',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'$150K, 90% daily payouts, no DLL'},
+        {t:'fail',x:'Intraday trailing $4,500, $4,600 buffer, 3-account max'},
+      ]},
+    {label:'25K',planType:'Flex',price:77,accountSize:'$25,000',profitTarget:'$1,500',
+      dailyLoss:'None',maxLoss:'$1,000',maxLossType:'EOD Static',
+      profitSplit:'80%',payoutFreq:'Every 5 qualifying winning days',minPayoutDays:5,minPayoutAmount:250,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:false,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'3 mini / 30 micro',
+      activationFee:'None',resetFee:'$399 funded reset',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'Static EOD drawdown — never trails, never tightens'},
+        {t:'pass',x:'No daily loss limit, no funded consistency, no activation fee'},
+        {t:'fail',x:'80% profit split (lower than Rapid)'},
+        {t:'fail',x:'$3,000 payout cap per cycle on 25K'},
+      ]},
+    {label:'50K',planType:'Flex',price:99,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'None',maxLoss:'$2,000',maxLossType:'EOD Static',
+      profitSplit:'80%',payoutFreq:'Every 5 qualifying winning days',minPayoutDays:5,minPayoutAmount:250,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:false,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'5 mini / 50 micro',
+      activationFee:'None',resetFee:'$499 funded reset',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'Static EOD drawdown $2,000 — simplest risk structure'},
+        {t:'pass',x:'No DLL, no funded consistency, no activation fee'},
+        {t:'fail',x:'80% split, $5,000 payout cap per cycle'},
+      ]},
+    {label:'50K',planType:'Pro',price:229,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'None',maxLoss:'$1,500',maxLossType:'EOD Trailing (3%)',
+      profitSplit:'80%',payoutFreq:'Every 14 calendar days',minPayoutDays:14,minPayoutAmount:1000,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:true,bufferAmt:'$2,100 buffer (60% pre-buffer withdrawal allowed)',
+      scaling:'Up to 3 accounts',maxContracts:'3 mini / 30 micro',
+      activationFee:'None',resetFee:'$629 one-time eval option',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No funded consistency, no DLL'},
+        {t:'pass',x:'60% of profits withdrawable before buffer fully built'},
+        {t:'fail',x:'EOD trailing 3% ($1,500), 80% split, bi-weekly payouts'},
+        {t:'fail',x:'$2,100 buffer, $1,000 min withdrawal'},
+      ]},
+    {label:'100K',planType:'Pro',price:329,accountSize:'$100,000',profitTarget:'$6,000',
+      dailyLoss:'None',maxLoss:'$3,000',maxLossType:'EOD Trailing (3%)',
+      profitSplit:'80%',payoutFreq:'Every 14 calendar days',minPayoutDays:14,minPayoutAmount:1000,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:true,bufferAmt:'$3,100 buffer',
+      scaling:'Up to 3 accounts',maxContracts:'6 mini / 60 micro',
+      activationFee:'None',resetFee:'$829 one-time option',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No funded consistency, 60% pre-buffer withdrawal'},
+        {t:'fail',x:'EOD trailing 3%, $3,100 buffer, 80% split, bi-weekly'},
+      ]},
+    {label:'50K',planType:'Builder',price:149,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'$1,000 (soft pause)',maxLoss:'$2,000',maxLossType:'EOD Fixed',
+      profitSplit:'80%',payoutFreq:'Every 48 hours (5 payouts max)',minPayoutDays:1,minPayoutAmount:500,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'None eval or funded',
+      minTradingDays:1,news:true,trailing:false,overnight:false,weekend:false,
+      bufferReq:true,bufferAmt:'Buffer required before payouts',
+      scaling:'1 active Builder account at a time',maxContracts:'4 mini / 40 micro',
+      activationFee:'None',resetFee:'New purchase',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'Pass in 1 day — fastest eval on MFFU'},
+        {t:'pass',x:'No consistency rule — eval OR funded'},
+        {t:'pass',x:'48-hour payout cycle, up to 5 payouts total'},
+        {t:'fail',x:'$1,000 soft DLL (pauses trading, not hard breach)'},
+        {t:'fail',x:'Max 1 Builder account active at a time, 80% split'},
+      ]},
+    {label:'50K',planType:'Core',price:77,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'None',maxLoss:'$1,500',maxLossType:'EOD Trailing (3%)',
+      profitSplit:'80%',payoutFreq:'Every 5 winning trading days',minPayoutDays:5,minPayoutAmount:250,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'5 mini / 50 micro',
+      activationFee:'None',resetFee:'$229 one-time eval option',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'Cheapest MFFU plan — $77/mo or $229 one-time'},
+        {t:'pass',x:'No activation fee, no funded consistency, no DLL'},
+        {t:'fail',x:'EOD trailing 3% ($1,500), 80% split'},
+        {t:'fail',x:'$50K only — no other sizes on Core plan'},
+      ]},
+  ]},
+
+/* ══════════ ALPHA FUTURES ══════════ */
+{id:'alphafutures',name:'Alpha Futures',tagline:'Standard · Advanced · Zero — 4.9★ Trustpilot, UK registered',
+  logo:'AF',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://alpha-futures.com&size=128',
+  logoColor:'#f97316',logoBg:'rgba(249,115,22,0.16)',rating:4.9,featured:false,
+  tags:['evaluation','no-consistency'],
+  affiliateUrl:'https://alpha-futures.com/?ref=FUTURESHUB',
+  promoCode:'ALPHA20',promoDiscount:'20% off all plans',
+  promoDesc:'Use code ALPHA20 at checkout on alpha-futures.com for 20% off.',
+  platforms:['AlphaTicks (ProjectX)','Quantower','Tradovate','NinjaTrader','TradingView'],
+  paymentMethods:['Crypto','Bank Wire','PayPal'],
+  lucidTypes:['Standard','Advanced','Zero'],
+  plans:[
+    {label:'50K',planType:'Standard',price:79,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'None (DLG removed Nov 2025)',maxLoss:'$2,000',maxLossType:'EOD Trailing',
+      profitSplit:'70%→80%→90% (tiered)',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 3 funded / $450K cap',maxContracts:'5 mini / 50 micro',
+      activationFee:'$149 (one-time on passing)',resetFee:'$59',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No daily loss guard since Nov 2025 — trade more freely'},
+        {t:'pass',x:'No consistency rule in funded phase (50% eval only)'},
+        {t:'pass',x:'EOD trailing — drawdown only recalculates at day close'},
+        {t:'info',x:'Tiered split: 70% (payouts 1-2) → 80% (3-4) → 90% (5+)'},
+        {t:'fail',x:'$149 activation fee on passing evaluation'},
+        {t:'fail',x:'3 funded account max, $450K combined cap'},
+      ]},
+    {label:'100K',planType:'Standard',price:159,accountSize:'$100,000',profitTarget:'$6,000',
+      dailyLoss:'None',maxLoss:'$4,000',maxLossType:'EOD Trailing',
+      profitSplit:'70%→80%→90% (tiered)',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 3 funded / $450K cap',maxContracts:'10 mini / 100 micro',
+      activationFee:'$149 (one-time)',resetFee:'$129',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No DLG, no funded consistency, EOD trailing'},
+        {t:'info',x:'Tiered split 70%→80%→90%, $149 activation fee'},
+        {t:'fail',x:'Withdrawals count against MLL — plan payout sizing carefully'},
+      ]},
+    {label:'150K',planType:'Standard',price:239,accountSize:'$150,000',profitTarget:'$9,000',
+      dailyLoss:'None',maxLoss:'$6,000',maxLossType:'EOD Trailing',
+      profitSplit:'70%→80%→90% (tiered)',payoutFreq:'Every 14 days',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 3 funded / $450K cap',maxContracts:'15 mini / 150 micro',
+      activationFee:'$149 (one-time)',resetFee:'$199',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'$150K EOD trailing, tiered to 90% by payout 5'},
+        {t:'fail',x:'$149 activation, $6,000 max loss, 3-account cap'},
+      ]},
+    {label:'50K',planType:'Advanced',price:139,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'None',maxLoss:'$1,750',maxLossType:'EOD Trailing (3.5%)',
+      profitSplit:'90%',payoutFreq:'Every 14 days (up to $15K/request)',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 3 funded / $450K cap',maxContracts:'5 mini / 50 micro',
+      activationFee:'$149 (one-time)',resetFee:'$89',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'90% profit split from very first payout — no tiering'},
+        {t:'pass',x:'No consistency rule in funded, no Daily Loss Guard'},
+        {t:'pass',x:'Higher max payout: up to $15,000 per request'},
+        {t:'fail',x:'Tighter 3.5% drawdown ($1,750 vs $2,000 Standard)'},
+        {t:'fail',x:'$149 activation fee on passing'},
+      ]},
+    {label:'100K',planType:'Advanced',price:279,accountSize:'$100,000',profitTarget:'$6,000',
+      dailyLoss:'None',maxLoss:'$3,500',maxLossType:'EOD Trailing (3.5%)',
+      profitSplit:'90%',payoutFreq:'Every 14 days (up to $15K/request)',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 3 funded / $450K cap',maxContracts:'10 mini / 100 micro',
+      activationFee:'$149 (one-time)',resetFee:'$169',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'90% from payout 1, no consistency, $15K payout cap'},
+        {t:'fail',x:'3.5% EOD trailing ($3,500), $149 activation'},
+      ]},
+    {label:'150K',planType:'Advanced',price:419,accountSize:'$150,000',profitTarget:'$9,000',
+      dailyLoss:'None',maxLoss:'$5,250',maxLossType:'EOD Trailing (3.5%)',
+      profitSplit:'90%',payoutFreq:'Every 14 days (up to $15K/request)',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'50% eval only / None funded',
+      minTradingDays:2,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 3 funded / $450K cap',maxContracts:'15 mini / 150 micro',
+      activationFee:'$149 (one-time)',resetFee:'$249',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'$150K, 90% from payout 1, no consistency, $15K payout cap'},
+        {t:'fail',x:'3.5% trailing ($5,250), $149 activation fee'},
+      ]},
+    {label:'25K',planType:'Zero',price:79,accountSize:'$25,000',profitTarget:'$1,500',
+      dailyLoss:'$500 (Daily Loss Guard — soft)',maxLoss:'$1,000',maxLossType:'EOD Trailing',
+      profitSplit:'90%',payoutFreq:'Up to 4x/month',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'None (pass in 1 day)',
+      minTradingDays:1,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'2 mini / 20 micro',
+      activationFee:'Free',resetFee:'Funded reset available',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No activation fee — skip the $149 on Standard/Advanced'},
+        {t:'pass',x:'Pass in 1 day — no consistency rule in evaluation'},
+        {t:'pass',x:'90% profit split from first withdrawal'},
+        {t:'pass',x:'Up to 5 active Zero accounts simultaneously'},
+        {t:'fail',x:'$500 Daily Loss Guard (soft) — added Mar 2026'},
+        {t:'info',x:'New 25K size added March 2026'},
+      ]},
+    {label:'50K',planType:'Zero',price:119,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'$1,000 (Daily Loss Guard — soft)',maxLoss:'$2,000',maxLossType:'EOD Trailing',
+      profitSplit:'90%',payoutFreq:'Up to 4x/month',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'None (pass in 1 day)',
+      minTradingDays:1,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'5 mini / 50 micro',
+      activationFee:'Free',resetFee:'Funded reset available',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No activation fee, pass in 1 day, 90% from payout 1'},
+        {t:'fail',x:'$1,000 Daily Loss Guard (soft), $2,000 EOD trailing'},
+      ]},
+    {label:'100K',planType:'Zero',price:239,accountSize:'$100,000',profitTarget:'$6,000',
+      dailyLoss:'$2,000 (Daily Loss Guard — soft)',maxLoss:'$3,000',maxLossType:'EOD Trailing',
+      profitSplit:'90%',payoutFreq:'Up to 4x/month',minPayoutDays:5,minPayoutAmount:200,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'None (pass in 1 day)',
+      minTradingDays:1,news:true,trailing:true,overnight:false,weekend:false,
+      bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts',maxContracts:'10 mini / 100 micro',
+      activationFee:'Free',resetFee:'Funded reset available',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No activation fee, pass in 1 day, 90% split'},
+        {t:'fail',x:'$2,000 DLG, $3,000 max loss, EOD trailing'},
+      ]},
+  ]}];
 
 /* ════════════ STATE ════════════ */
 let compareSet=new Set(),activePlanIdx={},lucidActiveType={},currentFilter='all',currentSizeFilter='all',currentSort='default',activePromo=null;
@@ -1866,21 +2473,16 @@ function showRules(firmId) {
 function renderDrawerBody(f) {
   const vp = visiblePlans(f);
   const p  = vp[Math.min(activeRulesPlanIdx, vp.length - 1)];
-
-  // Plan pills
   const planPillsHtml = vp.length > 1
     ? `<div class="drawer-plan-label">Select Plan</div>
        <div class="drawer-plan-pills">
          ${vp.map((pl, i) => `
            <div class="drawer-pill ${i === activeRulesPlanIdx ? 'active' : ''}"
              onclick="switchDrawerPlan('${f.id}',${i})">
-             ${pl.label} · $${Number(pl.price).toLocaleString()}
+             ${pl.label}${pl.planType?' · '+pl.planType:''} · $${Number(pl.price).toLocaleString()}
            </div>`).join('')}
-       </div>`
-    : '';
-
-  // Stats grid
-  const noDll = p.dailyLoss === 'None' || p.dailyLoss.includes('None');
+       </div>` : '';
+  const noDll = p.dailyLoss === 'None' || (p.dailyLoss && p.dailyLoss.includes('None'));
   const statsHtml = `
     <div class="drawer-stats">
       <div class="drawer-stat-box"><div class="drawer-stat-val neutral">${p.accountSize}</div><div class="drawer-stat-key">Account Size</div></div>
@@ -1893,12 +2495,9 @@ function renderDrawerBody(f) {
       <div class="drawer-stat-box"><div class="drawer-stat-val neutral" style="font-size:11px">$${p.minPayoutAmount}</div><div class="drawer-stat-key">Min Payout</div></div>
       <div class="drawer-stat-box"><div class="drawer-stat-val neutral">${p.minPayoutDays}d</div><div class="drawer-stat-key">Min Days</div></div>
     </div>`;
-
-  // Separate rules by type
   const passRules = p.rules.filter(r => r.t === 'pass');
   const failRules = p.rules.filter(r => r.t === 'fail');
   const infoRules = p.rules.filter(r => r.t === 'info');
-
   const ruleBlock = (label, rules, type) => rules.length ? `
     <div class="drawer-section-label">${label}</div>
     ${rules.map(r => `
@@ -1906,43 +2505,16 @@ function renderDrawerBody(f) {
         <div class="drawer-rule-icon ${type}">${type==='pass'?'✓':type==='fail'?'✗':'i'}</div>
         <span>${r.x}</span>
       </div>`).join('')}` : '';
-
-  // Extra conditions
   const extras = `
     <div class="drawer-section-label">Conditions & Platforms</div>
-    <div class="drawer-rule-row">
-      <div class="drawer-rule-icon info">i</div>
-      <span><strong>Platforms:</strong> ${f.platforms.join(', ')}</span>
-    </div>
-    <div class="drawer-rule-row">
-      <div class="drawer-rule-icon info">i</div>
-      <span><strong>Payment methods:</strong> ${f.paymentMethods.join(', ')}</span>
-    </div>
-    <div class="drawer-rule-row">
-      <div class="drawer-rule-icon info">i</div>
-      <span><strong>Buffer required:</strong> ${p.bufferReq ? p.bufferAmt : 'None'}</span>
-    </div>
-    <div class="drawer-rule-row">
-      <div class="drawer-rule-icon info">i</div>
-      <span><strong>Consistency rule:</strong> ${p.consistency}</span>
-    </div>
-    <div class="drawer-rule-row">
-      <div class="drawer-rule-icon info">i</div>
-      <span><strong>Max contracts:</strong> ${p.maxContracts}</span>
-    </div>
-    <div class="drawer-rule-row">
-      <div class="drawer-rule-icon info">i</div>
-      <span><strong>Scaling path:</strong> ${p.scaling}</span>
-    </div>
-    <div class="drawer-rule-row">
-      <div class="drawer-rule-icon info">i</div>
-      <span><strong>Activation fee:</strong> ${p.activationFee}</span>
-    </div>
-    <div class="drawer-rule-row">
-      <div class="drawer-rule-icon info">i</div>
-      <span><strong>Reset / rebuy fee:</strong> ${p.resetFee}</span>
-    </div>`;
-
+    <div class="drawer-rule-row"><div class="drawer-rule-icon info">i</div><span><strong>Platforms:</strong> ${f.platforms.join(', ')}</span></div>
+    <div class="drawer-rule-row"><div class="drawer-rule-icon info">i</div><span><strong>Payment methods:</strong> ${f.paymentMethods.join(', ')}</span></div>
+    <div class="drawer-rule-row"><div class="drawer-rule-icon info">i</div><span><strong>Buffer required:</strong> ${p.bufferReq ? p.bufferAmt : 'None'}</span></div>
+    <div class="drawer-rule-row"><div class="drawer-rule-icon info">i</div><span><strong>Consistency rule:</strong> ${p.consistency}</span></div>
+    <div class="drawer-rule-row"><div class="drawer-rule-icon info">i</div><span><strong>Max contracts:</strong> ${p.maxContracts}</span></div>
+    <div class="drawer-rule-row"><div class="drawer-rule-icon info">i</div><span><strong>Scaling path:</strong> ${p.scaling}</span></div>
+    <div class="drawer-rule-row"><div class="drawer-rule-icon info">i</div><span><strong>Activation fee:</strong> ${p.activationFee}</span></div>
+    <div class="drawer-rule-row"><div class="drawer-rule-icon info">i</div><span><strong>Reset / rebuy fee:</strong> ${p.resetFee}</span></div>`;
   document.getElementById('dr-body').innerHTML =
     planPillsHtml + statsHtml +
     ruleBlock('✅ What Works In Your Favour', passRules, 'pass') +
