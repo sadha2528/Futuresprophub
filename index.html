@@ -782,9 +782,172 @@ nav {
 .promo-btn:hover { background:rgba(251,191,36,0.14); box-shadow:0 0 14px rgba(251,191,36,0.14); }
 
 /* ══════════════════════════════════════
-   ABOUT SECTION
+   ABOUT US — bottom of page
 ══════════════════════════════════════ */
-.about-section{display:none;} .about-section.active{display:block;}
+.about-bottom {
+  position: relative;
+  margin-top: 3rem;
+  border-top: 1px solid var(--border-dim);
+}
+.about-top-glow {
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  width: 60%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167,139,250,0.6) 40%, rgba(232,121,249,0.8) 50%, rgba(167,139,250,0.6) 60%, transparent);
+  filter: blur(1px);
+}
+.about-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+}
+
+/* Header */
+.about-header { text-align: center; max-width: 680px; margin: 0 auto var(--space-2xl); }
+.about-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(140,80,220,0.28);
+  padding: 5px 14px; border-radius: 40px;
+  font-size: var(--text-xs); font-weight: 500; color: var(--violet);
+  margin-bottom: var(--space-md); letter-spacing: 0.3px;
+  backdrop-filter: blur(10px);
+}
+.about-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900; letter-spacing: -1.5px;
+  color: var(--white); line-height: 1.1;
+  margin-bottom: var(--space-md);
+}
+.about-grad {
+  background: linear-gradient(135deg, var(--violet), var(--pink-glow), var(--lavender));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.about-desc { color: var(--sub); font-size: var(--text-md); line-height: 1.75; }
+
+/* Stats */
+.about-stats-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--card-gap); margin-bottom: var(--space-xl);
+}
+.about-stat-box {
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  border-radius: var(--card-radius); padding: var(--space-md);
+  text-align: center; backdrop-filter: blur(14px);
+  transition: border-color 0.3s;
+}
+.about-stat-box:hover { border-color: rgba(167,139,250,0.25); }
+.about-stat-num {
+  font-size: var(--text-2xl); font-weight: 800; letter-spacing: -1px;
+  background: linear-gradient(135deg, var(--violet), var(--lavender));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.about-stat-label { font-size: var(--text-2xs); color: var(--muted); margin-top: 3px; font-weight: 500; }
+
+/* Mission cards */
+.about-cards {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--card-gap); margin-bottom: var(--space-xl);
+}
+.about-card {
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  border-radius: var(--card-radius); padding: var(--space-lg) var(--card-pad-x);
+  backdrop-filter: blur(20px);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.about-card:hover {
+  border-color: rgba(167,139,250,0.28);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 20px rgba(124,58,237,0.07);
+}
+.about-card-icon { font-size: 1.75rem; margin-bottom: var(--space-sm); display: block; }
+.about-card h3 { font-size: var(--text-lg); font-weight: 700; color: var(--white); margin-bottom: var(--space-xs); }
+.about-card p  { font-size: var(--text-sm); color: var(--sub); line-height: 1.65; }
+
+/* Divider */
+.about-divider { border: none; border-top: 1px solid var(--border-dim); margin: var(--space-xl) 0; }
+
+/* Section title */
+.about-section-title {
+  font-size: var(--text-xl); font-weight: 800; color: var(--white);
+  letter-spacing: -0.4px; margin-bottom: var(--space-lg);
+}
+
+/* How it works steps */
+.about-steps {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--card-gap); margin-bottom: var(--space-xl);
+}
+.about-step { text-align: center; padding: var(--space-md); }
+.about-step-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-core), var(--violet));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: var(--text-md); color: #fff;
+  margin: 0 auto var(--space-sm);
+  box-shadow: 0 0 20px rgba(124,58,237,0.35);
+}
+.about-step h4 { font-size: var(--text-md); font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.about-step p  { font-size: var(--text-xs); color: var(--muted); line-height: 1.6; }
+
+/* Disclosures */
+.about-disclosure {
+  background: rgba(251,191,36,0.05);
+  border: 1px solid rgba(251,191,36,0.18);
+  border-radius: var(--card-radius); padding: var(--space-lg) var(--card-pad-x);
+  margin-bottom: var(--space-lg);
+}
+.about-disclosure h3 {
+  font-size: var(--text-md); font-weight: 700; color: var(--amber);
+  margin-bottom: var(--space-xs); display: flex; align-items: center; gap: 8px;
+}
+.about-disclosure p { font-size: var(--text-sm); color: var(--sub); line-height: 1.7; }
+
+/* Contact */
+.about-contact {
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  border-radius: var(--card-radius); padding: var(--space-xl) var(--card-pad-x);
+  text-align: center; backdrop-filter: blur(20px); margin-bottom: var(--space-xl);
+}
+.about-contact h3  { font-size: var(--text-xl); font-weight: 800; color: var(--white); margin-bottom: var(--space-sm); }
+.about-contact p   { font-size: var(--text-sm); color: var(--sub); line-height: 1.7; margin-bottom: var(--space-md); }
+.about-contact-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.about-contact-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 20px; border-radius: 10px; font-size: var(--text-sm); font-weight: 600;
+  cursor: pointer; text-decoration: none; transition: all 0.22s;
+  font-family: 'Inter', sans-serif;
+}
+.about-contact-btn.primary {
+  background: linear-gradient(135deg, var(--purple-core), var(--purple-mid));
+  color: #fff; box-shadow: 0 4px 20px rgba(124,58,237,0.28); border: none;
+}
+.about-contact-btn.primary:hover { box-shadow: 0 6px 28px rgba(124,58,237,0.5); transform: translateY(-1px); }
+.about-contact-btn.ghost {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-mid); color: var(--sub);
+}
+.about-contact-btn.ghost:hover { color: var(--text); border-color: var(--border-hi); }
+
+/* Footer nav inside about */
+.about-footer-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-dim);
+}
+.about-footer-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: var(--text-md);
+  color: var(--white);
+}
+.about-footer-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.about-footer-link {
+  background: none; border: none; color: var(--muted);
+  font-family: 'Inter', sans-serif; font-size: var(--text-xs); font-weight: 500;
+  padding: 5px 10px; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+}
+.about-footer-link:hover { color: var(--text); background: rgba(140,80,220,0.08); }
+.about-footer-copy { font-size: var(--text-2xs); color: var(--muted); }
 .about-hero{text-align:center;padding:var(--space-2xl) var(--space-lg) var(--space-xl);max-width:700px;margin:0 auto;}
 .about-hero h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;color:var(--white);line-height:1.1;margin-bottom:var(--space-md);}
 .about-hero h2 span{background:linear-gradient(135deg,var(--violet),var(--pink-glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -1156,6 +1319,131 @@ nav {
   </div>
 </div>
 <div class="toast" id="toast"></div>
+<!-- ─── ABOUT US (bottom of page) ─── -->
+<div class="about-bottom" id="about-bottom">
+
+  <!-- Top border glow -->
+  <div class="about-top-glow"></div>
+
+  <div class="about-wrap">
+
+    <!-- Header -->
+    <div class="about-header">
+      <div class="about-eyebrow">
+        <span class="eyebrow-dot"></span>
+        About PropVault
+      </div>
+      <h2 class="about-title">Built by traders,<br><span class="about-grad">for traders.</span></h2>
+      <p class="about-desc">PropVault was created by a team of active futures traders who were frustrated spending hours bouncing between firm websites trying to compare plans, verify rules, and find promo codes. We built the tool we wished existed.</p>
+    </div>
+
+    <!-- Stats row -->
+    <div class="about-stats-row">
+      <div class="about-stat-box"><div class="about-stat-num">9</div><div class="about-stat-label">Firms Tracked</div></div>
+      <div class="about-stat-box"><div class="about-stat-num">72</div><div class="about-stat-label">Plans Covered</div></div>
+      <div class="about-stat-box"><div class="about-stat-num">25+</div><div class="about-stat-label">Data Points Per Plan</div></div>
+      <div class="about-stat-box"><div class="about-stat-num">May '26</div><div class="about-stat-label">Last Verified</div></div>
+    </div>
+
+    <!-- Mission cards -->
+    <div class="about-cards">
+      <div class="about-card">
+        <span class="about-card-icon">🔍</span>
+        <h3>Independent Research</h3>
+        <p>Every plan, price, rule, and restriction is manually verified directly from each firm's official website, help center, and PDF documentation. We don't rely on third-party aggregators.</p>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">⚡</span>
+        <h3>Always Up To Date</h3>
+        <p>Prop firm rules change constantly — prices get updated, new plans launch, restrictions tighten or loosen. We re-verify all data regularly so you're never trading on stale information.</p>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">🎯</span>
+        <h3>No Fluff, Just Facts</h3>
+        <p>We don't rank firms based on ad spend or affiliate deals. Every metric shown — drawdown type, consistency rules, buffer requirements, payout frequency — is objective and verifiable.</p>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">💡</span>
+        <h3>Built for Real Traders</h3>
+        <p>Whether you're a scalper, swing trader, news trader or someone who holds overnight — our filters and head-to-head comparison help you find the firm that actually fits your trading style.</p>
+      </div>
+    </div>
+
+    <hr class="about-divider">
+
+    <!-- How it works -->
+    <div class="about-section-title">How PropVault Works</div>
+    <div class="about-steps">
+      <div class="about-step">
+        <div class="about-step-num">1</div>
+        <h4>Browse All Firms</h4>
+        <p>Use filters to narrow down by drawdown type, consistency rules, daily loss limits, or account size. Every card shows live verified data.</p>
+      </div>
+      <div class="about-step">
+        <div class="about-step-num">2</div>
+        <h4>View Full Rules</h4>
+        <p>Click "View All Rules" on any card to see the complete rule set — split into what works in your favour, what to watch out for, and conditions.</p>
+      </div>
+      <div class="about-step">
+        <div class="about-step-num">3</div>
+        <h4>Compare Side by Side</h4>
+        <p>Use Head-to-Head to pit any two firms and plans against each other across 25+ categories with automatic winner highlighting.</p>
+      </div>
+      <div class="about-step">
+        <div class="about-step-num">4</div>
+        <h4>Grab a Promo Code</h4>
+        <p>Every firm card has a promo code button. Click it, copy the code, and head to the firm's site to sign up at a discount.</p>
+      </div>
+    </div>
+
+    <hr class="about-divider">
+
+    <!-- Affiliate disclosure -->
+    <div class="about-disclosure">
+      <h3>⚠️ Affiliate Disclosure</h3>
+      <p>Some links on PropVault are affiliate links. If you sign up for a prop firm through a link on this site, we may earn a commission — at <strong style="color:var(--text)">no extra cost to you</strong>. This never influences which firms we include, how we rank them, or the data we show. We include firms regardless of whether we have an affiliate relationship, and we show negative rules and restrictions even for firms we partner with. Our goal is always accuracy first.</p>
+    </div>
+
+    <!-- Risk disclosure -->
+    <div class="about-disclosure" style="background:rgba(248,113,113,0.05);border-color:rgba(248,113,113,0.18);">
+      <h3 style="color:var(--red);">⚠️ Risk Disclosure</h3>
+      <p>Trading futures involves <strong style="color:var(--text)">significant risk of loss</strong>. Prop firm evaluations are paid products — the majority of traders who attempt evaluations do not pass, and of those who do, not all achieve consistent profitability in the funded phase. Past performance is not indicative of future results. PropVault is an informational comparison tool only and does not constitute financial advice, investment advice, or a recommendation to trade any specific firm or instrument. Always read a firm's full terms and conditions before purchasing.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="about-contact">
+      <h3>Get In Touch</h3>
+      <p>Have a data correction, a firm we're missing, or a promo code update? We want to hear from you. Accurate data is our top priority and we rely on the community to keep PropVault sharp.</p>
+      <div class="about-contact-links">
+        <a class="about-contact-btn primary" href="mailto:hello@propvault.io">
+          ✉️ hello@propvault.io
+        </a>
+        <a class="about-contact-btn ghost" href="https://twitter.com/propvault" target="_blank" rel="noopener">
+          𝕏 @PropVault
+        </a>
+        <a class="about-contact-btn ghost" href="https://discord.gg/propvault" target="_blank" rel="noopener">
+          💬 Discord
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer nav -->
+    <div class="about-footer-nav">
+      <div class="about-footer-logo">
+        <div class="nav-logo-mark" style="width:28px;height:28px;font-size:13px;">P</div>
+        <span>PropVault</span>
+      </div>
+      <div class="about-footer-links">
+        <button onclick="showTab('firms',document.querySelector('.nav-link'))" class="about-footer-link">All Firms</button>
+        <button onclick="showTab('h2h',document.querySelectorAll('.nav-link')[1])" class="about-footer-link">Head‑to‑Head</button>
+        <button onclick="showTab('compare',document.querySelectorAll('.nav-link')[2])" class="about-footer-link">Compare All</button>
+      </div>
+      <div class="about-footer-copy">© 2026 PropVault · For informational purposes only</div>
+    </div>
+
+  </div>
+</div>
+
 <div class="disclaimer"><strong>Disclaimer:</strong> Plan details, prices and rules change frequently — always verify on the firm's official website before purchasing. This site may contain affiliate links. Futures trading involves significant risk of loss. For informational purposes only — not financial advice. Data verified May 2026.</div>
 
 <script>
