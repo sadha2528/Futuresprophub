@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FuturesPropCompare — Futures Prop Firm Intelligence</title>
+<title>Futures Prop Compare — Compare. Analyze. Trade Better.</title>
 <meta name="description" content="Compare the best futures prop trading firms side-by-side. Analyze drawdown rules, profit splits, payout speeds, account sizes and promotions — all in one place.">
 <!-- Open Graph -->
-<meta property="og:title" content="FuturesPropCompare — Futures Prop Firm Intelligence">
+<meta property="og:title" content="Futures Prop Compare — Compare. Analyze. Trade Better.">
 <meta property="og:description" content="Compare futures prop trading firms side-by-side. Analyze drawdown rules, profit splits, payout speeds and account sizes.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sadha2528.github.io/Futuresprophub/">
 <meta property="og:image" content="https://sadha2528.github.io/Futuresprophub/og-image.png">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FuturesPropCompare — Futures Prop Firm Intelligence">
+<meta name="twitter:title" content="Futures Prop Compare — Compare. Analyze. Trade Better.">
 <meta name="twitter:description" content="Compare futures prop trading firms side-by-side. Analyze drawdown rules, profit splits, and payout speeds.">
 <meta name="twitter:image" content="https://sadha2528.github.io/Futuresprophub/og-image.png">
 <!-- Canonical -->
@@ -221,10 +221,29 @@ nav {
 }
 .nav-inner { max-width: var(--max-w); margin: 0 auto; width: 100%; display: flex; align-items: center; }
 .nav-logo {
-  display: flex; align-items: center; gap: 9px;
+  display: flex; align-items: center; gap: 10px;
   font-size: var(--text-md); font-weight: 700; letter-spacing: -0.3px; color: var(--white);
   text-decoration: none;
 }
+.logo-wordmark {
+  display: flex; flex-direction: column; line-height: 1.15;
+  font-size: clamp(0.72rem, 0.7rem + 0.3vw, 0.88rem);
+}
+.logo-wordmark .lw-top {
+  font-weight: 700; color: var(--white); letter-spacing: -0.2px;
+}
+.logo-wordmark .lw-bot {
+  font-weight: 800;
+  background: linear-gradient(120deg, #c084fc 0%, #e879f9 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  letter-spacing: -0.3px;
+}
+.logo-tagline {
+  font-size: 7.5px; letter-spacing: 1.4px; color: var(--muted);
+  text-transform: uppercase; font-weight: 500; margin-top: 1px;
+  white-space: nowrap; display: none;
+}
+@media (min-width: 900px) { .logo-tagline { display: block; } }
 .nav-center { display: flex; gap: 2px; margin-left: auto; margin-right: auto; }
 .nav-link {
   background: none; border: none; color: var(--sub);
@@ -1251,95 +1270,60 @@ nav {
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="#" onclick="showTab('firms', document.querySelector('.nav-link'))">
-      <!-- FuturesPropCompare Logo v2 — orbital rocket mark -->
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+      <!-- Futures Prop Compare — Candlestick + Arrow icon -->
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;" aria-hidden="true">
         <defs>
-          <!-- Deep space bg gradient -->
-          <radialGradient id="lBg" cx="50%" cy="35%" r="65%">
-            <stop offset="0%" stop-color="#2d1b6e"/>
-            <stop offset="100%" stop-color="#0d0520"/>
+          <radialGradient id="icoBg" cx="50%" cy="40%" r="70%">
+            <stop offset="0%" stop-color="#1e0e45"/>
+            <stop offset="100%" stop-color="#07030f"/>
           </radialGradient>
-          <!-- Rocket body gradient -->
-          <linearGradient id="lRocket" x1="18" y1="4" x2="18" y2="28" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#f0abfc"/>
-            <stop offset="40%" stop-color="#c084fc"/>
-            <stop offset="100%" stop-color="#7c3aed"/>
+          <linearGradient id="icoArrow" x1="5" y1="29" x2="31" y2="7" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#7c3aed"/>
+            <stop offset="55%" stop-color="#a855f7"/>
+            <stop offset="100%" stop-color="#e879f9"/>
           </linearGradient>
-          <!-- Orbit ring gradient -->
-          <linearGradient id="lOrbit" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#e879f9" stop-opacity="0.9"/>
+          <linearGradient id="icoBorder" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#9d5cf6" stop-opacity="0.9"/>
             <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="#e879f9" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#e879f9" stop-opacity="0.8"/>
           </linearGradient>
-          <!-- Flame gradient -->
-          <linearGradient id="lFlame" x1="18" y1="26" x2="18" y2="34" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#fbbf24"/>
-            <stop offset="60%" stop-color="#f97316"/>
-            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
-          </linearGradient>
-          <!-- Core glow filter -->
-          <filter id="lGlow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+          <filter id="icoGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1.8" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-          <filter id="lGlowSm" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/>
+          <filter id="icoGlowSm" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="0.8" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
-
-        <!-- Background rounded square -->
-        <rect width="36" height="36" rx="10" fill="url(#lBg)"/>
-
-        <!-- Outer border shimmer -->
-        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="9.5"
-          fill="none" stroke="url(#lOrbit)" stroke-width="1.5"/>
-
-        <!-- Orbit ellipse ring around rocket -->
-        <ellipse cx="18" cy="19" rx="12" ry="5"
-          fill="none" stroke="url(#lOrbit)" stroke-width="1"
-          stroke-dasharray="4 2.5" opacity="0.7"
-          filter="url(#lGlowSm)"/>
-
-        <!-- Rocket flame -->
-        <path d="M15.5 26.5 Q18 32 20.5 26.5 Q18 27.5 15.5 26.5Z"
-          fill="url(#lFlame)" filter="url(#lGlow)" opacity="0.9"/>
-
-        <!-- Rocket body — sleek pointed hexagonal shape -->
-        <path d="M18 4 L23 15 L22 26 L18 28 L14 26 L13 15 Z"
-          fill="url(#lRocket)" filter="url(#lGlowSm)"/>
-
-        <!-- Rocket nose tip highlight -->
-        <path d="M18 4 L20.5 11 L18 10 L15.5 11 Z"
-          fill="rgba(255,255,255,0.6)"/>
-
-        <!-- Window / porthole -->
-        <circle cx="18" cy="17" r="2.8"
-          fill="#0d0520" stroke="#f0abfc" stroke-width="1.2"
-          filter="url(#lGlowSm)"/>
-        <circle cx="18" cy="17" r="1.3" fill="#e879f9" opacity="0.85"/>
-
-        <!-- Left fin -->
-        <path d="M13 22 L10 26 L13.5 24 Z"
-          fill="#a855f7" opacity="0.9"/>
-
-        <!-- Right fin -->
-        <path d="M23 22 L26 26 L22.5 24 Z"
-          fill="#a855f7" opacity="0.9"/>
-
-        <!-- Star particles -->
-        <circle cx="7"  cy="8"  r="0.8" fill="#f0abfc" opacity="0.9" filter="url(#lGlowSm)"/>
-        <circle cx="29" cy="6"  r="0.6" fill="#c084fc" opacity="0.8"/>
-        <circle cx="5"  cy="22" r="0.5" fill="#e879f9" opacity="0.6"/>
-        <circle cx="30" cy="25" r="0.7" fill="#f0abfc" opacity="0.7" filter="url(#lGlowSm)"/>
-        <circle cx="11" cy="5"  r="0.4" fill="white"   opacity="0.5"/>
-        <circle cx="26" cy="14" r="0.4" fill="white"   opacity="0.4"/>
-
-        <!-- Orbit dot — satellite -->
-        <circle cx="6" cy="19" r="1.4"
-          fill="#fbbf24" filter="url(#lGlow)" opacity="0.95"/>
+        <!-- Background -->
+        <rect width="36" height="36" rx="9" fill="url(#icoBg)"/>
+        <!-- Border glow -->
+        <rect x="0.6" y="0.6" width="34.8" height="34.8" rx="8.5" fill="none" stroke="url(#icoBorder)" stroke-width="1.2"/>
+        <!-- Candlestick 1 — left, bearish (smaller) -->
+        <line x1="9" y1="21" x2="9" y2="27" stroke="rgba(200,160,255,0.5)" stroke-width="0.8"/>
+        <rect x="7" y="22" width="4" height="4" rx="0.8" fill="rgba(180,140,255,0.65)"/>
+        <!-- Candlestick 2 — middle, tall bullish -->
+        <line x1="16" y1="12" x2="16" y2="27" stroke="rgba(220,190,255,0.6)" stroke-width="0.8"/>
+        <rect x="14" y="14" width="4" height="10" rx="0.8" fill="rgba(235,210,255,0.85)"/>
+        <!-- Candlestick 3 — right, bullish white -->
+        <line x1="23" y1="16" x2="23" y2="27" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+        <rect x="21" y="18" width="4" height="8" rx="0.8" fill="rgba(255,255,255,0.92)"/>
+        <!-- Trending arrow — sweeps up-right -->
+        <polyline points="5,29 11,23 17,26 28,11"
+          stroke="url(#icoArrow)" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round"
+          fill="none" filter="url(#icoGlow)"/>
+        <!-- Arrow head -->
+        <polyline points="23,9 28,11 26,16"
+          stroke="url(#icoArrow)" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round"
+          fill="none" filter="url(#icoGlowSm)"/>
       </svg>
-      <span class="logo-wordmark">FuturesPropCompare</span>
+      <span class="logo-wordmark">
+        <span class="lw-top">Futures prop</span>
+        <span class="lw-bot">compare</span>
+      </span>
     </a>
     <div class="nav-center">
       <button class="nav-link active"  onclick="showTab('firms',this)">All Firms</button>
@@ -1610,7 +1594,20 @@ nav {
 
     <!-- Footer nav -->
     <div class="about-footer-nav">
-      <div class="about-footer-logo">
+      <div class="about-footer-logo" style="display:flex;align-items:center;gap:9px;">
+        <!-- Candlestick icon small -->
+        <svg width="26" height="26" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="36" height="36" rx="9" fill="#1e0e45"/>
+          <rect x="0.6" y="0.6" width="34.8" height="34.8" rx="8.5" fill="none" stroke="#9d5cf6" stroke-width="1.2" opacity="0.6"/>
+          <line x1="9" y1="21" x2="9" y2="27" stroke="rgba(200,160,255,0.5)" stroke-width="0.8"/>
+          <rect x="7" y="22" width="4" height="4" rx="0.8" fill="rgba(180,140,255,0.65)"/>
+          <line x1="16" y1="12" x2="16" y2="27" stroke="rgba(220,190,255,0.6)" stroke-width="0.8"/>
+          <rect x="14" y="14" width="4" height="10" rx="0.8" fill="rgba(235,210,255,0.85)"/>
+          <line x1="23" y1="16" x2="23" y2="27" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+          <rect x="21" y="18" width="4" height="8" rx="0.8" fill="rgba(255,255,255,0.92)"/>
+          <polyline points="5,29 11,23 17,26 28,11" stroke="url(#icoArrow)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <polyline points="23,9 28,11 26,16" stroke="url(#icoArrow)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
         <svg width="28" height="28" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="ftrLogoGradBg" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
@@ -1629,7 +1626,7 @@ nav {
           <polyline points="7.25,18 13.25,13 19.25,9 25.25,5.5" stroke="url(#ftrLogoLine)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9"/>
           <circle cx="25.25" cy="5.5" r="2" fill="#f0abfc"/>
         </svg>
-        <span style="background:linear-gradient(135deg,#c084fc,#f0abfc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;">FuturesPropCompare</span>
+        <span style="font-weight:700;color:white;">Futures prop <span style="background:linear-gradient(120deg,#c084fc,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;">compare</span></span>
       </div>
       <div class="about-footer-links">
         <button onclick="showTab('firms',document.querySelector('.nav-link'))" class="about-footer-link">All Firms</button>
