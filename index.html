@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FuturesPropCompare — Futures Prop Firm Intelligence</title>
+<meta name="description" content="Compare the best futures prop trading firms side-by-side. Analyze drawdown rules, profit splits, payout speeds, account sizes and promotions — all in one place.">
+<!-- Open Graph -->
+<meta property="og:title" content="FuturesPropCompare — Futures Prop Firm Intelligence">
+<meta property="og:description" content="Compare futures prop trading firms side-by-side. Analyze drawdown rules, profit splits, payout speeds and account sizes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sadha2528.github.io/Futuresprophub/">
+<meta property="og:image" content="https://sadha2528.github.io/Futuresprophub/og-image.png">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FuturesPropCompare — Futures Prop Firm Intelligence">
+<meta name="twitter:description" content="Compare futures prop trading firms side-by-side. Analyze drawdown rules, profit splits, and payout speeds.">
+<meta name="twitter:image" content="https://sadha2528.github.io/Futuresprophub/og-image.png">
+<!-- Canonical -->
+<link rel="canonical" href="https://sadha2528.github.io/Futuresprophub/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
@@ -90,8 +104,8 @@ body {
     radial-gradient(ellipse 60% 50% at 20% 70%,  rgba(100,30,180,0.2) 0%, transparent 60%),
     linear-gradient(180deg, #06030f 0%, #0d0520 40%, #06030f 100%);
 }
-/* Star field */
-.stars {
+/* Star field — renamed to .star-field to avoid conflict with .stars (card rating class) */
+.star-field {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:
     radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
@@ -245,6 +259,86 @@ nav {
   box-shadow: 0 0 18px rgba(124,58,237,0.4);
 }
 .btn-primary:hover { box-shadow: 0 0 28px rgba(124,58,237,0.65); transform: translateY(-1px); }
+
+/* ── Mobile Nav Hamburger ── */
+.nav-hamburger {
+  display: none; background: none; border: 1px solid var(--border-dim);
+  color: var(--sub); width: 34px; height: 34px; border-radius: 8px;
+  cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  margin-left: 10px; transition: all 0.2s; flex-shrink: 0;
+}
+.nav-hamburger:hover { color: var(--white); border-color: var(--border-mid); }
+.nav-hamburger span { display: block; width: 16px; height: 1.5px; background: currentColor; border-radius: 2px; transition: all 0.25s; }
+.nav-mobile-open .nav-hamburger span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.nav-mobile-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+.nav-mobile-open .nav-hamburger span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+.nav-mobile-menu {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+  background: rgba(6,3,15,0.97); backdrop-filter: blur(28px);
+  border-bottom: 1px solid var(--border-dim); z-index: 199;
+  padding: 1rem var(--space-lg); flex-direction: column; gap: 4px;
+  animation: fadeDown 0.2s ease;
+}
+.nav-mobile-open .nav-mobile-menu { display: flex; }
+.nav-mobile-menu .nav-link { font-size: var(--text-md); padding: 10px 14px; text-align: left; }
+@media (max-width: 720px) {
+  .nav-center, .nav-right { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+/* ── Empty state when filters return no results ── */
+.empty-state {
+  grid-column: 1 / -1; text-align: center; padding: 4rem 2rem;
+  color: var(--muted);
+}
+.empty-state-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
+.empty-state h3 { font-size: var(--text-xl); font-weight: 700; color: var(--sub); margin-bottom: 0.5rem; }
+.empty-state p  { font-size: var(--text-sm); color: var(--muted); margin-bottom: 1.2rem; }
+.empty-state-reset {
+  background: rgba(124,58,237,0.12); border: 1px solid rgba(160,100,255,0.3);
+  color: var(--violet); font-family: 'Inter', sans-serif; font-size: var(--text-sm); font-weight: 600;
+  padding: 8px 20px; border-radius: 40px; cursor: pointer; transition: all 0.2s;
+}
+.empty-state-reset:hover { background: rgba(124,58,237,0.22); box-shadow: 0 0 14px rgba(124,58,237,0.2); }
+
+/* ── Promo button tooltip ── */
+.promo-btn { position: relative; }
+.promo-btn[data-tip]::after {
+  content: attr(data-tip); position: absolute;
+  bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  background: rgba(10,5,22,0.97); border: 1px solid var(--border-mid);
+  color: var(--sub); font-size: 11px; white-space: nowrap;
+  padding: 5px 10px; border-radius: 7px; pointer-events: none;
+  opacity: 0; transition: opacity 0.2s; z-index: 10;
+}
+.promo-btn[data-tip]:hover::after { opacity: 1; }
+
+/* ── Site footer ── */
+.site-footer {
+  border-top: 1px solid var(--border-dim);
+  padding: var(--space-lg) var(--space-lg);
+  text-align: center;
+  position: relative;
+}
+.site-footer-glow {
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  width: 40%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,58,237,0.5) 50%, transparent);
+}
+.site-footer-inner { max-width: var(--max-w); margin: 0 auto; }
+.site-footer-disclaimer {
+  font-size: var(--text-2xs); color: var(--muted); line-height: 1.7;
+  max-width: 820px; margin: 0 auto var(--space-md);
+}
+.site-footer-disclaimer strong { color: var(--sub); }
+.site-footer-links { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-bottom: var(--space-sm); }
+.site-footer-link {
+  background: none; border: none; color: var(--muted);
+  font-family: 'Inter', sans-serif; font-size: var(--text-2xs); font-weight: 500;
+  padding: 4px 9px; border-radius: 6px; cursor: pointer; transition: all 0.2s; text-decoration: none;
+}
+.site-footer-link:hover { color: var(--text); background: rgba(140,80,220,0.08); }
+.site-footer-copy { font-size: var(--text-2xs); color: var(--muted); opacity: 0.6; }
 
 /* ══════════════════════════════════════
    HERO SECTION
@@ -460,11 +554,7 @@ nav {
 .card-footer,
 .featured-badge { position: relative; z-index: 3; }
 
-/* Unused old elements */
-.card-spotlight,
-.card-border-canvas,
-.glow-border, .glow-path, .glow-path-soft,
-.corner-glow, .card-ring { display: none; }
+/* Dead CSS removed: .card-spotlight, .card-border-canvas, .glow-border, .glow-path, .glow-path-soft, .corner-glow, .card-ring */
 
 .firm-card.featured {
   border-color: rgba(160,100,240,0.22);
@@ -1153,7 +1243,7 @@ nav {
 
 <!-- Deep space background layers -->
 <div class="space-bg"></div>
-<div class="stars"></div>
+<div class="star-field"></div>
 
 <div class="page">
 
@@ -1258,6 +1348,18 @@ nav {
       <button class="nav-link"         onclick="showTab('about',this)">About Us</button>
     </div>
     <div class="nav-right"></div>
+    <!-- Hamburger for mobile -->
+    <button class="nav-hamburger" id="nav-ham" aria-label="Toggle navigation" aria-expanded="false"
+      onclick="this.closest('nav').classList.toggle('nav-mobile-open');this.setAttribute('aria-expanded',this.closest('nav').classList.contains('nav-mobile-open'))">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <!-- Mobile dropdown menu -->
+  <div class="nav-mobile-menu">
+    <button class="nav-link active" onclick="showTab('firms',this);this.closest('nav').classList.remove('nav-mobile-open')">All Firms</button>
+    <button class="nav-link" onclick="showTab('h2h',this);this.closest('nav').classList.remove('nav-mobile-open')">Head&#8209;to&#8209;Head</button>
+    <button class="nav-link" onclick="showTab('compare',this);this.closest('nav').classList.remove('nav-mobile-open')">Compare All</button>
+    <button class="nav-link" onclick="showTab('about',this);this.closest('nav').classList.remove('nav-mobile-open')">About Us</button>
   </div>
 </nav>
 
@@ -2646,6 +2748,17 @@ function renderFirms(){
   if(currentSort==='payout')list.sort((a,b)=>parseInt(b.plans[0].profitSplit)-parseInt(a.plans[0].profitSplit));
   if(currentSort==='rating')list.sort((a,b)=>b.rating-a.rating);
 
+  if(list.length===0){
+    document.getElementById('firms-grid').innerHTML=`
+      <div class="empty-state">
+        <div class="empty-state-icon">🔍</div>
+        <h3>No firms match your filters</h3>
+        <p>Try adjusting or clearing your current filters.</p>
+        <button class="empty-state-reset" onclick="resetAllFilters()">Clear All Filters</button>
+      </div>`;
+    requestAnimationFrame(sizeGlowSVGs);
+    return;
+  }
   document.getElementById('firms-grid').innerHTML=list.map((f,i)=>renderCard(f,i)).join('');
   requestAnimationFrame(sizeGlowSVGs);
 }
@@ -2713,7 +2826,7 @@ function renderCard(f,ci){
     <div class="card-footer">
       <a class="btn-cta" href="${f.affiliateUrl}" target="_blank" rel="noopener">Get Started →</a>
       <button class="btn-rules" onclick="showRules('${f.id}')">📋 View All Rules</button>
-      <button class="promo-btn" onclick="showPromo('${f.id}')">🏷 ${f.promoCode}</button>
+      <button class="promo-btn" data-tip="Click to reveal discount code" onclick="showPromo('${f.id}')">🏷 ${f.promoCode}</button>
     </div>
   </div>`;
 }
@@ -2721,6 +2834,18 @@ function setLucidType(id,type){lucidActiveType[id]=type;activePlanIdx[id]=0;rend
 function selectPlan(id,i){activePlanIdx[id]=i;renderFirms();}
 function filterFirms(t,b){currentFilter=t;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderFirms();}
 function sortFirms(v){currentSort=v;renderFirms();}
+function resetAllFilters(){
+  currentFilter='all'; currentSizeFilter='all'; currentSort='default';
+  document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+  const allBtn=document.querySelector('.filter-btn[onclick*="all"]');
+  if(allBtn) allBtn.classList.add('active');
+  document.querySelectorAll('.size-btn').forEach(x=>x.classList.remove('active'));
+  const allSizeBtn=document.querySelector('.size-btn[onclick*="all"]');
+  if(allSizeBtn) allSizeBtn.classList.add('active');
+  const sel=document.querySelector('.sort-select');
+  if(sel) sel.value='default';
+  renderFirms();
+}
 function filterSize(size,b){
   currentSizeFilter=size;
   document.querySelectorAll('.size-btn').forEach(x=>x.classList.remove('active'));
@@ -2983,7 +3108,7 @@ document.addEventListener('pointermove', e => {
     const mx = (e.clientX / window.innerWidth  - 0.5) * 16;
     const my = (e.clientY / window.innerHeight - 0.5) * 10;
     const bg    = document.querySelector('.space-bg');
-    const stars = document.querySelector('.stars');
+    const stars = document.querySelector('.star-field');
     if (bg)    bg.style.transform    = `translate(${mx * 0.25}px,${my * 0.25}px)`;
     if (stars) stars.style.transform = `translate(${mx * 0.12}px,${my * 0.12}px)`;
   });
@@ -2993,5 +3118,31 @@ function sizeGlowSVGs() {}   /* no-op — kept so renderFirms() call doesn't err
 
 initState(); renderFirms(); populateH2H();
 </script>
+
+<!-- ════════════════════════════════════════
+     SITE FOOTER
+════════════════════════════════════════ -->
+<footer class="site-footer" id="site-footer">
+  <div class="site-footer-glow"></div>
+  <div class="site-footer-inner">
+    <div class="site-footer-disclaimer">
+      <strong>⚠️ Affiliate Disclosure:</strong> FuturesPropCompare may receive compensation when you sign up through links on this site. This does not affect our data or rankings — all firm data is independently researched.
+      <br><br>
+      <strong>📋 Data Accuracy:</strong> Prop firm rules, pricing, and promotions change frequently. Always verify current terms directly with the firm before purchasing. Data is updated regularly but may not reflect the most recent changes.
+      <br><br>
+      <strong>🚫 Not Financial Advice:</strong> This website is for informational and comparison purposes only. Trading futures involves substantial risk of loss. Past performance is not indicative of future results.
+    </div>
+    <div class="site-footer-links">
+      <button class="site-footer-link" onclick="showTab('firms',null)">Compare Firms</button>
+      <button class="site-footer-link" onclick="showTab('h2h',null)">Head-to-Head</button>
+      <button class="site-footer-link" onclick="showTab('compare',null)">Compare All</button>
+    </div>
+    <div class="site-footer-copy">
+      &copy; <span id="footer-year"></span> FuturesPropCompare. All rights reserved.
+      <script>document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
