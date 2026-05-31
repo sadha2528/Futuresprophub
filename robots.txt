@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sadha2528.github.io/Futuresprophub/sitemap.xml

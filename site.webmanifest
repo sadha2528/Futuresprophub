@@ -1,0 +1,21 @@
+{
+  "name": "Futures Prop Compare",
+  "short_name": "FuturesProp",
+  "description": "Compare futures prop trading firms side-by-side.",
+  "start_url": "/Futuresprophub/",
+  "display": "standalone",
+  "background_color": "#06030f",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
