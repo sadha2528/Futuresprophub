@@ -572,6 +572,46 @@ nav {
 }
 .sort-select:focus { outline:none; border-color:var(--border-hi); }
 
+/* ── Advanced filter chips (green accent row) ── */
+.filter-row-label {
+  font-size: var(--text-2xs); color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;
+  flex-shrink: 0;
+}
+.filter-chip {
+  background: rgba(15,30,20,0.6);
+  border: 1px solid rgba(74,222,128,0.15);
+  color: var(--muted); font-family:'Inter',sans-serif; font-size: var(--text-xs); font-weight: 500;
+  padding: clamp(4px,0.35vw,6px) clamp(9px,0.9vw,14px); border-radius: 40px;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap; letter-spacing: 0.15px;
+  backdrop-filter: blur(10px);
+}
+.filter-chip:hover { border-color: rgba(74,222,128,0.35); color: var(--green); }
+.filter-chip.active {
+  background: rgba(74,222,128,0.1);
+  border-color: rgba(74,222,128,0.5);
+  color: var(--green);
+  box-shadow: 0 0 12px rgba(74,222,128,0.12);
+}
+/* Active filter count badge on filter bar */
+.filter-active-bar {
+  display: none; align-items: center; gap: 6px;
+  font-size: var(--text-2xs); color: var(--violet); font-weight: 600;
+  margin-left: 4px;
+}
+.filter-active-bar.show { display: flex; }
+.filter-active-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--violet); box-shadow: 0 0 6px var(--purple-mid);
+}
+.filter-clear-all {
+  background: none; border: none; color: var(--muted);
+  font-family: 'Inter', sans-serif; font-size: var(--text-2xs); font-weight: 500;
+  cursor: pointer; padding: 2px 6px; border-radius: 4px; transition: color 0.2s;
+  text-decoration: underline; text-underline-offset: 2px;
+}
+.filter-clear-all:hover { color: var(--text); }
+
 /* ══════════════════════════════════════
    GRID
 ══════════════════════════════════════ */
@@ -766,26 +806,32 @@ nav {
 .plan-price { font-family:'JetBrains Mono',monospace; font-size:11px; opacity:.75; font-weight:600; }
 
 /* Compare checkbox */
-.cmp-input { display:none; }
-.cmp-label {
-  display:flex; align-items:center; gap:7px;
-  margin-top:8px; cursor:pointer; font-size:12px; color:var(--muted);
-  transition:color 0.2s; user-select:none;
+/* Compare tick button — square box, tick on click, no text */
+.cmp-tick {
+  width: 18px; height: 18px; border-radius: 5px;
+  border: 1.5px solid var(--border-mid);
+  background: rgba(40,20,70,0.4);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  transition: all 0.18s ease;
+  position: relative;
+  font-size: 11px; font-weight: 800; color: transparent;
 }
-.cmp-label:hover { color:var(--text); }
-.cmp-box {
-  width:15px; height:15px; border-radius:4px;
-  border:1px solid var(--border-mid);
-  background:rgba(40,20,70,0.4);
-  display:flex; align-items:center; justify-content:center;
-  transition:all 0.2s; flex-shrink:0; font-size:9px; font-weight:800; color:transparent;
+.cmp-tick::after {
+  content: '✓';
+  color: transparent;
+  transition: color 0.15s;
 }
-.cmp-input:checked + .cmp-label { color:var(--violet); }
-.cmp-input:checked + .cmp-label .cmp-box {
-  background:var(--purple-core); border-color:var(--purple-mid); color:#fff;
-  box-shadow:0 0 8px rgba(124,58,237,0.5);
+.cmp-tick:hover {
+  border-color: rgba(160,100,255,0.55);
+  background: rgba(124,58,237,0.1);
 }
-.cmp-input:checked + .cmp-label .cmp-box::after { content:'✓'; }
+.cmp-tick.active {
+  background: var(--purple-core);
+  border-color: var(--purple-mid);
+  box-shadow: 0 0 8px rgba(124,58,237,0.5);
+}
+.cmp-tick.active::after { color: #fff; }
 
 /* Card Details */
 .card-details { padding:0 1.25rem .85rem; }
@@ -1501,22 +1547,42 @@ nav {
 
 <!-- ─── ALL FIRMS ─── -->
 <div class="filter-section firms-section" id="firms-section-filters">
+  <!-- Row 1: Type filters + Sort -->
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterFirms('all',this)">All Firms</button>
+    <button class="filter-btn active" id="filter-all-btn" onclick="filterFirms('all',this)">All Firms</button>
     <button class="filter-btn" onclick="filterFirms('instant-funding',this)">⚡ Instant / No Eval</button>
-    <button class="filter-btn" onclick="filterFirms('static-dd',this)">🛡 Static Drawdown</button>
+    <button class="filter-btn" onclick="filterFirms('static-dd',this)">🛡 Static DD</button>
     <button class="filter-btn" onclick="filterFirms('no-consistency',this)">✦ No Consistency</button>
     <button class="filter-btn" onclick="filterFirms('no-dll',this)">∅ No Daily Limit</button>
-    <select class="sort-select" onchange="sortFirms(this.value)">
+    <!-- Active filter indicator -->
+    <span class="filter-active-bar" id="filter-active-bar">
+      <span class="filter-active-dot"></span>
+      <span id="filter-active-count">0</span> active
+      <button class="filter-clear-all" onclick="resetAllFilters()">Clear all</button>
+    </span>
+    <select class="sort-select" id="sort-select" onchange="sortFirms(this.value)">
       <option value="default">Sort: Default</option>
-      <option value="price-low">Price: Low → High</option>
+      <option value="price-low">💰 Cheapest First</option>
       <option value="price-high">Price: High → Low</option>
-      <option value="payout">Best Profit Split</option>
-      <option value="rating">Top Rated</option>
+      <option value="split-high">📈 Highest Profit Split</option>
+      <option value="payout-fast">⚡ Fastest Payout</option>
+      <option value="rating">⭐ Top Rated</option>
     </select>
   </div>
+  <!-- Row 2: Advanced filters -->
   <div class="filter-bar" style="margin-top:8px;">
-    <span style="font-size:var(--text-2xs);color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.8px;white-space:nowrap;">Account Size:</span>
+    <span class="filter-row-label">Filters:</span>
+    <button class="filter-chip" id="chip-trailing" onclick="filterAdv('trailing-dd',this)" title="Only show firms with trailing drawdown">📉 Trailing DD</button>
+    <button class="filter-chip" id="chip-eod"      onclick="filterAdv('eod-dd',this)"      title="Only show firms with End-of-Day drawdown">🕔 EOD Drawdown</button>
+    <button class="filter-chip" id="chip-split"    onclick="filterAdv('split-90',this)"    title="Only show firms offering 90%+ profit split">💹 90%+ Split</button>
+    <button class="filter-chip" id="chip-nofee"    onclick="filterAdv('no-act-fee',this)"  title="Only show firms with no activation fee">🆓 No Activation Fee</button>
+    <button class="filter-chip" id="chip-fast"     onclick="filterAdv('fast-payout',this)" title="Only show firms with payout in 7 days or less">⚡ Fast Payout ≤7d</button>
+    <button class="filter-chip" id="chip-news"     onclick="filterAdv('news-ok',this)"     title="Only show firms that allow news trading">📰 News Trading OK</button>
+    <button class="filter-chip" id="chip-overnight" onclick="filterAdv('overnight-ok',this)" title="Only show firms that allow overnight holds">🌙 Overnight OK</button>
+  </div>
+  <!-- Row 3: Account size -->
+  <div class="filter-bar" style="margin-top:8px;">
+    <span class="filter-row-label">Account Size:</span>
     <button class="size-btn active" onclick="filterSize('all',this)">All Sizes</button>
     <button class="size-btn" onclick="filterSize('25K',this)">25K</button>
     <button class="size-btn" onclick="filterSize('50K',this)">50K</button>
@@ -2801,10 +2867,22 @@ const FIRMS=[
 ];
 
 /* ════════════ STATE ════════════ */
-let compareSet=new Set(),activePlanIdx={},lucidActiveType={},currentFilter='all',currentSizeFilter='all',currentSort='default',activePromo=null;
+let compareSet=new Set(),activePlanIdx={},lucidActiveType={},
+    currentFilter='all',currentSizeFilter='all',currentSort='default',
+    currentAdvFilters=new Set(),   /* ← new: set of active advanced filter keys */
+    activePromo=null;
+
 function initState(){FIRMS.forEach(f=>{activePlanIdx[f.id]=0;if(f.lucidTypes)lucidActiveType[f.id]=f.lucidTypes[0];});}
 function visiblePlans(f){if(!f.lucidTypes)return f.plans;const t=lucidActiveType[f.id]||f.lucidTypes[0];return f.plans.filter(p=>p.planType===t);}
 function activePlan(f){const vp=visiblePlans(f);return vp[Math.min(activePlanIdx[f.id]||0,vp.length-1)];}
+
+/* helper — update the active-filter indicator badge */
+function updateFilterBadge(){
+  const total = (currentFilter!=='all'?1:0) + (currentSizeFilter!=='all'?1:0) + currentAdvFilters.size + (currentSort!=='default'?1:0);
+  const bar = document.getElementById('filter-active-bar');
+  const cnt = document.getElementById('filter-active-count');
+  if(bar){ bar.classList.toggle('show', total>0); if(cnt) cnt.textContent=total; }
+}
 
 /* ════════════ RENDER CARDS ════════════ */
 function renderFirms(){
@@ -2816,12 +2894,10 @@ function renderFirms(){
       const allPlans = f.plans;
       const hasInstant = allPlans.some(p => p.instantFunding===true || p.noEval===true || p.evalSteps===0);
       if(!hasInstant) return false;
-      // Switch type tab to the instant type for multi-type firms
       if(f.lucidTypes){
         const instantType = f.lucidTypes.find(t => allPlans.some(p => p.planType===t && (p.instantFunding||p.noEval||p.evalSteps===0)));
         if(instantType) lucidActiveType[f.id] = instantType;
       }
-      // Auto-select first instant plan
       const vp = visiblePlans(f);
       const vpIdx = vp.findIndex(p => p.instantFunding===true || p.noEval===true || p.evalSteps===0);
       if(vpIdx !== -1) activePlanIdx[f.id] = vpIdx;
@@ -2832,27 +2908,56 @@ function renderFirms(){
   if(currentFilter==='no-consistency')list=list.filter(f=>f.tags.includes('no-consistency'));
   if(currentFilter==='no-dll')list=list.filter(f=>f.tags.includes('no-dll')||activePlan(f).dailyLoss==='None'||activePlan(f).dailyLoss.includes('None'));
 
-  /* ── Size filter — auto-select matching plan, hide firms without that size ── */
+  /* ── Advanced filters (combinable) ── */
+  if(currentAdvFilters.has('trailing-dd'))
+    list=list.filter(f=>activePlan(f).maxLossType.toLowerCase().includes('trailing'));
+
+  if(currentAdvFilters.has('eod-dd'))
+    list=list.filter(f=>{
+      const t=activePlan(f).maxLossType.toLowerCase();
+      return t.includes('eod')||t.includes('end of day')||t.includes('end-of-day');
+    });
+
+  if(currentAdvFilters.has('split-90'))
+    list=list.filter(f=>parseInt(activePlan(f).profitSplit)>=90);
+
+  if(currentAdvFilters.has('no-act-fee'))
+    list=list.filter(f=>{
+      const fee=activePlan(f).activationFee;
+      return !fee||fee==='None'||fee==='none'||fee==='0'||fee==='$0'||fee==='';
+    });
+
+  if(currentAdvFilters.has('fast-payout'))
+    list=list.filter(f=>activePlan(f).minPayoutDays<=7);
+
+  if(currentAdvFilters.has('news-ok'))
+    list=list.filter(f=>activePlan(f).news===true);
+
+  if(currentAdvFilters.has('overnight-ok'))
+    list=list.filter(f=>activePlan(f).overnight===true);
+
+  /* ── Size filter ── */
   if(currentSizeFilter!=='all'){
     list=list.filter(f=>{
       const vp=visiblePlans(f);
-      // Check if any plan label starts with the selected size (e.g. '50K', '100K')
       const matchIdx=vp.findIndex(p=>{
         const lbl=p.label.replace(/[^0-9KM]/g,'');
         return lbl===currentSizeFilter;
       });
       if(matchIdx===-1) return false;
-      // Auto-select the matching plan for this firm
       activePlanIdx[f.id]=matchIdx;
       return true;
     });
   }
 
   /* ── Sort ── */
-  if(currentSort==='price-low')list.sort((a,b)=>activePlan(a).price-activePlan(b).price);
-  if(currentSort==='price-high')list.sort((a,b)=>activePlan(b).price-activePlan(a).price);
-  if(currentSort==='payout')list.sort((a,b)=>parseInt(b.plans[0].profitSplit)-parseInt(a.plans[0].profitSplit));
-  if(currentSort==='rating')list.sort((a,b)=>b.rating-a.rating);
+  if(currentSort==='price-low')  list.sort((a,b)=>activePlan(a).price-activePlan(b).price);
+  if(currentSort==='price-high') list.sort((a,b)=>activePlan(b).price-activePlan(a).price);
+  if(currentSort==='split-high') list.sort((a,b)=>parseInt(activePlan(b).profitSplit)-parseInt(activePlan(a).profitSplit));
+  if(currentSort==='payout-fast')list.sort((a,b)=>activePlan(a).minPayoutDays-activePlan(b).minPayoutDays);
+  if(currentSort==='rating')     list.sort((a,b)=>b.rating-a.rating);
+
+  updateFilterBadge();
 
   if(list.length===0){
     document.getElementById('firms-grid').innerHTML=`
@@ -2901,8 +3006,7 @@ function renderCard(f,ci){
       ${typeButtons}
       <div class="plans-label">Select size</div>
       <div class="plan-pills">${pills}</div>
-      <input type="checkbox" class="cmp-input" id="cmp-${f.id}" ${inC?'checked':''} onchange="toggleCompare('${f.id}',this.checked)">
-      <label class="cmp-label" for="cmp-${f.id}"><span class="cmp-box">${inC?'✓':''}</span>Add to compare</label>
+      <button class="cmp-tick ${inC?'active':''}" title="${inC?'Remove from compare':'Add to compare'}" onclick="toggleCompare('${f.id}',${inC?'false':'true'},this)"></button>
     </div>
     <div class="card-details">
       <div class="metrics-grid">
@@ -2940,16 +3044,32 @@ function setLucidType(id,type){lucidActiveType[id]=type;activePlanIdx[id]=0;rend
 function selectPlan(id,i){activePlanIdx[id]=i;renderFirms();}
 function filterFirms(t,b){currentFilter=t;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderFirms();}
 function sortFirms(v){currentSort=v;renderFirms();}
+
+/* Toggle an advanced filter chip on/off (chips are combinable) */
+function filterAdv(key,btn){
+  if(currentAdvFilters.has(key)){
+    currentAdvFilters.delete(key);
+    btn.classList.remove('active');
+  } else {
+    currentAdvFilters.add(key);
+    btn.classList.add('active');
+  }
+  renderFirms();
+}
+
 function resetAllFilters(){
   currentFilter='all'; currentSizeFilter='all'; currentSort='default';
+  currentAdvFilters.clear();
   document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
-  const allBtn=document.querySelector('.filter-btn[onclick*="all"]');
+  const allBtn=document.querySelector('#filter-all-btn');
   if(allBtn) allBtn.classList.add('active');
   document.querySelectorAll('.size-btn').forEach(x=>x.classList.remove('active'));
   const allSizeBtn=document.querySelector('.size-btn[onclick*="all"]');
   if(allSizeBtn) allSizeBtn.classList.add('active');
-  const sel=document.querySelector('.sort-select');
+  document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active'));
+  const sel=document.getElementById('sort-select');
   if(sel) sel.value='default';
+  updateFilterBadge();
   renderFirms();
 }
 function filterSize(size,b){
@@ -2961,12 +3081,24 @@ function filterSize(size,b){
 }
 
 /* ════════════ COMPARE ALL ════════════ */
-function toggleCompare(id,checked){
-  if(checked){if(compareSet.size>=5){showToast('Max 5 firms for comparison');setTimeout(renderFirms,50);return;}compareSet.add(id);}
-  else{compareSet.delete(id);}
-  ['compare-count','compare-count-text'].forEach(x=>document.getElementById(x).textContent=compareSet.size);
-  renderFirms();
-  if(document.getElementById('compare-section').classList.contains('active'))renderCompareAll();
+function toggleCompare(id, addStr, btn){
+  const add = addStr === true || addStr === 'true';
+  if(add){
+    if(compareSet.size>=5){showToast('Max 5 firms for comparison');return;}
+    compareSet.add(id);
+  } else {
+    compareSet.delete(id);
+  }
+  /* Update just this button instantly without full re-render */
+  if(btn){
+    btn.classList.toggle('active', compareSet.has(id));
+    btn.title = compareSet.has(id) ? 'Remove from compare' : 'Add to compare';
+    btn.setAttribute('onclick', `toggleCompare('${id}',${compareSet.has(id)?'false':'true'},this)`);
+  }
+  ['compare-count','compare-count-text'].forEach(x=>{
+    const el=document.getElementById(x); if(el) el.textContent=compareSet.size;
+  });
+  if(document.getElementById('compare-section').classList.contains('active')) renderCompareAll();
 }
 function clearCompare(){compareSet.clear();['compare-count','compare-count-text'].forEach(x=>document.getElementById(x).textContent=0);renderFirms();renderCompareAll();}
 function renderCompareAll(){
