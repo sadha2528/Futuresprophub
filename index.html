@@ -3522,6 +3522,61 @@ function closeRules() {
 }
 
 /* ════════════ TABS / PROMO / UTILS ════════════ */
+const FEATURED_LOGOS = {
+  lucid: `<svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg" width="46" height="46">
+    <rect width="46" height="46" rx="11" fill="#0d1117"/>
+    <!-- Lucid orb — dark glossy sphere with crescent highlight matching their favicon -->
+    <defs>
+      <radialGradient id="lucidOrb" cx="38%" cy="32%" r="60%">
+        <stop offset="0%"   stop-color="#2a3a4a"/>
+        <stop offset="45%"  stop-color="#0f1922"/>
+        <stop offset="100%" stop-color="#060c12"/>
+      </radialGradient>
+      <radialGradient id="lucidShine" cx="30%" cy="25%" r="45%">
+        <stop offset="0%"   stop-color="rgba(180,210,255,0.18)"/>
+        <stop offset="100%" stop-color="rgba(180,210,255,0)"/>
+      </radialGradient>
+    </defs>
+    <!-- Sphere body -->
+    <circle cx="23" cy="23" r="15" fill="url(#lucidOrb)"/>
+    <!-- Gloss overlay -->
+    <circle cx="23" cy="23" r="15" fill="url(#lucidShine)"/>
+    <!-- Crescent highlight -->
+    <path d="M14 17 Q18 11 25 12 Q17 13 15 20 Z" fill="rgba(180,210,255,0.22)"/>
+    <!-- Subtle rim light -->
+    <circle cx="23" cy="23" r="14.5" fill="none" stroke="rgba(100,160,220,0.15)" stroke-width="1"/>
+  </svg>`,
+
+  tradeify: `<svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg" width="46" height="46">
+    <rect width="46" height="46" rx="11" fill="#0f1e2a"/>
+    <defs>
+      <clipPath id="tfBarL"><rect x="16" y="14" width="5" height="18" rx="1"/></clipPath>
+      <clipPath id="tfBarM"><rect x="21.5" y="11" width="5" height="21" rx="1"/></clipPath>
+      <clipPath id="tfBarR"><rect x="27" y="17" width="5" height="15" rx="1"/></clipPath>
+    </defs>
+
+    <!-- Left bar with hatching -->
+    <rect x="16" y="14" width="5" height="18" rx="1" fill="white" opacity="0.55"/>
+    <g clip-path="url(#tfBarL)" opacity="0.55">
+      <line x1="13" y1="12" x2="24" y2="35" stroke="#0f1e2a" stroke-width="1.8"/>
+      <line x1="15.5" y1="12" x2="26.5" y2="35" stroke="#0f1e2a" stroke-width="1.8"/>
+      <line x1="18" y1="12" x2="29" y2="35" stroke="#0f1e2a" stroke-width="1.8"/>
+    </g>
+
+    <!-- Middle bar solid white tallest -->
+    <rect x="21.5" y="11" width="5" height="21" rx="1" fill="white" opacity="0.95"/>
+
+    <!-- Right bar -->
+    <rect x="27" y="17" width="5" height="15" rx="1" fill="white" opacity="0.7"/>
+
+    <!-- Left hand -->
+    <path d="M7 30 C7 28 7.5 25.5 9 24 L10.5 22.5 L10.5 19 C10.5 18.2 11.1 17.6 11.9 17.6 C12.7 17.6 13.3 18.2 13.3 19 L13.3 22 L14.5 21.2 C15.2 20.7 16.1 20.9 16.6 21.6 C17.1 22.3 16.9 23.2 16.2 23.7 L13.3 25.5 L13.3 28 C13.3 29.8 14 31 15 32 L15.5 32.5 L15.5 36 L7.5 36 Z" fill="white" opacity="0.92"/>
+
+    <!-- Right hand mirrored -->
+    <path d="M39 30 C39 28 38.5 25.5 37 24 L35.5 22.5 L35.5 19 C35.5 18.2 34.9 17.6 34.1 17.6 C33.3 17.6 32.7 18.2 32.7 19 L32.7 22 L31.5 21.2 C30.8 20.7 29.9 20.9 29.4 21.6 C28.9 22.3 29.1 23.2 29.8 23.7 L32.7 25.5 L32.7 28 C32.7 29.8 32 31 31 32 L30.5 32.5 L30.5 36 L38.5 36 Z" fill="white" opacity="0.92"/>
+  </svg>`,
+};
+
 function showTab(tab,btn){
   document.querySelectorAll('.nav-link').forEach(t=>t.classList.remove('active'));
   if(btn) btn.classList.add('active');
@@ -3559,6 +3614,10 @@ function sizeGlowSVGs() {}   /* no-op — kept so renderFirms() call doesn't err
 /* ════════════ FEATURED PARTNERS ════════════ */
 const FEATURED_IDS = ['lucid', 'tradeify'];
 
+/* Per-firm official inline SVG icons */
+
+
+
 function renderFeatured() {
   const grid = document.getElementById('featured-grid');
   if (!grid) return;
@@ -3566,11 +3625,8 @@ function renderFeatured() {
   grid.innerHTML = firms.map((f, ci) => {
     const p = f.plans[0];
     const stars = '★'.repeat(Math.floor(f.rating)) + (f.rating % 1 >= 0.5 ? '½' : '');
-    const logoHtml = f.logoUrl
-      ? `<img src="${f.logoUrl}" alt="${f.name} logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-      : '';
+    const inlineLogo = FEATURED_LOGOS[f.id] || '';
     const sizes = [...new Set(f.plans.map(pl => pl.label))].join(' · ');
-    /* build tag chips */
     const tagMap = {
       'no-dll':         ['No DLL',''],
       'no-consistency': ['No Consistency',''],
@@ -3585,9 +3641,8 @@ function renderFeatured() {
     return `
     <div class="featured-card" style="animation-delay:${ci*0.08}s">
       <div class="featured-card-top">
-        <div class="featured-logo" style="background:${f.logoBg};">
-          ${logoHtml}
-          <span class="logo-fallback" style="color:${f.logoColor};">${f.logo}</span>
+        <div class="featured-logo" style="background:transparent; width:46px; height:46px; border-radius:11px; overflow:hidden; flex-shrink:0;">
+          ${inlineLogo}
         </div>
         <div style="flex:1;min-width:0;">
           <div class="featured-name">${f.name}</div>
