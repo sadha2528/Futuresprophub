@@ -1495,6 +1495,33 @@ nav {
 .h2h-empty, .compare-empty { text-align:center; padding:4rem; color:var(--muted); }
 .h2h-empty h3, .compare-empty h3 { font-size:1rem; font-weight:700; margin-bottom:.4rem; color:var(--sub); }
 
+/* H2H Share bar */
+.h2h-share-bar {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: rgba(124,58,237,0.07);
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 10px; padding: 10px 14px;
+  margin-bottom: 1rem;
+}
+.h2h-share-label {
+  font-size: 12px; font-weight: 700; color: var(--violet); white-space: nowrap;
+}
+.h2h-share-url {
+  flex: 1; font-size: 11px; color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  min-width: 0;
+}
+.h2h-share-btn {
+  border: 1px solid rgba(124,58,237,0.35);
+  background: rgba(124,58,237,0.12);
+  color: var(--violet); border-radius: 7px;
+  padding: 5px 12px; font-size: 12px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.h2h-share-btn:hover { background: rgba(124,58,237,0.25); border-color: var(--purple-mid); }
+
 /* Compare All */
 .compare-top { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:1.4rem; }
 .compare-info { color:var(--muted); font-size:13px; }
@@ -3362,8 +3389,74 @@ function h2hFirmChange(slot){
     </div>
     <span style="color:${f.logoColor};font-weight:700;">${f.name}</span>
   </div><div class="preview-tag">${f.tagline}</div>`;
-  pv.classList.add('show');renderH2H();
+  pv.classList.add('show');
+  renderH2H();
+  /* push URL hash so comparison is shareable */
+  updateH2HUrl();
 }
+
+function updateH2HUrl(){
+  const idA=document.getElementById('h2h-firm-a').value;
+  const idB=document.getElementById('h2h-firm-b').value;
+  const piA=document.getElementById('h2h-plan-a').value||'0';
+  const piB=document.getElementById('h2h-plan-b').value||'0';
+  if(idA && idB && idA!==idB){
+    const hash=`#compare/${idA}-vs-${idB}?pa=${piA}&pb=${piB}`;
+    history.pushState({idA,idB,piA,piB},'',hash);
+    /* Update page title */
+    const fA=FIRMS.find(x=>x.id===idA),fB=FIRMS.find(x=>x.id===idB);
+    document.title=`${fA.name} vs ${fB.name} — Futures Prop Compare`;
+  } else {
+    history.pushState({},'','#compare');
+    document.title='Head-to-Head — Futures Prop Compare';
+  }
+}
+
+function readUrlState(){
+  const hash=location.hash;
+  if(!hash.startsWith('#compare/')) return;
+  /* parse #compare/firmA-vs-firmB?pa=0&pb=0 */
+  const [path,qs]=(hash.slice(1)).split('?');
+  const slug=path.replace('compare/','');
+  const match=slug.match(/^(.+)-vs-(.+)$/);
+  if(!match) return;
+  const [,rawA,rawB]=match;
+  /* find firm IDs — longest match first */
+  const fA=FIRMS.find(f=>rawA===f.id || rawA.startsWith(f.id));
+  const fB=FIRMS.find(f=>rawB===f.id || rawB.startsWith(f.id));
+  if(!fA||!fB||fA.id===fB.id) return;
+  const params=new URLSearchParams(qs||'');
+  const piA=parseInt(params.get('pa')||0);
+  const piB=parseInt(params.get('pb')||0);
+  /* navigate to H2H tab */
+  const h2hBtn=document.querySelector('.nav-link[onclick*="h2h"]');
+  showTab('h2h',h2hBtn);
+  /* set selects */
+  const selA=document.getElementById('h2h-firm-a');
+  const selB=document.getElementById('h2h-firm-b');
+  selA.value=fA.id; h2hFirmChange('a');
+  selB.value=fB.id; h2hFirmChange('b');
+  /* set plan selects after populating */
+  setTimeout(()=>{
+    const psA=document.getElementById('h2h-plan-a');
+    const psB=document.getElementById('h2h-plan-b');
+    if(psA.options[piA]) psA.value=piA;
+    if(psB.options[piB]) psB.value=piB;
+    renderH2H();
+  },50);
+}
+
+/* Browser back/forward navigates comparisons */
+window.addEventListener('popstate', e=>{
+  if(location.hash.startsWith('#compare/')){
+    readUrlState();
+  } else if(!location.hash || location.hash==='#compare'){
+    const firmsBtn=document.querySelector('.nav-link[onclick*="firms"]');
+    showTab('firms',firmsBtn);
+    document.title='Futures Prop Compare — Best Futures Prop Firms 2025';
+  }
+});
+
 function renderH2H(){
   const idA=document.getElementById('h2h-firm-a').value,idB=document.getElementById('h2h-firm-b').value,cont=document.getElementById('h2h-content');
   if(!idA||!idB){cont.innerHTML='<div class="h2h-empty"><h3>Select two firms above</h3><p>Choose a firm and plan for each slot.</p></div>';return;}
@@ -3423,6 +3516,13 @@ function renderH2H(){
     return`<tr><td>${r.l}</td><td class="${r.w==='A'?'winner-cell':''}">${typeof cA==='boolean'?(cA?'✓':'✗'):cA}</td><td class="${r.w==='B'?'winner-cell':''}">${typeof cB==='boolean'?(cB?'✓':'✗'):cB}</td></tr>`;
   }).join('');
   const wName=wA>wB?fA.name:wB>wA?fB.name:'Tied';
+  /* Share / copy-link button */
+  const shareUrl=location.origin+location.pathname+`#compare/${fA.id}-vs-${fB.id}?pa=${piA}&pb=${piB}`;
+  const shareBar=`<div class="h2h-share-bar">
+    <span class="h2h-share-label">🔗 Shareable link</span>
+    <code class="h2h-share-url" id="h2h-share-url">${shareUrl}</code>
+    <button class="h2h-share-btn" onclick="copyH2HLink('${shareUrl}')">Copy link</button>
+  </div>`;
   const verdict=`<div class="h2h-verdict"><h3>📊 Verdict</h3><div class="verdict-grid">
     <div class="verdict-box"><div class="verdict-lbl">${fA.name} wins on</div><div class="verdict-val" style="color:${fA.logoColor}">${wA} categories</div></div>
     <div class="verdict-box"><div class="verdict-lbl">${fB.name} wins on</div><div class="verdict-val" style="color:${fB.logoColor}">${wB} categories</div></div>
@@ -3702,7 +3802,7 @@ function updateFeaturedVisibility() {
 const _origRenderFirms = renderFirms;
 renderFirms = function() { _origRenderFirms(); updateFeaturedVisibility(); };
 
-initState(); renderFirms(); renderFeatured(); populateH2H();
+initState(); renderFirms(); renderFeatured(); populateH2H(); readUrlState();
 </script>
 
 <!-- ════════════════════════════════════════
