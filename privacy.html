@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Futures Prop Hub</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Read the Privacy Policy for Futures Prop Hub. Learn how we collect, use, and protect your information when you visit our futures prop trading comparison site." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sadha2528.github.io/Futuresprophub/privacy.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Privacy Policy — Futures Prop Hub" />
+  <meta property="og:description" content="Read the Privacy Policy for Futures Prop Hub. Learn how we collect, use, and protect your information." />
+  <meta property="og:url" content="https://sadha2528.github.io/Futuresprophub/privacy.html" />
+  <meta property="og:site_name" content="Futures Prop Hub" />
+  <meta property="og:image" content="https://sadha2528.github.io/Futuresprophub/assets/og-cover.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacy Policy — Futures Prop Hub" />
+  <meta name="twitter:description" content="Read the Privacy Policy for Futures Prop Hub." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0a0515;
+      --card-bg:     rgba(18, 10, 36, 0.85);
+      --text:        #f0eaff;
+      --muted:       #7c6b9e;
+      --accent:      #a78bfa;
+      --purple:      #7c3aed;
+      --green:       #4ade80;
+      --amber:       #fbbf24;
+      --red:         #f87171;
+      --border:      rgba(160, 100, 255, 0.12);
+      --radius:      14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ── BACKGROUND GLOW ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 600px at 15% 20%, rgba(124,58,237,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 500px at 85% 75%, rgba(167,139,250,0.10) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 68px;
+      background: rgba(10, 5, 21, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo svg { width: 32px; height: 32px; flex-shrink: 0; }
+    .logo-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .logo-text span { color: var(--accent); }
+
+    nav { display: flex; gap: 0.25rem; align-items: center; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: var(--text); background: rgba(167,139,250,0.08); }
+
+    /* ── HERO BANNER ── */
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      padding: 4rem 2rem 2.5rem;
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .page-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #f0eaff 30%, #a78bfa 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .badge-updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(167,139,250,0.12);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .badge-updated::before { content: '●'; font-size: 0.55rem; }
+
+    /* ── LAYOUT ── */
+    .layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    /* ── SIDEBAR TOC ── */
+    .toc-wrap {
+      position: relative;
+    }
+    .toc {
+      position: sticky;
+      top: 84px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1.5rem 1.25rem;
+    }
+    .toc h3 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .toc ol li { counter-increment: toc; }
+    .toc ol li a {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+      line-height: 1.4;
+    }
+    .toc ol li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--purple);
+      flex-shrink: 0;
+    }
+    .toc ol li a:hover {
+      background: rgba(167,139,250,0.08);
+      color: var(--text);
+    }
+    .toc ol li a.active {
+      background: rgba(167,139,250,0.12);
+      color: var(--accent);
+    }
+    .toc-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1rem 0;
+    }
+    .toc-note {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 2rem 2.25rem;
+      transition: border-color 0.25s;
+    }
+    .card:hover { border-color: rgba(167,139,250,0.22); }
+
+    .card .section-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--purple);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.65rem;
+    }
+    .card .section-label .num {
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(124,58,237,0.35);
+      border-radius: 6px;
+      padding: 1px 6px;
+    }
+
+    .card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+      scroll-margin-top: 88px;
+    }
+
+    .card p {
+      color: rgba(240,234,255,0.82);
+      font-size: 0.94rem;
+      margin-bottom: 0.9rem;
+    }
+    .card p:last-child { margin-bottom: 0; }
+
+    .card ul, .card ol {
+      padding-left: 1.25rem;
+      color: rgba(240,234,255,0.82);
+      font-size: 0.94rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-top: 0.5rem;
+    }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li {
+      padding-left: 1.4rem;
+      position: relative;
+    }
+    .card ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .card ol li { padding-left: 0.25rem; }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 1.4rem 0 0.5rem;
+    }
+    .card h3:first-of-type { margin-top: 0.5rem; }
+
+    /* info boxes */
+    .info-box {
+      display: flex;
+      gap: 12px;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .info-box .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .info-box.green  { background: rgba(74,222,128,0.07);  border: 1px solid rgba(74,222,128,0.2);  color: #86efac; }
+    .info-box.amber  { background: rgba(251,191,36,0.07);  border: 1px solid rgba(251,191,36,0.2);  color: #fde68a; }
+    .info-box.violet { background: rgba(167,139,250,0.07); border: 1px solid rgba(167,139,250,0.2); color: #ddd6fe; }
+    .info-box.red    { background: rgba(248,113,113,0.07); border: 1px solid rgba(248,113,113,0.2); color: #fca5a5; }
+
+    /* data table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+    }
+    .data-table th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      background: rgba(167,139,250,0.07);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: rgba(240,234,255,0.82);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(167,139,250,0.04); }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+    .pill.green  { background: rgba(74,222,128,0.12);  color: #4ade80;  border: 1px solid rgba(74,222,128,0.3);  }
+    .pill.amber  { background: rgba(251,191,36,0.12);  color: #fbbf24;  border: 1px solid rgba(251,191,36,0.3);  }
+    .pill.violet { background: rgba(167,139,250,0.12); color: #a78bfa;  border: 1px solid rgba(167,139,250,0.3); }
+
+    /* contact card */
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(167,139,250,0.3);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-link:hover { color: #c4b5fd; border-color: rgba(167,139,250,0.6); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 0.83rem;
+      line-height: 1.7;
+      margin-top: 0.75rem;
+      max-width: 260px;
+    }
+    .footer-col h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(240,234,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-bottom p {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    .footer-bottom .affiliate-note {
+      font-size: 0.73rem;
+      color: rgba(124,107,158,0.7);
+      max-width: 560px;
+      text-align: right;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+        padding: 0 1rem 4rem;
+      }
+      .toc {
+        position: static;
+        display: none; /* hidden on mobile — use heading anchors */
+      }
+      .toc.mobile-show { display: block; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      header { padding: 0 1rem; }
+      nav a { display: none; }
+      nav .nav-cta { display: inline-block; }
+      .page-hero { padding: 2.5rem 1rem 1.5rem; }
+      .card { padding: 1.5rem 1.25rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; }
+      .footer-bottom .affiliate-note { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header>
+  <a href="index.html" class="logo" aria-label="Futures Prop Hub Home">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="32" height="32" rx="8" fill="rgba(124,58,237,0.18)"/>
+      <!-- candle 1 -->
+      <rect x="6" y="10" width="4" height="14" rx="1.5" fill="#7c3aed"/>
+      <line x1="8" y1="6" x2="8" y2="10" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="8" y1="24" x2="8" y2="27" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- candle 2 -->
+      <rect x="14" y="7" width="4" height="10" rx="1.5" fill="#a78bfa"/>
+      <line x1="16" y1="4" x2="16" y2="7" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="16" y1="17" x2="16" y2="20" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- candle 3 -->
+      <rect x="22" y="12" width="4" height="11" rx="1.5" fill="#4ade80"/>
+      <line x1="24" y1="8" x2="24" y2="12" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="24" y1="23" x2="24" y2="26" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">Futures Prop <span>Hub</span></span>
+  </a>
+
+  <nav>
+    <a href="index.html#compare">Compare Firms</a>
+    <a href="index.html">Head-to-Head</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+</header>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="page-hero">
+  <div class="badge-updated">Last Updated: June 2025</div>
+  <h1>Privacy Policy</h1>
+  <p>We believe in transparency. This policy explains exactly what data we collect, how we use it, and your rights — in plain English.</p>
+</section>
+
+<!-- ══════════════ LAYOUT ══════════════ -->
+<div class="layout">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="toc-wrap">
+    <nav class="toc" aria-label="Table of Contents">
+      <h3>Contents</h3>
+      <ol>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#information-we-collect">Information We Collect</a></li>
+        <li><a href="#how-we-use">How We Use Your Information</a></li>
+        <li><a href="#cookies">Cookies</a></li>
+        <li><a href="#affiliate-links">Affiliate Links</a></li>
+        <li><a href="#third-party">Third-Party Services</a></li>
+        <li><a href="#data-retention">Data Retention</a></li>
+        <li><a href="#your-rights">Your Rights</a></li>
+        <li><a href="#childrens-privacy">Children's Privacy</a></li>
+        <li><a href="#changes">Changes to This Policy</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ol>
+      <div class="toc-divider"></div>
+      <p class="toc-note">Effective date: June 1, 2025. This policy applies to all visitors of futuresprophub.com and the GitHub Pages mirror.</p>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content" id="main-content">
+
+    <!-- 1. Introduction -->
+    <article class="card" id="introduction">
+      <div class="section-label"><span class="num">01</span> Introduction</div>
+      <h2>Introduction</h2>
+      <p>Welcome to <strong>Futures Prop Hub</strong> ("we", "us", or "our"). We operate the website at <a class="contact-link" href="https://sadha2528.github.io/Futuresprophub/" target="_blank" rel="noopener">sadha2528.github.io/Futuresprophub</a> (the "Site"), a free resource dedicated to comparing futures proprietary trading firms — covering evaluation structures, account sizes, profit splits, drawdown rules, and fees.</p>
+      <p>We take your privacy seriously. This Privacy Policy explains what information we collect when you visit the Site, why we collect it, how we use it, and what choices you have. We have written this document in plain, accessible language — not legalese — because we believe you deserve to understand exactly how your data is handled.</p>
+      <p>By using the Site, you agree to the data practices described in this policy. If you do not agree, please discontinue use of the Site.</p>
+      <div class="info-box green">
+        <span class="icon">✓</span>
+        <div><strong>Short version:</strong> We don't collect your name, email, or any identifying personal data. We don't sell data. We use Google Analytics to understand how people find and use the Site so we can make it better.</div>
+      </div>
+    </article>
+
+    <!-- 2. Information We Collect -->
+    <article class="card" id="information-we-collect">
+      <div class="section-label"><span class="num">02</span> Data Collection</div>
+      <h2>Information We Collect</h2>
+      <p>Futures Prop Hub has <strong>no user account system</strong>. You cannot sign up, log in, or submit personal data through any form on this Site. As a result, we do not knowingly collect or store names, email addresses, passwords, payment information, or any other directly identifiable personal data.</p>
+      <p>The following categories of data are, however, collected automatically when you access the Site:</p>
+
+      <h3>2.1 Usage & Analytics Data</h3>
+      <p>We use <strong>Google Analytics 4 (GA4)</strong> to collect anonymized, aggregated information about how visitors interact with the Site. This includes:</p>
+      <ul>
+        <li>Pages viewed, time spent on each page, and navigation paths</li>
+        <li>Referring website or search engine that brought you to the Site</li>
+        <li>General geographic region (country or city — not precise GPS location)</li>
+        <li>Device type, operating system, and browser version</li>
+        <li>Screen resolution and language preference</li>
+        <li>Whether you are a new or returning visitor (via cookies)</li>
+        <li>Events such as clicks on external links or comparison table interactions</li>
+      </ul>
+      <p>Google Analytics uses a randomly generated client ID to distinguish sessions; it does <em>not</em> collect your name or email. We have enabled <strong>IP anonymization</strong> in GA4, which means the last octet of your IPv4 address (or last 80 bits of your IPv6 address) is zeroed out before storage.</p>
+
+      <h3>2.2 IP Address</h3>
+      <p>Your IP address is transmitted to our web hosting provider (<strong>GitHub Pages</strong>) and our CDN provider (<strong>Cloudflare</strong>) as part of standard HTTP requests. These providers may log IP addresses for security and abuse prevention purposes. We do not independently store or process your IP address beyond what these infrastructure providers handle. See Section 6 for more on third-party services.</p>
+
+      <h3>2.3 Cookies & Local Storage</h3>
+      <p>We set a small number of cookies — primarily Google Analytics measurement cookies — to understand usage patterns. We do not set any cookies that track you across other websites or build advertising profiles. Full details in Section 4.</p>
+
+      <h3>2.4 What We Do NOT Collect</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Data Type</th><th>Collected?</th><th>Reason</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Name or email address</td><td><span class="pill violet">No</span></td><td>No sign-up or contact forms</td></tr>
+          <tr><td>Payment or financial data</td><td><span class="pill violet">No</span></td><td>No e-commerce or subscriptions</td></tr>
+          <tr><td>Passwords</td><td><span class="pill violet">No</span></td><td>No account system</td></tr>
+          <tr><td>Precise GPS location</td><td><span class="pill violet">No</span></td><td>Only country/city from GA4</td></tr>
+          <tr><td>Social media profiles</td><td><span class="pill violet">No</span></td><td>No social login</td></tr>
+          <tr><td>Microphone / camera</td><td><span class="pill violet">No</span></td><td>Not requested</td></tr>
+        </tbody>
+      </table>
+    </article>
+
+    <!-- 3. How We Use -->
+    <article class="card" id="how-we-use">
+      <div class="section-label"><span class="num">03</span> Data Usage</div>
+      <h2>How We Use Your Information</h2>
+      <p>We use the limited information we collect for the following purposes only:</p>
+      <ul>
+        <li><strong>Site improvement:</strong> Understanding which comparison tables, blog posts, and firm pages attract the most interest helps us prioritize content updates and add new firms.</li>
+        <li><strong>Performance monitoring:</strong> Aggregate metrics (page load times, error rates) help us identify and fix technical issues.</li>
+        <li><strong>Traffic analysis:</strong> Knowing where visitors come from (search, social, direct) helps us understand reach and discoverability.</li>
+        <li><strong>Security:</strong> Infrastructure logs (handled by GitHub Pages and Cloudflare) help detect and prevent abuse, scraping, or DDoS activity.</li>
+      </ul>
+      <div class="info-box amber">
+        <span class="icon">⚠</span>
+        <div><strong>We will never:</strong> Sell, rent, or trade your data to third parties. Use your data for targeted advertising. Share identifiable information with prop firms we review. Use data for purposes beyond those listed above.</div>
+      </div>
+      <p>We do not engage in automated decision-making or profiling that produces legal or similarly significant effects on individuals.</p>
+    </article>
+
+    <!-- 4. Cookies -->
+    <article class="card" id="cookies">
+      <div class="section-label"><span class="num">04</span> Cookies</div>
+      <h2>Cookies</h2>
+      <p>Cookies are small text files stored in your browser by websites you visit. We use a minimal set of cookies — strictly limited to analytics.</p>
+
+      <h3>4.1 Cookies We Set</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Cookie Name</th><th>Provider</th><th>Purpose</th><th>Expiry</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span style="font-family:'JetBrains Mono',monospace;font-size:0.82rem;">_ga</span></td>
+            <td>Google Analytics</td>
+            <td>Distinguishes unique users via a randomly generated ID</td>
+            <td>2 years</td>
+          </tr>
+          <tr>
+            <td><span style="font-family:'JetBrains Mono',monospace;font-size:0.82rem;">_ga_XXXXXXXX</span></td>
+            <td>Google Analytics</td>
+            <td>Persists the GA4 session state and measurement ID</td>
+            <td>2 years</td>
+          </tr>
+          <tr>
+            <td><span style="font-family:'JetBrains Mono',monospace;font-size:0.82rem;">__cf_bm</span></td>
+            <td>Cloudflare</td>
+            <td>Bot management and DDoS protection</td>
+            <td>30 minutes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>4.2 We Do Not Use</h3>
+      <ul>
+        <li>Advertising or retargeting cookies (Facebook Pixel, Google Ads, etc.)</li>
+        <li>Session-recording or heatmap cookies (Hotjar, FullStory, etc.)</li>
+        <li>First-party persistent login cookies (no account system)</li>
+        <li>Cross-site tracking or fingerprinting scripts</li>
+      </ul>
+
+      <h3>4.3 How to Opt Out or Manage Cookies</h3>
+      <p>You have full control over cookies. Options include:</p>
+      <ul>
+        <li><strong>Browser settings:</strong> All modern browsers allow you to block or delete cookies. See your browser's help section (e.g., <em>Settings → Privacy & Security → Cookies</em>).</li>
+        <li><strong>Google Analytics Opt-Out:</strong> Install the official <a class="contact-link" href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-Out Browser Add-On</a> to prevent GA from collecting your data across all sites.</li>
+        <li><strong>Do Not Track (DNT):</strong> We respect the DNT browser signal. If your browser sends a DNT header, we will not initialize Google Analytics for your session.</li>
+        <li><strong>Consent Management:</strong> Where required by law (e.g., GDPR in the EU/EEA), a cookie consent banner will appear on your first visit. You may withdraw consent at any time by clearing cookies and declining on reload.</li>
+      </ul>
+      <div class="info-box violet">
+        <span class="icon">ℹ</span>
+        <div>Blocking analytics cookies does not affect your ability to use any feature of the Site. All comparison tables, blog content, and firm information remain fully accessible regardless of cookie preferences.</div>
+      </div>
+    </article>
+
+    <!-- 5. Affiliate Links -->
+    <article class="card" id="affiliate-links">
+      <div class="section-label"><span class="num">05</span> Affiliate Links</div>
+      <h2>Affiliate Links</h2>
+      <p>Futures Prop Hub includes affiliate links to prop trading firms reviewed on this Site. This means that if you click an outbound link to a prop firm and subsequently purchase an evaluation or account, we may receive a commission at <strong>no additional cost to you</strong>.</p>
+      <p>This is how we fund the ongoing research, infrastructure costs, and time invested in maintaining up-to-date, accurate comparisons for the community.</p>
+      <div class="info-box amber">
+        <span class="icon">⚠</span>
+        <div><strong>Important:</strong> When you click an affiliate link and visit a prop firm's website, you will leave the Futures Prop Hub domain. From that point, the prop firm's own Privacy Policy and cookie practices apply — not ours. These firms may set their own tracking cookies, record your visit, or collect additional personal data for their registration processes.</div>
+      </div>
+      <p>We are not responsible for, and have no control over, the privacy practices or content of external websites. We encourage you to read the privacy policy of any prop firm website you visit before providing personal information.</p>
+      <p>Our editorial content and comparison rankings are maintained independently of our affiliate relationships. We do not allow commissions to influence the accuracy or fairness of our reviews. See our <a class="contact-link" href="about.html">About page</a> and <a class="contact-link" href="disclaimer.html">Disclaimer</a> for full disclosure of our editorial standards.</p>
+    </article>
+
+    <!-- 6. Third-Party Services -->
+    <article class="card" id="third-party">
+      <div class="section-label"><span class="num">06</span> Third-Party Services</div>
+      <h2>Third-Party Services</h2>
+      <p>We rely on the following reputable third-party providers to operate the Site. Each has its own privacy policy governing how it handles data:</p>
+
+      <h3>6.1 Google Analytics 4</h3>
+      <p><strong>Purpose:</strong> Website traffic analysis and performance measurement.<br>
+      <strong>Data shared:</strong> Anonymized usage events, device/browser info, approximate geographic region.<br>
+      <strong>Retention:</strong> GA4 retains event data for up to 14 months by default (we use the 14-month setting).<br>
+      <strong>Policy:</strong> <a class="contact-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy ↗</a></p>
+      <p>Google may use aggregated, anonymized data for improving its own products. We have disabled all Google Signals and demographic reporting features. We do not share GA4 data with any other party.</p>
+
+      <h3>6.2 GitHub Pages (Hosting)</h3>
+      <p><strong>Purpose:</strong> Static website hosting.<br>
+      <strong>Data shared:</strong> Your IP address and standard HTTP request headers are processed by GitHub's servers when you load any page.<br>
+      <strong>Policy:</strong> <a class="contact-link" href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement ↗</a></p>
+
+      <h3>6.3 Cloudflare (CDN & Security)</h3>
+      <p><strong>Purpose:</strong> Content delivery, DDoS protection, and performance optimization. Our assets are served through Cloudflare's global CDN network.<br>
+      <strong>Data shared:</strong> IP addresses, request metadata — processed in real time for threat detection and then anonymized.<br>
+      <strong>Policy:</strong> <a class="contact-link" href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare Privacy Policy ↗</a></p>
+
+      <h3>6.4 Google Fonts</h3>
+      <p><strong>Purpose:</strong> Loading the Inter and JetBrains Mono typefaces used across the Site.<br>
+      <strong>Data shared:</strong> Your IP address and browser's User-Agent string are sent to Google's font servers when fonts are loaded. Google has stated it does not log or store this data for advertising purposes.<br>
+      <strong>Policy:</strong> <a class="contact-link" href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener noreferrer">Google Fonts Privacy FAQ ↗</a></p>
+
+      <div class="info-box green">
+        <span class="icon">✓</span>
+        <div>We do not use Facebook Pixel, Snapchat, TikTok, or any advertising network tracking scripts. We run no chat widgets, push notification SDKs, or session-recording services.</div>
+      </div>
+    </article>
+
+    <!-- 7. Data Retention -->
+    <article class="card" id="data-retention">
+      <div class="section-label"><span class="num">07</span> Data Retention</div>
+      <h2>Data Retention</h2>
+      <p>Because we do not collect personally identifiable information directly, we do not maintain our own databases of user records.</p>
+      <ul>
+        <li><strong>Google Analytics data</strong> is retained for 14 months from the date of collection, after which it is automatically deleted from GA4 servers. This data is aggregated and anonymized — it cannot be used to identify you.</li>
+        <li><strong>Cloudflare access logs</strong> are retained for a short period (typically 24–72 hours for free/standard plans) solely for security and abuse detection, then purged.</li>
+        <li><strong>GitHub Pages server logs</strong> are governed by GitHub's own retention policy (see GitHub's Privacy Statement above).</li>
+        <li><strong>Browser cookies</strong> we set expire as described in Section 4. You may delete them at any time via your browser settings.</li>
+      </ul>
+      <p>We do not send data to any data brokers, data lakes, CRM systems, or email marketing platforms. There is no "user profile" created or stored on Futures Prop Hub servers.</p>
+    </article>
+
+    <!-- 8. Your Rights -->
+    <article class="card" id="your-rights">
+      <div class="section-label"><span class="num">08</span> Your Rights</div>
+      <h2>Your Rights</h2>
+      <p>Depending on your country of residence, you may have specific legal rights regarding data that has been collected about you. We are committed to honoring these rights to the extent they apply.</p>
+
+      <h3>8.1 GDPR Rights (EU / EEA / UK)</h3>
+      <p>If you are located in the European Union, European Economic Area, or United Kingdom, you have rights under the General Data Protection Regulation (GDPR) / UK GDPR, including:</p>
+      <ul>
+        <li><strong>Right of Access:</strong> Request a copy of any personal data we hold about you.</li>
+        <li><strong>Right to Rectification:</strong> Request correction of inaccurate data.</li>
+        <li><strong>Right to Erasure ("Right to Be Forgotten"):</strong> Request deletion of your data.</li>
+        <li><strong>Right to Restrict Processing:</strong> Ask us to limit how we process your data.</li>
+        <li><strong>Right to Data Portability:</strong> Receive your data in a structured, machine-readable format.</li>
+        <li><strong>Right to Object:</strong> Object to processing based on legitimate interests.</li>
+        <li><strong>Right to Withdraw Consent:</strong> Withdraw cookie consent at any time (see Section 4.3).</li>
+      </ul>
+      <p>Because we hold no identifiable personal data ourselves, satisfying most of these requests would be instantaneous — there is no user profile to export or delete on our end. For any data held by Google Analytics, you may use the <a class="contact-link" href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">GA Opt-Out Tool</a> or contact Google directly.</p>
+
+      <h3>8.2 CCPA Rights (California Residents)</h3>
+      <p>If you are a California resident, the California Consumer Privacy Act (CCPA) grants you the right to:</p>
+      <ul>
+        <li>Know what personal information is collected and how it is used.</li>
+        <li>Request deletion of personal information.</li>
+        <li>Opt out of the "sale" of personal information — <strong>we do not sell personal information</strong>, so this right is automatically fulfilled.</li>
+        <li>Non-discrimination for exercising your CCPA rights.</li>
+      </ul>
+      <div class="info-box green">
+        <span class="icon">✓</span>
+        <div>We do not sell, share for cross-context behavioral advertising, or otherwise monetize personal data as defined by the CCPA or any other state privacy law.</div>
+      </div>
+
+      <h3>8.3 How to Exercise Your Rights</h3>
+      <p>To make any data rights request, please contact us at the email listed in Section 11. We will respond within 30 days (or within the timeframe required by applicable law). Please note that because we hold no directly identifiable data, we may not be able to locate or provide records for a specific individual.</p>
+    </article>
+
+    <!-- 9. Children's Privacy -->
+    <article class="card" id="childrens-privacy">
+      <div class="section-label"><span class="num">09</span> Children's Privacy</div>
+      <h2>Children's Privacy</h2>
+      <p>Futures Prop Hub is a financial information and comparison resource intended exclusively for adults (18 years of age or older) interested in funded trader programs and futures markets.</p>
+      <p>We do not knowingly collect, solicit, or process personal information from individuals under the age of 18. The content on this Site — including discussions of leverage, drawdown limits, profit splits, and trading risk — is not appropriate for minors and presupposes an adult level of financial understanding.</p>
+      <div class="info-box red">
+        <span class="icon">⚑</span>
+        <div>If you are a parent or guardian and believe your child has inadvertently provided personal information to us, please contact us immediately at the address in Section 11 and we will take prompt steps to delete any such information.</div>
+      </div>
+      <p>If we become aware that we have collected personal data from a person under 18, we will delete that data from our records without delay and take appropriate steps to prevent recurrence.</p>
+    </article>
+
+    <!-- 10. Changes -->
+    <article class="card" id="changes">
+      <div class="section-label"><span class="num">10</span> Policy Updates</div>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, third-party service providers, applicable law, or the features of the Site. All changes will be posted on this page with a revised "Last Updated" date at the top.</p>
+      <p>For material changes — such as the introduction of a new data collection method or a new third-party service — we will make reasonable efforts to draw attention to the change, such as adding a prominent banner on the homepage for 30 days following the update.</p>
+      <p>Your continued use of the Site after any change is posted constitutes your acceptance of the updated policy. If you disagree with a change, you should stop using the Site and clear any cookies set by us from your browser.</p>
+      <ul>
+        <li><strong>June 1, 2025</strong> — Initial publication of Privacy Policy.</li>
+      </ul>
+      <p>We recommend bookmarking this page and checking back periodically, particularly if you visit the Site regularly.</p>
+    </article>
+
+    <!-- 11. Contact -->
+    <article class="card" id="contact">
+      <div class="section-label"><span class="num">11</span> Contact</div>
+      <h2>Contact Us</h2>
+      <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please reach out to us. We are a small, independent operation and we genuinely read every message.</p>
+
+      <h3>Email</h3>
+      <p>
+        <a class="contact-link" href="mailto:privacy@futuresprophub.com">privacy@futuresprophub.com</a>
+      </p>
+      <p>We aim to respond to all privacy-related inquiries within <strong>5 business days</strong> and to formal data rights requests within <strong>30 calendar days</strong>.</p>
+
+      <h3>Mailing / Registered Address</h3>
+      <p>Futures Prop Hub<br>
+      (Independent online publication — no physical office)<br>
+      Contact via email only.</p>
+
+      <h3>Other Legal Pages</h3>
+      <p>This Privacy Policy should be read alongside our other legal and disclosure documents:</p>
+      <ul>
+        <li><a class="contact-link" href="terms.html">Terms &amp; Conditions</a> — Rules governing use of the Site</li>
+        <li><a class="contact-link" href="disclaimer.html">Disclaimer</a> — Financial and affiliate disclosure</li>
+        <li><a class="contact-link" href="about.html">About</a> — Editorial standards and methodology</li>
+      </ul>
+
+      <div class="info-box violet">
+        <span class="icon">ℹ</span>
+        <div>Futures Prop Hub is an independent editorial website. We are not a registered financial adviser, broker, or prop trading firm. Nothing on this Site constitutes financial, investment, or trading advice. Please see our full <a class="contact-link" href="disclaimer.html">Disclaimer</a>.</div>
+      </div>
+    </article>
+
+  </main>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" aria-label="Futures Prop Hub Home">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="28" height="28">
+          <rect width="32" height="32" rx="8" fill="rgba(124,58,237,0.18)"/>
+          <rect x="6" y="10" width="4" height="14" rx="1.5" fill="#7c3aed"/>
+          <line x1="8" y1="6" x2="8" y2="10" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8" y1="24" x2="8" y2="27" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="14" y="7" width="4" height="10" rx="1.5" fill="#a78bfa"/>
+          <line x1="16" y1="4" x2="16" y2="7" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="17" x2="16" y2="20" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="22" y="12" width="4" height="11" rx="1.5" fill="#4ade80"/>
+          <line x1="24" y1="8" x2="24" y2="12" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="24" y1="23" x2="24" y2="26" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text">Futures Prop <span>Hub</span></span>
+      </a>
+      <p>Independent comparison and research for futures funded traders. Not affiliated with any prop firm.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="index.html#compare">Compare Firms</a>
+      <a href="index.html">Head-to-Head</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="blog.html">Trading Blog</a>
+      <a href="about.html#methodology">Our Methodology</a>
+      <a href="index.html#faq">FAQ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Futures Prop Hub. All rights reserved.</p>
+    <p class="affiliate-note">Affiliate disclosure: We may earn commissions from prop firm links at no cost to you. Our editorial ratings are independent and unbiased. Trading futures involves substantial risk of loss.</p>
+  </div>
+</footer>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+  /* Highlight active TOC item on scroll */
+  (function () {
+    const sections = document.querySelectorAll('article.card[id]');
+    const tocLinks = document.querySelectorAll('.toc ol li a');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach((link) => {
+              link.classList.toggle(
+                'active',
+                link.getAttribute('href') === '#' + entry.target.id
+              );
+            });
+          }
+        });
+      },
+      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  })();
+</script>
+
+</body>
+</html>

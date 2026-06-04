@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disclaimer — Futures Prop Hub</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Read the full disclaimer for Futures Prop Hub — covering affiliate disclosures, trading risk warnings, data accuracy, and editorial independence." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sadha2528.github.io/Futuresprophub/disclaimer.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sadha2528.github.io/Futuresprophub/disclaimer.html" />
+  <meta property="og:title" content="Disclaimer — Futures Prop Hub" />
+  <meta property="og:description" content="Read the full disclaimer for Futures Prop Hub — affiliate disclosures, trading risk warnings, data accuracy, and editorial independence." />
+  <meta property="og:site_name" content="Futures Prop Hub" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Disclaimer — Futures Prop Hub" />
+  <meta name="twitter:description" content="Full disclaimer covering affiliate programs, trading risks, data accuracy, and firm independence." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0515;
+      --card-bg:   rgba(18,10,36,0.85);
+      --white:     #f0eaff;
+      --muted:     #7c6b9e;
+      --violet:    #a78bfa;
+      --purple:    #7c3aed;
+      --green:     #4ade80;
+      --amber:     #fbbf24;
+      --red:       #f87171;
+      --blue:      #60a5fa;
+      --border:    rgba(160,100,255,0.12);
+      --radius:    14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--white);
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Ambient blobs ── */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      width: 600px; height: 600px;
+      top: -180px; left: -180px;
+      background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+    }
+    body::after {
+      width: 500px; height: 500px;
+      bottom: -150px; right: -150px;
+      background: radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%);
+    }
+
+    /* ══════════════════════════════════
+       HEADER
+    ══════════════════════════════════ */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,5,21,0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--purple), var(--violet));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 16px rgba(124,58,237,0.45);
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.3px;
+    }
+    .logo-text span { color: var(--violet); }
+
+    nav { display: flex; align-items: center; gap: 6px; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 7px 13px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: var(--white); background: rgba(167,139,250,0.1); }
+    nav a.active { color: var(--violet); background: rgba(167,139,250,0.12); }
+
+    /* ══════════════════════════════════
+       HERO BANNER
+    ══════════════════════════════════ */
+    .hero {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--violet);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #fff 30%, var(--violet) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 18px;
+    }
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .last-updated {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: rgba(124,107,158,0.7);
+      background: rgba(167,139,250,0.06);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 12px;
+    }
+
+    /* ══════════════════════════════════
+       MAIN CONTENT
+    ══════════════════════════════════ */
+    .content {
+      position: relative; z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Disclaimer Cards ── */
+    .disclaimer-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 40px 44px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .disclaimer-card:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Left accent bar */
+    .disclaimer-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+    }
+
+    /* Subtle inner glow at top */
+    .disclaimer-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+    }
+
+    /* Amber card — Affiliate */
+    .card-amber { border-color: rgba(251,191,36,0.25); box-shadow: 0 8px 40px rgba(251,191,36,0.06); }
+    .card-amber::before { background: linear-gradient(180deg, var(--amber), rgba(251,191,36,0.3)); }
+    .card-amber::after  { background: linear-gradient(90deg, transparent, rgba(251,191,36,0.15), transparent); }
+    .card-amber:hover   { box-shadow: 0 16px 60px rgba(251,191,36,0.12); }
+
+    /* Red card — Risk */
+    .card-red { border-color: rgba(248,113,113,0.25); box-shadow: 0 8px 40px rgba(248,113,113,0.06); }
+    .card-red::before { background: linear-gradient(180deg, var(--red), rgba(248,113,113,0.3)); }
+    .card-red::after  { background: linear-gradient(90deg, transparent, rgba(248,113,113,0.15), transparent); }
+    .card-red:hover   { box-shadow: 0 16px 60px rgba(248,113,113,0.12); }
+
+    /* Blue card — Data Accuracy */
+    .card-blue { border-color: rgba(96,165,250,0.25); box-shadow: 0 8px 40px rgba(96,165,250,0.06); }
+    .card-blue::before { background: linear-gradient(180deg, var(--blue), rgba(96,165,250,0.3)); }
+    .card-blue::after  { background: linear-gradient(90deg, transparent, rgba(96,165,250,0.15), transparent); }
+    .card-blue:hover   { box-shadow: 0 16px 60px rgba(96,165,250,0.12); }
+
+    /* Purple card — Independence */
+    .card-purple { border-color: rgba(167,139,250,0.28); box-shadow: 0 8px 40px rgba(167,139,250,0.07); }
+    .card-purple::before { background: linear-gradient(180deg, var(--violet), rgba(124,58,237,0.35)); }
+    .card-purple::after  { background: linear-gradient(90deg, transparent, rgba(167,139,250,0.18), transparent); }
+    .card-purple:hover   { box-shadow: 0 16px 60px rgba(167,139,250,0.14); }
+
+    /* Card header row */
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    .card-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+      filter: drop-shadow(0 0 12px currentColor);
+    }
+    .card-title-group {}
+    .card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .label-amber { color: var(--amber); }
+    .label-red   { color: var(--red); }
+    .label-blue  { color: var(--blue); }
+    .label-purple { color: var(--violet); }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    /* Divider */
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 22px;
+    }
+
+    /* Card body */
+    .card-body {
+      color: rgba(240,234,255,0.82);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .card-body p { margin-bottom: 14px; }
+    .card-body p:last-child { margin-bottom: 0; }
+    .card-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* Key point pills */
+    .key-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .key-point {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 5px 13px;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+    .kp-amber { color: var(--amber); border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.07); }
+    .kp-red   { color: var(--red);   border-color: rgba(248,113,113,0.3); background: rgba(248,113,113,0.07); }
+    .kp-blue  { color: var(--blue);  border-color: rgba(96,165,250,0.3);  background: rgba(96,165,250,0.07); }
+    .kp-purple { color: var(--violet); border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.07); }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      text-align: center;
+      padding: 56px 24px 0;
+    }
+    .cta-inner {
+      display: inline-block;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px 56px;
+      max-width: 560px;
+    }
+    .cta-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .cta-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .cta-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--purple), var(--violet));
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+      box-shadow: 0 6px 24px rgba(124,58,237,0.38);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+      box-shadow: 0 10px 36px rgba(124,58,237,0.55);
+    }
+    .cta-btn svg { flex-shrink: 0; }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 44px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 32px;
+    }
+    .footer-brand .logo { margin-bottom: 12px; }
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      max-width: 340px;
+      line-height: 1.6;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--violet); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      color: rgba(124,107,158,0.6);
+      font-size: 0.8rem;
+    }
+    .footer-disclosure {
+      color: rgba(124,107,158,0.55);
+      font-size: 0.78rem;
+      max-width: 420px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 768px) {
+      nav a { display: none; }
+      nav a.active { display: block; }
+      .disclaimer-card { padding: 28px 22px 28px 28px; }
+      .card-icon { font-size: 2rem; }
+      .card-title { font-size: 1.15rem; }
+      .cta-inner { padding: 32px 24px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-links { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+      .footer-disclosure { text-align: left; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.8rem; }
+      .disclaimer-card { padding: 24px 18px 24px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Futures Prop Hub Home">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <span class="logo-text">Futures Prop <span>Hub</span></span>
+      </a>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="index.html#compare">Compare Firms</a>
+        <a href="index.html">Head-to-Head</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="disclaimer.html" class="active">Disclaimer</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-badge" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Legal &amp; Disclosures
+    </div>
+    <h1 id="hero-heading">Disclaimer</h1>
+    <p>Transparency is core to how we operate. Read our disclosures on affiliate relationships, trading risks, data accuracy, and editorial independence below.</p>
+    <span class="last-updated">Last updated: June 2025</span>
+  </section>
+
+  <!-- ══ MAIN CONTENT ══ -->
+  <main class="content" id="main-content">
+
+    <!-- 1. AFFILIATE DISCLOSURE -->
+    <article class="disclaimer-card card-amber" aria-labelledby="affiliate-title">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true" style="color: #fbbf24;">🏦</div>
+        <div class="card-title-group">
+          <div class="card-label label-amber">Section 01</div>
+          <h2 class="card-title" id="affiliate-title">Affiliate Disclosure</h2>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <p>Futures Prop Hub participates in affiliate marketing programs with the prop trading firms listed and reviewed on this website. When you click on a referral link and subsequently sign up for an evaluation account or purchase a subscription, <strong>we may receive a commission at no additional cost to you.</strong></p>
+        <p>This commission-based relationship helps fund the ongoing operation of this site — including research, content creation, and platform maintenance — while keeping access free for all visitors.</p>
+        <p><strong>Our editorial integrity is non-negotiable.</strong> Affiliate relationships do not influence our ratings, rankings, scoring methodology, or editorial commentary in any way. We evaluate firms using the same consistent criteria regardless of whether an affiliate relationship exists. Firms that do not participate in an affiliate program are reviewed and included on the same terms as those that do.</p>
+        <p>Affiliate links are always identifiable and we will never recommend a firm solely because we earn a commission from it. If we cannot recommend a firm in good faith, we do not promote it.</p>
+        <div class="key-points" aria-label="Key disclosure points">
+          <span class="key-point kp-amber">✓ Commissions at no cost to you</span>
+          <span class="key-point kp-amber">✓ Never influences ratings</span>
+          <span class="key-point kp-amber">✓ Always disclosed upfront</span>
+          <span class="key-point kp-amber">✓ Consistent review criteria</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. TRADING RISK DISCLAIMER -->
+    <article class="disclaimer-card card-red" aria-labelledby="risk-title">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true" style="color: #f87171;">⚠️</div>
+        <div class="card-title-group">
+          <div class="card-label label-red">Section 02</div>
+          <h2 class="card-title" id="risk-title">Trading Risk Disclaimer</h2>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <p><strong>Futures trading involves substantial risk of loss and is not appropriate or suitable for all investors.</strong> The leveraged nature of futures contracts means that a small adverse market movement can result in losses that exceed your initial capital. You may lose all of your deposited funds, and in certain circumstances more.</p>
+        <p><strong>Past performance is not indicative of future results.</strong> Hypothetical or simulated performance results presented by prop firms or referenced on this site have inherent limitations and do not represent actual trading results. They are not a guarantee that real-money trading would have achieved similar outcomes.</p>
+        <p>All content published on Futures Prop Hub — including firm reviews, comparisons, feature tables, score breakdowns, and blog articles — is provided <strong>for educational and informational purposes only.</strong> Nothing on this site constitutes:</p>
+        <ul style="margin: 12px 0 12px 22px; color: rgba(240,234,255,0.82); line-height: 1.9;">
+          <li>Financial advice or investment advice of any kind</li>
+          <li>A recommendation to trade any specific financial instrument</li>
+          <li>A recommendation to use or avoid any specific prop trading firm</li>
+          <li>A solicitation to buy, sell, or hold any securities or derivatives</li>
+        </ul>
+        <p>Before participating in futures prop trading, you should carefully consider your investment objectives, financial situation, risk tolerance, and experience level. <strong>Consult a qualified, licensed financial advisor if you have any doubts.</strong></p>
+        <div class="key-points" aria-label="Risk warning highlights">
+          <span class="key-point kp-red">⚠ Substantial loss risk</span>
+          <span class="key-point kp-red">⚠ Not financial advice</span>
+          <span class="key-point kp-red">⚠ Educational only</span>
+          <span class="key-point kp-red">⚠ Past ≠ future results</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. DATA ACCURACY DISCLAIMER -->
+    <article class="disclaimer-card card-blue" aria-labelledby="data-title">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true" style="color: #60a5fa;">📋</div>
+        <div class="card-title-group">
+          <div class="card-label label-blue">Section 03</div>
+          <h2 class="card-title" id="data-title">Data Accuracy Disclaimer</h2>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <p>We invest significant effort in researching, verifying, and maintaining the accuracy of all firm data, pricing, rules, and program details published on this site. Our review process includes direct review of firm websites, published rulebooks, and community-sourced feedback.</p>
+        <p>However, <strong>prop firm rules, pricing, evaluation structures, payout policies, and platform features change frequently</strong> — sometimes without public notice. The futures prop trading industry is fast-moving, and information that is accurate today may become outdated tomorrow.</p>
+        <p><strong>Always verify current terms directly with the prop firm before making any purchase or enrollment decision.</strong> Do not rely solely on information found on this site to evaluate whether a program is right for you. The firm's official website, terms of service, and support team are the authoritative sources for current program details.</p>
+        <p>Futures Prop Hub shall not be held liable for decisions made — financial or otherwise — based on information found on this website that is inaccurate, outdated, or misunderstood. If you spot an error or outdated information, please <a href="contact.html" style="color: var(--blue); text-decoration: underline;">contact us</a> so we can correct it promptly.</p>
+        <div class="key-points" aria-label="Data accuracy points">
+          <span class="key-point kp-blue">📋 Regularly reviewed data</span>
+          <span class="key-point kp-blue">📋 Verify with firm directly</span>
+          <span class="key-point kp-blue">📋 Report errors to us</span>
+          <span class="key-point kp-blue">📋 No liability for decisions</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. PROP FIRM INDEPENDENCE DISCLAIMER -->
+    <article class="disclaimer-card card-purple" aria-labelledby="independence-title">
+      <div class="card-header">
+        <div class="card-icon" aria-hidden="true" style="color: #a78bfa;">🏢</div>
+        <div class="card-title-group">
+          <div class="card-label label-purple">Section 04</div>
+          <h2 class="card-title" id="independence-title">Prop Firm Independence Disclaimer</h2>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <p>Futures Prop Hub is an <strong>independent comparison and review website.</strong> We are not affiliated with, endorsed by, sponsored by, or acting as an official representative of any prop trading firm listed, reviewed, or referenced on this site — unless explicitly and clearly stated otherwise in a specific article or partnership disclosure.</p>
+        <p>Our reviews and comparisons are the result of independent research conducted by our editorial team. <strong>No prop firm has editorial control</strong> over our content, ratings, or conclusions. Firms cannot pay to receive positive reviews, higher scores, or preferential placement in our comparison tables.</p>
+        <p>All <strong>trademarks, logos, and brand names</strong> referenced on this site — including firm names, platform names, and product identifiers — are the property of their respective owners. Their use on this site is for identification and reference purposes only and does not imply any affiliation, endorsement, or official relationship.</p>
+        <p>If you are a representative of a firm listed on this site and wish to flag inaccurate information, request a review update, or inquire about partnership opportunities, please <a href="contact.html" style="color: var(--violet); text-decoration: underline;">contact us</a>.</p>
+        <div class="key-points" aria-label="Independence highlights">
+          <span class="key-point kp-purple">🏢 100% Independent</span>
+          <span class="key-point kp-purple">🏢 No editorial control by firms</span>
+          <span class="key-point kp-purple">🏢 Trademarks belong to owners</span>
+          <span class="key-point kp-purple">🏢 Not endorsed by any firm</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="cta-inner">
+        <div class="cta-icon" aria-hidden="true">💬</div>
+        <h2 class="cta-title">Have Questions?</h2>
+        <p class="cta-desc">If you need clarification on any of our disclosures, or want to report an issue with information on this site, we're here to help.</p>
+        <a href="contact.html" class="cta-btn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contact Us
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" aria-label="Futures Prop Hub Home">
+            <div class="logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                <polyline points="16 7 22 7 22 13"/>
+              </svg>
+            </div>
+            <span class="logo-text">Futures Prop <span>Hub</span></span>
+          </a>
+          <p>Helping futures traders find the right prop firm — with independent, data-driven comparisons and reviews.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms &amp; Conditions</a>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="blog.html">Blog</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Futures Prop Hub. All rights reserved.</p>
+        <p class="footer-disclosure">Affiliate disclosure: We may earn commissions from links on this site at no extra cost to you. This does not affect our editorial independence or ratings.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

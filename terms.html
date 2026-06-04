@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>Terms &amp; Conditions — Futures Prop Hub</title>
+  <meta name="description" content="Read the Terms &amp; Conditions for Futures Prop Hub. Covers permitted use, intellectual property, affiliate relationships, accuracy disclaimers, limitation of liability, and more." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sadha2528.github.io/Futuresprophub/terms.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sadha2528.github.io/Futuresprophub/terms.html" />
+  <meta property="og:title" content="Terms &amp; Conditions — Futures Prop Hub" />
+  <meta property="og:description" content="Understand your rights and responsibilities when using Futures Prop Hub — a free comparison resource for futures prop trading firms." />
+  <meta property="og:site_name" content="Futures Prop Hub" />
+  <meta property="og:image" content="https://sadha2528.github.io/Futuresprophub/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Terms &amp; Conditions — Futures Prop Hub" />
+  <meta name="twitter:description" content="Understand your rights and responsibilities when using Futures Prop Hub." />
+  <meta name="twitter:image" content="https://sadha2528.github.io/Futuresprophub/og-image.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0515;
+      --card-bg:   rgba(18, 10, 36, 0.85);
+      --white:     #f0eaff;
+      --muted:     #7c6b9e;
+      --violet:    #a78bfa;
+      --purple:    #7c3aed;
+      --green:     #4ade80;
+      --amber:     #fbbf24;
+      --red:       #f87171;
+      --border:    rgba(160, 100, 255, 0.12);
+      --radius:    14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--white);
+      line-height: 1.75;
+      font-size: 16px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle animated radial background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 15% 10%, rgba(124, 58, 237, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 80%, rgba(167, 139, 250, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(124, 58, 237, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.4); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--violet); }
+
+    /* ─── HEADER ────────────────────────────────────────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 5, 21, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--purple), var(--violet));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-wordmark {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.3px;
+    }
+
+    .logo-wordmark span { color: var(--violet); }
+
+    nav { display: flex; align-items: center; gap: 6px; }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    nav a:hover { color: var(--white); background: rgba(167, 139, 250, 0.08); }
+    nav a.active { color: var(--violet); background: rgba(167, 139, 250, 0.1); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--purple), var(--violet)) !important;
+      color: var(--white) !important;
+      padding: 8px 18px !important;
+      border-radius: 8px !important;
+    }
+
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--muted); border-radius: 2px;
+      transition: 0.2s;
+    }
+    .hamburger span + span { margin-top: 5px; }
+
+    /* ─── PAGE HERO ─────────────────────────────────────────────────────────── */
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 72px 24px 48px;
+    }
+
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.22);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--violet);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.18;
+      background: linear-gradient(135deg, var(--white) 30%, var(--violet) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 18px;
+    }
+
+    .page-hero p {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 560px;
+      margin: 0 auto 10px;
+    }
+
+    .last-updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 14px;
+      margin-top: 6px;
+    }
+
+    /* ─── LAYOUT ────────────────────────────────────────────────────────────── */
+    .page-layout {
+      position: relative;
+      z-index: 1;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    /* ─── STICKY TOC ────────────────────────────────────────────────────────── */
+    .toc-wrap {
+      position: sticky;
+      top: 88px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 22px 20px;
+      overflow: hidden;
+    }
+
+    .toc-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--violet));
+    }
+
+    .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+    .toc-list a {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 7px 10px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover { color: var(--white); background: rgba(167, 139, 250, 0.08); }
+    .toc-list a.active { color: var(--violet); background: rgba(167, 139, 250, 0.1); }
+
+    .toc-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--purple);
+      background: rgba(124, 58, 237, 0.15);
+      border-radius: 4px;
+      padding: 2px 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── CONTENT AREA ──────────────────────────────────────────────────────── */
+    .content-area { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ─── SECTION CARDS ─────────────────────────────────────────────────────── */
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 36px 38px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .section-card:hover {
+      border-color: rgba(167, 139, 250, 0.22);
+      box-shadow: 0 8px 40px rgba(124, 58, 237, 0.1);
+    }
+
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(180deg, var(--purple), var(--violet));
+      border-radius: 2px 0 0 2px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .section-card:hover::before { opacity: 1; }
+
+    .section-card::after {
+      content: '';
+      position: absolute;
+      top: -50%; right: -50%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(167, 139, 250, 0.15));
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 19px;
+    }
+
+    .section-meta { flex: 1; }
+
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--violet);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .section-card h2 {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.2px;
+      line-height: 1.3;
+    }
+
+    /* Text within sections */
+    .section-body { position: relative; z-index: 1; }
+
+    .section-body p {
+      color: #c4b8e0;
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .section-body p:last-child { margin-bottom: 0; }
+
+    .section-body h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--violet);
+      margin: 22px 0 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .section-body ul, .section-body ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .section-body ul li, .section-body ol li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 15px;
+      color: #c4b8e0;
+      line-height: 1.7;
+    }
+
+    .section-body ul li::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--violet);
+      border-radius: 50%;
+      margin-top: 9px;
+      flex-shrink: 0;
+    }
+
+    .section-body ol { counter-reset: ol-counter; }
+    .section-body ol li { counter-increment: ol-counter; }
+    .section-body ol li::before {
+      content: counter(ol-counter);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--purple);
+      background: rgba(124, 58, 237, 0.18);
+      border-radius: 5px;
+      padding: 2px 7px;
+      flex-shrink: 0;
+      min-width: 26px;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    /* Callout boxes */
+    .callout {
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin: 18px 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    .callout-warning {
+      background: rgba(251, 191, 36, 0.07);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      color: #e5cc8a;
+    }
+
+    .callout-info {
+      background: rgba(167, 139, 250, 0.07);
+      border: 1px solid rgba(167, 139, 250, 0.18);
+      color: #c4b8e0;
+    }
+
+    .callout-danger {
+      background: rgba(248, 113, 113, 0.07);
+      border: 1px solid rgba(248, 113, 113, 0.2);
+      color: #f0a8a8;
+    }
+
+    .callout strong { color: inherit; filter: brightness(1.25); }
+
+    /* Emphasis inline */
+    .section-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .section-body a {
+      color: var(--violet);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(167, 139, 250, 0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .section-body a:hover {
+      color: #c4b0ff;
+      border-bottom-color: var(--violet);
+    }
+
+    /* Contact table-ish block */
+    .contact-block {
+      background: rgba(124, 58, 237, 0.07);
+      border: 1px solid rgba(167, 139, 250, 0.15);
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+    }
+
+    .contact-label {
+      font-weight: 600;
+      color: var(--violet);
+      min-width: 80px;
+    }
+
+    .contact-val { color: #c4b8e0; }
+    .contact-val a { color: var(--violet); text-decoration: none; border-bottom: 1px solid rgba(167,139,250,0.3); }
+
+    /* ─── FOOTER ────────────────────────────────────────────────────────────── */
+    .site-footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      background: rgba(10, 5, 21, 0.7);
+      backdrop-filter: blur(20px);
+      padding: 48px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 12px;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+    .footer-col a {
+      font-size: 13.5px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-affiliate {
+      font-size: 12.5px;
+      color: rgba(124, 98, 160, 0.7);
+      max-width: 680px;
+      line-height: 1.6;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc-wrap {
+        position: static;
+        order: -1;
+      }
+
+      .toc-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px;
+      }
+
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+
+    @media (max-width: 640px) {
+      nav { display: none; }
+      nav.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(10,5,21,0.97); border-bottom: 1px solid var(--border); padding: 16px; z-index: 99; }
+      .hamburger { display: flex; flex-direction: column; }
+      .header-inner { position: relative; }
+      .section-card { padding: 24px 20px; }
+      .toc-list { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+
+    /* ─── BACK TO TOP ───────────────────────────────────────────────────────── */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 90;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--violet));
+      border: none;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .back-to-top.show { display: flex; }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(124, 58, 237, 0.55); }
+
+    .back-to-top svg { width: 18px; height: 18px; }
+
+    /* ─── PROGRESS BAR ──────────────────────────────────────────────────────── */
+    .read-progress {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--violet));
+      z-index: 101;
+      transition: width 0.1s linear;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Reading Progress Bar -->
+<div class="read-progress" id="readProgress"></div>
+
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="12" width="3" height="6" rx="1" fill="#a78bfa"/>
+          <rect x="7" y="8" width="3" height="10" rx="1" fill="#f0eaff"/>
+          <rect x="12" y="4" width="3" height="14" rx="1" fill="#a78bfa"/>
+          <rect x="17" y="9" width="1" height="5" rx="0.5" fill="#7c3aed"/>
+          <line x1="3.5" y1="12" x2="3.5" y2="9" stroke="#a78bfa" stroke-width="1" stroke-dasharray="2 2"/>
+          <line x1="8.5" y1="8" x2="8.5" y2="5" stroke="#f0eaff" stroke-width="1" stroke-dasharray="2 2"/>
+          <line x1="13.5" y1="4" x2="13.5" y2="2" stroke="#a78bfa" stroke-width="1" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+      <span class="logo-wordmark">Futures Prop <span>Hub</span></span>
+    </a>
+
+    <!-- Nav -->
+    <nav id="mainNav">
+      <a href="index.html#compare">Compare Firms</a>
+      <a href="index.html">Head-to-Head</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="index.html#compare" class="nav-cta">Get Started</a>
+    </nav>
+
+    <!-- Hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════ HERO ═════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="page-badge">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <path d="M6 1L7.5 4.5H11L8.5 6.5L9.5 10L6 8L2.5 10L3.5 6.5L1 4.5H4.5L6 1Z" fill="#a78bfa"/>
+    </svg>
+    Legal
+  </div>
+  <h1>Terms &amp; Conditions</h1>
+  <p>Please read these terms carefully before using Futures Prop Hub. By accessing our site, you agree to be bound by these terms.</p>
+  <div class="last-updated">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+      <circle cx="6.5" cy="6.5" r="5.5" stroke="#7c6b9e" stroke-width="1.2"/>
+      <path d="M6.5 4V6.5L8 8" stroke="#7c6b9e" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    Last updated: June 2025
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ LAYOUT ═══════════════════════════════════ -->
+<div class="page-layout">
+
+  <!-- ── Sticky TOC ─────────────────────────────────────────────────────── -->
+  <aside class="toc-wrap" aria-label="Table of Contents">
+    <div class="toc-title">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+        <rect x="1" y="2" width="11" height="1.5" rx="0.75" fill="#a78bfa"/>
+        <rect x="1" y="5.5" width="8" height="1.5" rx="0.75" fill="#a78bfa" opacity="0.7"/>
+        <rect x="1" y="9" width="9.5" height="1.5" rx="0.75" fill="#a78bfa" opacity="0.5"/>
+      </svg>
+      On This Page
+    </div>
+    <ul class="toc-list" id="tocList">
+      <li><a href="#acceptance" data-section="acceptance"><span class="toc-num">01</span>Acceptance of Terms</a></li>
+      <li><a href="#use" data-section="use"><span class="toc-num">02</span>Use of the Website</a></li>
+      <li><a href="#ip" data-section="ip"><span class="toc-num">03</span>Intellectual Property</a></li>
+      <li><a href="#affiliate" data-section="affiliate"><span class="toc-num">04</span>Affiliate Relationships</a></li>
+      <li><a href="#accuracy" data-section="accuracy"><span class="toc-num">05</span>Accuracy of Information</a></li>
+      <li><a href="#no-advice" data-section="no-advice"><span class="toc-num">06</span>No Financial Advice</a></li>
+      <li><a href="#third-party" data-section="third-party"><span class="toc-num">07</span>Third-Party Links</a></li>
+      <li><a href="#liability" data-section="liability"><span class="toc-num">08</span>Limitation of Liability</a></li>
+      <li><a href="#indemnification" data-section="indemnification"><span class="toc-num">09</span>Indemnification</a></li>
+      <li><a href="#governing-law" data-section="governing-law"><span class="toc-num">10</span>Governing Law</a></li>
+      <li><a href="#changes" data-section="changes"><span class="toc-num">11</span>Changes to Terms</a></li>
+      <li><a href="#contact" data-section="contact"><span class="toc-num">12</span>Contact</a></li>
+    </ul>
+  </aside>
+
+  <!-- ── Content Sections ───────────────────────────────────────────────── -->
+  <main class="content-area" id="mainContent">
+
+    <!-- 1. Acceptance of Terms -->
+    <article class="section-card" id="acceptance">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <div class="section-meta">
+          <div class="section-num">Section 01</div>
+          <h2>Acceptance of Terms</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>These Terms &amp; Conditions ("Terms") constitute a legally binding agreement between you ("User," "you," or "your") and Futures Prop Hub ("we," "us," or "our"), the operator of the website located at <strong>futuresprophub.com</strong> and all associated pages (collectively, the "Site").</p>
+        <p>By accessing, browsing, or using any part of this Site, you acknowledge that you have read, understood, and agreed to be bound by these Terms in their entirety. If you do not agree with any part of these Terms, you must immediately discontinue your use of the Site.</p>
+        <p>These Terms apply to all visitors, registered users, and anyone who accesses or uses the Site, regardless of the manner in which they do so. Your continued use of the Site following the posting of any changes to these Terms constitutes acceptance of those changes.</p>
+
+        <div class="callout callout-info">
+          <span class="callout-icon">ℹ️</span>
+          <div><strong>Age Requirement:</strong> By using this Site, you represent that you are at least 18 years of age. If you are under 18, you may not use the Site. Futures trading is a high-risk activity not suitable for minors or for individuals without the financial means to bear the associated risks.</div>
+        </div>
+
+        <p>If you are using this Site on behalf of a business or other entity, you represent and warrant that you have the authority to bind that entity to these Terms, and all references to "you" shall be deemed to include that entity.</p>
+      </div>
+    </article>
+
+    <!-- 2. Use of the Website -->
+    <article class="section-card" id="use">
+      <div class="section-header">
+        <div class="section-icon">🖥️</div>
+        <div class="section-meta">
+          <div class="section-num">Section 02</div>
+          <h2>Use of the Website</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>Futures Prop Hub is provided as a free, publicly accessible educational and comparison resource. You may use the Site for lawful personal, non-commercial purposes in accordance with these Terms.</p>
+
+        <h3>Permitted Uses</h3>
+        <ul>
+          <li>Browsing firm comparison tables and reading editorial content for personal informational purposes</li>
+          <li>Sharing links to individual pages on social media, forums, or in personal communications</li>
+          <li>Printing or saving content for personal reference only (not for redistribution)</li>
+          <li>Accessing the Site from any country where doing so is legal under applicable local law</li>
+          <li>Interacting with any tools, calculators, or interactive features we make available</li>
+        </ul>
+
+        <h3>Prohibited Uses</h3>
+        <p>You expressly agree that you will <strong>not</strong> engage in any of the following activities:</p>
+        <ul>
+          <li><strong>Scraping or data harvesting</strong> — You may not use automated bots, crawlers, scrapers, or any similar technology to extract, copy, or harvest data, content, pricing information, or any other material from this Site without our prior written consent</li>
+          <li><strong>Commercial reproduction</strong> — You may not reproduce, republish, distribute, sell, sublicense, or otherwise exploit any content from this Site for commercial purposes without explicit written permission</li>
+          <li><strong>Framing or deep-linking</strong> — You may not frame this Site or its content within another website or application without our written approval</li>
+          <li><strong>Misrepresentation</strong> — You may not use the Site in a way that falsely implies endorsement, partnership, or affiliation with Futures Prop Hub</li>
+          <li><strong>Interference</strong> — You may not attempt to interfere with, disrupt, or overburden the Site's infrastructure, servers, or networks</li>
+          <li><strong>Circumvention</strong> — You may not attempt to bypass or circumvent any security measures, access controls, or technical protections implemented on the Site</li>
+          <li><strong>Malicious code</strong> — You may not upload, transmit, or introduce malware, viruses, trojans, or any other harmful code into the Site or its systems</li>
+          <li><strong>Unlawful activity</strong> — You may not use the Site to facilitate any activity that violates applicable local, national, or international laws or regulations</li>
+        </ul>
+
+        <div class="callout callout-warning">
+          <span class="callout-icon">⚠️</span>
+          <div><strong>Enforcement:</strong> We reserve the right to investigate and take appropriate legal or technical action against anyone who, in our sole discretion, violates these provisions. This may include removing the offending content, suspending access, reporting to law enforcement, and seeking damages.</div>
+        </div>
+
+        <p>We reserve the right to modify, suspend, or discontinue any aspect of the Site at any time without notice. We will not be liable to you or any third party for any modification, suspension, or discontinuation of the Site or any part thereof.</p>
+      </div>
+    </article>
+
+    <!-- 3. Intellectual Property -->
+    <article class="section-card" id="ip">
+      <div class="section-header">
+        <div class="section-icon">©️</div>
+        <div class="section-meta">
+          <div class="section-num">Section 03</div>
+          <h2>Intellectual Property</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>The Site and its entire original contents — including but not limited to written editorial content, comparison methodologies, rating systems, editorial commentary, HTML/CSS/JavaScript source code, graphic design, layout, icons, and brand identity — are owned by or licensed to Futures Prop Hub and are protected by United States and international copyright, trademark, and intellectual property laws.</p>
+
+        <h3>Our Original Content</h3>
+        <p>Our original editorial work — including firm reviews, scoring rubrics, comparison analysis, blog articles, and site design — is proprietary to Futures Prop Hub. You may not copy, modify, create derivative works from, distribute, or publicly display our original content without prior written consent.</p>
+
+        <h3>Third-Party Data</h3>
+        <p>Certain data displayed on this Site — such as firm pricing, payout rules, drawdown limits, and contract specifications — is compiled from publicly available sources including firm websites, public announcements, press releases, and user-reported information. We do not claim ownership of such underlying data. All firm names, logos, and trademarks are the exclusive property of their respective owners and are used on this Site solely for identification and comparison purposes under the principle of nominative fair use.</p>
+
+        <h3>Trademarks</h3>
+        <p>The name "Futures Prop Hub," any associated logos, and all related brand identifiers are trademarks or service marks of Futures Prop Hub. You may not use any of our trademarks without our express prior written permission. Nothing on this Site shall be construed as granting any license or right to use any trademark without our written consent.</p>
+
+        <h3>Limited License to Users</h3>
+        <p>Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Site solely for your personal, non-commercial informational purposes. This license does not include the right to: (a) resell or commercially exploit any Site content; (b) create derivative works; (c) use data mining or similar data gathering tools; or (d) download or copy any account information for the benefit of another party.</p>
+      </div>
+    </article>
+
+    <!-- 4. Affiliate Relationships -->
+    <article class="section-card" id="affiliate">
+      <div class="section-header">
+        <div class="section-icon">🤝</div>
+        <div class="section-meta">
+          <div class="section-num">Section 04</div>
+          <h2>Affiliate Relationships</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>Futures Prop Hub maintains affiliate and/or referral relationships with a number of the proprietary trading firms listed and reviewed on this Site. <strong>This is a material connection that we are required by the U.S. Federal Trade Commission (FTC) and similar regulatory bodies to disclose clearly.</strong></p>
+
+        <div class="callout callout-warning">
+          <span class="callout-icon">💡</span>
+          <div><strong>Affiliate Disclosure:</strong> When you click a link to a firm and subsequently purchase an evaluation, subscription, or account, we may receive a commission or referral fee from that firm. This compensation comes at no additional cost to you and does not affect the price you pay.</div>
+        </div>
+
+        <h3>How Affiliate Relationships Work</h3>
+        <ul>
+          <li>We earn a commission only when a user clicks our referral link and completes a qualifying purchase from the affiliated firm</li>
+          <li>The amount of commission varies by firm and may be a flat fee, percentage of the sale, or recurring revenue share</li>
+          <li>Firms do not pay us to be listed on this Site — listings are based on our independent assessment of firm quality and relevance</li>
+          <li>Affiliate commissions are one of the primary ways we fund the operation and continued development of this free resource</li>
+        </ul>
+
+        <h3>Effect on Our Editorial Independence</h3>
+        <p>While we strive to maintain editorial independence, you should be aware that affiliate relationships can create a financial incentive that may — consciously or unconsciously — influence how we present, rank, or describe certain firms. We work to counteract this by:</p>
+        <ul>
+          <li>Publishing data-driven comparison tables with objective, verifiable metrics</li>
+          <li>Disclosing negative aspects and limitations of each firm we review</li>
+          <li>Including firms regardless of whether they have an affiliate program</li>
+          <li>Updating content when firm terms change, even when changes are unfavorable to affiliated firms</li>
+        </ul>
+        <p>Nevertheless, we encourage you to conduct your own independent research before making any purchasing or trading decision. Do not rely solely on our reviews or rankings.</p>
+
+        <h3>FTC Compliance</h3>
+        <p>Our affiliate disclosures are made in accordance with the FTC's Guides Concerning the Use of Endorsements and Testimonials in Advertising (16 C.F.R. Part 255). Affiliate disclosure notices appear in the site footer, on relevant comparison pages, and within reviews of affiliated firms.</p>
+      </div>
+    </article>
+
+    <!-- 5. Accuracy of Information -->
+    <article class="section-card" id="accuracy">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <div class="section-meta">
+          <div class="section-num">Section 05</div>
+          <h2>Accuracy of Information</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>We invest significant effort in ensuring that the information presented on Futures Prop Hub is accurate, current, and complete. However, the prop trading industry is highly dynamic. Firms frequently update their pricing structures, evaluation rules, drawdown parameters, profit-sharing ratios, payout policies, platform offerings, and terms of service — sometimes without advance public notice.</p>
+
+        <div class="callout callout-danger">
+          <span class="callout-icon">🔴</span>
+          <div><strong>Always Verify Directly:</strong> Before purchasing any evaluation, subscription, or funded account, <strong>always verify the current terms directly with the firm on their official website.</strong> Do not rely solely on information published on Futures Prop Hub, as it may be outdated.</div>
+        </div>
+
+        <h3>Limitations of Our Data</h3>
+        <ul>
+          <li><strong>Timeliness:</strong> Information may not reflect changes made by firms in real time. We update our data periodically but cannot guarantee same-day accuracy</li>
+          <li><strong>Completeness:</strong> We may not have access to all terms and conditions of a given firm's offerings, particularly for products that are not widely publicized</li>
+          <li><strong>Interpretation:</strong> Some firm rules are ambiguous or subject to interpretation. Our interpretation of those rules may differ from how the firm applies them in practice</li>
+          <li><strong>Promotional pricing:</strong> Firms regularly run discount promotions. Prices shown on our Site are standard (non-promotional) pricing unless otherwise indicated</li>
+          <li><strong>User experience variation:</strong> Individual experiences with prop firms can vary significantly based on account size, trading style, market conditions, and other factors</li>
+        </ul>
+
+        <h3>No Warranty of Accuracy</h3>
+        <p>The Site and its content are provided on an <strong>"as is" and "as available"</strong> basis. We make no representations or warranties, express or implied, regarding the accuracy, reliability, completeness, suitability, or timeliness of any information on the Site. We expressly disclaim all warranties of any kind, whether statutory, express, or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+      </div>
+    </article>
+
+    <!-- 6. No Financial Advice -->
+    <article class="section-card" id="no-advice">
+      <div class="section-header">
+        <div class="section-icon">⚖️</div>
+        <div class="section-meta">
+          <div class="section-num">Section 06</div>
+          <h2>No Financial Advice</h2>
+        </div>
+      </div>
+      <div class="section-body">
+
+        <div class="callout callout-danger">
+          <span class="callout-icon">🚨</span>
+          <div><strong>Not Financial or Investment Advice:</strong> Nothing on this Site — including firm comparisons, reviews, scores, rankings, blog articles, or any other content — constitutes financial advice, investment advice, trading advice, legal advice, or any other type of professional advice. Do not treat any content on this Site as such.</div>
+        </div>
+
+        <p>Futures Prop Hub is an independent informational and comparison website. We are not a registered investment adviser, broker-dealer, financial planner, or fiduciary of any kind. We do not provide personalized investment or trading recommendations.</p>
+
+        <h3>Risk Warning — Futures Trading</h3>
+        <p><strong>Futures trading involves a substantial risk of loss and is not appropriate for all investors.</strong> The high leverage typically available in futures markets can work against you as well as for you. Before engaging in futures trading — whether through a prop firm evaluation or otherwise — you should carefully consider your investment objectives, experience level, risk tolerance, and financial situation.</p>
+        <ul>
+          <li>Past performance of any trading strategy, trader, or firm is not indicative of future results</li>
+          <li>You may lose all capital invested in any evaluation or funded account program</li>
+          <li>Prop firm evaluations are paid products — there is no guarantee you will pass any evaluation or receive a funded account</li>
+          <li>Even if funded, there is no guarantee you will generate profits or receive payouts</li>
+          <li>Firm insolvency, policy changes, or account rule violations may result in loss of access to any funded account</li>
+        </ul>
+
+        <h3>Consult a Professional</h3>
+        <p>Before making any financial or trading decisions, we strongly encourage you to consult with a licensed financial advisor, a registered investment adviser (RIA), a tax professional, or another qualified financial professional who understands your specific circumstances and goals.</p>
+
+        <p>Any action you take based on information found on this Site is strictly at your own risk. We expressly disclaim all liability in connection with actions taken based on information provided on the Site.</p>
+      </div>
+    </article>
+
+    <!-- 7. Third-Party Links -->
+    <article class="section-card" id="third-party">
+      <div class="section-header">
+        <div class="section-icon">🔗</div>
+        <div class="section-meta">
+          <div class="section-num">Section 07</div>
+          <h2>Third-Party Links</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>This Site contains links to the websites and platforms of third-party proprietary trading firms, software providers, platforms, and other entities. These links are provided solely for your convenience and informational purposes.</p>
+
+        <h3>No Endorsement or Control</h3>
+        <p>The inclusion of any link on this Site does not imply our endorsement, sponsorship, or approval of the linked website, its content, or the company that operates it. We have no control over the content, privacy practices, accuracy, legality, or quality of any third-party website or service, and we do not assume any responsibility for them.</p>
+
+        <h3>Third-Party Websites Are Governed by Their Own Terms</h3>
+        <p>When you follow a link to a third-party website, you are leaving Futures Prop Hub and are subject to the terms, conditions, and privacy policies of that third-party site. We strongly encourage you to read the terms, conditions, and privacy policies of any third-party website you visit:</p>
+        <ul>
+          <li>Review the prop firm's current terms of service and rules before purchasing</li>
+          <li>Read the firm's privacy policy to understand how your personal data will be handled</li>
+          <li>Verify the firm's regulatory status and business reputation independently</li>
+          <li>Check reviews on independent platforms (Trustpilot, Reddit, etc.) in addition to our Site</li>
+        </ul>
+
+        <h3>Affiliate Links</h3>
+        <p>Some third-party links on this Site are affiliate links. As described in Section 4, we may receive compensation when you click these links and complete a qualifying action. Affiliate links function identically to regular links — they direct you to the firm's website — but our unique tracking code is embedded so that any resulting commission can be attributed to us.</p>
+
+        <p>We are not liable for any loss, damage, or dissatisfaction arising from your interaction with any third-party website, service, or product, regardless of whether you accessed that third party through a link on our Site.</p>
+      </div>
+    </article>
+
+    <!-- 8. Limitation of Liability -->
+    <article class="section-card" id="liability">
+      <div class="section-header">
+        <div class="section-icon">🛡️</div>
+        <div class="section-meta">
+          <div class="section-num">Section 08</div>
+          <h2>Limitation of Liability</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>To the maximum extent permitted by applicable law, Futures Prop Hub, its owners, operators, editors, contributors, affiliates, licensors, service providers, employees, agents, successors, and assigns (collectively, "Futures Prop Hub Parties") shall not be liable to you or any third party for:</p>
+
+        <ul>
+          <li>Any indirect, incidental, special, consequential, exemplary, or punitive damages of any kind</li>
+          <li>Loss of profits, revenue, data, business, goodwill, or anticipated savings</li>
+          <li>Any financial loss arising from your reliance on information published on the Site</li>
+          <li>Trading losses incurred as a result of decisions made based on content found on the Site</li>
+          <li>Loss or damage resulting from unauthorized access to or alteration of your transmissions or data</li>
+          <li>Any conduct or content of any third party on or linked from the Site</li>
+          <li>Errors, mistakes, inaccuracies, or omissions in any content published on the Site</li>
+          <li>Interruption, suspension, or termination of the Site or any service offered through it</li>
+          <li>Bugs, viruses, trojan horses, or other harmful code that may be transmitted through the Site</li>
+        </ul>
+
+        <p>These limitations apply whether the damages arise under any theory of liability — contract, tort (including negligence), strict liability, breach of statutory duty, or otherwise — even if the Futures Prop Hub Parties have been advised of the possibility of such damages.</p>
+
+        <h3>Cap on Liability</h3>
+        <p>In jurisdictions that do not allow complete exclusion or limitation of liability, our liability is limited to the maximum extent permitted by law. In any event, the aggregate liability of the Futures Prop Hub Parties to you for all claims arising out of or relating to the use of the Site shall not exceed <strong>one hundred U.S. dollars (USD $100.00)</strong>.</p>
+
+        <p>Some jurisdictions do not allow the exclusion or limitation of certain warranties or liabilities. If you reside in such a jurisdiction, the exclusions and limitations in this section may not apply to you in whole or in part.</p>
+      </div>
+    </article>
+
+    <!-- 9. Indemnification -->
+    <article class="section-card" id="indemnification">
+      <div class="section-header">
+        <div class="section-icon">⚔️</div>
+        <div class="section-meta">
+          <div class="section-num">Section 09</div>
+          <h2>Indemnification</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>You agree to defend, indemnify, and hold harmless Futures Prop Hub and all Futures Prop Hub Parties from and against any and all claims, liabilities, damages, judgments, awards, losses, costs, expenses, and fees (including reasonable attorneys' fees) arising out of or relating to:</p>
+
+        <ul>
+          <li>Your use or misuse of the Site or any content obtained from the Site</li>
+          <li>Your violation of these Terms or any applicable law or regulation</li>
+          <li>Your violation of any third-party rights, including intellectual property rights, privacy rights, or rights of publicity</li>
+          <li>Any content you submit, post, or transmit through the Site, if applicable</li>
+          <li>Any fraudulent, deceptive, or misleading activity you engage in in connection with the Site</li>
+          <li>Your reliance on any information found on the Site and any resulting action or inaction</li>
+          <li>Any dispute between you and a prop firm or other third party that you were introduced to through this Site</li>
+        </ul>
+
+        <p>We reserve the right, at our own expense, to assume exclusive defense and control of any matter otherwise subject to indemnification by you, in which event you agree to cooperate fully with us in asserting any available defenses. You agree not to settle any such matter without our prior written consent.</p>
+
+        <p>This indemnification obligation shall survive the termination of these Terms and your use of the Site.</p>
+      </div>
+    </article>
+
+    <!-- 10. Governing Law -->
+    <article class="section-card" id="governing-law">
+      <div class="section-header">
+        <div class="section-icon">⚖️</div>
+        <div class="section-meta">
+          <div class="section-num">Section 10</div>
+          <h2>Governing Law</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>These Terms and any dispute or claim arising out of or in connection with them, their subject matter, or their formation (including non-contractual disputes or claims) shall be governed by and construed in accordance with the laws of the <strong>United States</strong>, without regard to its conflict of law provisions.</p>
+
+        <h3>Dispute Resolution</h3>
+        <p>We encourage you to contact us in the first instance if you have any concerns or disputes regarding the Site or these Terms. Many disputes can be resolved quickly and informally through direct communication.</p>
+        <p>Any legal action or proceeding arising under or in connection with these Terms shall be brought exclusively in the federal or state courts located within the United States. By using the Site, you irrevocably consent to the personal jurisdiction and venue of such courts.</p>
+
+        <h3>Waiver of Class Actions</h3>
+        <p>To the extent permitted by applicable law, you agree that any dispute resolution proceedings will be conducted only on an individual basis and not in a class, consolidated, or representative action. If for any reason a claim proceeds in court rather than in arbitration, you expressly waive any right to a jury trial.</p>
+
+        <h3>Severability</h3>
+        <p>If any provision of these Terms is found by a court of competent jurisdiction to be invalid, illegal, or unenforceable under any applicable law or regulation, such provision will be amended to the minimum extent necessary to make it enforceable, or severed from these Terms if amendment is not possible, without affecting the validity and enforceability of the remaining provisions.</p>
+      </div>
+    </article>
+
+    <!-- 11. Changes to Terms -->
+    <article class="section-card" id="changes">
+      <div class="section-header">
+        <div class="section-icon">🔄</div>
+        <div class="section-meta">
+          <div class="section-num">Section 11</div>
+          <h2>Changes to Terms</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>We reserve the right to modify, update, or revise these Terms at any time at our sole discretion. Changes may be made to reflect:</p>
+        <ul>
+          <li>Updates to our business model, services, or affiliate relationships</li>
+          <li>Changes in applicable laws or regulations</li>
+          <li>Feedback from users, legal counsel, or industry best practices</li>
+          <li>Clarifications to existing provisions to improve readability or reduce ambiguity</li>
+        </ul>
+
+        <h3>Notice of Changes</h3>
+        <p>When we make material changes to these Terms, we will update the <strong>"Last Updated"</strong> date displayed at the top of this page. We may also provide additional notice through a banner or notification on the Site for significant changes. However, it is your responsibility to review these Terms periodically to stay informed of any updates.</p>
+
+        <div class="callout callout-info">
+          <span class="callout-icon">📌</span>
+          <div><strong>Effective Immediately:</strong> Changes become effective immediately upon posting, unless we specify an alternative effective date. Your continued use of the Site following the posting of revised Terms constitutes your binding acceptance of the updated Terms.</div>
+        </div>
+
+        <p>If you do not agree to any revised Terms, your sole remedy is to discontinue your use of the Site. We are not obligated to provide prior notice of non-material changes to these Terms.</p>
+
+        <p>The most current version of these Terms will always be accessible at <a href="https://sadha2528.github.io/Futuresprophub/terms.html">futuresprophub.com/terms.html</a>. We encourage you to bookmark this page for future reference.</p>
+      </div>
+    </article>
+
+    <!-- 12. Contact -->
+    <article class="section-card" id="contact">
+      <div class="section-header">
+        <div class="section-icon">✉️</div>
+        <div class="section-meta">
+          <div class="section-num">Section 12</div>
+          <h2>Contact</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>If you have any questions, concerns, or feedback regarding these Terms &amp; Conditions, or if you wish to request permission for a use of our content not covered by these Terms, please contact us using the details below.</p>
+
+        <div class="contact-block">
+          <div class="contact-row">
+            <span class="contact-label">Website</span>
+            <span class="contact-val"><a href="https://sadha2528.github.io/Futuresprophub/">futuresprophub.com</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">Email</span>
+            <span class="contact-val"><a href="mailto:legal@futuresprophub.com">legal@futuresprophub.com</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">Subject</span>
+            <span class="contact-val">Terms &amp; Conditions Inquiry</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">Response</span>
+            <span class="contact-val">We aim to respond within 3–5 business days</span>
+          </div>
+        </div>
+
+        <p style="margin-top:20px;">For general questions or site feedback, please use our <a href="about.html#contact">contact page</a>. For data removal requests or privacy-related inquiries, please see our <a href="privacy.html">Privacy Policy</a>.</p>
+
+        <p>We take compliance seriously and will work to address any concerns you raise in good faith and in a timely manner.</p>
+      </div>
+    </article>
+
+  </main><!-- /content-area -->
+</div><!-- /page-layout -->
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="text-decoration:none;">
+          <div class="logo-icon">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="12" width="3" height="6" rx="1" fill="#a78bfa"/>
+              <rect x="7" y="8" width="3" height="10" rx="1" fill="#f0eaff"/>
+              <rect x="12" y="4" width="3" height="14" rx="1" fill="#a78bfa"/>
+            </svg>
+          </div>
+          <span class="logo-wordmark">Futures Prop <span>Hub</span></span>
+        </a>
+        <p>Your independent, data-driven resource for comparing futures proprietary trading firms — evaluation costs, payout rules, drawdown limits, and more.</p>
+      </div>
+
+      <!-- Company -->
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html" style="color:var(--violet);">Terms &amp; Conditions</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+
+      <!-- Explore -->
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#compare">Compare Firms</a></li>
+          <li><a href="index.html">Head-to-Head</a></li>
+          <li><a href="blog.html">Trading Resources</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Futures Prop Hub. All rights reserved.</p>
+      <div class="footer-affiliate">
+        <strong>Affiliate Disclosure:</strong> Futures Prop Hub participates in affiliate programs with certain prop trading firms. We may earn a commission when you click a firm link and complete a qualifying purchase — at no additional cost to you. See our full <a href="terms.html#affiliate" style="color:var(--violet);">disclosure in Section 4</a> above.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ BACK TO TOP ═══════════════════════════ -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9 13V5M9 5L5.5 8.5M9 5L12.5 8.5" stroke="#f0eaff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+  /* ── Hamburger ─────────────────────────────────────────────────── */
+  const hamburger = document.getElementById('hamburger');
+  const mainNav = document.getElementById('mainNav');
+  hamburger.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
+  });
+
+  /* ── Back to top ───────────────────────────────────────────────── */
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('show', window.scrollY > 400);
+  });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ── Reading progress bar ──────────────────────────────────────── */
+  const bar = document.getElementById('readProgress');
+  window.addEventListener('scroll', () => {
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+    bar.style.width = pct + '%';
+  });
+
+  /* ── Active TOC highlighting on scroll ─────────────────────────── */
+  const sections = document.querySelectorAll('.section-card[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tocLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('data-section') === id);
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => observer.observe(section));
+
+  /* ── Smooth scroll offset for sticky header ─────────────────────── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 90;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

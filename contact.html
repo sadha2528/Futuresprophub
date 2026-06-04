@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Futures Prop Hub</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Contact Futures Prop Hub — report data errors, suggest a prop firm, inquire about advertising, or send us a general question. We respond within 1-2 business days." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sadha2528.github.io/Futuresprophub/contact.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sadha2528.github.io/Futuresprophub/contact.html" />
+  <meta property="og:title" content="Contact Us — Futures Prop Hub" />
+  <meta property="og:description" content="Reach out to the Futures Prop Hub team. Report incorrect data, suggest a firm, or ask about advertising partnerships." />
+  <meta property="og:image" content="https://sadha2528.github.io/Futuresprophub/assets/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Us — Futures Prop Hub" />
+  <meta name="twitter:description" content="Get in touch with the Futures Prop Hub team for data corrections, firm suggestions, or partnership inquiries." />
+  <meta name="twitter:image" content="https://sadha2528.github.io/Futuresprophub/assets/og-image.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0a0515;
+      --card-bg:     rgba(18,10,36,0.85);
+      --white:       #f0eaff;
+      --muted:       #7c6b9e;
+      --violet:      #a78bfa;
+      --purple:      #7c3aed;
+      --green:       #4ade80;
+      --amber:       #fbbf24;
+      --red:         #f87171;
+      --border:      rgba(160,100,255,0.12);
+      --border-hover:rgba(167,139,250,0.35);
+      --radius:      14px;
+      --glow:        0 0 0 3px rgba(124,58,237,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── Background Orbs ──────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 700px 500px at 10% 20%, rgba(124,58,237,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 90% 70%, rgba(167,139,250,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 400px 300px at 50% 100%, rgba(76,14,165,0.15) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── Header ───────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,5,21,0.80);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(124,58,237,0.45);
+    }
+
+    .logo-wordmark {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .logo-wordmark span {
+      color: var(--violet);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--white);
+      background: rgba(167,139,250,0.10);
+    }
+
+    /* ─── Hero ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 90px 24px 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--violet);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--violet);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.75); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #f0eaff 0%, #a78bfa 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ─── Main Layout ──────────────────────────────────── */
+    .contact-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── Glass Card ───────────────────────────────────── */
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .glass-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    /* ─── Contact Form ─────────────────────────────────── */
+    .form-card {
+      padding: 40px 40px 44px;
+    }
+
+    @media (max-width: 600px) {
+      .form-card { padding: 28px 22px 32px; }
+    }
+
+    .form-header {
+      margin-bottom: 32px;
+    }
+
+    .form-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .form-header p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ─── Inputs ───────────────────────────────────────── */
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(10,5,21,0.6);
+      border: 1px solid rgba(160,100,255,0.18);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    textarea::placeholder {
+      color: rgba(124,107,158,0.55);
+    }
+
+    input[type="text"]:hover,
+    input[type="email"]:hover,
+    select:hover,
+    textarea:hover {
+      border-color: rgba(167,139,250,0.30);
+      background: rgba(10,5,21,0.75);
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--purple);
+      box-shadow: var(--glow);
+      background: rgba(18,10,36,0.9);
+    }
+
+    /* ─── Select Dropdown ──────────────────────────────── */
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 6px;
+      background: var(--muted);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      pointer-events: none;
+      transition: background 0.2s;
+    }
+
+    .select-wrap:focus-within::after {
+      background: var(--violet);
+    }
+
+    select {
+      cursor: pointer;
+      padding-right: 36px;
+    }
+
+    select option {
+      background: #0f0722;
+      color: var(--white);
+    }
+
+    /* ─── Textarea ─────────────────────────────────────── */
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.6;
+    }
+
+    /* ─── Send Button ──────────────────────────────────── */
+    .btn-send {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 32px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.45);
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-send::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .btn-send:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(124,58,237,0.60);
+      filter: brightness(1.08);
+    }
+
+    .btn-send:hover::before { opacity: 1; }
+
+    .btn-send:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 14px rgba(124,58,237,0.40);
+    }
+
+    .btn-send svg {
+      transition: transform 0.25s;
+    }
+
+    .btn-send:hover svg {
+      transform: translateX(4px);
+    }
+
+    .form-footer-note {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* ─── Sidebar ──────────────────────────────────────── */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* ─── Info Cards ───────────────────────────────────── */
+    .info-card {
+      padding: 26px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon.red    { background: rgba(248,113,113,0.12); }
+    .info-icon.green  { background: rgba(74,222,128,0.12); }
+    .info-icon.amber  { background: rgba(251,191,36,0.12); }
+
+    .info-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .info-card p {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .info-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--violet);
+      text-decoration: none;
+      transition: gap 0.2s, color 0.2s;
+      margin-top: 2px;
+    }
+
+    .info-card a:hover {
+      color: var(--white);
+      gap: 10px;
+    }
+
+    /* ─── Response Time Card ───────────────────────────── */
+    .response-card {
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(74,222,128,0.06);
+      border-color: rgba(74,222,128,0.18);
+    }
+
+    .response-card .rc-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(74,222,128,0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .response-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .response-card p strong {
+      display: block;
+      color: var(--green);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    /* ─── Social Card ──────────────────────────────────── */
+    .social-card {
+      padding: 22px 26px;
+    }
+
+    .social-card h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(167,139,250,0.06);
+      border: 1px solid rgba(160,100,255,0.12);
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .social-link:hover {
+      background: rgba(167,139,250,0.12);
+      border-color: rgba(167,139,250,0.30);
+      transform: translateX(4px);
+    }
+
+    .social-link .sl-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sl-icon.twitter { background: rgba(29,161,242,0.15); }
+    .sl-icon.discord { background: rgba(88,101,242,0.15); }
+
+    .social-link .sl-info { flex: 1; }
+
+    .social-link .sl-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--white);
+      display: block;
+    }
+
+    .social-link .sl-handle {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .social-link .sl-arrow {
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .social-link:hover .sl-arrow { color: var(--violet); }
+
+    /* ─── Divider ──────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+
+    /* ─── Footer ───────────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      background: rgba(10,5,21,0.60);
+      backdrop-filter: blur(20px);
+      padding: 48px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .logo-wordmark {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      max-width: 280px;
+      line-height: 1.65;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 40px;
+    }
+
+    .footer-nav-col h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .footer-nav-col a {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 9px;
+      transition: color 0.2s;
+    }
+
+    .footer-nav-col a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-disclosure {
+      font-size: 0.75rem;
+      color: rgba(124,107,158,0.65);
+      max-width: 540px;
+      text-align: right;
+    }
+
+    @media (max-width: 600px) {
+      .footer-disclosure { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <!-- Candlestick SVG -->
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="6" width="3" height="9" rx="1" fill="#f0eaff"/>
+            <rect x="4" y="3" width="1" height="3" rx="0.5" fill="#f0eaff"/>
+            <rect x="4" y="15" width="1" height="3" rx="0.5" fill="#f0eaff"/>
+            <rect x="9" y="4" width="3" height="7" rx="1" fill="#a78bfa"/>
+            <rect x="10" y="2" width="1" height="2" rx="0.5" fill="#a78bfa"/>
+            <rect x="10" y="11" width="1" height="4" rx="0.5" fill="#a78bfa"/>
+            <rect x="15" y="8" width="3" height="6" rx="1" fill="#4ade80"/>
+            <rect x="16" y="5" width="1" height="3" rx="0.5" fill="#4ade80"/>
+            <rect x="16" y="14" width="1" height="2" rx="0.5" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div class="logo-wordmark">Futures Prop <span>Hub</span></div>
+      </a>
+
+      <nav>
+        <a href="index.html#compare">Compare Firms</a>
+        <a href="index.html">Head-to-Head</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════ HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Contact
+    </div>
+    <h1>Get in Touch</h1>
+    <p>Questions, corrections, or partnership inquiries — we're here to help. Reach out and we'll get back to you promptly.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════ CONTACT LAYOUT -->
+  <div class="contact-wrap">
+
+    <!-- ── Contact Form ── -->
+    <div class="glass-card form-card">
+      <div class="form-header">
+        <h2>Send Us a Message</h2>
+        <p>Fill in the form below and we'll respond within 1–2 business days.</p>
+      </div>
+
+      <form
+        action="mailto:contact@futuresprophub.com"
+        method="GET"
+        enctype="text/plain"
+        id="contactForm"
+      >
+        <div class="form-grid">
+
+          <!-- Name -->
+          <div class="field">
+            <label for="name">Your Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="e.g. Alex Johnson"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <!-- Subject -->
+          <div class="field full">
+            <label for="subject">Subject</label>
+            <div class="select-wrap">
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select a subject…</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Report Incorrect Data">Report Incorrect Data</option>
+                <option value="Suggest a Firm">Suggest a Firm</option>
+                <option value="Advertise">Advertise &amp; Partnerships</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="body"
+              placeholder="Tell us what's on your mind — the more detail, the better we can help."
+              required
+            ></textarea>
+          </div>
+
+        </div><!-- /form-grid -->
+
+        <button type="submit" class="btn-send">
+          Send Message
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+
+        <p class="form-footer-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Your information is never shared with third parties.
+        </p>
+      </form>
+    </div>
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+
+      <!-- Response Time -->
+      <div class="glass-card response-card">
+        <div class="rc-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <p>
+          <strong>Typical Response Time</strong>
+          We respond within 1–2 business days. Urgent data corrections are prioritised.
+        </p>
+      </div>
+
+      <!-- Info Card 1: Report Data Errors -->
+      <div class="glass-card info-card">
+        <div class="info-icon red">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h3>Report Data Errors</h3>
+        <p>
+          Futures prop firm rules change frequently — drawdown limits, scaling plans, and payout policies are updated without notice. If you spot outdated or incorrect information, let us know immediately and we'll verify and update the listing within 24 hours.
+        </p>
+        <a href="mailto:contact@futuresprophub.com?subject=Report%20Incorrect%20Data">
+          Report an error
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Info Card 2: Suggest a Firm -->
+      <div class="glass-card info-card">
+        <div class="info-icon green">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+        </div>
+        <h3>Suggest a Firm</h3>
+        <p>
+          We regularly review and add new futures prop trading firms to our comparison database. If there's a firm you'd like us to evaluate, drop us a suggestion and our team will investigate their program, rules, and reputation before adding them.
+        </p>
+        <a href="mailto:contact@futuresprophub.com?subject=Suggest%20a%20Firm">
+          Suggest a firm
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Info Card 3: Advertising -->
+      <div class="glass-card info-card">
+        <div class="info-icon amber">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <h3>Advertising &amp; Partnerships</h3>
+        <p>
+          Interested in featured placement, sponsored reviews, or co-marketing opportunities? We work with select futures prop firms whose programs meet our quality standards. Reach out with details about your firm and goals.
+        </p>
+        <a href="mailto:contact@futuresprophub.com?subject=Advertise">
+          Inquire about placement
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="glass-card social-card">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+
+          <!-- Twitter/X -->
+          <a href="#" class="social-link" aria-label="Follow us on X / Twitter">
+            <div class="sl-icon twitter">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#1d9bf0" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+              </svg>
+            </div>
+            <div class="sl-info">
+              <span class="sl-name">X (Twitter)</span>
+              <span class="sl-handle">@FuturePropHub</span>
+            </div>
+            <svg class="sl-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <!-- Discord -->
+          <a href="#" class="social-link" aria-label="Join our Discord server">
+            <div class="sl-icon discord">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#5865F2" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+              </svg>
+            </div>
+            <div class="sl-info">
+              <span class="sl-name">Discord</span>
+              <span class="sl-handle">Join the community</span>
+            </div>
+            <svg class="sl-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+    </aside>
+  </div><!-- /contact-wrap -->
+
+  <!-- ═══════════════════════════════════════ FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="logo-wordmark" style="margin-bottom:10px;">Futures Prop <span style="color:#a78bfa;">Hub</span></div>
+          <p>Independent comparisons and analysis of futures proprietary trading firms. Always verify terms directly with the firm before purchasing an evaluation.</p>
+        </div>
+
+        <div class="footer-nav">
+          <div class="footer-nav-col">
+            <h4>Site</h4>
+            <a href="index.html">Home</a>
+            <a href="index.html#compare">Compare Firms</a>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+          </div>
+          <div class="footer-nav-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="disclaimer.html">Disclaimer</a>
+          </div>
+          <div class="footer-nav-col">
+            <h4>Contact</h4>
+            <a href="contact.html">Contact Us</a>
+            <a href="mailto:contact@futuresprophub.com">Email Us</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Futures Prop Hub. All rights reserved.</p>
+        <p class="footer-disclosure">
+          Disclosure: Futures Prop Hub may earn affiliate commissions when you purchase evaluations through links on this site. This does not affect our editorial independence or comparison rankings.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

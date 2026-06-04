@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Futures Prop Hub | Futures Prop Trading Guides &amp; News</title>
+  <meta name="description" content="In-depth futures prop trading guides, firm comparisons, evaluation tips, and industry news. Stay ahead with expert insights from Futures Prop Hub." />
+  <meta name="keywords" content="futures prop trading blog, prop firm guides, futures trading tips, drawdown rules, apex trader funding, topstep comparison, evaluation tips" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sadha2528.github.io/Futuresprophub/blog.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blog — Futures Prop Hub | Futures Prop Trading Guides &amp; News" />
+  <meta property="og:description" content="In-depth futures prop trading guides, firm comparisons, evaluation tips, and industry news. Stay ahead with expert insights from Futures Prop Hub." />
+  <meta property="og:url" content="https://sadha2528.github.io/Futuresprophub/blog.html" />
+  <meta property="og:site_name" content="Futures Prop Hub" />
+  <meta property="og:image" content="https://sadha2528.github.io/Futuresprophub/assets/og-blog.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog — Futures Prop Hub | Futures Prop Trading Guides &amp; News" />
+  <meta name="twitter:description" content="In-depth guides, comparisons, and news for futures prop traders." />
+  <meta name="twitter:image" content="https://sadha2528.github.io/Futuresprophub/assets/og-blog.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0515;
+      --card-bg:  rgba(18,10,36,0.85);
+      --white:    #f0eaff;
+      --muted:    #7c6b9e;
+      --accent:   #a78bfa;
+      --purple:   #7c3aed;
+      --green:    #4ade80;
+      --amber:    #fbbf24;
+      --red:      #f87171;
+      --border:   rgba(160,100,255,0.12);
+      --radius:   14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── BACKGROUND ORBS ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 5%,  rgba(124,58,237,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(167,139,250,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 35% at 50% 50%, rgba(76,110,245,0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,5,21,0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .logo-text span { color: var(--accent); }
+
+    nav { display: flex; align-items: center; gap: 6px; }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--white);
+      background: rgba(167,139,250,0.1);
+    }
+
+    nav a.active { color: var(--accent); }
+
+    nav .nav-cta {
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    nav .nav-cta:hover { opacity: 0.9; background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
+
+    /* ─── HERO ─── */
+    .blog-hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 80px 24px 56px;
+    }
+
+    .blog-hero .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .blog-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #f0eaff 0%, #a78bfa 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .blog-hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    /* ─── SEARCH ─── */
+    .search-wrap {
+      position: relative;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    #blog-search {
+      width: 100%;
+      background: rgba(18,10,36,0.85);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px 14px 46px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      backdrop-filter: blur(10px);
+    }
+
+    #blog-search::placeholder { color: var(--muted); }
+
+    #blog-search:focus {
+      border-color: rgba(167,139,250,0.45);
+      box-shadow: 0 0 0 3px rgba(167,139,250,0.08);
+    }
+
+    /* ─── FILTER CHIPS ─── */
+    .filters {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 24px 48px;
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      cursor: pointer;
+      background: rgba(18,10,36,0.7);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 0.845rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all .2s;
+      user-select: none;
+    }
+
+    .filter-chip:hover {
+      border-color: rgba(167,139,250,0.35);
+      color: var(--white);
+    }
+
+    .filter-chip.active {
+      background: linear-gradient(135deg, rgba(124,58,237,0.35), rgba(167,139,250,0.2));
+      border-color: rgba(167,139,250,0.5);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ─── GRID ─── */
+    .blog-grid-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+
+    /* ─── CARD ─── */
+    .blog-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      position: relative;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(124,58,237,0.18);
+      border-color: rgba(167,139,250,0.3);
+    }
+
+    /* Category top bar */
+    .card-topbar {
+      height: 4px;
+      width: 100%;
+    }
+
+    .topbar-guides    { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+    .topbar-comparisons { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+    .topbar-reviews   { background: linear-gradient(90deg, #4ade80, #22d3ee); }
+    .topbar-news      { background: linear-gradient(90deg, #fbbf24, #f97316); }
+
+    .card-body {
+      padding: 26px 26px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      padding: 4px 11px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .tag-guides      { background: rgba(124,58,237,0.2); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
+    .tag-comparisons { background: rgba(14,165,233,0.15); color: #38bdf8; border: 1px solid rgba(14,165,233,0.25); }
+    .tag-reviews     { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
+    .tag-news        { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+
+    .card-readtime {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 26px 22px;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+    }
+
+    .card-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.2);
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s, border-color .2s, transform .15s;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+    }
+
+    .read-btn:hover {
+      background: rgba(167,139,250,0.2);
+      border-color: rgba(167,139,250,0.4);
+      transform: translateX(2px);
+    }
+
+    /* ─── EMPTY STATE ─── */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 64px 24px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .no-results .icon { font-size: 3rem; margin-bottom: 16px; }
+    .no-results h3 { font-size: 1.2rem; color: var(--white); margin-bottom: 8px; }
+
+    /* ─── SUBSCRIBE SECTION ─── */
+    .subscribe-section {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(167,139,250,0.08) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    .subscribe-inner {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .subscribe-section .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .subscribe-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .subscribe-section p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 10px;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    .subscribe-form input[type="email"] {
+      flex: 1;
+      background: rgba(18,10,36,0.85);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .subscribe-form input[type="email"]::placeholder { color: var(--muted); }
+
+    .subscribe-form input[type="email"]:focus {
+      border-color: rgba(167,139,250,0.5);
+      box-shadow: 0 0 0 3px rgba(167,139,250,0.08);
+    }
+
+    .subscribe-btn {
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 22px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity .2s, transform .15s;
+      letter-spacing: 0.01em;
+    }
+
+    .subscribe-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .subscribe-note {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(10,5,21,0.9);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .logo-text { font-size: 1.1rem; }
+
+    .footer-brand p {
+      margin-top: 10px;
+      font-size: 0.83rem;
+      color: var(--muted);
+      max-width: 260px;
+      line-height: 1.6;
+    }
+
+    .footer-links-group h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .footer-links-group ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+    .footer-links-group ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color .2s;
+    }
+
+    .footer-links-group ul a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .affiliate-disclosure {
+      font-size: 0.73rem;
+      color: rgba(124,104,158,0.75);
+      max-width: 520px;
+      line-height: 1.5;
+      text-align: right;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      nav a:not(.nav-cta) { display: none; }
+      .subscribe-form { flex-direction: column; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; }
+      .affiliate-disclosure { text-align: left; }
+    }
+
+    @media (max-width: 480px) {
+      .blog-hero { padding: 56px 20px 40px; }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .blog-card {
+      animation: fadeInUp .4s ease both;
+    }
+
+    .blog-card:nth-child(1) { animation-delay: .05s; }
+    .blog-card:nth-child(2) { animation-delay: .10s; }
+    .blog-card:nth-child(3) { animation-delay: .15s; }
+    .blog-card:nth-child(4) { animation-delay: .20s; }
+    .blog-card:nth-child(5) { animation-delay: .25s; }
+    .blog-card:nth-child(6) { animation-delay: .30s; }
+
+    .hidden-card {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════ HEADER ═══════════════════ -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <span class="logo-text">Futures Prop <span>Hub</span></span>
+      </a>
+      <nav>
+        <a href="index.html#compare">Compare Firms</a>
+        <a href="index.html">Head-to-Head</a>
+        <a href="about.html">About</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="index.html#compare" class="nav-cta">Compare Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="blog-hero">
+    <div class="eyebrow">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Futures Prop Hub Blog
+    </div>
+    <h1>Guides, Comparisons &amp;<br/>Insights for Prop Traders</h1>
+    <p>Cut through the noise. Expert breakdowns of prop firm rules, evaluation strategies, and what really matters when you're putting real capital on the line.</p>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="blog-search" placeholder="Search articles…" autocomplete="off" />
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FILTER CHIPS ═══════════════════ -->
+  <div class="filters">
+    <div class="filter-chip active" data-filter="all">All Articles</div>
+    <div class="filter-chip" data-filter="guides">Guides</div>
+    <div class="filter-chip" data-filter="comparisons">Comparisons</div>
+    <div class="filter-chip" data-filter="reviews">Reviews</div>
+    <div class="filter-chip" data-filter="news">News</div>
+  </div>
+
+  <!-- ═══════════════════ BLOG GRID ═══════════════════ -->
+  <section class="blog-grid-section">
+    <div class="blog-grid" id="blog-grid">
+
+      <!-- Card 1: Guides — Trailing vs Static Drawdown -->
+      <article class="blog-card" data-category="guides" data-title="trailing drawdown vs static drawdown which prop firm rule is better for your trading style">
+        <div class="card-topbar topbar-guides"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="category-tag tag-guides">Guides</span>
+            <span class="card-readtime">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              8 min read
+            </span>
+          </div>
+          <h2 class="card-title">Trailing Drawdown vs Static Drawdown: Which Prop Firm Rule Is Better for Your Trading Style?</h2>
+          <p class="card-desc">Trailing drawdown follows your peak equity upward but locks you out fast if you give back gains — a serious problem for momentum traders who ride big intraday swings. Static drawdown gives you a fixed buffer from day one, making it far friendlier for swing strategies and traders who know their typical max adverse excursion. Understanding which type you're trading under isn't optional — it determines whether your entire strategy is viable.</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-date">Jun 02, 2025</span>
+          <a href="#" class="read-btn">Read Article <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 2: News — News Traders -->
+      <article class="blog-card" data-category="news" data-title="best futures prop firms for news traders in 2025">
+        <div class="card-topbar topbar-news"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="category-tag tag-news">News</span>
+            <span class="card-readtime">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              6 min read
+            </span>
+          </div>
+          <h2 class="card-title">Best Futures Prop Firms for News Traders in 2025</h2>
+          <p class="card-desc">Many prop firms ban trading within a two-minute window around high-impact economic releases like NFP, CPI, and FOMC decisions — and violating this rule is an instant fail. A handful of platforms, including Apex Trader Funding and Take Profit Trader, explicitly permit news trading, making them the go-to choice for traders whose edge lives in volatility spikes. We break down which firms allow it, which restrict it, and what to watch out for in the fine print.</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-date">Jun 05, 2025</span>
+          <a href="#" class="read-btn">Read Article <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 3: Guides — How to Pass Evaluation -->
+      <article class="blog-card" data-category="guides" data-title="how to pass a futures prop firm evaluation 7 rules you must know">
+        <div class="card-topbar topbar-guides"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="category-tag tag-guides">Guides</span>
+            <span class="card-readtime">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              10 min read
+            </span>
+          </div>
+          <h2 class="card-title">How to Pass a Futures Prop Firm Evaluation: 7 Rules You Must Know</h2>
+          <p class="card-desc">Failing an evaluation isn't usually about bad trading — it's about ignoring the rules. From daily loss limits that reset at midnight CT to minimum trading day requirements that many traders forget until the last week, the pitfalls are everywhere. This guide walks through the seven most critical rules across leading prop firms, with practical advice on sizing, session planning, and protecting your drawdown buffer when you're close to hitting your profit target.</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-date">Jun 09, 2025</span>
+          <a href="#" class="read-btn">Read Article <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 4: Comparisons — Apex vs Topstep -->
+      <article class="blog-card" data-category="comparisons" data-title="apex trader funding vs topstep complete 2025 comparison">
+        <div class="card-topbar topbar-comparisons"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="category-tag tag-comparisons">Comparisons</span>
+            <span class="card-readtime">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              12 min read
+            </span>
+          </div>
+          <h2 class="card-title">Apex Trader Funding vs Topstep: Complete 2025 Comparison</h2>
+          <p class="card-desc">Apex and Topstep are the two dominant names in futures prop trading, but they operate on very different philosophies. Apex offers lower monthly fees, more generous profit targets, and allows news trading — while Topstep's one-step evaluation, StepUp coaching resources, and slicker platform integrations make it the premium pick for traders who value structure. We compare pricing, drawdown rules, payout policies, contract limits, and real trader experiences side-by-side.</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-date">Jun 12, 2025</span>
+          <a href="#" class="read-btn">Read Article <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 5: Guides — Activation Fee -->
+      <article class="blog-card" data-category="guides" data-title="what is an activation fee and which prop firms charge one">
+        <div class="card-topbar topbar-guides"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="category-tag tag-guides">Guides</span>
+            <span class="card-readtime">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              5 min read
+            </span>
+          </div>
+          <h2 class="card-title">What Is an Activation Fee and Which Prop Firms Charge One?</h2>
+          <p class="card-desc">You've passed your evaluation — but now there's a $150 activation fee before you can access your funded account. For many traders, this is a shock they weren't expecting when they signed up. Activation fees are a one-time charge some firms use to verify serious intent from funded traders, and they vary wildly from $0 to over $200 depending on the firm and account size. We list every major firm's activation fee policy and explain how to factor this into your true cost-of-entry calculation.</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-date">Jun 17, 2025</span>
+          <a href="#" class="read-btn">Read Article <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 6: Reviews — Instant Funding vs Evaluation -->
+      <article class="blog-card" data-category="reviews" data-title="instant funding vs evaluation which futures prop account should you choose">
+        <div class="card-topbar topbar-reviews"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="category-tag tag-reviews">Reviews</span>
+            <span class="card-readtime">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              7 min read
+            </span>
+          </div>
+          <h2 class="card-title">Instant Funding vs Evaluation: Which Futures Prop Account Should You Choose?</h2>
+          <p class="card-desc">Instant-funded accounts skip the evaluation phase entirely — you pay a higher upfront fee and start trading a live account immediately, but often face tighter drawdown rules and lower profit splits as the firm compensates for the extra risk. Traditional evaluation accounts cost less monthly, filter out undisciplined traders, and typically reward consistent performers with better payout terms. The right choice depends heavily on your confidence level, trading style, and how you value your time vs your money.</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-date">Jun 22, 2025</span>
+          <a href="#" class="read-btn">Read Article <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- No Results State -->
+      <div class="no-results" id="no-results">
+        <div class="icon">🔍</div>
+        <h3>No articles found</h3>
+        <p>Try adjusting your search or selecting a different category filter.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SUBSCRIBE ═══════════════════ -->
+  <section class="subscribe-section">
+    <div class="subscribe-inner">
+      <div class="eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+        Stay Informed
+      </div>
+      <h2>Get the Latest Prop Trading<br/>Insights Delivered</h2>
+      <p>New guides, firm updates, and exclusive comparisons — straight to your inbox. No spam, unsubscribe any time.</p>
+
+      <form class="subscribe-form" action="mailto:hello@futuresprophub.com" method="GET" enctype="text/plain" onsubmit="handleSubscribe(event)">
+        <input type="email" name="body" placeholder="your@email.com" required autocomplete="email" />
+        <button type="submit" class="subscribe-btn">Subscribe →</button>
+      </form>
+      <p class="subscribe-note">🔒 No spam, ever. Unsubscribe with one click.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="text-decoration:none;display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div class="logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                <polyline points="16 7 22 7 22 13"/>
+              </svg>
+            </div>
+            <span class="logo-text">Futures Prop <span>Hub</span></span>
+          </a>
+          <p>Independent comparison and research for futures prop traders. No hype, just data.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#compare">Compare Firms</a></li>
+            <li><a href="index.html">Head-to-Head</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <h4>Blog Topics</h4>
+          <ul>
+            <li><a href="#">Guides</a></li>
+            <li><a href="#">Comparisons</a></li>
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">News</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2025 Futures Prop Hub. All rights reserved.
+        </div>
+        <div class="affiliate-disclosure">
+          ⚠️ Affiliate Disclosure: Some links on this site are affiliate links. We may earn a commission at no extra cost to you. All opinions are our own and based on independent research.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+  <script>
+    // ── Filter & Search Logic ──────────────────────────
+    const cards     = document.querySelectorAll('.blog-card[data-category]');
+    const chips     = document.querySelectorAll('.filter-chip');
+    const searchEl  = document.getElementById('blog-search');
+    const noResults = document.getElementById('no-results');
+
+    let activeFilter = 'all';
+    let searchQuery  = '';
+
+    function applyFilters() {
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cat   = card.dataset.category;
+        const title = card.dataset.title || '';
+
+        const matchesFilter = activeFilter === 'all' || cat === activeFilter;
+        const matchesSearch = searchQuery === '' || title.includes(searchQuery.toLowerCase());
+
+        if (matchesFilter && matchesSearch) {
+          card.classList.remove('hidden-card');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    searchEl.addEventListener('input', () => {
+      searchQuery = searchEl.value.trim();
+      applyFilters();
+    });
+
+    // ── Subscribe Handler ──────────────────────────────
+    function handleSubscribe(e) {
+      // Allow the mailto to fire for now; could replace with Formspree / Mailchimp endpoint.
+      const btn = e.target.querySelector('.subscribe-btn');
+      if (btn) {
+        btn.textContent = '✓ Subscribed!';
+        btn.style.background = 'linear-gradient(135deg,#16a34a,#4ade80)';
+        setTimeout(() => {
+          btn.textContent = 'Subscribe →';
+          btn.style.background = '';
+        }, 3000);
+      }
+    }
+
+    // ── Sticky header shadow on scroll ────────────────
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 10) {
+        header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.35)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
