@@ -2041,48 +2041,7 @@ nav {
     </div>
 
     <!-- Footer nav -->
-    <div class="about-footer-nav">
-      <div class="about-footer-logo" style="display:flex;align-items:center;gap:9px;">
-        <!-- Candlestick icon small -->
-        <svg width="26" height="26" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="36" height="36" rx="9" fill="#1e0e45"/>
-          <rect x="0.6" y="0.6" width="34.8" height="34.8" rx="8.5" fill="none" stroke="#9d5cf6" stroke-width="1.2" opacity="0.6"/>
-          <line x1="9" y1="21" x2="9" y2="27" stroke="rgba(200,160,255,0.5)" stroke-width="0.8"/>
-          <rect x="7" y="22" width="4" height="4" rx="0.8" fill="rgba(180,140,255,0.65)"/>
-          <line x1="16" y1="12" x2="16" y2="27" stroke="rgba(220,190,255,0.6)" stroke-width="0.8"/>
-          <rect x="14" y="14" width="4" height="10" rx="0.8" fill="rgba(235,210,255,0.85)"/>
-          <line x1="23" y1="16" x2="23" y2="27" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
-          <rect x="21" y="18" width="4" height="8" rx="0.8" fill="rgba(255,255,255,0.92)"/>
-          <polyline points="5,29 11,23 17,26 28,11" stroke="url(#icoArrow)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <polyline points="23,9 28,11 26,16" stroke="url(#icoArrow)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <svg width="28" height="28" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ftrLogoGradBg" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#7c3aed"/><stop offset="50%" stop-color="#a855f7"/><stop offset="100%" stop-color="#e879f9"/>
-            </linearGradient>
-            <linearGradient id="ftrLogoLine" x1="0" y1="17" x2="34" y2="17" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#f0abfc"/>
-            </linearGradient>
-          </defs>
-          <rect width="34" height="34" rx="9" fill="url(#ftrLogoGradBg)"/>
-          <rect x="0.5" y="0.5" width="33" height="33" rx="8.5" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-          <rect x="5" y="19" width="4.5" height="8" rx="1.2" fill="rgba(255,255,255,0.35)"/>
-          <rect x="11" y="14" width="4.5" height="13" rx="1.2" fill="rgba(255,255,255,0.55)"/>
-          <rect x="17" y="10" width="4.5" height="17" rx="1.2" fill="rgba(255,255,255,0.75)"/>
-          <rect x="23" y="6" width="4.5" height="21" rx="1.2" fill="rgba(255,255,255,0.95)"/>
-          <polyline points="7.25,18 13.25,13 19.25,9 25.25,5.5" stroke="url(#ftrLogoLine)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9"/>
-          <circle cx="25.25" cy="5.5" r="2" fill="#f0abfc"/>
-        </svg>
-        <span style="font-weight:700;color:white;">Futures prop <span style="background:linear-gradient(120deg,#c084fc,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;">compare</span></span>
-      </div>
-      <div class="about-footer-links">
-        <button onclick="showTab('firms',document.querySelector('.nav-link'))" class="about-footer-link">All Firms</button>
-        <button onclick="showTab('h2h',document.querySelectorAll('.nav-link')[1])" class="about-footer-link">Head‑to‑Head</button>
-        <button onclick="showTab('compare',document.querySelectorAll('.nav-link')[2])" class="about-footer-link">Compare All</button>
-      </div>
-      <div class="about-footer-copy">© 2026 FuturesPropCompare · For informational purposes only</div>
-    </div>
+
 
   </div>
 </div>
@@ -3818,16 +3777,40 @@ initState(); renderFirms(); renderFeatured(); populateH2H(); readUrlState();
 
       <!-- Brand col -->
       <div>
-        <div class="footer-brand-logo">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="rgba(124,58,237,0.15)"/>
-            <rect x="6" y="18" width="4" height="9" rx="1.5" fill="#a78bfa"/>
-            <rect x="12" y="12" width="4" height="15" rx="1.5" fill="#c084fc"/>
-            <rect x="18" y="7" width="4" height="20" rx="1.5" fill="#a78bfa"/>
-            <rect x="24" y="14" width="4" height="13" rx="1.5" fill="#c084fc" opacity="0.7"/>
-          </svg>
-          FuturesPropCompare
-        </div>
+        <a href="#" onclick="showTab('firms',document.querySelector('.nav-link'));return false;" class="footer-brand-logo">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="ftrBg" cx="50%" cy="40%" r="70%">
+            <stop offset="0%" stop-color="#1e0e45"/>
+            <stop offset="100%" stop-color="#07030f"/>
+          </radialGradient>
+          <linearGradient id="ftrArrow" x1="5" y1="29" x2="31" y2="7" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#7c3aed"/>
+            <stop offset="55%" stop-color="#a855f7"/>
+            <stop offset="100%" stop-color="#e879f9"/>
+          </linearGradient>
+          <linearGradient id="ftrBorder" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#9d5cf6" stop-opacity="0.9"/>
+            <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#e879f9" stop-opacity="0.8"/>
+          </linearGradient>
+        </defs>
+        <rect width="36" height="36" rx="9" fill="url(#ftrBg)"/>
+        <rect x="0.6" y="0.6" width="34.8" height="34.8" rx="8.5" fill="none" stroke="url(#ftrBorder)" stroke-width="1.2"/>
+        <line x1="9" y1="21" x2="9" y2="27" stroke="rgba(200,160,255,0.5)" stroke-width="0.8"/>
+        <rect x="7" y="22" width="4" height="4" rx="0.8" fill="rgba(180,140,255,0.65)"/>
+        <line x1="16" y1="12" x2="16" y2="27" stroke="rgba(220,190,255,0.6)" stroke-width="0.8"/>
+        <rect x="14" y="14" width="4" height="10" rx="0.8" fill="rgba(235,210,255,0.85)"/>
+        <line x1="23" y1="16" x2="23" y2="27" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+        <rect x="21" y="18" width="4" height="8" rx="0.8" fill="rgba(255,255,255,0.92)"/>
+        <polyline points="5,29 11,23 17,26 28,11" stroke="url(#ftrArrow)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <polyline points="23,9 28,11 26,16" stroke="url(#ftrArrow)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+          <span class="logo-wordmark">
+          <span class="lw-top">Futures prop</span>
+          <span class="lw-bot">compare</span>
+        </span>
+        </a>
         <div class="footer-brand-tagline">Independent comparison of the best futures prop firms — data-driven, trader-first, always free.</div>
       </div>
 
@@ -3835,10 +3818,10 @@ initState(); renderFirms(); renderFeatured(); populateH2H(); readUrlState();
       <div>
         <div class="footer-col-title">Tools</div>
         <div class="footer-col-links">
-          <button class="footer-col-btn" onclick="showTab('firms',null)">Compare Firms</button>
-          <button class="footer-col-btn" onclick="showTab('h2h',null)">Head-to-Head</button>
-          <button class="footer-col-btn" onclick="showTab('compare',null)">Compare All</button>
-          <button class="footer-col-btn" onclick="showTab('about',null)">About the Site</button>
+          <button class="footer-col-btn" onclick="showTab('firms',document.querySelectorAll('.nav-link')[0]);window.scrollTo({top:0,behavior:'smooth'})">Compare Firms</button>
+          <button class="footer-col-btn" onclick="showTab('h2h',document.querySelectorAll('.nav-link')[1]);window.scrollTo({top:0,behavior:'smooth'})">Head-to-Head</button>
+          <button class="footer-col-btn" onclick="showTab('compare',document.querySelectorAll('.nav-link')[2]);window.scrollTo({top:0,behavior:'smooth'})">Compare All</button>
+          <button class="footer-col-btn" onclick="showTab('about',document.querySelectorAll('.nav-link')[3]);window.scrollTo({top:0,behavior:'smooth'})">About the Site</button>
         </div>
       </div>
 
