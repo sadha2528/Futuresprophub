@@ -1042,7 +1042,6 @@ nav {
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; flex-shrink: 0;
   transition: all 0.18s ease;
-  position: relative;
   font-size: 11px; font-weight: 800; color: transparent;
 }
 .cmp-tick::after {
@@ -1060,6 +1059,35 @@ nav {
   box-shadow: 0 0 8px rgba(124,58,237,0.5);
 }
 .cmp-tick.active::after { color: #fff; }
+/* Compare row label */
+.cmp-row {
+  display: flex; align-items: center; gap: 7px;
+  margin-top: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(124,58,237,0.05);
+  border: 1px solid rgba(124,58,237,0.1);
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+  width: fit-content;
+  user-select: none;
+}
+.cmp-row:hover {
+  background: rgba(124,58,237,0.1);
+  border-color: rgba(160,100,255,0.25);
+}
+.cmp-row.active {
+  background: rgba(124,58,237,0.12);
+  border-color: rgba(160,100,255,0.35);
+}
+.cmp-label {
+  font-size: 11.5px; font-weight: 600;
+  color: var(--muted);
+  transition: color 0.18s;
+  white-space: nowrap;
+}
+.cmp-row.active .cmp-label { color: var(--violet); }
+.cmp-row:hover .cmp-label { color: var(--sub); }
 
 /* Card Details */
 .card-details { padding:0 1.25rem .85rem; }
@@ -3238,7 +3266,10 @@ function renderCard(f,ci){
       ${typeButtons}
       <div class="plans-label">Select size</div>
       <div class="plan-pills">${pills}</div>
-      <button class="cmp-tick ${inC?'active':''}" title="${inC?'Remove from compare':'Add to compare'}" onclick="toggleCompare('${f.id}',${inC?'false':'true'},this)"></button>
+      <div class="cmp-row ${inC?'active':''}" onclick="toggleCompare('${f.id}',${inC?'false':'true'},this.querySelector('.cmp-tick'))">
+        <button class="cmp-tick ${inC?'active':''}" title="${inC?'Remove from compare':'Add to compare'}"></button>
+        <span class="cmp-label">${inC?'Added to compare':'Add to compare'}</span>
+      </div>
     </div>
     <div class="card-details">
       <div class="metrics-grid">
@@ -3321,11 +3352,20 @@ function toggleCompare(id, addStr, btn){
   } else {
     compareSet.delete(id);
   }
-  /* Update just this button instantly without full re-render */
+  const isNowActive = compareSet.has(id);
+  /* Update just this button and its parent row instantly without full re-render */
   if(btn){
-    btn.classList.toggle('active', compareSet.has(id));
-    btn.title = compareSet.has(id) ? 'Remove from compare' : 'Add to compare';
-    btn.setAttribute('onclick', `toggleCompare('${id}',${compareSet.has(id)?'false':'true'},this)`);
+    btn.classList.toggle('active', isNowActive);
+    btn.title = isNowActive ? 'Remove from compare' : 'Add to compare';
+    /* Update parent .cmp-row */
+    const row = btn.closest('.cmp-row');
+    if(row){
+      row.classList.toggle('active', isNowActive);
+      row.setAttribute('onclick', `toggleCompare('${id}',${isNowActive?'false':'true'},this.querySelector('.cmp-tick'))`);
+      const label = row.querySelector('.cmp-label');
+      if(label) label.textContent = isNowActive ? 'Added to compare' : 'Add to compare';
+    }
+    btn.setAttribute('onclick', ''); /* click handled by row */
   }
   ['compare-count','compare-count-text'].forEach(x=>{
     const el=document.getElementById(x); if(el) el.textContent=compareSet.size;
