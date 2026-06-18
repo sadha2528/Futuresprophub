@@ -125,6 +125,34 @@
       color: var(--violet);
     }
 
+    /* Shared logo link used by injected header logo */
+    a.site-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    a.site-logo-link .logo-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      font-size: clamp(0.72rem, 0.7rem + 0.3vw, 0.88rem);
+    }
+    a.site-logo-link .lw-top {
+      font-weight: 700;
+      color: #f0eaff;
+      letter-spacing: -0.2px;
+    }
+    a.site-logo-link .lw-bot {
+      font-weight: 800;
+      background: linear-gradient(120deg, #c084fc 0%, #e879f9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.3px;
+    }
+
     nav {
       display: flex;
       align-items: center;
