@@ -118,7 +118,8 @@
         { "@type": "ListItem", "position": 6, "name": "Lucid Trading", "url": "https://lucidtrading.com" },
         { "@type": "ListItem", "position": 7, "name": "MyFundedFutures", "url": "https://myfundedfutures.com" },
         { "@type": "ListItem", "position": 8, "name": "Alpha Futures", "url": "https://alphafutures.com" },
-        { "@type": "ListItem", "position": 9, "name": "FundedNext", "url": "https://fundednext.com" }
+        { "@type": "ListItem", "position": 9, "name": "FundedNext", "url": "https://fundednext.com" },
+        { "@type": "ListItem", "position": 10, "name": "Tradentry", "url": "https://www.tradentry.org" }
       ]
     },
     {
@@ -1864,15 +1865,15 @@ nav {
   <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;">
     <div class="eyebrow-pill">
       <span class="eyebrow-dot"></span>
-      ✦ Verified May 2026 — 9 Firms, 30+ Plans
+      ✦ Verified July 2026 — 10 Firms, 30+ Plans
     </div>
     <h1>Compare <span class="grad">Futures Prop Firms</span><br>Side by Side</h1>
     <p class="hero-sub">Compare rules, drawdowns, promo codes and payout conditions across every top futures prop firm.</p>
     <div class="hero-stats">
-      <div><div class="stat-num">9</div><div class="stat-label">Firms Tracked</div></div>
-      <div><div class="stat-num">72</div><div class="stat-label">Plans Covered</div></div>
+      <div><div class="stat-num">10</div><div class="stat-label">Firms Tracked</div></div>
+      <div><div class="stat-num">76</div><div class="stat-label">Plans Covered</div></div>
       <div><div class="stat-num">25+</div><div class="stat-label">Data Points</div></div>
-      <div><div class="stat-num">Apr '26</div><div class="stat-label">Last Updated</div></div>
+      <div><div class="stat-num">Jul '26</div><div class="stat-label">Last Updated</div></div>
     </div>
   </div>
 </div>
@@ -2029,10 +2030,10 @@ nav {
 
     <!-- Stats row -->
     <div class="about-stats-row">
-      <div class="about-stat-box"><div class="about-stat-num">9</div><div class="about-stat-label">Firms Tracked</div></div>
-      <div class="about-stat-box"><div class="about-stat-num">72</div><div class="about-stat-label">Plans Covered</div></div>
+      <div class="about-stat-box"><div class="about-stat-num">10</div><div class="about-stat-label">Firms Tracked</div></div>
+      <div class="about-stat-box"><div class="about-stat-num">76</div><div class="about-stat-label">Plans Covered</div></div>
       <div class="about-stat-box"><div class="about-stat-num">25+</div><div class="about-stat-label">Data Points Per Plan</div></div>
-      <div class="about-stat-box"><div class="about-stat-num">May '26</div><div class="about-stat-label">Last Verified</div></div>
+      <div class="about-stat-box"><div class="about-stat-num">Jul '26</div><div class="about-stat-label">Last Verified</div></div>
     </div>
 
     <!-- Mission cards -->
@@ -3174,6 +3175,78 @@ const FIRMS=[
       rules:[
         {t:'pass',x:'No activation fee, pass in 1 day, 90% split'},
         {t:'fail',x:'$2,000 DLG, $3,000 max loss, EOD trailing'},
+      ]},
+  ]},
+  {id:'tradentry',name:'Tradentry',tagline:'Monthly sub, EOD trailing, news OK, 90% split, 14-day satisfaction guarantee, no scaling limits',
+  logo:'TR',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tradentry.org&size=128',
+  logoColor:'#818cf8',logoBg:'rgba(129,140,248,0.16)',rating:4.2,featured:false,
+  tags:['evaluation','news-ok'],
+  affiliateUrl:'https://www.tradentry.org/?ref=FUTURESHUB',
+  promoCode:'FPC40',promoDiscount:'40% off your evaluation',
+  promoDesc:'Use code FPC40 at checkout on tradentry.org for 40% off.',
+  platforms:['R|Trader Pro','Quantower','ATAS','Bookmap','Sierra Chart','Tradesea'],
+  paymentMethods:['Bank Wire','Crypto'],
+  lucidTypes:null,
+  plans:[
+    {label:'25K',price:59,accountSize:'$25,000',profitTarget:'$1,500',
+      dailyLoss:'$500',maxLoss:'$1,000',maxLossType:'EOD Trailing',
+      profitSplit:'90%',payoutFreq:'On-demand (verify in member area)',minPayoutDays:2,minPayoutAmount:100,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'DCR — Daily Consistency Rule (% TBC)',
+      minTradingDays:2,news:true,trailing:true,overnight:true,weekend:true,
+      bufferReq:false,bufferAmt:'—',scaling:'No scaling limits from day 1',maxContracts:'5 mini (verify)',
+      activationFee:'$149 Standard / $0 (higher monthly)',resetFee:'$59',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No news trading restrictions — trade FOMC, NFP, CPI freely'},
+        {t:'pass',x:'No scaling limits — trade max contracts from day 1'},
+        {t:'pass',x:'90% profit split from the start'},
+        {t:'pass',x:'Overnight & weekend holding allowed'},
+        {t:'pass',x:'14-day satisfaction guarantee (refund of 1 monthly payment)'},
+        {t:'pass',x:'Monthly reset credit included with each billing renewal'},
+        {t:'fail',x:'EOD trailing drawdown $1,000'},
+        {t:'fail',x:'$500 daily loss limit'},
+        {t:'fail',x:'Daily Consistency Rule (DCR) applies — verify exact % on site'},
+        {t:'info',x:'Monthly subscription ($59/mo) — newer firm, verify payout history'},
+      ]},
+    {label:'50K',price:89,accountSize:'$50,000',profitTarget:'$3,000',
+      dailyLoss:'$1,000',maxLoss:'$2,000',maxLossType:'EOD Trailing',
+      profitSplit:'90%',payoutFreq:'On-demand (verify in member area)',minPayoutDays:2,minPayoutAmount:100,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'DCR — Daily Consistency Rule (% TBC)',
+      minTradingDays:2,news:true,trailing:true,overnight:true,weekend:true,
+      bufferReq:false,bufferAmt:'—',scaling:'No scaling limits from day 1',maxContracts:'5 mini (verify)',
+      activationFee:'$149 Standard / $0 (higher monthly)',resetFee:'$59',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'No news restrictions, 90% split, no scaling limits'},
+        {t:'pass',x:'Min 2 trading days — one of the fastest pass windows'},
+        {t:'pass',x:'Overnight & weekend holds allowed'},
+        {t:'fail',x:'EOD trailing drawdown $2,000'},
+        {t:'fail',x:'$1,000 daily loss limit'},
+        {t:'fail',x:'Consistency rule (DCR) — verify exact threshold on site'},
+        {t:'info',x:'Monthly sub $89/mo; newer firm — limited payout track record'},
+      ]},
+    {label:'100K',price:159,accountSize:'$100,000',profitTarget:'$6,000',
+      dailyLoss:'$2,000',maxLoss:'$3,000',maxLossType:'EOD Trailing',
+      profitSplit:'90%',payoutFreq:'On-demand (verify in member area)',minPayoutDays:2,minPayoutAmount:100,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'DCR — Daily Consistency Rule (% TBC)',
+      minTradingDays:2,news:true,trailing:true,overnight:true,weekend:true,
+      bufferReq:false,bufferAmt:'—',scaling:'No scaling limits from day 1',maxContracts:'10 mini (verify)',
+      activationFee:'$149 Standard / $0 (higher monthly)',resetFee:'$79',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'90% split, news OK, overnight OK, no scaling limits'},
+        {t:'fail',x:'$3,000 EOD trailing drawdown, $2,000 daily loss limit'},
+        {t:'fail',x:'Consistency rule (DCR) applies — verify % on tradentry.org'},
+      ]},
+    {label:'150K',price:199,accountSize:'$150,000',profitTarget:'$9,000',
+      dailyLoss:'$2,500',maxLoss:'$4,500',maxLossType:'EOD Trailing',
+      profitSplit:'90%',payoutFreq:'On-demand (verify in member area)',minPayoutDays:2,minPayoutAmount:100,
+      evalSteps:1,noEval:false,instantFunding:false,consistency:'DCR — Daily Consistency Rule (% TBC)',
+      minTradingDays:2,news:true,trailing:true,overnight:true,weekend:true,
+      bufferReq:false,bufferAmt:'—',scaling:'No scaling limits from day 1',maxContracts:'15 mini (verify)',
+      activationFee:'$149 Standard / $0 (higher monthly)',resetFee:'$99',coachingIncluded:false,
+      rules:[
+        {t:'pass',x:'$150K with 90% split, news OK, no scaling limits'},
+        {t:'fail',x:'$4,500 EOD trailing drawdown, $2,500 daily loss limit'},
+        {t:'fail',x:'Consistency rule (DCR) — verify before purchasing'},
+        {t:'info',x:'Verify current pricing at tradentry.org — promotions frequent'},
       ]},
   ]}
 ];
