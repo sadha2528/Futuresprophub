@@ -588,6 +588,7 @@
           <option value="fundednext">FundedNext</option>
           <option value="alphafutures">Alpha Futures</option>
           <option value="tradentry">Tradentry</option>
+          <option value="onyx">Onyx Futures</option>
         </select>
       </div>
       <div class="calc-field">
@@ -740,6 +741,20 @@
 <script>
 // ── Firm Database ──────────────────────────────────────
 const FIRMS = {
+  onyx: {
+    name: 'Onyx Futures',
+    split: 85,
+    accounts: [
+      { label: '25K (Starter)', size: 25000, evalCost: 150, activationFee: 0 },
+      { label: '50K (Core)', size: 50000, evalCost: 170, activationFee: 0 },
+      { label: '100K (Pro)', size: 100000, evalCost: 300, activationFee: 0 },
+      { label: '150K (MAX)', size: 150000, evalCost: 350, activationFee: 0 }
+    ],
+    badge: '85/15 Split · Daily Payouts · Direct to Live',
+    note: 'One evaluation directly to a Live broker account. No activation fees.',
+    first100k: 0
+  },
+
   topstep: {
     name: 'Topstep',
     split: 90,
