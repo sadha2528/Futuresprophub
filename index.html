@@ -1782,6 +1782,13 @@ nav {
 .copier-trial{flex:0.6;text-align:center;padding:10px 0;border-radius:10px;font-size:var(--text-sm);font-weight:600;background:rgba(34,197,94,0.12);color:#4ade80;border:1px solid rgba(34,197,94,0.25);cursor:pointer;text-decoration:none;transition:background .2s;}
 .copier-trial:hover{background:rgba(34,197,94,0.2);}
 @media(max-width:600px){.copier-grid{grid-template-columns:1fr;}}
+
+.sub-nav { display: flex; justify-content: center; gap: 12px; margin: 0 0 30px 0; padding: 0 20px; }
+.sub-nav button { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--muted); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.sub-nav button:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+.sub-nav button.active { background: rgba(139,92,246,0.2); border-color: var(--violet); color: var(--white); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 </style>
 </head>
 <body>
@@ -1923,21 +1930,30 @@ nav {
 
 <!-- ─── ALL FIRMS GRID ─── -->
 <div class="section firms-section" id="firms-section">
-  <div class="firms-grid" id="firms-grid"></div>
+  
+  <div class="sub-nav">
+    <button class="active" onclick="switchSubTab('firms', 'grid', this)">All Prop Firms</button>
+    <button onclick="switchSubTab('firms', 'h2h', this)">Head-to-Head</button>
+    <button onclick="switchSubTab('firms', 'compare', this)">Compare All <span id="compare-count-badge">0</span></button>
+  </div>
+  <div class="tab-content active" id="firms-grid-tab">
+    <div class="firms-grid" id="firms-grid"></div>
+  </div>
+
 
 <!-- ─── COMPARE ALL ─── -->
-<div class="compare-section" style="margin-top: 40px;" id="compare-section">
+<div class="tab-content" id="firms-compare-tab"><div class="compare-section" id="compare-section">
   <div class="compare-top">
     <div class="compare-info">Comparing <strong id="compare-count-text">0</strong> firms (max 5)</div>
     <button class="clear-btn" onclick="clearCompare()">Clear all</button>
   </div>
   <div id="compare-empty-msg" class="compare-empty"><h3>No firms selected</h3><p>Tick "Add to compare" on any firm card.</p></div>
   <div class="cmp-tbl-wrap" id="compare-table-wrap" style="display:none;"><table class="cmp-tbl" id="compare-table"></table></div>
-</div>
+</div></div>
 
 
 <!-- ─── HEAD TO HEAD ─── -->
-<div class="h2h-section" style="margin-top: 40px;" id="h2h-section">
+<div class="tab-content" id="firms-h2h-tab"><div class="h2h-section" id="h2h-section">
   <div class="section-hdr">
     <h2>Head‑to‑Head Comparison</h2>
     <p>Deep breakdown across every rule, cost, buffer and payout condition</p>
@@ -1967,15 +1983,46 @@ nav {
     <h2>Trade <span class="grad">Copier</span> Tools</h2>
     <p>Cloud-based trade copiers & multi-account execution tools for futures prop firm traders</p>
   </div>
-  <div class="copier-grid" id="copier-grid"></div>
+  
+  <div class="sub-nav">
+    <button class="active" onclick="switchSubTab('copiers', 'grid', this)">All Trade Copiers</button>
+    <button onclick="switchSubTab('copiers', 'h2h', this)">Head-to-Head</button>
+    <button onclick="switchSubTab('copiers', 'compare', this)">Compare All <span id="copier-compare-count-badge">0</span></button>
+  </div>
+  <div class="tab-content active" id="copiers-grid-tab">
+    <div class="copier-grid" id="copier-grid"></div>
+  </div>
+
 </div>
 
 
 
 <!-- ─── COPIER COMPARE ALL ─── -->
-<div class="compare-section" id="copier-compare-section" style="margin-top: 40px;">
 
-</div>
+  <!-- ─── COPIER HEAD TO HEAD ─── -->
+  <div class="tab-content" id="copiers-h2h-tab">
+    <div class="h2h-section" id="copier-h2h-section">
+      <div class="section-hdr">
+        <h2>Trade Copier Head‑to‑Head</h2>
+        <p>Compare two copiers side-by-side</p>
+      </div>
+      <div class="h2h-pickers">
+        <div class="picker-card">
+          <h3>⬤ Copier A</h3>
+          <select class="glass-sel" id="copier-h2h-a" onchange="renderCopierH2H()"><option value="">— Select a copier —</option></select>
+        </div>
+        <div class="picker-card">
+          <h3>⬤ Copier B</h3>
+          <select class="glass-sel" id="copier-h2h-b" onchange="renderCopierH2H()"><option value="">— Select a copier —</option></select>
+        </div>
+      </div>
+      <div id="copier-h2h-content"><div class="h2h-empty"><h3>Select two copiers above</h3></div></div>
+    </div>
+  </div>
+
+<div class="tab-content" id="copiers-compare-tab"><div class="compare-section" id="copier-compare-section">
+
+</div></div>
 
 </div><!-- /page -->
 
@@ -3486,7 +3533,7 @@ function toggleCompare(id, addStr, btn){
     }
     btn.setAttribute('onclick', ''); /* click handled by row */
   }
-  ['compare-count','compare-count-text'].forEach(x=>{
+  ['compare-count-text', 'compare-count-badge'].forEach(x=>{
     const el=document.getElementById(x); if(el) el.textContent=compareSet.size;
   });
   renderCompareAll();
@@ -3925,7 +3972,7 @@ function updateFeaturedVisibility() {
 const _origRenderFirms = renderFirms;
 renderFirms = function() { _origRenderFirms(); updateFeaturedVisibility(); };
 
-initState(); renderFirms(); renderFeatured(); populateH2H(); readUrlState();
+initState(); renderFirms(); renderFeatured(); populateH2H(); initCopierH2H(); readUrlState();
 </script>
 
 
@@ -4190,6 +4237,71 @@ function renderCopierCompareAll(){
   }).join('')}</tbody>`;
   
   document.getElementById('copier-compare-table').innerHTML = th + tb;
+}
+
+function switchSubTab(parent, tab, btn) {
+  // parent = 'firms' or 'copiers'
+  // tab = 'grid', 'h2h', or 'compare'
+  
+  // update buttons
+  const subNav = btn.parentElement;
+  subNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  // hide all tab contents in this section
+  document.getElementById(`${parent}-grid-tab`).classList.remove('active');
+  document.getElementById(`${parent}-h2h-tab`).classList.remove('active');
+  document.getElementById(`${parent}-compare-tab`).classList.remove('active');
+  
+  // show the selected one
+  document.getElementById(`${parent}-${tab}-tab`).classList.add('active');
+  
+  if (parent === 'firms' && tab === 'compare') renderCompareAll();
+  if (parent === 'copiers' && tab === 'compare') renderCopierCompareAll();
+}
+
+function initCopierH2H() {
+  const selA = document.getElementById('copier-h2h-a');
+  const selB = document.getElementById('copier-h2h-b');
+  COPIERS.forEach(c => {
+    selA.appendChild(new Option(c.name, c.id));
+    selB.appendChild(new Option(c.name, c.id));
+  });
+}
+
+function renderCopierH2H() {
+  const idA = document.getElementById('copier-h2h-a').value;
+  const idB = document.getElementById('copier-h2h-b').value;
+  const cont = document.getElementById('copier-h2h-content');
+  if(!idA || !idB){
+    cont.innerHTML = `<div class="h2h-empty"><h3>Select two copiers above</h3></div>`;
+    return;
+  }
+  const cA = COPIERS.find(c => c.id === idA);
+  const cB = COPIERS.find(c => c.id === idB);
+  
+  const rows = [
+    {s:'General Info'},
+    ['Type', c=>c.type],
+    ['Platforms', c=>c.platforms.join(', ')],
+    ['Prop Firms', c=>c.supportedFirms.join(', ')],
+    {s:'Pricing & Trial'},
+    ['Starter Plan', c=>c.plans[0]?`${c.plans[0].name}: ${c.plans[0].price} (${c.plans[0].detail})`:'-'],
+    ['Mid/Pro Plan', c=>c.plans[1]?`${c.plans[1].name}: ${c.plans[1].price} (${c.plans[1].detail})`:'-'],
+    ['Top Plan', c=>c.plans[2]?`${c.plans[2].name}: ${c.plans[2].price} (${c.plans[2].detail})`:'-'],
+    ['Annual Discount', c=>c.annualDiscount||'None'],
+    ['Free Trial', c=>c.trial||'None'],
+    {s:'Features'},
+    ['Key Features', c=>c.features.join('<br>')]
+  ];
+  
+  let tb = ``;
+  rows.forEach(r => {
+    if(r.s) tb += `<div class="h2h-cat">${r.s}</div>`;
+    else tb += `<div class="h2h-row"><div class="h2h-lbl">${r[0]}</div><div class="h2h-val">${r[1](cA)}</div><div class="h2h-val">${r[1](cB)}</div></div>`;
+  });
+  
+  cont.innerHTML = tb;
 }
 </script>
     </div>
