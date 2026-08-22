@@ -1806,8 +1806,6 @@ nav {
     <div class="nav-center">
       <button class="nav-link active"  onclick="showTab('firms',this)">Prop Firms</button>
       <button class="nav-link"         onclick="showTab('copiers',this)">Trade Copiers</button>
-      <button class="nav-link"         onclick="showTab('h2h',this)">Head‑to‑Head</button>
-      <button class="nav-link"         onclick="showTab('compare',this)">Compare All <span class="nav-badge" id="compare-count">0</span></button>
       <button class="nav-link"         onclick="showTab('about',this)">About Us</button>
     </div>
     <div class="nav-right"></div>
@@ -1821,8 +1819,6 @@ nav {
   <div class="nav-mobile-menu">
     <button class="nav-link active" onclick="showTab('firms',this);this.closest('nav').classList.remove('nav-mobile-open')">Prop Firms</button>
     <button class="nav-link" onclick="showTab('copiers',this);this.closest('nav').classList.remove('nav-mobile-open')">Trade Copiers</button>
-    <button class="nav-link" onclick="showTab('h2h',this);this.closest('nav').classList.remove('nav-mobile-open')">Head&#8209;to&#8209;Head</button>
-    <button class="nav-link" onclick="showTab('compare',this);this.closest('nav').classList.remove('nav-mobile-open')">Compare All</button>
     <button class="nav-link" onclick="showTab('about',this);this.closest('nav').classList.remove('nav-mobile-open')">About Us</button>
   </div>
 </nav>
@@ -1928,20 +1924,20 @@ nav {
 <!-- ─── ALL FIRMS GRID ─── -->
 <div class="section firms-section" id="firms-section">
   <div class="firms-grid" id="firms-grid"></div>
-</div>
 
-
-<!-- ─── TRADE COPIERS ─── -->
-<div class="section copier-section" id="copier-section">
-  <div class="section-hdr">
-    <h2>Trade <span class="grad">Copier</span> Tools</h2>
-    <p>Cloud-based trade copiers & multi-account execution tools for futures prop firm traders</p>
+<!-- ─── COMPARE ALL ─── -->
+<div class="compare-section" style="margin-top: 40px;" id="compare-section">
+  <div class="compare-top">
+    <div class="compare-info">Comparing <strong id="compare-count-text">0</strong> firms (max 5)</div>
+    <button class="clear-btn" onclick="clearCompare()">Clear all</button>
   </div>
-  <div class="copier-grid" id="copier-grid"></div>
+  <div id="compare-empty-msg" class="compare-empty"><h3>No firms selected</h3><p>Tick "Add to compare" on any firm card.</p></div>
+  <div class="cmp-tbl-wrap" id="compare-table-wrap" style="display:none;"><table class="cmp-tbl" id="compare-table"></table></div>
 </div>
+
 
 <!-- ─── HEAD TO HEAD ─── -->
-<div class="section h2h-section" id="h2h-section">
+<div class="h2h-section" style="margin-top: 40px;" id="h2h-section">
   <div class="section-hdr">
     <h2>Head‑to‑Head Comparison</h2>
     <p>Deep breakdown across every rule, cost, buffer and payout condition</p>
@@ -1962,15 +1958,23 @@ nav {
   </div>
   <div id="h2h-content"><div class="h2h-empty"><h3>Select two firms above</h3><p>Choose a firm and plan for each slot.</p></div></div>
 </div>
+</div>
 
-<!-- ─── COMPARE ALL ─── -->
-<div class="section compare-section" id="compare-section">
-  <div class="compare-top">
-    <div class="compare-info">Comparing <strong id="compare-count-text">0</strong> firms (max 5)</div>
-    <button class="clear-btn" onclick="clearCompare()">Clear all</button>
+
+<!-- ─── TRADE COPIERS ─── -->
+<div class="section copier-section" id="copier-section">
+  <div class="section-hdr">
+    <h2>Trade <span class="grad">Copier</span> Tools</h2>
+    <p>Cloud-based trade copiers & multi-account execution tools for futures prop firm traders</p>
   </div>
-  <div id="compare-empty-msg" class="compare-empty"><h3>No firms selected</h3><p>Tick "Add to compare" on any firm card.</p></div>
-  <div class="cmp-tbl-wrap" id="compare-table-wrap" style="display:none;"><table class="cmp-tbl" id="compare-table"></table></div>
+  <div class="copier-grid" id="copier-grid"></div>
+</div>
+
+
+
+<!-- ─── COPIER COMPARE ALL ─── -->
+<div class="compare-section" id="copier-compare-section" style="margin-top: 40px;">
+
 </div>
 
 </div><!-- /page -->
@@ -3485,7 +3489,7 @@ function toggleCompare(id, addStr, btn){
   ['compare-count','compare-count-text'].forEach(x=>{
     const el=document.getElementById(x); if(el) el.textContent=compareSet.size;
   });
-  if(document.getElementById('compare-section').classList.contains('active')) renderCompareAll();
+  renderCompareAll();
 }
 function clearCompare(){compareSet.clear();['compare-count','compare-count-text'].forEach(x=>document.getElementById(x).textContent=0);renderFirms();renderCompareAll();}
 function renderCompareAll(){
@@ -3798,16 +3802,16 @@ function showTab(tab,btn){
   document.querySelectorAll('.nav-link').forEach(t=>t.classList.remove('active'));
   if(btn) btn.classList.add('active');
   document.querySelectorAll('.firms-section').forEach(el=>el.classList.add('hidden'));
-  document.getElementById('h2h-section').classList.remove('active');
-  document.getElementById('compare-section').classList.remove('active');
+  
+  
   document.getElementById('copier-section').classList.remove('active');
   if(tab==='firms'){
     document.querySelectorAll('.firms-section').forEach(el=>el.classList.remove('hidden'));
     window.scrollTo({top:0,behavior:'smooth'});
   }
-  else if(tab==='copiers'){document.getElementById('copier-section').classList.add('active');}
-  else if(tab==='h2h'){document.getElementById('h2h-section').classList.add('active');}
-  else if(tab==='compare'){document.getElementById('compare-section').classList.add('active');renderCompareAll();renderCopierCompareAll();}
+  else if(tab==='copiers'){document.getElementById('copier-section').classList.add('active');renderCopierCompareAll();}
+  
+  
 }
 function showPromo(id){const f=FIRMS.find(x=>x.id===id);activePromo=f.promoCode;document.getElementById('modal-firm-name').textContent=f.name+' — Promo Code';document.getElementById('modal-desc').textContent=f.promoDesc;document.getElementById('modal-code').textContent=f.promoCode;document.getElementById('modal-discount').textContent='🎁 '+f.promoDiscount;document.getElementById('modal-bg').classList.add('show');}
 function copyPromo(){if(activePromo){navigator.clipboard.writeText(activePromo).catch(()=>{});showToast('✓ Copied: '+activePromo);document.getElementById('modal-bg').classList.remove('show');}}
@@ -4154,7 +4158,7 @@ function toggleCopierCompare(id, addStr, btn){
     }
     btn.setAttribute('onclick', '');
   }
-  if(document.getElementById('compare-section').classList.contains('active')) renderCopierCompareAll();
+  renderCopierCompareAll();
 }
 function renderCopierCompareAll(){
   const copiers = COPIERS.filter(c=>copierCompareSet.has(c.id));
