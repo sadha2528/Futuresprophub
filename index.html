@@ -2023,7 +2023,12 @@ nav {
   </div>
 
 <div class="tab-content" id="copiers-compare-tab"><div class="compare-section" id="copier-compare-section">
-
+  <div class="compare-top">
+    <div class="compare-info">Comparing <strong id="copier-compare-count-text">0</strong> copiers (max 5)</div>
+    <button class="clear-btn" onclick="clearCopierCompare()">Clear all</button>
+  </div>
+  <div id="copier-compare-empty-msg" class="compare-empty"><h3>No copiers selected</h3><p>Tick "Add to compare" on any trade copier card.</p></div>
+  <div class="cmp-tbl-wrap" id="copier-compare-table-wrap" style="display:none;"><table class="cmp-tbl" id="copier-compare-table"></table></div>
 </div></div>
 <!-- /page -->
 
@@ -4173,12 +4178,12 @@ function renderCopiers(){
     const platformsHtml=c.platforms.map(p=>`<span class="copier-platform-tag">${p}</span>`).join('');
     const firmsHtml=c.supportedFirms.map(f=>`<span class="copier-platform-tag">${f}</span>`).join('');
     const inC = copierCompareSet.has(c.id);
-    const compareHtml = `<div class="cmp-row ${inC?'active':''}" onclick="toggleCopierCompare('${c.id}',${inC?'false':'true'},this.querySelector('.cmp-tick'))" style="margin-top:16px; border-top:1px solid rgba(255,255,255,0.05); padding-top:12px;">
+    const compareHtml = `<div class="cmp-row ${inC?'active':''}" onclick="toggleCopierCompare('${c.id}',${inC?'false':'true'},this.querySelector('.cmp-tick'))">
       <button class="cmp-tick ${inC?'active':''}" title="${inC?'Remove from compare':'Add to compare'}"></button>
-      <span class="cmp-label" style="color:var(--muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">${inC?'Added to compare':'Add to compare'}</span>
+      <span class="cmp-label">${inC?'Added to compare':'Add to compare'}</span>
     </div>`;
     const logoInner=c.logoUrl?`<img src="${c.logoUrl}" alt="${c.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-fallback" style="display:none;background:${c.logoBg};color:${c.logoColor};width:100%;height:100%;align-items:center;justify-content:center;border-radius:8px">${c.logoFallback}</span>`:`<span class="logo-fallback" style="background:${c.logoBg};color:${c.logoColor};width:100%;height:100%;display:flex;align-items:center;justify-content:center;border-radius:8px">${c.logoFallback}</span>`;
-    return `<div class="copier-card"><div class="copier-card-top"><div class="copier-logo">${logoInner}</div><div class="copier-info"><div class="copier-name">${c.name}</div><div class="copier-type">${c.type}</div></div></div><div class="copier-desc">${c.description}</div><div class="copier-features">${featsHtml}</div><div class="copier-plans"><div class="copier-plans-title">Pricing Plans</div>${plansHtml}</div><div class="copier-platforms"><div class="copier-platforms-title">Supported Platforms</div><div class="copier-platform-list">${platformsHtml}</div></div><div class="copier-platforms"><div class="copier-platforms-title">Works With Prop Firms</div><div class="copier-platform-list">${firmsHtml}</div></div>${compareHtml}<div class="copier-card-foot"><a class="copier-cta" href="${c.affiliateUrl}" target="_blank" rel="noopener">Visit ${c.name} →</a>${c.trial?`<span class="copier-trial">${c.trial}</span>`:''}</div></div>`;
+    return `<div class="copier-card"><div class="copier-card-top"><div class="copier-logo">${logoInner}</div><div class="copier-info"><div class="copier-name">${c.name}</div><div class="copier-type">${c.type}</div></div>${compareHtml}</div><div class="copier-desc">${c.description}</div><div class="copier-features">${featsHtml}</div><div class="copier-plans"><div class="copier-plans-title">Pricing Plans</div>${plansHtml}</div><div class="copier-platforms"><div class="copier-platforms-title">Supported Platforms</div><div class="copier-platform-list">${platformsHtml}</div></div><div class="copier-platforms"><div class="copier-platforms-title">Works With Prop Firms</div><div class="copier-platform-list">${firmsHtml}</div></div><div class="copier-card-foot"><a class="copier-cta" href="${c.affiliateUrl}" target="_blank" rel="noopener">Visit ${c.name} →</a>${c.trial?`<span class="copier-trial">${c.trial}</span>`:''}</div></div>`;
   }).join('');
 }
 renderCopiers();
@@ -4186,6 +4191,14 @@ initCopierH2H();
 
 
 /* ════════════ COPIER COMPARE ════════════ */
+function clearCopierCompare() {
+  copierCompareSet.clear();
+  renderCopiers();
+  renderCopierCompareAll();
+  const badge = document.getElementById('copier-compare-count-badge');
+  if(badge) badge.textContent = '0';
+}
+
 function toggleCopierCompare(id, addStr, btn){
   const add = addStr === true || addStr === 'true';
   if(add){
@@ -4205,13 +4218,23 @@ function toggleCopierCompare(id, addStr, btn){
       const label = row.querySelector('.cmp-label');
       if(label) label.textContent = isNowActive ? 'Added to compare' : 'Add to compare';
     }
-    btn.setAttribute('onclick', '');
   }
+  
+  const badge = document.getElementById('copier-compare-count-badge');
+  if(badge) badge.textContent = copierCompareSet.size;
   renderCopierCompareAll();
 }
 function renderCopierCompareAll(){
   const copiers = COPIERS.filter(c=>copierCompareSet.has(c.id));
   const tw = document.getElementById('copier-compare-table-wrap');
+  const emptyMsg = document.getElementById('copier-compare-empty-msg');
+  if(emptyMsg) emptyMsg.style.display = copiers.length ? 'none' : 'flex';
+  
+  const countText = document.getElementById('copier-compare-count-text');
+  if(countText) countText.textContent = copiers.length;
+  const badge = document.getElementById('copier-compare-count-badge');
+  if(badge) badge.textContent = copiers.length;
+
   if(!tw) return;
   if(!copiers.length){tw.style.display='none';return;}
   tw.style.display='block';
