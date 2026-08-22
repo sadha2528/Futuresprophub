@@ -3972,7 +3972,7 @@ function updateFeaturedVisibility() {
 const _origRenderFirms = renderFirms;
 renderFirms = function() { _origRenderFirms(); updateFeaturedVisibility(); };
 
-initState(); renderFirms(); renderFeatured(); populateH2H(); initCopierH2H(); readUrlState();
+initState(); renderFirms(); renderFeatured(); populateH2H(); readUrlState();
 </script>
 
 
@@ -4181,6 +4181,7 @@ function renderCopiers(){
   }).join('');
 }
 renderCopiers();
+initCopierH2H();
 
 
 /* ════════════ COPIER COMPARE ════════════ */
