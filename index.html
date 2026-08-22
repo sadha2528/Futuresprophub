@@ -1744,6 +1744,44 @@ nav {
   .hero-stats{gap:1.5rem;}
   .vortex-container{width:100%;max-width:420px;}
 }
+
+/* ════════════ TRADE COPIER SECTION ════════════ */
+.copier-section{display:none;} .copier-section.active{display:block;}
+.copier-section .section-hdr{text-align:center;margin-bottom:32px;}
+.copier-section .section-hdr h2{font-size:var(--text-2xl);font-weight:800;color:var(--white);margin:0 0 6px;}
+.copier-section .section-hdr p{color:var(--muted);font-size:var(--text-sm);margin:0;}
+.copier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px;max-width:1280px;margin:0 auto;padding:0 20px;}
+.copier-card{background:rgba(30,30,50,0.7);border:1px solid rgba(140,80,220,0.18);border-radius:16px;padding:28px;backdrop-filter:blur(14px);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;}
+.copier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#a78bfa,#c084fc);border-radius:16px 16px 0 0;}
+.copier-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(124,58,237,0.2);}
+.copier-card-top{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.copier-logo{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+.copier-logo img{width:100%;height:100%;object-fit:contain;border-radius:8px;}
+.copier-logo .logo-fallback{font-size:18px;font-weight:800;color:var(--white);}
+.copier-info{flex:1;}
+.copier-name{font-size:var(--text-lg);font-weight:800;color:var(--white);letter-spacing:-0.3px;}
+.copier-type{font-size:var(--text-xs);color:var(--muted);margin-top:2px;}
+.copier-desc{font-size:var(--text-sm);color:var(--muted);line-height:1.5;margin-bottom:16px;}
+.copier-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.copier-feat{font-size:10px;padding:4px 10px;border-radius:999px;background:rgba(124,58,237,0.15);color:#c084fc;border:1px solid rgba(124,58,237,0.25);font-weight:600;}
+.copier-feat.green{background:rgba(34,197,94,0.12);color:#4ade80;border-color:rgba(34,197,94,0.2);}
+.copier-feat.amber{background:rgba(251,191,36,0.12);color:#fbbf24;border-color:rgba(251,191,36,0.2);}
+.copier-plans{margin-bottom:18px;}
+.copier-plans-title{font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);font-weight:600;margin-bottom:8px;}
+.copier-plan-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:4px;border:1px solid rgba(255,255,255,0.04);}
+.copier-plan-name{font-size:var(--text-sm);font-weight:700;color:var(--white);}
+.copier-plan-price{font-size:var(--text-sm);font-weight:800;color:#a78bfa;font-family:'JetBrains Mono',monospace;}
+.copier-plan-detail{font-size:10px;color:var(--muted);margin-top:2px;}
+.copier-platforms{margin-bottom:18px;}
+.copier-platforms-title{font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);font-weight:600;margin-bottom:6px;}
+.copier-platform-list{display:flex;flex-wrap:wrap;gap:5px;}
+.copier-platform-tag{font-size:10px;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid rgba(255,255,255,0.08);font-weight:500;}
+.copier-card-foot{display:flex;gap:8px;margin-top:auto;}
+.copier-cta{flex:1;text-align:center;padding:10px 0;border-radius:10px;font-size:var(--text-sm);font-weight:700;background:linear-gradient(135deg,#7c3aed,#a855f7);color:var(--white);text-decoration:none;border:none;cursor:pointer;transition:box-shadow .2s,transform .15s;}
+.copier-cta:hover{box-shadow:0 6px 26px rgba(124,58,237,0.55);transform:translateY(-1px);}
+.copier-trial{flex:0.6;text-align:center;padding:10px 0;border-radius:10px;font-size:var(--text-sm);font-weight:600;background:rgba(34,197,94,0.12);color:#4ade80;border:1px solid rgba(34,197,94,0.25);cursor:pointer;text-decoration:none;transition:background .2s;}
+.copier-trial:hover{background:rgba(34,197,94,0.2);}
+@media(max-width:600px){.copier-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -1769,6 +1807,7 @@ nav {
       <button class="nav-link active"  onclick="showTab('firms',this)">All Firms</button>
       <button class="nav-link"         onclick="showTab('h2h',this)">Head‑to‑Head</button>
       <button class="nav-link"         onclick="showTab('compare',this)">Compare All <span class="nav-badge" id="compare-count">0</span></button>
+      <button class="nav-link"         onclick="showTab('copiers',this)">Trade Copiers</button>
       <button class="nav-link"         onclick="showTab('about',this)">About Us</button>
     </div>
     <div class="nav-right"></div>
@@ -1783,6 +1822,7 @@ nav {
     <button class="nav-link active" onclick="showTab('firms',this);this.closest('nav').classList.remove('nav-mobile-open')">All Firms</button>
     <button class="nav-link" onclick="showTab('h2h',this);this.closest('nav').classList.remove('nav-mobile-open')">Head&#8209;to&#8209;Head</button>
     <button class="nav-link" onclick="showTab('compare',this);this.closest('nav').classList.remove('nav-mobile-open')">Compare All</button>
+    <button class="nav-link" onclick="showTab('copiers',this);this.closest('nav').classList.remove('nav-mobile-open')">Trade Copiers</button>
     <button class="nav-link" onclick="showTab('about',this);this.closest('nav').classList.remove('nav-mobile-open')">About Us</button>
   </div>
 </nav>
@@ -1888,6 +1928,16 @@ nav {
 <!-- ─── ALL FIRMS GRID ─── -->
 <div class="section firms-section" id="firms-section">
   <div class="firms-grid" id="firms-grid"></div>
+</div>
+
+
+<!-- ─── TRADE COPIERS ─── -->
+<div class="section copier-section" id="copier-section">
+  <div class="section-hdr">
+    <h2>Trade <span class="grad">Copier</span> Tools</h2>
+    <p>Cloud-based trade copiers & multi-account execution tools for futures prop firm traders</p>
+  </div>
+  <div class="copier-grid" id="copier-grid"></div>
 </div>
 
 <!-- ─── HEAD TO HEAD ─── -->
@@ -2487,8 +2537,8 @@ const FIRMS=[
   {id:'onyx',name:'Onyx Futures',tagline:'Pass once. Trade live. 85% split, one-step OTP, daily payouts.',
     logo:'OX',logoUrl:'data:image/png;base64,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',
     logoColor:'#d4af37',logoBg:'rgba(212,175,55,0.15)',rating:4.5,featured:false,tags:['evaluation'],
-    affiliateUrl:'https://onyx-futures.com/',promoCode:'FPC',promoDiscount:'Discount',
-    promoDesc:'Use code FPC at checkout',
+    affiliateUrl:'https://onyx-futures.com/?ref=FPC50',promoCode:'FPC50',promoDiscount:'Discount',
+    promoDesc:'Use code FPC50 at checkout',
     platforms:['Rithmic','TradingView'],
     paymentMethods:[],
     plans:[
@@ -2835,7 +2885,7 @@ const FIRMS=[
         ]},
     ]},
   {id:'tpt',name:'Take Profit Trader',tagline:'No DLL since Jan 2025, daily payouts',logo:'TP',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://takeprofittrader.com&size=128',logoColor:'#34d399',logoBg:'rgba(52,211,153,0.16)',rating:4.5,featured:false,tags:['evaluation','no-dll'],affiliateUrl:'https://takeprofittrader.com/?ref=FUTURESHUB',promoCode:'FPC40',promoDiscount:'40% off all plans',promoDesc:'Apply code FPC40 on takeprofittrader.com for 40% off.',platforms:['NinjaTrader','Tradovate','Rithmic','Sierra Chart'],paymentMethods:['ACH','Wire','Crypto'],lucidTypes:null,plans:[{label:'50K',price:150,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$2,000',maxLossType:'EOD (eval) → INTRADAY (funded PRO)',profitSplit:'80% PRO / 90% PRO+',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'6 ES',activationFee:'$130 flat (often waived)',resetFee:'$150/mo',coachingIncluded:false,rules:[{t:'pass',x:'No daily loss limit since January 2025'},{t:'pass',x:'Daily payouts (Rise) — fastest window available'},{t:'pass',x:'No consistency rule in funded PRO phase'},{t:'fail',x:'EOD trailing drawdown $2,000'},{t:'fail',x:'News restricted: flat 60 sec BEFORE & AFTER FOMC/NFP/CPI (violations = termination)'},{t:'fail',x:'No overnight/weekend — flat by 5 PM ET'},{t:'info',x:'Monthly subscription model'}]},{label:'150K',price:330,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'None (removed Jan 2025)',maxLoss:'$5,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily (Rise)',minPayoutDays:5,minPayoutAmount:500,evalSteps:1,noEval:false,instantFunding:false,consistency:'Best-day cap funded',minTradingDays:5,news:false,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 10 accounts',maxContracts:'15 ES',activationFee:'$130 flat (often waived)',resetFee:'$330/mo',coachingIncluded:false,rules:[{t:'pass',x:'No DLL, daily payouts, 90% split at $150K'},{t:'fail',x:'EOD trailing drawdown $5,000'},{t:'fail',x:'No news, no overnight, subscription model'}]}]},
-  {id:'fundedseat',name:'Funded Seat',tagline:'Daily payouts, 90% split, no DLL, news OK — 1-step EOD trailing',logo:'FS',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://fundedseat.com&size=128',logoColor:'#fbbf24',logoBg:'rgba(251,191,36,0.15)',rating:4.4,featured:false,tags:['evaluation','no-consistency','no-dll','news-ok'],affiliateUrl:'https://fundedseat.com/?ref=FUTURESHUB',promoCode:'FPC40',promoDiscount:'40% off first evaluation',promoDesc:'Use code FPC40 on FundedSeat.com for 40% off.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Deel','PayPal'],lucidTypes:null,plans:[{label:'25K',price:45,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'None',maxLoss:'$1,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily',minPayoutDays:1,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'2 MES',activationFee:'None',resetFee:'$45',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule'},{t:'pass',x:'News trading and overnight holds allowed'},{t:'fail',x:'EOD trailing drawdown $1,500'},{t:'pass',x:'90% profit split — competitive'}]},{label:'50K',price:80,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'None',maxLoss:'$2,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily',minPayoutDays:1,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'4 MES/1 ES',activationFee:'None',resetFee:'$80',coachingIncluded:false,rules:[{t:'pass',x:'No consistency, news and overnight OK'},{t:'fail',x:'EOD trailing drawdown $2,500'}]},{label:'100K',price:140,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'None',maxLoss:'$4,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily',minPayoutDays:1,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'None',minTradingDays:5,news:true,trailing:true,overnight:true,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to $150K',maxContracts:'8 MES/2 ES',activationFee:'None',resetFee:'$140',coachingIncluded:false,rules:[{t:'pass',x:'No consistency rule at $100K'},{t:'fail',x:'EOD trailing drawdown $4,000'}]}]},
+  {id:'fundedseat',name:'Funded Seat',tagline:'Daily payouts, 90% split, one-time fee, 1-step EOD trailing',logo:'FS',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://fundedseat.com&size=128',logoColor:'#fbbf24',logoBg:'rgba(251,191,36,0.15)',rating:4.4,featured:false,tags:['evaluation','instant-funding','news-ok'],affiliateUrl:'https://fundedseat.com/?ref=FUTURESHUB',promoCode:'FPC40',promoDiscount:'40% off first evaluation',promoDesc:'Use code FPC40 on FundedSeat.com for 40% off.',platforms:['NinjaTrader','Tradovate','Rithmic'],paymentMethods:['ACH','Deel','PayPal'],lucidTypes:null,plans:[{label:'25K',price:50,accountSize:'$25,000',profitTarget:'$1,500',dailyLoss:'$500 (Soft Breach)',maxLoss:'$1,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily',minPayoutDays:1,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'35%-50%',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts ($750K)',maxContracts:'2 mini / 20 micro',activationFee:'None ($0)',resetFee:'$67',coachingIncluded:false,rules:[{t:'pass',x:'News trading allowed without restriction'},{t:'pass',x:'Daily payouts (1-step eval & instant funding options)'},{t:'fail',x:'EOD trailing drawdown $1,000'},{t:'fail',x:'No overnight holds (flat by 4:59 PM EST)'},{t:'info',x:'50% of profits must come from trades held > 15s'}]},{label:'50K',price:85,accountSize:'$50,000',profitTarget:'$3,000',dailyLoss:'$1,000 (Soft Breach)',maxLoss:'$2,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily',minPayoutDays:1,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'35%-50%',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts ($750K)',maxContracts:'4 mini / 40 micro',activationFee:'None ($0)',resetFee:'$67',coachingIncluded:false,rules:[{t:'pass',x:'News trading allowed without restriction'},{t:'fail',x:'EOD trailing drawdown $2,000'},{t:'fail',x:'No overnight holds (flat by 4:59 PM EST)'}]},{label:'100K',price:125,accountSize:'$100,000',profitTarget:'$6,000',dailyLoss:'$1,500 (Soft Breach)',maxLoss:'$3,000',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily',minPayoutDays:1,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'35%-50%',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts ($750K)',maxContracts:'8 mini / 80 micro',activationFee:'None ($0)',resetFee:'$67',coachingIncluded:false,rules:[{t:'pass',x:'News trading allowed without restriction'},{t:'fail',x:'EOD trailing drawdown $3,000'},{t:'fail',x:'No overnight holds (flat by 4:59 PM EST)'}]},{label:'150K',price:175,accountSize:'$150,000',profitTarget:'$9,000',dailyLoss:'$2,000 (Soft Breach)',maxLoss:'$4,500',maxLossType:'Trailing EOD',profitSplit:'90%',payoutFreq:'Daily',minPayoutDays:1,minPayoutAmount:250,evalSteps:1,noEval:false,instantFunding:false,consistency:'35%-50%',minTradingDays:5,news:true,trailing:true,overnight:false,weekend:false,bufferReq:false,bufferAmt:'—',scaling:'Up to 5 accounts ($750K)',maxContracts:'12 mini / 120 micro',activationFee:'None ($0)',resetFee:'$67',coachingIncluded:false,rules:[{t:'pass',x:'News trading allowed without restriction'},{t:'fail',x:'EOD trailing drawdown $4,500'},{t:'fail',x:'No overnight holds (flat by 4:59 PM EST)'}]}]},
   {id:'fundednext',name:'Funded Next Futures',tagline:'Bolt & Rapid RETIRED (Jul 2026) · NEW: Rapid Pro (no DLL) & Rapid Daily · Flex · Legacy — 90% split, no activation fee',
 
     logo:'FN',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://fundednext.com&size=128',
@@ -3750,10 +3800,12 @@ function showTab(tab,btn){
   document.querySelectorAll('.firms-section').forEach(el=>el.classList.add('hidden'));
   document.getElementById('h2h-section').classList.remove('active');
   document.getElementById('compare-section').classList.remove('active');
+  document.getElementById('copier-section').classList.remove('active');
   if(tab==='firms'){
     document.querySelectorAll('.firms-section').forEach(el=>el.classList.remove('hidden'));
     window.scrollTo({top:0,behavior:'smooth'});
   }
+  else if(tab==='copiers'){document.getElementById('copier-section').classList.add('active');}
   else if(tab==='h2h'){document.getElementById('h2h-section').classList.add('active');}
   else if(tab==='compare'){document.getElementById('compare-section').classList.add('active');renderCompareAll();}
 }
@@ -3992,7 +4044,46 @@ initState(); renderFirms(); renderFeatured(); populateH2H(); readUrlState();
     </div>
     <div class="site-footer-copy">
       &copy; <span id="footer-year"></span> FuturesPropCompare. All rights reserved.
-      <script>document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+      <script>document.getElementById('footer-year').textContent=new Date().getFullYear();
+/* ════════════ TRADE COPIER DATA & RENDERING ════════════ */
+const COPIERS = [
+  {
+    id:'mimitrader',
+    name:'MimikTrader',
+    type:'Cloud Trade Copier & Risk Engine',
+    description:'Cloud-based futures trade copier with tick-level risk management. Copy trades across multiple prop firm accounts instantly — no VPS needed.',
+    logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://mimiktrader.com&size=128',
+    logoFallback:'MT',
+    logoColor:'#7c3aed',
+    logoBg:'rgba(124,58,237,0.15)',
+    affiliateUrl:'https://mimiktrader.com/',
+    features:['Cloud-Native','Cross-Broker Copying','Tick-Level Risk Mgmt','TradingView Webhooks','Auto-Flatten','Trading Journal'],
+    plans:[
+      {name:'Starter',price:'$29/mo',detail:'5 connections · 5 copy groups · Custom sizing'},
+      {name:'Pro',price:'$49.99/mo',detail:'Unlimited connections · Full risk suite · TV webhooks · Journal'}
+    ],
+    platforms:['Tradovate','NinjaTrader','Rithmic','ProjectX'],
+    supportedFirms:['Apex','Topstep','Tradeify','MFFU','Bulenox','Fast Track Capital'],
+    trial:'7-Day Free Trial',
+    annualDiscount:'25% off annual billing'
+  }
+];
+
+function renderCopiers(){
+  const grid=document.getElementById('copier-grid');
+  if(!grid)return;
+  grid.innerHTML=COPIERS.map(c=>{
+    const featsHtml=c.features.map(f=>`<span class="copier-feat">${f}</span>`).join('');
+    const plansHtml=c.plans.map(p=>`<div class="copier-plan-row"><div><div class="copier-plan-name">${p.name}</div><div class="copier-plan-detail">${p.detail}</div></div><div class="copier-plan-price">${p.price}</div></div>`).join('');
+    const platformsHtml=c.platforms.map(p=>`<span class="copier-platform-tag">${p}</span>`).join('');
+    const firmsHtml=c.supportedFirms.map(f=>`<span class="copier-platform-tag">${f}</span>`).join('');
+    const logoInner=c.logoUrl?`<img src="${c.logoUrl}" alt="${c.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-fallback" style="display:none;background:${c.logoBg};color:${c.logoColor};width:100%;height:100%;align-items:center;justify-content:center;border-radius:8px">${c.logoFallback}</span>`:`<span class="logo-fallback" style="background:${c.logoBg};color:${c.logoColor};width:100%;height:100%;display:flex;align-items:center;justify-content:center;border-radius:8px">${c.logoFallback}</span>`;
+    return `<div class="copier-card"><div class="copier-card-top"><div class="copier-logo">${logoInner}</div><div class="copier-info"><div class="copier-name">${c.name}</div><div class="copier-type">${c.type}</div></div></div><div class="copier-desc">${c.description}</div><div class="copier-features">${featsHtml}</div><div class="copier-plans"><div class="copier-plans-title">Pricing Plans</div>${plansHtml}</div><div class="copier-platforms"><div class="copier-platforms-title">Supported Platforms</div><div class="copier-platform-list">${platformsHtml}</div></div><div class="copier-platforms"><div class="copier-platforms-title">Works With Prop Firms</div><div class="copier-platform-list">${firmsHtml}</div></div><div class="copier-card-foot"><a class="copier-cta" href="${c.affiliateUrl}" target="_blank" rel="noopener">Visit ${c.name} →</a>${c.trial?`<span class="copier-trial">${c.trial}</span>`:''}</div></div>`;
+  }).join('');
+}
+renderCopiers();
+
+</script>
     </div>
   </div>
 </footer>
