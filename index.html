@@ -4111,6 +4111,7 @@ const COPIERS = [
   }
 ];
 
+const copierCompareSet = new Set();
 function renderCopiers(){
   const grid=document.getElementById('copier-grid');
   if(!grid)return;
@@ -4132,7 +4133,6 @@ renderCopiers();
 
 
 /* ════════════ COPIER COMPARE ════════════ */
-const copierCompareSet = new Set();
 function toggleCopierCompare(id, addStr, btn){
   const add = addStr === true || addStr === 'true';
   if(add){
