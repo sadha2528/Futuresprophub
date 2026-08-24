@@ -3866,7 +3866,7 @@ function showTab(tab,btn){
   
   
 }
-function showPromo(id){const f=FIRMS.find(x=>x.id===id);activePromo=f.promoCode;document.getElementById('modal-firm-name').textContent=f.name+' — Promo Code';document.getElementById('modal-desc').textContent=f.promoDesc;document.getElementById('modal-code').textContent=f.promoCode;document.getElementById('modal-discount').textContent='🎁 '+f.promoDiscount;document.getElementById('modal-bg').classList.add('show');}
+function showPromo(id){const f=FIRMS.find(x=>x.id===id) || COPIERS.find(x=>x.id===id);activePromo=f.promoCode;document.getElementById('modal-firm-name').textContent=f.name+' — Promo Code';document.getElementById('modal-desc').textContent=f.promoDesc;document.getElementById('modal-code').textContent=f.promoCode;document.getElementById('modal-discount').textContent='🎁 '+f.promoDiscount;document.getElementById('modal-bg').classList.add('show');}
 function copyPromo(){if(activePromo){navigator.clipboard.writeText(activePromo).catch(()=>{});showToast('✓ Copied: '+activePromo);document.getElementById('modal-bg').classList.remove('show');}}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
@@ -4113,7 +4113,10 @@ const COPIERS = [
     logoFallback:'MT',
     logoColor:'#7c3aed',
     logoBg:'rgba(124,58,237,0.15)',
-    affiliateUrl:'https://mimiktrader.com/',
+    affiliateUrl:'https://mimiktrader.com?ref=CU9V935H',
+    promoCode:'FPC',
+    promoDesc:'Exclusive Discount',
+    promoDiscount:'Discount',
     features:['Cloud-Native','Cross-Broker Copying','Tick-Level Risk Mgmt','TradingView Webhooks','Auto-Flatten','Trading Journal'],
     plans:[
       {name:'Starter',price:'$29/mo',detail:'5 connections · 5 copy groups · Custom sizing'},
@@ -4183,7 +4186,8 @@ function renderCopiers(){
       <span class="cmp-label">${inC?'Added to compare':'Add to compare'}</span>
     </div>`;
     const logoInner=c.logoUrl?`<img src="${c.logoUrl}" alt="${c.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-fallback" style="display:none;background:${c.logoBg};color:${c.logoColor};width:100%;height:100%;align-items:center;justify-content:center;border-radius:8px">${c.logoFallback}</span>`:`<span class="logo-fallback" style="background:${c.logoBg};color:${c.logoColor};width:100%;height:100%;display:flex;align-items:center;justify-content:center;border-radius:8px">${c.logoFallback}</span>`;
-    return `<div class="copier-card"><div class="copier-card-top"><div class="copier-logo">${logoInner}</div><div class="copier-info"><div class="copier-name">${c.name}</div><div class="copier-type">${c.type}</div></div>${compareHtml}</div><div class="copier-desc">${c.description}</div><div class="copier-features">${featsHtml}</div><div class="copier-plans"><div class="copier-plans-title">Pricing Plans</div>${plansHtml}</div><div class="copier-platforms"><div class="copier-platforms-title">Supported Platforms</div><div class="copier-platform-list">${platformsHtml}</div></div><div class="copier-platforms"><div class="copier-platforms-title">Works With Prop Firms</div><div class="copier-platform-list">${firmsHtml}</div></div><div class="copier-card-foot"><a class="copier-cta" href="${c.affiliateUrl}" target="_blank" rel="noopener">Visit ${c.name} →</a>${c.trial?`<span class="copier-trial">${c.trial}</span>`:''}</div></div>`;
+    const promoBadge = c.promoCode ? `<div class="promo-badge" onclick="showPromo('${c.id}')"><span class="pulse"></span>${c.promoCode}</div>` : '';
+    return `<div class="copier-card">${promoBadge}<div class="copier-card-top"><div class="copier-logo">${logoInner}</div><div class="copier-info"><div class="copier-name">${c.name}</div><div class="copier-type">${c.type}</div></div>${compareHtml}</div><div class="copier-desc">${c.description}</div><div class="copier-features">${featsHtml}</div><div class="copier-plans"><div class="copier-plans-title">Pricing Plans</div>${plansHtml}</div><div class="copier-platforms"><div class="copier-platforms-title">Supported Platforms</div><div class="copier-platform-list">${platformsHtml}</div></div><div class="copier-platforms"><div class="copier-platforms-title">Works With Prop Firms</div><div class="copier-platform-list">${firmsHtml}</div></div><div class="copier-card-foot"><a class="copier-cta" href="${c.affiliateUrl}" target="_blank" rel="noopener">Visit ${c.name} →</a>${c.trial?`<span class="copier-trial">${c.trial}</span>`:''}</div></div>`;
   }).join('');
 }
 renderCopiers();
