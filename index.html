@@ -2186,7 +2186,7 @@ const FIRMS=[
   {
     id:'fundyouredge',name:'Fund Your Edge',tagline:'EOD Trailing Drawdown · Prime & Clear Accounts · 90% Profit Split',
     logo:'FE',logoUrl:'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://fundyouredge.com&size=128',
-    logoColor:'#f59e0b',logoBg:'rgba(245, 158, 11, 0.16)',rating:'New',featured:false,
+    logoColor:'#f59e0b',logoBg:'rgba(245, 158, 11, 0.16)',rating:4.5,featured:false,
     tags:['evaluation','eod-dd','scaling','1-step'],
     affiliateUrl:'https://fundyouredge.com/',
     promoCode:'PROP',promoDiscount:'Up to 50% off',
@@ -2196,8 +2196,8 @@ const FIRMS=[
     lucidTypes:['Prime','Clear'],
     plans:[
       /* ── PRIME ── */
-      {label:'25K',planType:'Prime',price:99,accountSize:',000',profitTarget:',500',
-        dailyLoss:'None',maxLoss:',000',maxLossType:'EOD Trailing',
+      {label:'25K',planType:'Prime',price:99,accountSize:'$25,000',profitTarget:'$1,500',
+        dailyLoss:'None',maxLoss:'$1,000',maxLossType:'EOD Trailing',
         profitSplit:'90%',payoutFreq:'Standard',
         minPayoutDays:0,minPayoutAmount:100,
         evalSteps:1,noEval:false,instantFunding:false,consistency:'40% Funded',
@@ -2211,8 +2211,8 @@ const FIRMS=[
           {t:'fail',x:'40% consistency rule upon funded payout'}
         ]
       },
-      {label:'50K',planType:'Prime',price:150,accountSize:',000',profitTarget:',000',
-        dailyLoss:'Yes',maxLoss:',000',maxLossType:'EOD Trailing',
+      {label:'50K',planType:'Prime',price:150,accountSize:'$50,000',profitTarget:'$3,000',
+        dailyLoss:'Yes',maxLoss:'$2,000',maxLossType:'EOD Trailing',
         profitSplit:'90%',payoutFreq:'Standard',
         minPayoutDays:0,minPayoutAmount:100,
         evalSteps:1,noEval:false,instantFunding:false,consistency:'40% Funded',
@@ -2226,8 +2226,8 @@ const FIRMS=[
           {t:'fail',x:'40% consistency rule upon funded payout'}
         ]
       },
-      {label:'100K',planType:'Prime',price:250,accountSize:',000',profitTarget:',000',
-        dailyLoss:'Yes',maxLoss:',000',maxLossType:'EOD Trailing',
+      {label:'100K',planType:'Prime',price:250,accountSize:'$100,000',profitTarget:'$6,000',
+        dailyLoss:'Yes',maxLoss:'$3,000',maxLossType:'EOD Trailing',
         profitSplit:'90%',payoutFreq:'Standard',
         minPayoutDays:0,minPayoutAmount:100,
         evalSteps:1,noEval:false,instantFunding:false,consistency:'40% Funded',
@@ -2241,8 +2241,8 @@ const FIRMS=[
           {t:'fail',x:'40% consistency rule upon funded payout'}
         ]
       },
-      {label:'150K',planType:'Prime',price:350,accountSize:',000',profitTarget:',000',
-        dailyLoss:'Yes',maxLoss:',500',maxLossType:'EOD Trailing',
+      {label:'150K',planType:'Prime',price:350,accountSize:'$150,000',profitTarget:'$9,000',
+        dailyLoss:'Yes',maxLoss:'$4,500',maxLossType:'EOD Trailing',
         profitSplit:'90%',payoutFreq:'Standard',
         minPayoutDays:0,minPayoutAmount:100,
         evalSteps:1,noEval:false,instantFunding:false,consistency:'40% Funded',
@@ -2257,8 +2257,8 @@ const FIRMS=[
         ]
       },
       /* ── CLEAR ── */
-      {label:'25K',planType:'Clear',price:99,accountSize:',000',profitTarget:',500',
-        dailyLoss:'None',maxLoss:',000',maxLossType:'EOD Trailing',
+      {label:'25K',planType:'Clear',price:99,accountSize:'$25,000',profitTarget:'$1,500',
+        dailyLoss:'None',maxLoss:'$1,000',maxLossType:'EOD Trailing',
         profitSplit:'90%',payoutFreq:'Standard',
         minPayoutDays:0,minPayoutAmount:100,
         evalSteps:1,noEval:false,instantFunding:false,consistency:'50% Eval',
@@ -2273,8 +2273,8 @@ const FIRMS=[
           {t:'fail',x:'50% consistency rule during evaluation'}
         ]
       },
-      {label:'50K',planType:'Clear',price:150,accountSize:',000',profitTarget:',000',
-        dailyLoss:'None',maxLoss:',000',maxLossType:'EOD Trailing',
+      {label:'50K',planType:'Clear',price:150,accountSize:'$50,000',profitTarget:'$3,000',
+        dailyLoss:'None',maxLoss:'$2,000',maxLossType:'EOD Trailing',
         profitSplit:'90%',payoutFreq:'Standard',
         minPayoutDays:0,minPayoutAmount:100,
         evalSteps:1,noEval:false,instantFunding:false,consistency:'50% Eval',
@@ -2289,8 +2289,8 @@ const FIRMS=[
           {t:'fail',x:'50% consistency rule during evaluation'}
         ]
       },
-      {label:'100K',planType:'Clear',price:250,accountSize:',000',profitTarget:',000',
-        dailyLoss:'None',maxLoss:',000',maxLossType:'EOD Trailing',
+      {label:'100K',planType:'Clear',price:250,accountSize:'$100,000',profitTarget:'$6,000',
+        dailyLoss:'None',maxLoss:'$3,000',maxLossType:'EOD Trailing',
         profitSplit:'90%',payoutFreq:'Standard',
         minPayoutDays:0,minPayoutAmount:100,
         evalSteps:1,noEval:false,instantFunding:false,consistency:'50% Eval',
@@ -2305,8 +2305,8 @@ const FIRMS=[
           {t:'fail',x:'50% consistency rule during evaluation'}
         ]
       },
-      {label:'150K',planType:'Clear',price:350,accountSize:',000',profitTarget:',000',
-        dailyLoss:'None',maxLoss:',500',maxLossType:'EOD Trailing',
+      {label:'150K',planType:'Clear',price:350,accountSize:'$150,000',profitTarget:'$9,000',
+        dailyLoss:'None',maxLoss:'$4,500',maxLossType:'EOD Trailing',
         profitSplit:'90%',payoutFreq:'Standard',
         minPayoutDays:0,minPayoutAmount:100,
         evalSteps:1,noEval:false,instantFunding:false,consistency:'50% Eval',
