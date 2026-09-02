@@ -578,12 +578,12 @@
       <div class="calc-field">
         <label for="firm-select">Prop Firm</label>
         <select id="firm-select">
-          <option value="lucid">Lucid Trading</option>
-          <option value="tradeify">Tradeify</option>
           <option value="topstep" selected>Topstep</option>
-          <option value="onyx">Onyx Futures</option>
-          <option value="mffu">MyFundedFutures (MFFU)</option>
           <option value="apex">Apex Trader Funding</option>
+          <option value="tradeify">Tradeify</option>
+          <option value="mffu">MyFundedFutures (MFFU)</option>
+          <option value="lucid">Lucid Trading</option>
+          <option value="onyx">Onyx Futures</option>
           <option value="tpt">Take Profit Trader</option>
           <option value="fundedseat">Funded Seat</option>
           <option value="fundednext">FundedNext</option>
@@ -595,6 +595,15 @@
         <label for="account-select">Account Size</label>
         <select id="account-select">
           <!-- Populated dynamically -->
+        </select>
+      </div>
+    </div>
+
+    <div class="calc-row" id="stage-row" style="margin-bottom:16px;">
+      <div class="calc-field full">
+        <label for="stage-select">Account Stage / Withdrawal Rule</label>
+        <select id="stage-select">
+          <!-- Populated dynamically based on firm -->
         </select>
       </div>
     </div>
@@ -642,12 +651,23 @@
     <div class="calc-results">
       <div class="result-box">
         <div class="result-label">Gross Profit</div>
-        <div class="result-value" id="res-gross">$5,000</div>
+        <div class="result-value" id="res-gross">$4,000</div>
+        <div class="result-sub">Total account profit</div>
+      </div>
+      <div class="result-box" id="box-withdrawable">
+        <div class="result-label" id="lbl-withdrawable">Eligible Withdrawable</div>
+        <div class="result-value" id="res-withdrawable">$2,000</div>
+        <div class="result-sub" id="res-withdrawable-sub">50% Max Cap (Topstep XFA)</div>
+      </div>
+      <div class="result-box" id="box-retained">
+        <div class="result-label">Retained In Account</div>
+        <div class="result-value" id="res-retained" style="color:var(--accent);">$2,000</div>
+        <div class="result-sub">Kept as trading buffer</div>
       </div>
       <div class="result-box">
         <div class="result-label">Firm's Share</div>
-        <div class="result-value" id="res-firm-share">$500</div>
-        <div class="result-sub" id="res-split-pct">10%</div>
+        <div class="result-value" id="res-firm-share">$0</div>
+        <div class="result-sub" id="res-split-pct">100% of first $10k</div>
       </div>
       <div class="result-box">
         <div class="result-label">Fees Deducted</div>
@@ -656,11 +676,22 @@
       </div>
       <div class="result-box">
         <div class="result-label">Effective Take-Home %</div>
-        <div class="result-value" id="res-effective-pct">87.0%</div>
+        <div class="result-value" id="res-effective-pct">92.5%</div>
+        <div class="result-sub">Of withdrawable portion</div>
       </div>
       <div class="result-box highlight">
-        <div class="result-label">💰 Your Net Payout</div>
-        <div class="result-value" id="res-net">$4,351</div>
+        <div class="result-label">💰 Net Cash in Your Pocket This Request</div>
+        <div class="result-value" id="res-net">$1,851</div>
+      </div>
+    </div>
+
+    <!-- Payout Policy Notice Box -->
+    <div id="policy-box" style="background:rgba(124,58,237,0.08); border:1px solid rgba(167,139,250,0.22); border-radius:12px; padding:16px 20px; margin: 20px 0 24px; font-size:0.85rem; line-height:1.65;">
+      <div style="font-weight:700; color:var(--accent); margin-bottom:6px; display:flex; align-items:center; gap:8px;">
+        <span>📌 Firm Payout Policy &amp; Withdrawal Conditions</span>
+      </div>
+      <div id="policy-text" style="color:var(--white);">
+        Topstep Express Funded Accounts (XFA) restrict payouts to <strong>50% of your account balance per request</strong> until you reach 30 winning days (or transition to a Live Funded Account). The remaining 50% stays in your account so you maintain your drawdown buffer.
       </div>
     </div>
 
@@ -739,29 +770,49 @@
 
 <!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
 <script>
-// ── Firm Database ──────────────────────────────────────
+// ── Firm Database with Withdrawal Rules ──────────────────────
 const FIRMS = {
-  lucid: {
-    name: 'Lucid Trading',
+  topstep: {
+    name: 'Topstep',
     split: 90,
-    accounts: [
-      { label: '50K LucidFlex', size: 50000, evalCost: 175, activationFee: 0 },
-      { label: '100K LucidFlex', size: 100000, evalCost: 275, activationFee: 0 },
-      { label: '150K LucidFlex', size: 150000, evalCost: 420, activationFee: 0 },
-      { label: '25K LucidPro', size: 25000, evalCost: 135, activationFee: 0 },
-      { label: '50K LucidPro', size: 50000, evalCost: 165, activationFee: 0 },
-      { label: '100K LucidPro', size: 100000, evalCost: 265, activationFee: 0 },
-      { label: '150K LucidPro', size: 150000, evalCost: 395, activationFee: 0 },
-      { label: '50K LucidDirect (Instant)', size: 50000, evalCost: 250, activationFee: 0 },
-      { label: '100K LucidDirect (Instant)', size: 100000, evalCost: 400, activationFee: 0 }
+    first100k: 10000,
+    badge: '100% First $10K then 90% · 50% Max XFA Withdrawal Rule',
+    stages: [
+      { id: 'xfa', label: 'Express Funded Account (XFA) — 50% Max Withdrawal Rule', ratio: 0.50, cap: 0, desc: 'Topstep Express Funded Accounts (XFA) permit withdrawing up to 50% of your account balance/profits per request (after 5 winning days of +$200). The remaining 50% stays in your account as trading buffer.' },
+      { id: 'lfa', label: 'Live Funded Account (LFA) / 30+ Winning Days — 100% Uncapped', ratio: 1.00, cap: 0, desc: 'Traders who reach 30 winning days (+$200/day) or receive a Live Funded Account (LFA) can withdraw 100% of their profits with no 50% restriction.' }
     ],
-    badge: '90/10 Split · 15-Min Payout Processing · Free Activation',
-    note: 'No activation fee. Fast 15-min Plaid ACH payouts.',
-    first100k: 0
+    accounts: [
+      { label: '50K Combine ($49/mo)', size: 50000, evalCost: 49, activationFee: 149 },
+      { label: '100K Combine ($99/mo)', size: 100000, evalCost: 99, activationFee: 149 },
+      { label: '150K Combine ($149/mo)', size: 150000, evalCost: 149, activationFee: 149 }
+    ]
+  },
+  apex: {
+    name: 'Apex Trader Funding',
+    split: 90,
+    first100k: 25000,
+    badge: '100% First $25K then 90% · Months 1–3 Caps · Apex 4.0 OTP',
+    stages: [
+      { id: 'capped', label: 'Months 1–3 (Payouts 1–6) — Standard Payout Cap ($1.5k–$3.5k/request)', ratio: 1.00, useCap: true, desc: 'During your first 3 months (payouts 1–6, twice monthly), Apex limits withdrawals per request based on account size ($1.5k for 25K, $2k for 50K, $2.5k for 100K, $2.75k for 150K, $3k for 250K, $3.5k for 300K). Balance must remain above trailing threshold + $100.' },
+      { id: 'uncapped', label: 'Month 4+ (Payout 7+) — 100% Uncapped Withdrawals', ratio: 1.00, useCap: false, desc: 'Starting from your 7th payout request (Month 4 onwards), there are NO maximum withdrawal limits. 100% of eligible profits above the safety threshold can be withdrawn.' }
+    ],
+    accounts: [
+      { label: '25K Plan (Cap $1,500/req)', size: 25000, evalCost: 147, activationFee: 85, cap: 1500 },
+      { label: '50K Plan (Cap $2,000/req)', size: 50000, evalCost: 167, activationFee: 85, cap: 2000 },
+      { label: '100K Plan (Cap $2,500/req)', size: 100000, evalCost: 207, activationFee: 85, cap: 2500 },
+      { label: '150K Plan (Cap $2,750/req)', size: 150000, evalCost: 297, activationFee: 85, cap: 2750 },
+      { label: '250K Plan (Cap $3,000/req)', size: 250000, evalCost: 517, activationFee: 85, cap: 3000 },
+      { label: '300K Plan (Cap $3,500/req)', size: 300000, evalCost: 657, activationFee: 85, cap: 3500 }
+    ]
   },
   tradeify: {
     name: 'Tradeify',
     split: 90,
+    first100k: 15000,
+    badge: '100% First $15K then 90% · $0 Activation · Fast Processing',
+    stages: [
+      { id: 'standard', label: 'Funded Account (100% First $15K · Buffer Retained)', ratio: 1.00, cap: 0, desc: 'Tradeify allows you to keep 100% of your first $15,000 in profits, and 90% thereafter. Minimum withdrawal is $500 (Growth) or $250 (Select). Free activation across all tiers.' }
+    ],
     accounts: [
       { label: '25K Growth', size: 25000, evalCost: 59, activationFee: 0 },
       { label: '50K Growth', size: 50000, evalCost: 79, activationFee: 0 },
@@ -774,100 +825,105 @@ const FIRMS = {
       { label: '25K Lightning (Instant)', size: 25000, evalCost: 199, activationFee: 0 },
       { label: '50K Lightning (Instant)', size: 50000, evalCost: 299, activationFee: 0 },
       { label: '100K Lightning (Instant)', size: 100000, evalCost: 499, activationFee: 0 }
-    ],
-    badge: '100% First $15K then 90% · $0 Activation · EOD Trailing',
-    note: '100% of first $15,000 profit is yours, then 90/10 split. Zero activation fees.',
-    first100k: 15000
-  },
-  topstep: {
-    name: 'Topstep',
-    split: 90,
-    accounts: [
-      { label: '50K Combine ($49/mo)', size: 50000, evalCost: 49, activationFee: 149 },
-      { label: '100K Combine ($99/mo)', size: 100000, evalCost: 99, activationFee: 149 },
-      { label: '150K Combine ($149/mo)', size: 150000, evalCost: 149, activationFee: 149 }
-    ],
-    badge: '100% First $10K then 90% · EOD Trailing · Rapid Payouts',
-    note: '100% of first $10,000 profit is yours, then 90/10 split. $149 activation fee applies on Express Funded Account.',
-    first100k: 10000
-  },
-  onyx: {
-    name: 'Onyx Futures',
-    split: 85,
-    accounts: [
-      { label: '25K Starter', size: 25000, evalCost: 150, activationFee: 0 },
-      { label: '50K Core', size: 50000, evalCost: 170, activationFee: 0 },
-      { label: '100K Pro', size: 100000, evalCost: 300, activationFee: 0 },
-      { label: '150K MAX', size: 150000, evalCost: 350, activationFee: 0 }
-    ],
-    badge: '85/15 Split · Daily Payouts · Direct to Live',
-    note: 'One evaluation directly to a Live broker account. No activation fees.',
-    first100k: 0
+    ]
   },
   mffu: {
     name: 'MyFundedFutures',
     split: 90,
+    first100k: 10000,
+    badge: '100% First $10K then 90% · $0 Activation · 24h Payouts',
+    stages: [
+      { id: 'rapid', label: 'Rapid / Flex Plan (100% First $10K · 24h Payouts)', ratio: 1.00, cap: 0, desc: 'MyFundedFutures offers rapid 24-hour payouts with zero activation fees. You keep 100% of your first $10,000 profit, then 90/10 split. Buffer threshold applies.' },
+      { id: 'builder', label: 'Builder Plan (80% Split · Tiered Caps)', ratio: 1.00, cap: 1500, desc: 'Builder accounts use an 80/20 profit split with graduated caps ($1k on 1st payout, $1.5k on 2nd, $2k on 3rd).' }
+    ],
     accounts: [
-      { label: '50K Builder', size: 50000, evalCost: 63, activationFee: 0 },
       { label: '50K Rapid', size: 50000, evalCost: 77, activationFee: 0 },
       { label: '100K Rapid', size: 100000, evalCost: 127, activationFee: 0 },
       { label: '150K Rapid', size: 150000, evalCost: 187, activationFee: 0 },
       { label: '50K Flex', size: 50000, evalCost: 100, activationFee: 0 },
       { label: '100K Flex', size: 100000, evalCost: 150, activationFee: 0 },
       { label: '150K Flex', size: 150000, evalCost: 220, activationFee: 0 },
+      { label: '50K Builder', size: 50000, evalCost: 63, activationFee: 0 },
       { label: '50K Pro', size: 50000, evalCost: 130, activationFee: 0 },
       { label: '100K Pro', size: 100000, evalCost: 200, activationFee: 0 },
       { label: '150K Pro', size: 150000, evalCost: 280, activationFee: 0 }
-    ],
-    badge: '100% First $10K then 90% · Zero Activation Fee · 24h Payouts',
-    note: '100% of first $10K is kept by trader on Rapid/Flex, then 90/10 split. Free activation.',
-    first100k: 10000
+    ]
   },
-  apex: {
-    name: 'Apex Trader Funding',
+  lucid: {
+    name: 'Lucid Trading',
     split: 90,
-    accounts: [
-      { label: '25K Plan', size: 25000, evalCost: 147, activationFee: 85 },
-      { label: '50K Plan', size: 50000, evalCost: 167, activationFee: 85 },
-      { label: '100K Plan', size: 100000, evalCost: 207, activationFee: 85 },
-      { label: '150K Plan', size: 150000, evalCost: 297, activationFee: 85 },
-      { label: '250K Plan', size: 250000, evalCost: 517, activationFee: 85 },
-      { label: '300K Plan', size: 300000, evalCost: 657, activationFee: 85 }
+    first100k: 0,
+    badge: '90/10 Split · 15-Min Plaid ACH Payouts · Free Activation',
+    stages: [
+      { id: 'standard', label: 'Funded Account (15-Minute Processing · 90% Split)', ratio: 1.00, cap: 0, desc: 'Lucid processes approved payouts in ~15 minutes via Plaid ACH with zero activation fees. Requires 5 trading days with +$200/day profit to request.' }
     ],
-    badge: '100% First $25K then 90% · Apex 4.0 OTP · 20 Max Accts',
-    note: '100% of first $25,000 is yours, then 90/10 split across up to 20 accounts.',
-    first100k: 25000
+    accounts: [
+      { label: '50K LucidFlex', size: 50000, evalCost: 175, activationFee: 0 },
+      { label: '100K LucidFlex', size: 100000, evalCost: 275, activationFee: 0 },
+      { label: '150K LucidFlex', size: 150000, evalCost: 420, activationFee: 0 },
+      { label: '25K LucidPro', size: 25000, evalCost: 135, activationFee: 0 },
+      { label: '50K LucidPro', size: 50000, evalCost: 165, activationFee: 0 },
+      { label: '100K LucidPro', size: 100000, evalCost: 265, activationFee: 0 },
+      { label: '150K LucidPro', size: 150000, evalCost: 395, activationFee: 0 },
+      { label: '50K LucidDirect (Instant)', size: 50000, evalCost: 250, activationFee: 0 },
+      { label: '100K LucidDirect (Instant)', size: 100000, evalCost: 400, activationFee: 0 }
+    ]
+  },
+  onyx: {
+    name: 'Onyx Futures',
+    split: 85,
+    first100k: 0,
+    badge: '85/15 Split · Daily Payouts · Direct to Live Broker',
+    stages: [
+      { id: 'standard', label: 'Live Broker Account (85% Split · Daily Direct Withdrawals)', ratio: 1.00, cap: 0, desc: 'One evaluation transitions directly into a Live broker account. No evaluation payout caps — withdraw daily profits directly with an 85% split and $0 activation fees.' }
+    ],
+    accounts: [
+      { label: '25K Starter', size: 25000, evalCost: 150, activationFee: 0 },
+      { label: '50K Core', size: 50000, evalCost: 170, activationFee: 0 },
+      { label: '100K Pro', size: 100000, evalCost: 300, activationFee: 0 },
+      { label: '150K MAX', size: 150000, evalCost: 350, activationFee: 0 }
+    ]
   },
   tpt: {
     name: 'Take Profit Trader',
     split: 80,
+    first100k: 0,
+    badge: 'Daily Payouts From Day 1 · PRO+ Auto 90% Split',
+    stages: [
+      { id: 'pro', label: 'PRO Account (80% Split · Day 1 Withdrawals · No Buffer)', ratio: 1.00, split: 80, cap: 0, desc: 'Withdraw profits on Day 1 with no buffer requirement on PRO accounts at an 80% split.' },
+      { id: 'pro_plus', label: 'PRO+ Live Account (90% Split · Uncapped)', ratio: 1.00, split: 90, cap: 0, desc: 'Upon transitioning to PRO+ Live broker account, split increases to 90% lifetime.' }
+    ],
     accounts: [
       { label: '25K Account', size: 25000, evalCost: 150, activationFee: 130 },
       { label: '50K Account', size: 50000, evalCost: 170, activationFee: 130 },
       { label: '75K Account', size: 75000, evalCost: 245, activationFee: 130 },
       { label: '100K Account', size: 100000, evalCost: 330, activationFee: 130 },
       { label: '150K Account', size: 150000, evalCost: 360, activationFee: 130 }
-    ],
-    badge: 'Daily Payouts From Day 1 · PRO+ Auto 90% Split',
-    note: 'PRO = 80% split (instant day 1 withdrawals). PRO+ live = 90% split.',
-    first100k: 0
+    ]
   },
   fundedseat: {
     name: 'Funded Seat',
     split: 90,
-    accounts: [
-      { label: '25K Account', size: 25000, evalCost: 50, activationFee: 0 },
-      { label: '50K Account', size: 50000, evalCost: 85, activationFee: 0 },
-      { label: '100K Account', size: 100000, evalCost: 125, activationFee: 0 },
-      { label: '150K Account', size: 150000, evalCost: 175, activationFee: 0 }
-    ],
+    first100k: 0,
     badge: '90/10 Split · Daily Payouts · $0 Activation · No DLL',
-    note: 'Progressive contract scaling after funding. Free activation.',
-    first100k: 0
+    stages: [
+      { id: 'standard', label: 'Funded Account (Daily Payouts · Tiered Daily Cap)', ratio: 1.00, useCap: true, desc: 'Funded Seat allows daily payout requests up to $1k (25k), $2k (50k), $3k (100k), and $4k (150k) with a 90% profit split and $0 activation fee.' }
+    ],
+    accounts: [
+      { label: '25K Account (Cap $1,000/day)', size: 25000, evalCost: 50, activationFee: 0, cap: 1000 },
+      { label: '50K Account (Cap $2,000/day)', size: 50000, evalCost: 85, activationFee: 0, cap: 2000 },
+      { label: '100K Account (Cap $3,000/day)', size: 100000, evalCost: 125, activationFee: 0, cap: 3000 },
+      { label: '150K Account (Cap $4,000/day)', size: 150000, evalCost: 175, activationFee: 0, cap: 4000 }
+    ]
   },
   fundednext: {
     name: 'FundedNext',
     split: 90,
+    first100k: 0,
+    badge: 'Rapid Pro & Flex · 90% Lifetime Split · 24h Payouts',
+    stages: [
+      { id: 'standard', label: 'Funded Account (90% Lifetime Split · Bi-Weekly/24h)', ratio: 1.00, cap: 0, desc: 'FundedNext offers a 90% lifetime split on all futures accounts with zero activation fees.' }
+    ],
     accounts: [
       { label: '25K Flex', size: 25000, evalCost: 89, activationFee: 0 },
       { label: '50K Flex', size: 50000, evalCost: 134, activationFee: 0 },
@@ -876,14 +932,16 @@ const FIRMS = {
       { label: '25K Rapid Pro', size: 25000, evalCost: 99, activationFee: 0 },
       { label: '50K Rapid Pro', size: 50000, evalCost: 150, activationFee: 0 },
       { label: '100K Rapid Pro', size: 100000, evalCost: 275, activationFee: 0 }
-    ],
-    badge: 'Rapid Pro (No DLL) & Flex · 90% Split · 24h Payouts',
-    note: '90% lifetime profit split. Zero activation fees.',
-    first100k: 0
+    ]
   },
   alphafutures: {
     name: 'Alpha Futures',
     split: 80,
+    first100k: 0,
+    badge: '80/20 Split · $0 Activation · AlphaTrader Platform',
+    stages: [
+      { id: 'standard', label: 'Funded Account (80% Split · AlphaTrader Platform)', ratio: 1.00, cap: 0, desc: 'Alpha Futures provides 80/20 profit splits with $0 activation fees on AlphaTrader.' }
+    ],
     accounts: [
       { label: '25K Zero', size: 25000, evalCost: 69, activationFee: 0 },
       { label: '50K Zero', size: 50000, evalCost: 99, activationFee: 0 },
@@ -893,14 +951,16 @@ const FIRMS = {
       { label: '50K Advanced', size: 50000, evalCost: 147, activationFee: 0 },
       { label: '100K Advanced', size: 100000, evalCost: 247, activationFee: 0 },
       { label: '150K Advanced', size: 150000, evalCost: 327, activationFee: 0 }
-    ],
-    badge: '80/20 Split · $0 Activation · AlphaTrader Platform',
-    note: 'Zero activation fees. AlphaTrader platform with EOD trailing drawdown.',
-    first100k: 0
+    ]
   },
   fundyouredge: {
     name: 'Fund Your Edge',
     split: 90,
+    first100k: 0,
+    badge: '90/10 Split · Prime & Clear Plans · $0 Activation',
+    stages: [
+      { id: 'standard', label: 'Funded Account (90% Split · Zero Activation Fee)', ratio: 1.00, cap: 0, desc: 'Fund Your Edge provides a 90% profit split across all Prime & Clear plans with zero activation fees.' }
+    ],
     accounts: [
       { label: '25K Prime', size: 25000, evalCost: 99, activationFee: 0 },
       { label: '50K Prime', size: 50000, evalCost: 149, activationFee: 0 },
@@ -910,38 +970,42 @@ const FIRMS = {
       { label: '50K Clear', size: 50000, evalCost: 129, activationFee: 0 },
       { label: '100K Clear', size: 100000, evalCost: 219, activationFee: 0 },
       { label: '150K Clear', size: 150000, evalCost: 299, activationFee: 0 }
-    ],
-    badge: '90/10 Split · Prime & Clear Plans · $0 Activation',
-    note: 'Zero activation fees, EOD trailing drawdown, Tradovate & NinjaTrader support.',
-    first100k: 0
+    ]
   }
 };
 
 // ── DOM Elements ──────────────────────────────────────
 const firmSelect    = document.getElementById('firm-select');
 const accountSelect = document.getElementById('account-select');
+const stageSelect   = document.getElementById('stage-select');
 const grossInput    = document.getElementById('gross-profit');
 const toggleAct     = document.getElementById('toggle-activation');
 const toggleEval    = document.getElementById('toggle-eval');
 const actLabel      = document.getElementById('activation-fee-label');
 const evalLabel     = document.getElementById('eval-cost-label');
 const firmBadge     = document.getElementById('firm-badge');
+const policyText    = document.getElementById('policy-text');
 
-const resGross      = document.getElementById('res-gross');
-const resFirmShare  = document.getElementById('res-firm-share');
-const resSplitPct   = document.getElementById('res-split-pct');
-const resFees       = document.getElementById('res-fees');
-const resFeesDetail = document.getElementById('res-fees-detail');
-const resEffective  = document.getElementById('res-effective-pct');
-const resNet        = document.getElementById('res-net');
+const resGross           = document.getElementById('res-gross');
+const resWithdrawable    = document.getElementById('res-withdrawable');
+const resWithdrawableSub = document.getElementById('res-withdrawable-sub');
+const resRetained        = document.getElementById('res-retained');
+const resFirmShare       = document.getElementById('res-firm-share');
+const resSplitPct        = document.getElementById('res-split-pct');
+const resFees            = document.getElementById('res-fees');
+const resFeesDetail      = document.getElementById('res-fees-detail');
+const resEffective       = document.getElementById('res-effective-pct');
+const resNet             = document.getElementById('res-net');
 
 // ── Helpers ───────────────────────────────────────────
 function fmt(n) {
   return '$' + Math.round(n).toLocaleString('en-US');
 }
 
-function populateAccounts(firmId) {
+function populateAccountsAndStages(firmId) {
   const firm = FIRMS[firmId];
+  
+  // 1. Accounts
   accountSelect.innerHTML = '';
   firm.accounts.forEach((acc, i) => {
     const opt = document.createElement('option');
@@ -949,11 +1013,28 @@ function populateAccounts(firmId) {
     opt.textContent = acc.label;
     accountSelect.appendChild(opt);
   });
+
+  // 2. Stages
+  stageSelect.innerHTML = '';
+  if (firm.stages && firm.stages.length > 0) {
+    firm.stages.forEach((stg, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = stg.label;
+      stageSelect.appendChild(opt);
+    });
+    document.getElementById('stage-row').style.display = 'block';
+  } else {
+    document.getElementById('stage-row').style.display = 'none';
+  }
 }
 
 function updateLabels() {
   const firm = FIRMS[firmSelect.value];
-  const acc = firm.accounts[accountSelect.value];
+  const accIndex = parseInt(accountSelect.value) || 0;
+  const acc = firm.accounts[accIndex] || firm.accounts[0];
+  const stageIndex = parseInt(stageSelect.value) || 0;
+  const stage = (firm.stages && firm.stages[stageIndex]) ? firm.stages[stageIndex] : null;
 
   actLabel.textContent = acc.activationFee > 0
     ? `${fmt(acc.activationFee)} (${firm.name})`
@@ -966,25 +1047,61 @@ function updateLabels() {
 
   firmBadge.textContent = '📋 ' + firm.badge;
   firmBadge.style.display = 'inline-flex';
+
+  if (stage && stage.desc) {
+    policyText.innerHTML = stage.desc;
+  } else {
+    policyText.innerHTML = firm.name + ' offers straightforward payouts without hidden percentage caps.';
+  }
 }
 
 function calculate() {
   const firm = FIRMS[firmSelect.value];
-  const acc  = firm.accounts[accountSelect.value];
+  const accIndex = parseInt(accountSelect.value) || 0;
+  const acc = firm.accounts[accIndex] || firm.accounts[0];
+  const stageIndex = parseInt(stageSelect.value) || 0;
+  const stage = (firm.stages && firm.stages[stageIndex]) ? firm.stages[stageIndex] : null;
   const gross = parseFloat(grossInput.value) || 0;
 
-  // Calculate firm share with the first-$X-is-100%-yours rule
-  let firmShare = 0;
-  const splitPct = (100 - firm.split) / 100; // e.g. 0.10 for 90% trader split
-  if (firm.first100k > 0 && gross > firm.first100k) {
-    firmShare = (gross - firm.first100k) * splitPct;
-  } else if (firm.first100k > 0 && gross <= firm.first100k) {
-    firmShare = 0;
-  } else {
-    firmShare = gross * splitPct;
+  // 1. Calculate Withdrawable Amount & Retained Buffer
+  let withdrawable = gross;
+  let ruleSubText = '100% of profit withdrawable';
+
+  if (stage) {
+    if (stage.ratio && stage.ratio < 1.0) {
+      // E.g. Topstep 50% rule
+      withdrawable = gross * stage.ratio;
+      ruleSubText = `${Math.round(stage.ratio * 100)}% Max Cap (${firm.name} Rule)`;
+    } else if (stage.useCap && acc.cap > 0) {
+      // E.g. Apex Months 1-3 cap per payout or Funded Seat daily cap
+      if (gross > acc.cap) {
+        withdrawable = acc.cap;
+        ruleSubText = `Capped at max ${fmt(acc.cap)} this payout`;
+      } else {
+        withdrawable = gross;
+        ruleSubText = `Within ${fmt(acc.cap)} limit`;
+      }
+    }
   }
 
-  // Fees
+  const retained = Math.max(0, gross - withdrawable);
+
+  // 2. Calculate Firm's Share on the Withdrawable Profit
+  let activeSplit = stage && stage.split ? stage.split : firm.split; // e.g. 90, 85, or 80
+  let splitPct = (100 - activeSplit) / 100;
+  let firmShare = 0;
+
+  if (firm.first100k > 0) {
+    if (withdrawable > firm.first100k) {
+      firmShare = (withdrawable - firm.first100k) * splitPct;
+    } else {
+      firmShare = 0;
+    }
+  } else {
+    firmShare = withdrawable * splitPct;
+  }
+
+  // 3. Fees
   let fees = 0;
   let feeDetails = [];
   if (toggleAct.checked && acc.activationFee > 0) {
@@ -996,21 +1113,27 @@ function calculate() {
     feeDetails.push('Evaluation');
   }
 
-  const net = Math.max(0, gross - firmShare - fees);
-  const effectivePct = gross > 0 ? ((net / gross) * 100) : 0;
+  // 4. Net Payout
+  const net = Math.max(0, withdrawable - firmShare - fees);
+  const effectivePct = withdrawable > 0 ? ((net / withdrawable) * 100) : 0;
 
-  // Render
-  resGross.textContent     = fmt(gross);
-  resFirmShare.textContent = fmt(firmShare);
-  resSplitPct.textContent  = firm.first100k > 0
-    ? `100% first ${fmt(firm.first100k)}, then ${100 - firm.split}%`
-    : `${100 - firm.split}%`;
-  resFees.textContent      = fmt(fees);
-  resFeesDetail.textContent = feeDetails.length > 0 ? feeDetails.join(' + ') : 'None';
-  resEffective.textContent = effectivePct.toFixed(1) + '%';
-  resNet.textContent       = fmt(net);
+  // 5. Render
+  resGross.textContent           = fmt(gross);
+  resWithdrawable.textContent    = fmt(withdrawable);
+  resWithdrawableSub.textContent = ruleSubText;
+  resRetained.textContent        = fmt(retained);
+  resFirmShare.textContent       = fmt(firmShare);
 
-  // Color the effective % based on value
+  resSplitPct.textContent = firm.first100k > 0
+    ? `100% first ${fmt(firm.first100k)}, then ${100 - activeSplit}%`
+    : `${100 - activeSplit}% firm split`;
+
+  resFees.textContent            = fmt(fees);
+  resFeesDetail.textContent      = feeDetails.length > 0 ? feeDetails.join(' + ') : 'None';
+  resEffective.textContent       = effectivePct.toFixed(1) + '%';
+  resNet.textContent             = fmt(net);
+
+  // Color effective %
   if (effectivePct >= 85) {
     resEffective.style.color = 'var(--green)';
   } else if (effectivePct >= 70) {
@@ -1022,7 +1145,7 @@ function calculate() {
 
 // ── Event Listeners ───────────────────────────────────
 firmSelect.addEventListener('change', () => {
-  populateAccounts(firmSelect.value);
+  populateAccountsAndStages(firmSelect.value);
   updateLabels();
   calculate();
 });
@@ -1032,21 +1155,28 @@ accountSelect.addEventListener('change', () => {
   calculate();
 });
 
+stageSelect.addEventListener('change', () => {
+  updateLabels();
+  calculate();
+});
+
 grossInput.addEventListener('input', calculate);
 toggleAct.addEventListener('change', calculate);
 toggleEval.addEventListener('change', calculate);
 
 // ── Init ──────────────────────────────────────────────
-populateAccounts('topstep');
+populateAccountsAndStages('topstep');
 updateLabels();
 calculate();
 
 // ── Sticky header shadow ─────────────────────────────
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
-  header.style.boxShadow = window.scrollY > 10
-    ? '0 4px 30px rgba(0,0,0,0.35)'
-    : 'none';
+  if (header) {
+    header.style.boxShadow = window.scrollY > 10
+      ? '0 4px 30px rgba(0,0,0,0.35)'
+      : 'none';
+  }
 }, { passive: true });
 </script>
 </body>
