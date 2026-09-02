@@ -578,17 +578,17 @@
       <div class="calc-field">
         <label for="firm-select">Prop Firm</label>
         <select id="firm-select">
-          <option value="topstep">Topstep</option>
-          <option value="apex">Apex Trader Funding</option>
-          <option value="tradeify">Tradeify</option>
-          <option value="mffu">MyFundedFutures (MFFU)</option>
-          <option value="tpt">Take Profit Trader</option>
           <option value="lucid">Lucid Trading</option>
+          <option value="tradeify">Tradeify</option>
+          <option value="topstep" selected>Topstep</option>
+          <option value="onyx">Onyx Futures</option>
+          <option value="mffu">MyFundedFutures (MFFU)</option>
+          <option value="apex">Apex Trader Funding</option>
+          <option value="tpt">Take Profit Trader</option>
           <option value="fundedseat">Funded Seat</option>
           <option value="fundednext">FundedNext</option>
           <option value="alphafutures">Alpha Futures</option>
-          
-          <option value="onyx">Onyx Futures</option>
+          <option value="fundyouredge">Fund Your Edge</option>
         </select>
       </div>
       <div class="calc-field">
@@ -741,64 +741,67 @@
 <script>
 // ── Firm Database ──────────────────────────────────────
 const FIRMS = {
-  onyx: {
-    name: 'Onyx Futures',
-    split: 85,
-    accounts: [
-      { label: '25K (Starter)', size: 25000, evalCost: 150, activationFee: 0 },
-      { label: '50K (Core)', size: 50000, evalCost: 170, activationFee: 0 },
-      { label: '100K (Pro)', size: 100000, evalCost: 300, activationFee: 0 },
-      { label: '150K (MAX)', size: 150000, evalCost: 350, activationFee: 0 }
-    ],
-    badge: '85/15 Split · Daily Payouts · Direct to Live',
-    note: 'One evaluation directly to a Live broker account. No activation fees.',
-    first100k: 0
-  },
-
-  topstep: {
-    name: 'Topstep',
+  lucid: {
+    name: 'Lucid Trading',
     split: 90,
     accounts: [
-      { label: '50K (With Activation)', size: 50000, evalCost: 49, activationFee: 149 },
-      { label: '100K (With Activation)', size: 100000, evalCost: 99, activationFee: 149 },
-      { label: '150K (With Activation)', size: 150000, evalCost: 149, activationFee: 149 },
-      { label: '50K (No Activation)', size: 50000, evalCost: 95, activationFee: 0 },
-      { label: '100K (No Activation)', size: 100000, evalCost: 149, activationFee: 0 },
-      { label: '150K (No Activation)', size: 150000, evalCost: 229, activationFee: 0 },
+      { label: '50K LucidFlex', size: 50000, evalCost: 175, activationFee: 0 },
+      { label: '100K LucidFlex', size: 100000, evalCost: 275, activationFee: 0 },
+      { label: '150K LucidFlex', size: 150000, evalCost: 420, activationFee: 0 },
+      { label: '25K LucidPro', size: 25000, evalCost: 135, activationFee: 0 },
+      { label: '50K LucidPro', size: 50000, evalCost: 165, activationFee: 0 },
+      { label: '100K LucidPro', size: 100000, evalCost: 265, activationFee: 0 },
+      { label: '150K LucidPro', size: 150000, evalCost: 395, activationFee: 0 },
+      { label: '50K LucidDirect (Instant)', size: 50000, evalCost: 250, activationFee: 0 },
+      { label: '100K LucidDirect (Instant)', size: 100000, evalCost: 400, activationFee: 0 }
     ],
-    badge: '90/10 Split · EOD Trailing · No DLL',
-    note: 'No payout caps on Live Funded Accounts (LFA)',
+    badge: '90/10 Split · 15-Min Payout Processing · Free Activation',
+    note: 'No activation fee. Fast 15-min Plaid ACH payouts.',
     first100k: 0
-  },
-  apex: {
-    name: 'Apex Trader Funding',
-    split: 90,
-    accounts: [
-      { label: '50K (Intraday)', size: 50000, evalCost: 167, activationFee: 79 },
-      { label: '50K (EOD)', size: 50000, evalCost: 167, activationFee: 99 },
-      { label: '100K (Intraday)', size: 100000, evalCost: 207, activationFee: 79 },
-      { label: '100K (EOD)', size: 100000, evalCost: 207, activationFee: 99 },
-      { label: '150K (Intraday)', size: 150000, evalCost: 297, activationFee: 79 },
-      { label: '150K (EOD)', size: 150000, evalCost: 297, activationFee: 99 },
-    ],
-    badge: 'Apex 4.0 OTP · 6-Payout Cap · 50% Consistency',
-    note: '100% of first $25K is yours, then 90/10 split',
-    first100k: 25000
   },
   tradeify: {
     name: 'Tradeify',
     split: 90,
     accounts: [
-      { label: '50K Growth', size: 50000, evalCost: 139, activationFee: 0 },
-      { label: '50K Select', size: 50000, evalCost: 159, activationFee: 0 },
-      { label: '100K Growth', size: 100000, evalCost: 259, activationFee: 0 },
-      { label: '100K Select', size: 100000, evalCost: 279, activationFee: 0 },
-      { label: '150K Growth', size: 150000, evalCost: 539, activationFee: 0 },
-      { label: '150K Select', size: 150000, evalCost: 559, activationFee: 0 },
-      { label: '50K Lightning (Instant)', size: 50000, evalCost: 399, activationFee: 0 },
+      { label: '25K Growth', size: 25000, evalCost: 59, activationFee: 0 },
+      { label: '50K Growth', size: 50000, evalCost: 79, activationFee: 0 },
+      { label: '100K Growth', size: 100000, evalCost: 139, activationFee: 0 },
+      { label: '150K Growth', size: 150000, evalCost: 179, activationFee: 0 },
+      { label: '25K Select', size: 25000, evalCost: 109, activationFee: 0 },
+      { label: '50K Select', size: 50000, evalCost: 139, activationFee: 0 },
+      { label: '100K Select', size: 100000, evalCost: 229, activationFee: 0 },
+      { label: '150K Select', size: 150000, evalCost: 299, activationFee: 0 },
+      { label: '25K Lightning (Instant)', size: 25000, evalCost: 199, activationFee: 0 },
+      { label: '50K Lightning (Instant)', size: 50000, evalCost: 299, activationFee: 0 },
+      { label: '100K Lightning (Instant)', size: 100000, evalCost: 499, activationFee: 0 }
     ],
-    badge: 'v3.0 OTP · EOD Trailing · Zero Activation Fee',
-    note: 'Growth, Select, & Lightning paths available',
+    badge: '100% First $15K then 90% · $0 Activation · EOD Trailing',
+    note: '100% of first $15,000 profit is yours, then 90/10 split. Zero activation fees.',
+    first100k: 15000
+  },
+  topstep: {
+    name: 'Topstep',
+    split: 90,
+    accounts: [
+      { label: '50K Combine ($49/mo)', size: 50000, evalCost: 49, activationFee: 149 },
+      { label: '100K Combine ($99/mo)', size: 100000, evalCost: 99, activationFee: 149 },
+      { label: '150K Combine ($149/mo)', size: 150000, evalCost: 149, activationFee: 149 }
+    ],
+    badge: '100% First $10K then 90% · EOD Trailing · Rapid Payouts',
+    note: '100% of first $10,000 profit is yours, then 90/10 split. $149 activation fee applies on Express Funded Account.',
+    first100k: 10000
+  },
+  onyx: {
+    name: 'Onyx Futures',
+    split: 85,
+    accounts: [
+      { label: '25K Starter', size: 25000, evalCost: 150, activationFee: 0 },
+      { label: '50K Core', size: 50000, evalCost: 170, activationFee: 0 },
+      { label: '100K Pro', size: 100000, evalCost: 300, activationFee: 0 },
+      { label: '150K MAX', size: 150000, evalCost: 350, activationFee: 0 }
+    ],
+    badge: '85/15 Split · Daily Payouts · Direct to Live',
+    note: 'One evaluation directly to a Live broker account. No activation fees.',
     first100k: 0
   },
   mffu: {
@@ -809,82 +812,107 @@ const FIRMS = {
       { label: '50K Rapid', size: 50000, evalCost: 77, activationFee: 0 },
       { label: '100K Rapid', size: 100000, evalCost: 127, activationFee: 0 },
       { label: '150K Rapid', size: 150000, evalCost: 187, activationFee: 0 },
+      { label: '50K Flex', size: 50000, evalCost: 100, activationFee: 0 },
+      { label: '100K Flex', size: 100000, evalCost: 150, activationFee: 0 },
+      { label: '150K Flex', size: 150000, evalCost: 220, activationFee: 0 },
+      { label: '50K Pro', size: 50000, evalCost: 130, activationFee: 0 },
+      { label: '100K Pro', size: 100000, evalCost: 200, activationFee: 0 },
+      { label: '150K Pro', size: 150000, evalCost: 280, activationFee: 0 }
     ],
-    badge: 'Zero Activation Fees · Semi-Automated Only',
-    note: 'Builder Plan: 80/20 split. Rapid/Flex: 90/10 split.',
-    first100k: 0
+    badge: '100% First $10K then 90% · Zero Activation Fee · 24h Payouts',
+    note: '100% of first $10K is kept by trader on Rapid/Flex, then 90/10 split. Free activation.',
+    first100k: 10000
+  },
+  apex: {
+    name: 'Apex Trader Funding',
+    split: 90,
+    accounts: [
+      { label: '25K Plan', size: 25000, evalCost: 147, activationFee: 85 },
+      { label: '50K Plan', size: 50000, evalCost: 167, activationFee: 85 },
+      { label: '100K Plan', size: 100000, evalCost: 207, activationFee: 85 },
+      { label: '150K Plan', size: 150000, evalCost: 297, activationFee: 85 },
+      { label: '250K Plan', size: 250000, evalCost: 517, activationFee: 85 },
+      { label: '300K Plan', size: 300000, evalCost: 657, activationFee: 85 }
+    ],
+    badge: '100% First $25K then 90% · Apex 4.0 OTP · 20 Max Accts',
+    note: '100% of first $25,000 is yours, then 90/10 split across up to 20 accounts.',
+    first100k: 25000
   },
   tpt: {
     name: 'Take Profit Trader',
     split: 80,
     accounts: [
-      { label: '50K', size: 50000, evalCost: 150, activationFee: 130 },
-      { label: '100K', size: 100000, evalCost: 330, activationFee: 130 },
-      { label: '150K', size: 150000, evalCost: 360, activationFee: 130 },
+      { label: '25K Account', size: 25000, evalCost: 150, activationFee: 130 },
+      { label: '50K Account', size: 50000, evalCost: 170, activationFee: 130 },
+      { label: '75K Account', size: 75000, evalCost: 245, activationFee: 130 },
+      { label: '100K Account', size: 100000, evalCost: 330, activationFee: 130 },
+      { label: '150K Account', size: 150000, evalCost: 360, activationFee: 130 }
     ],
-    badge: 'Daily Payouts · PRO+ Auto Transition to 90%',
-    note: 'PRO = 80% split, PRO+ (live) = 90% split. Activation fee often waived.',
-    first100k: 0
-  },
-  lucid: {
-    name: 'Lucid Trading',
-    split: 90,
-    accounts: [
-      { label: '50K LucidFlex', size: 50000, evalCost: 125, activationFee: 0 },
-      { label: '50K LucidPro', size: 50000, evalCost: 115, activationFee: 0 },
-      { label: '50K LucidDaily', size: 50000, evalCost: 135, activationFee: 0 },
-      { label: '100K LucidFlex', size: 100000, evalCost: 225, activationFee: 0 },
-      { label: '150K LucidFlex', size: 150000, evalCost: 375, activationFee: 0 },
-    ],
-    badge: '90/10 Split · OTP · News OK',
-    note: 'Funded accounts always use Intraday trailing regardless of eval setting.',
+    badge: 'Daily Payouts From Day 1 · PRO+ Auto 90% Split',
+    note: 'PRO = 80% split (instant day 1 withdrawals). PRO+ live = 90% split.',
     first100k: 0
   },
   fundedseat: {
     name: 'Funded Seat',
     split: 90,
     accounts: [
-      { label: '25K', size: 25000, evalCost: 45, activationFee: 0 },
-      { label: '50K', size: 50000, evalCost: 80, activationFee: 0 },
-      { label: '100K', size: 100000, evalCost: 140, activationFee: 0 },
+      { label: '25K Account', size: 25000, evalCost: 50, activationFee: 0 },
+      { label: '50K Account', size: 50000, evalCost: 85, activationFee: 0 },
+      { label: '100K Account', size: 100000, evalCost: 125, activationFee: 0 },
+      { label: '150K Account', size: 150000, evalCost: 175, activationFee: 0 }
     ],
-    badge: 'Daily Payouts · No DLL · News OK · No Consistency',
-    note: 'Progressive contract scaling after funding.',
+    badge: '90/10 Split · Daily Payouts · $0 Activation · No DLL',
+    note: 'Progressive contract scaling after funding. Free activation.',
     first100k: 0
   },
   fundednext: {
     name: 'FundedNext',
     split: 90,
     accounts: [
+      { label: '25K Flex', size: 25000, evalCost: 89, activationFee: 0 },
       { label: '50K Flex', size: 50000, evalCost: 134, activationFee: 0 },
       { label: '100K Flex', size: 100000, evalCost: 250, activationFee: 0 },
       { label: '150K Flex', size: 150000, evalCost: 484, activationFee: 0 },
+      { label: '25K Rapid Pro', size: 25000, evalCost: 99, activationFee: 0 },
       { label: '50K Rapid Pro', size: 50000, evalCost: 150, activationFee: 0 },
-      { label: '50K Rapid Daily', size: 50000, evalCost: 150, activationFee: 0 },
+      { label: '100K Rapid Pro', size: 100000, evalCost: 275, activationFee: 0 }
     ],
-    badge: 'Rapid Pro (no DLL) & Rapid Daily · 90% Split',
-    note: 'Bolt & legacy Rapid accounts retired July 2026.',
+    badge: 'Rapid Pro (No DLL) & Flex · 90% Split · 24h Payouts',
+    note: '90% lifetime profit split. Zero activation fees.',
     first100k: 0
   },
   alphafutures: {
     name: 'Alpha Futures',
     split: 80,
     accounts: [
+      { label: '25K Zero', size: 25000, evalCost: 69, activationFee: 0 },
       { label: '50K Zero', size: 50000, evalCost: 99, activationFee: 0 },
       { label: '100K Zero', size: 100000, evalCost: 169, activationFee: 0 },
+      { label: '150K Zero', size: 150000, evalCost: 229, activationFee: 0 },
+      { label: '25K Advanced', size: 25000, evalCost: 97, activationFee: 0 },
       { label: '50K Advanced', size: 50000, evalCost: 147, activationFee: 0 },
       { label: '100K Advanced', size: 100000, evalCost: 247, activationFee: 0 },
-      { label: '50K Direct Qualified', size: 50000, evalCost: 199, activationFee: 0 },
+      { label: '150K Advanced', size: 150000, evalCost: 327, activationFee: 0 }
     ],
-    badge: 'AlphaTrader Platform · Premium Discontinued',
-    note: 'NinjaTrader dropped. All accounts on AlphaTrader only.',
+    badge: '80/20 Split · $0 Activation · AlphaTrader Platform',
+    note: 'Zero activation fees. AlphaTrader platform with EOD trailing drawdown.',
     first100k: 0
   },
-      { label: '100K', size: 100000, evalCost: 149, activationFee: 0 },
-      { label: '150K', size: 150000, evalCost: 199, activationFee: 0 },
+  fundyouredge: {
+    name: 'Fund Your Edge',
+    split: 90,
+    accounts: [
+      { label: '25K Prime', size: 25000, evalCost: 99, activationFee: 0 },
+      { label: '50K Prime', size: 50000, evalCost: 149, activationFee: 0 },
+      { label: '100K Prime', size: 100000, evalCost: 249, activationFee: 0 },
+      { label: '150K Prime', size: 150000, evalCost: 349, activationFee: 0 },
+      { label: '25K Clear', size: 25000, evalCost: 89, activationFee: 0 },
+      { label: '50K Clear', size: 50000, evalCost: 129, activationFee: 0 },
+      { label: '100K Clear', size: 100000, evalCost: 219, activationFee: 0 },
+      { label: '150K Clear', size: 150000, evalCost: 299, activationFee: 0 }
     ],
-    badge: 'EOD Trailing · Rithmic · 80% Scaling to 90%',
-    note: 'Profit split starts at 80% and scales to 90%.',
+    badge: '90/10 Split · Prime & Clear Plans · $0 Activation',
+    note: 'Zero activation fees, EOD trailing drawdown, Tradovate & NinjaTrader support.',
     first100k: 0
   }
 };
