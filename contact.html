@@ -837,9 +837,8 @@
       </div>
 
       <form
-        action="mailto:contact@futurespropcompare.com"
-        method="GET"
-        enctype="text/plain"
+        action="https://formspree.io/f/meaqggwj"
+        method="POST"
         id="contactForm"
       >
         <div class="form-grid">
@@ -890,7 +889,7 @@
             <label for="message">Message</label>
             <textarea
               id="message"
-              name="body"
+              name="message"
               placeholder="Tell us what's on your mind — the more detail, the better we can help."
               required
             ></textarea>
@@ -905,6 +904,8 @@
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>
         </button>
+
+        <div id="form-status" style="display:none;margin-top:16px;padding:14px 18px;border-radius:10px;font-size:0.9rem;line-height:1.5;"></div>
 
         <p class="form-footer-note">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1011,7 +1012,7 @@
             </div>
             <div class="sl-info">
               <span class="sl-name">X (Twitter)</span>
-              <span class="sl-handle">@FuturePropHub</span>
+              <span class="sl-handle">@FPC_Deals</span>
             </div>
             <svg class="sl-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -1107,5 +1108,75 @@
   </div>
 </footer>
 
+  <script>
+    // ── Formspree AJAX Form Submission ──────────────────────
+    const FORMSPREE_ENDPOINT = "https://formspree.io/f/meaqggwj";
+
+    const contactForm = document.getElementById("contactForm");
+    const formStatus  = document.getElementById("form-status");
+    const sendButton  = contactForm ? contactForm.querySelector(".btn-send") : null;
+
+    if (contactForm && formStatus && sendButton) {
+      // Ensure form action is updated if changed in JS
+      if (FORMSPREE_ENDPOINT !== "https://formspree.io/f/YOUR_FORMSPREE_ID") {
+        contactForm.action = FORMSPREE_ENDPOINT;
+      }
+
+      contactForm.addEventListener("submit", async function(e) {
+        // If the endpoint is still the placeholder, allow standard submit or notify
+        if (contactForm.action.includes("YOUR_FORMSPREE_ID")) {
+          // Allow submission or notify user
+        }
+
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        
+        sendButton.disabled = true;
+        const originalBtnText = sendButton.innerHTML;
+        sendButton.innerHTML = `Sending... <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle><path d="M12 2a10 10 0 0 1 10 10"></path></svg>`;
+        
+        formStatus.style.display = "none";
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+              "Accept": "application/json"
+            }
+          });
+
+          if (response.ok) {
+            formStatus.style.display = "block";
+            formStatus.style.background = "rgba(74, 222, 128, 0.12)";
+            formStatus.style.border = "1px solid rgba(74, 222, 128, 0.3)";
+            formStatus.style.color = "#4ade80";
+            formStatus.innerHTML = "✓ <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you within 1–2 business days.";
+            contactForm.reset();
+          } else {
+            const data = await response.json();
+            formStatus.style.display = "block";
+            formStatus.style.background = "rgba(248, 113, 113, 0.12)";
+            formStatus.style.border = "1px solid rgba(248, 113, 113, 0.3)";
+            formStatus.style.color = "#f87171";
+            if (data && data.errors && data.errors.length > 0) {
+              formStatus.innerHTML = "⚠️ " + data.errors.map(err => err.message).join(", ");
+            } else {
+              formStatus.innerHTML = "⚠️ There was a problem submitting your message. Please try again or email us directly at <a href='mailto:contact@futurespropcompare.com' style='color:#a78bfa;'>contact@futurespropcompare.com</a>.";
+            }
+          }
+        } catch (error) {
+          formStatus.style.display = "block";
+          formStatus.style.background = "rgba(248, 113, 113, 0.12)";
+          formStatus.style.border = "1px solid rgba(248, 113, 113, 0.3)";
+          formStatus.style.color = "#f87171";
+          formStatus.innerHTML = "⚠️ Network error occurred. Please check your connection or email us directly at <a href='mailto:contact@futurespropcompare.com' style='color:#a78bfa;'>contact@futurespropcompare.com</a>.";
+        } finally {
+          sendButton.disabled = false;
+          sendButton.innerHTML = originalBtnText;
+        }
+      });
+    }
+  </script>
 </body>
 </html>
